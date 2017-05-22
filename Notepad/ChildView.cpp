@@ -16,6 +16,7 @@
 CChildView::CChildView()
 {
 	m_text = new SITEXT;
+	LBuDown = false;
 }
 
 CChildView::~CChildView()
@@ -26,6 +27,12 @@ CChildView::~CChildView()
 
 BEGIN_MESSAGE_MAP(CChildView, CWnd)
 	ON_WM_PAINT()
+	ON_WM_CHAR()
+	ON_WM_LBUTTONDOWN()
+	ON_WM_LBUTTONUP()
+	ON_WM_MOUSEMOVE()
+	ON_WM_KEYDOWN()
+	ON_WM_KEYUP()
 END_MESSAGE_MAP()
 
 
@@ -74,6 +81,7 @@ void CChildView::OnPaint()
 	dc.Draw3dRect(&draw_ins, (0, 0, 0), (0, 0, 0));
 	*/
 	// 不要为绘制消息而调用 CWnd::OnPaint()
+	m_text->repaint();
 	if (m_text->text_changed_f) 
 	{
 		m_paintText(dc);
@@ -113,3 +121,144 @@ void CChildView::m_paintCur(CPaintDC& dc)
 	dc.LineTo(posx + width, posy + height);
 }
 
+
+
+void CChildView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	wchar_t wchar = nChar;
+	if (nChar == VK_BACK)
+	{
+		if (m_text->select.sp == NULL && m_text->select.ep == NULL)
+		{
+			m_text->del_char(SIBACKSPACE);
+		}
+		else
+		{
+			m_text->del_select();
+		}
+	}
+	else if (nChar == VK_DELETE)
+	{
+		if (m_text->select.sp == NULL && m_text->select.ep == NULL)
+		{
+			m_text->del_char(SIDELETE);
+		}
+		else
+		{
+			m_text->del_select();
+		}
+	}
+	else if(is_input(nChar))
+	{
+		m_text->del_select();
+		m_text->ins_char(wchar);
+	}
+	m_changed();
+	CWnd::OnChar(nChar, nRepCnt, nFlags);
+}
+
+inline bool CChildView::is_input(UINT nChar)
+{
+	/*
+	if((nChar>=0x30 && nChar<=0x39)
+		||(nChar>=0x41 && nChar<=0x5A)
+		||())
+		*/
+	if (nChar != VK_BACK && nChar != VK_DELETE)
+	{
+		return true;
+	}
+}
+
+inline void CChildView::m_changed()
+{
+	m_text->text_changed_f = true;
+	Invalidate(true);
+}
+
+
+void CChildView::OnLButtonDown(UINT nFlags, CPoint point)
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	LBuDown = true;
+	m_text->cursorp = m_text->point_to_cursorp(SIPOINT(point.x, point.y));
+	m_text->mov_cursorp(m_text->cursorp);
+	m_text->start_select();
+	m_changed();
+	CWnd::OnLButtonDown(nFlags, point);
+}
+
+
+void CChildView::OnLButtonUp(UINT nFlags, CPoint point)
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	LBuDown = false;
+	m_text->cursorp = m_text->point_to_cursorp(SIPOINT(point.x, point.y));
+	m_text->mov_cursorp(m_text->cursorp);
+	m_text->end_select();
+	m_changed();
+	CWnd::OnLButtonUp(nFlags, point);
+}
+
+
+void CChildView::OnMouseMove(UINT nFlags, CPoint point)
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	if (LBuDown == true)
+	{
+		m_text->cursorp = m_text->point_to_cursorp(SIPOINT(point.x, point.y));
+		m_text->mov_cursorp(m_text->cursorp);
+	}
+	m_changed();
+	CWnd::OnMouseMove(nFlags, point);
+}
+
+
+void CChildView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	if (nRepCnt > 1) 
+	{
+		switch (nChar)
+		{
+		case VK_UP:
+			m_text->mov_cursorp(m_text->UP);
+			break;
+		case VK_DOWN:
+			m_text->mov_cursorp(m_text->DOWN);
+			break;
+		case VK_LEFT:
+			m_text->mov_cursorp(m_text->LEFT);
+			break;
+		case VK_RIGHT:
+			m_text->mov_cursorp(m_text->RIGHT);
+			break;
+		}
+	}
+	m_changed();
+	CWnd::OnKeyDown(nChar, nRepCnt, nFlags);
+}
+
+
+void CChildView::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	switch (nChar)
+	{
+	case VK_UP:
+		m_text->mov_cursorp(m_text->UP);
+		break;
+	case VK_DOWN:
+		m_text->mov_cursorp(m_text->DOWN);
+		break;
+	case VK_LEFT:
+		m_text->mov_cursorp(m_text->LEFT);
+		break;
+	case VK_RIGHT:
+		m_text->mov_cursorp(m_text->RIGHT);
+		break;
+	}
+	m_changed();
+	CWnd::OnKeyUp(nChar, nRepCnt, nFlags);
+}

@@ -39,5 +39,27 @@ public:
 public:
 	void m_paintText(CPaintDC& dc);
 	void m_paintCur(CPaintDC& dc);
+
+//keyboard message map
+public:
+	afx_msg void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
+	inline bool is_input(UINT nChar);
+
+
+//changed so need repaint
+public:
+	inline void m_changed();
+	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
+	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+
+//flags
+private:
+	bool LBuDown;
+
+//other key messages
+public:
+	afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
+	afx_msg void OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags);
 };
 

@@ -180,6 +180,10 @@ typedef SIRANGE SILINE;
 typedef int PAGEWIDTH;
 typedef SICHARNODE_P SICURSORP;
 typedef int SIDIRECT;
+
+const bool SIBACKSPACE = true;
+const bool SIDELETE = false;
+
 class SITEXT
 {
 public://used to be private
@@ -212,7 +216,7 @@ public:
 	bool text_changed_f;
 	//change_end
 	static const SIDIRECT LEFT;
-	static const SIDIRECT RRIHT;
+	static const SIDIRECT RIGHT; //CHANGE
 	static const SIDIRECT UP;
 	static const SIDIRECT DOWN;
 	//constructor
