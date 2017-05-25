@@ -6,6 +6,7 @@
 #pragma once
 
 #include "kernal.h"
+#include "M_PARA_DIA.h"
 // CChildView ´°¿Ú
 
 class CChildView : public CWnd

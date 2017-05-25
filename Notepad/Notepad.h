@@ -8,7 +8,7 @@
 #endif
 
 #include "resource.h"       // 主符号
-
+#include "kernal.h"
 
 // CNotepadApp:
 // 有关此类的实现，请参阅 Notepad.cpp
@@ -18,12 +18,27 @@ class CNotepadApp : public CWinApp
 {
 public:
 	CNotepadApp();
-
+	CMainFrame* mainp;
 
 // 重写
 public:
 	virtual BOOL InitInstance();
 	virtual int ExitInstance();
+
+//font dialoge
+public:
+	afx_msg void OnFont();
+//para dialoge
+public:
+	afx_msg void OnPara();
+
+//cut/copy/paste
+public:
+	afx_msg void OnCut();
+	afx_msg void OnCopy();
+	afx_msg void OnPaste();
+	afx_msg void OnBackColor();
+	SIRANGE m_cutBoard;
 
 // 实现
 

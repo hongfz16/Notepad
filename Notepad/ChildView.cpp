@@ -182,9 +182,17 @@ void CChildView::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	// TODO: 在此添加消息处理程序代码和/或调用默认值
 	LBuDown = true;
-	m_text->cursorp = m_text->point_to_cursorp(SIPOINT(point.x, point.y));
-	m_text->mov_cursorp(m_text->cursorp);
-	m_text->start_select();
+	if (m_text->select.ep == NULL && m_text->select.sp == NULL)
+	{
+		m_text->cursorp = m_text->point_to_cursorp(SIPOINT(point.x, point.y));
+		m_text->mov_cursorp(m_text->cursorp);
+		m_text->start_select();
+	}
+	else
+	{
+		//move?
+		//need a move_flag for ONLButtonUp to decide whether to clear selection 
+	}
 	m_changed();
 	CWnd::OnLButtonDown(nFlags, point);
 }
@@ -194,9 +202,18 @@ void CChildView::OnLButtonUp(UINT nFlags, CPoint point)
 {
 	// TODO: 在此添加消息处理程序代码和/或调用默认值
 	LBuDown = false;
-	m_text->cursorp = m_text->point_to_cursorp(SIPOINT(point.x, point.y));
-	m_text->mov_cursorp(m_text->cursorp);
-	m_text->end_select();
+	if (m_text->select.ep == NULL && m_text->select.sp == NULL)
+	{
+		m_text->cursorp = m_text->point_to_cursorp(SIPOINT(point.x, point.y));
+		m_text->mov_cursorp(m_text->cursorp);
+		m_text->end_select();
+	}
+	else
+	{
+		m_text->cursorp = m_text->point_to_cursorp(SIPOINT(point.x, point.y));
+		m_text->mov_cursorp(m_text->cursorp);
+		m_text->clear_select();
+	}
 	m_changed();
 	CWnd::OnLButtonUp(nFlags, point);
 }

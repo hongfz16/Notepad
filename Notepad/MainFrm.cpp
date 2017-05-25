@@ -7,6 +7,8 @@
 
 #include "MainFrm.h"
 
+#include "M_PARA_DIA.h"
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif

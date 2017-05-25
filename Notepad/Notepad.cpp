@@ -7,7 +7,10 @@
 #include "afxdialogex.h"
 #include "Notepad.h"
 #include "MainFrm.h"
-
+#include "M_PARA_DIA.h"
+#include "kernal.h"
+#include "ChildView.h"
+#include "m_back_color.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -18,6 +21,11 @@
 
 BEGIN_MESSAGE_MAP(CNotepadApp, CWinApp)
 	ON_COMMAND(ID_APP_ABOUT, &CNotepadApp::OnAppAbout)
+	ON_COMMAND(ID_FONT,&CNotepadApp::OnFont)
+	ON_COMMAND(ID_PARA,&CNotepadApp::OnPara)
+	ON_COMMAND(ID_EDIT_CUT,&CNotepadApp::OnCut)
+	ON_COMMAND(ID_EDIT_COPY,&CNotepadApp::OnCopy)
+	ON_COMMAND(ID_EDIT_PASTE,&CNotepadApp::OnPaste)
 END_MESSAGE_MAP()
 
 
@@ -91,6 +99,7 @@ BOOL CNotepadApp::InitInstance()
 	// 若要创建主窗口，此代码将创建新的框架窗口
 	// 对象，然后将其设置为应用程序的主窗口对象
 	CMainFrame* pFrame = new CMainFrame;
+	mainp = pFrame;
 	if (!pFrame)
 		return FALSE;
 	m_pMainWnd = pFrame;
@@ -151,6 +160,79 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
 END_MESSAGE_MAP()
+
+void CNotepadApp::OnFont()
+{
+	LOGFONT lf;
+	CFontDialog dlg;
+	COLORERF col;
+	if (dlg.DoModal() == IDOK)
+	{
+		dlg.GetCurrentFont(&lf);
+		col = dlg.GetColor();
+	}
+	if (mainp->m_wndView.m_text->select.sp == NULL && mainp->m_wndView.m_text->select.ep == NULL)
+	{
+		mainp->m_wndView.m_text->set_curfont(&lf);
+	}
+	else
+	{
+		mainp->m_wndView.m_text->set_select_font(&lf);
+		mainp->m_wndView.m_text->set_select_color(col);
+	}
+}
+
+void CNotepadApp::OnPara()
+{
+	M_PARA_DIA paraDlg;
+	paraDlg.DoModal();
+	if (mainp->m_wndView.m_text->select.sp == NULL && mainp->m_wndView.m_text->select.ep == NULL)
+	{
+		//TODO:set_cru_l/cspace???
+	}
+	else
+	{
+		mainp->m_wndView.m_text->set_select_lspace(paraDlg.m_linespace);
+		mainp->m_wndView.m_text->set_select_cspace(paraDlg.m_charaspace);
+	}
+}
+
+void CNotepadApp::OnCut()
+{
+	SITEXT* b_text = mainp->m_wndView.m_text;
+	m_cutBoard = b_text->select;
+	b_text->del_select();
+}
+
+void CNotepadApp::OnCopy()
+{
+	SITEXT* b_text = mainp->m_wndView.m_text;
+	m_cutBoard = b_text->select;
+}
+
+void CNotepadApp::OnPaste()
+{
+	//TODO:insert a text range
+}
+
+void CNotepadApp::OnBackColor()
+{
+	COLORREF tempcol;
+	m_back_color colDlg;
+	if (colDlg.DoModal() == IDOK)
+	{
+		tempcol = colDlg.color;
+	}
+	SITEXT* b_text = mainp->m_wndView.m_text;
+	if (b_text->select.ep == NULL && b_text->select.sp == NULL)
+	{
+		//TODO:set current color
+	}
+	else
+	{
+		//TODO:set select color
+	}
+}
 
 // 用于运行对话框的应用程序命令
 void CNotepadApp::OnAppAbout()
