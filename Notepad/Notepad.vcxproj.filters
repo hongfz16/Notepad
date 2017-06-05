@@ -45,6 +45,9 @@
     <ClInclude Include="m_back_color.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="lib.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Notepad.cpp">
@@ -63,6 +66,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="m_back_color.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="kernal.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

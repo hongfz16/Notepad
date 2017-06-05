@@ -2,12 +2,14 @@
 #ifndef kernal_h
 #define kernal_h
 
+#include "stdafx.h"
 #include<vector>
-#include<Windows.h>
+//#include<Windows.h>
 
 using namespace std;
 
-typedef wchar_t SICHAR_T;
+//typedef wchar_t SICHAR_T;
+typedef char SICHAR_T;
 typedef LOGFONT SIFONT;
 typedef SIFONT* SIFONT_P;
 typedef const SIFONT* SIFONT_PC;
@@ -15,6 +17,7 @@ typedef int COLORERF;
 typedef int CHARSIZE;
 typedef int CHARSPACE;
 typedef int LINESPACE;
+typedef int SIALIGN;
 
 class SICHAR_INFO;
 class SIDRAW_INFO;
@@ -29,17 +32,20 @@ class SICHAR_INFO
 {
 private:
 	//const SIFONT_P fontp;
+
+public:
 	SIFONT_PC fontpc;
 	COLORERF color;
 	CHARSIZE size;
 	CHARSPACE cspace;
 	LINESPACE lspace;
-public:
+	SIALIGN align;
+
 	friend class SICHARNODE;
 	SICHAR_INFO():fontpc(NULL)
 	{
 		//fontp = NULL;
-		color = size = cspace = lspace = 0;
+		color = size = cspace = lspace = align = 0;
 	}
 	inline void set_fontpc(SIFONT_PC tfontpc);
 	inline void set_fontpc(const SIFONT& tfont);
@@ -66,6 +72,10 @@ struct SIRECT
 		width = twidth;
 		height = theight;
 	}
+	void print()
+	{
+		printf("%d %d", width, height);
+	}
 };
 
 struct SIPOINT
@@ -76,15 +86,29 @@ struct SIPOINT
 	{
 		x = tx; y = ty;
 	}
+	void print()
+	{
+		printf("%d %d", x, y);
+	}
+	friend SIPOINT operator + (const SIPOINT& A, const SIPOINT& B)
+	{
+		return SIPOINT(A.x + B.x, A.y + B.y);
+	}
+	friend SIPOINT operator - (const SIPOINT& A, const SIPOINT& B)
+	{
+		return SIPOINT(A.x - B.x, A.y - B.y);
+	}
 };
 
 class SIDRAW_INFO
 {
 private:
+
+public:
 	SIRECT S;		//small rectangle
 	SIRECT L;		//large rectangle
 	SIPOINT POS;	//coor. (left_top)
-public:
+
 	friend class SICHARNODE;
 	SIDRAW_INFO()
 	{
@@ -108,12 +132,14 @@ typedef SIDRAW_INFO* SIDRAW_INFO_P;
 class SICHARNODE
 {
 private:
+
+public:
 	SICHAR_T ch;
 	SICHAR_INFO_P char_infop;
 	SIDRAW_INFO_P draw_infop;
 	SICHARNODE *prevp;
 	SICHARNODE *nextp;
-public:
+
 	friend class SITEXT;
 	SICHARNODE(SICHAR_T tch, SICHARNODE* tprevp = NULL, SICHARNODE* tnextp = NULL
 		, SICHAR_INFO_P tchar_infop = NULL, SIDRAW_INFO_P tdraw_infop = NULL)
@@ -126,6 +152,7 @@ public:
 		prevp = tprevp;
 		nextp = tnextp;
 	}
+
 	~SICHARNODE()
 	{
 		if (char_infop != NULL) delete char_infop;
@@ -142,23 +169,18 @@ public:
 	inline void set_draw_infop_P(const SIPOINT& TP);
 	inline void set_draw_infop_LP(const SIRECT& TL, const SIPOINT& TP);
 	inline void set_draw_infop(const SIRECT& TS, const SIRECT& TL, const SIPOINT& TP);
-	inline void ins_forward(SICHARNODE* p);
-	inline void ins_backward(SICHARNODE* p);
-	inline void ins_forward(SICHARNODE* ps, SICHARNODE* pe);
-	inline void ins_backward(SICHARNODE* ps, SICHARNODE* pe);
-	inline void ins_forward(const SIRANGE& range);
-	inline void ins_backward(const SIRANGE& range);
+	inline void ins_prev(SICHARNODE* p);
+	inline void ins_next(SICHARNODE* p);
+	inline void ins_prev(SICHARNODE* ps, SICHARNODE* pe);
+	inline void ins_next(SICHARNODE* ps, SICHARNODE* pe);
+	inline void ins_prev(const SIRANGE& range);
+	inline void ins_next(const SIRANGE& range);
 	friend void del(SICHARNODE* p);
 	friend void del(SICHARNODE* ps, SICHARNODE* pe);
 	friend void del(const SIRANGE& range);
 ///<interface>
 	inline const SICHAR_INFO_P get_char_infop();
 	inline const SIDRAW_INFO_P get_draw_infop();
-	//change
-	inline SICHARNODE* get_prevp();
-	inline SICHARNODE* get_nextp();
-	inline const SICHAR_T get_char();
-	//change end
 ///<\interface>
 };
 typedef SICHARNODE* SICHARNODE_P;
@@ -172,6 +194,10 @@ struct SIRANGE
 		sp = tsp;
 		ep = tep;
 	}
+	void _clear()
+	{
+		sp = ep = NULL;
+	}
 };
 typedef SIRANGE SISELECT;
 typedef SIRANGE SIPARAGRAPH;
@@ -180,13 +206,11 @@ typedef SIRANGE SILINE;
 typedef int PAGEWIDTH;
 typedef SICHARNODE_P SICURSORP;
 typedef int SIDIRECT;
-
-const bool SIBACKSPACE = true;
-const bool SIDELETE = false;
-
+typedef int SIALIGN;
 class SITEXT
 {
-public://used to be private
+private:
+public:
 	SICHARNODE_P headp;
 	SICHARNODE_P tailp;
 
@@ -195,30 +219,40 @@ public://used to be private
 
 	PAGEWIDTH pagewidth;
 
-	SIFONT_PC curfontp;
+	SIFONT_PC curfontpc;
 
+	bool inselect;
+	int fwdnum;
 	std::vector<SILINE> vlinep;
 	std::vector<SIPARAGRAPH> vparap;
 
 	//set true when text changed specifically when \
 		effectable methods are called		\
 	  set false when repaint() is called
-	//bool text_changed_f;
+	bool text_changed_f;
 	//set true when set_curfontp() is called \
 	  set false when cursor moved
 	bool set_curfontp_f;
 
 private:
-	inline void proc_line(SICHARNODE_P ps, SICHARNODE_P pe);
+
+	inline void draw_line_from_left(SICHARNODE_P ps, SICHARNODE_P pe, int sx, int y, int line_height, int deltax);
+	inline void proc_line(SICHARNODE_P ps, SICHARNODE_P pe, int n, int y, int line_height, int tot_weight, int align);
 	inline void proc_text();
 public:
-	//change_begin
-	bool text_changed_f;
-	//change_end
-	static const SIDIRECT LEFT;
-	static const SIDIRECT RIGHT; //CHANGE
-	static const SIDIRECT UP;
-	static const SIDIRECT DOWN;
+	
+	static const PAGEWIDTH DEFAULT_PAGEWIDTH = 110;
+
+	static const SIDIRECT DLEFT = 0;
+	static const SIDIRECT DRIGHT = 1;
+	static const SIDIRECT DUP = 2;
+	static const SIDIRECT DDOWN = 3;
+
+	static const SIALIGN ANORMAL = 0;
+	static const SIALIGN ALEFT = 0;
+	static const SIALIGN ARIGHT = 1;
+	static const SIALIGN ACENTER = 2;
+	static const SIALIGN ADISTRIBUTED = 3;
 	//constructor
 	SITEXT();
 ///<interface>
@@ -227,19 +261,24 @@ public:
 	///inline void save();
 	inline void _init();
 	inline void ins_char(SICHAR_T);
-	inline void del_char(bool backwards = false);
+	//debug mod?
+	inline void ins_char(SICHAR_T, int, int);
+	//------------
+	inline void del_char(bool backwards);
 	inline void start_select();
 	inline void end_select();
 	inline void del_select();
-	inline void replace_select();
-	inline void clear_select();
+	inline void replace_select(const SIRANGE&);
+	inline void replace_select(SICHARNODE_P ps, SICHARNODE_P pe);
+	inline void cancel_select();
 	inline void mov_select(SICURSORP);
 	inline void mov_cursorp(SICURSORP);
 	inline void mov_cursorp(SIDIRECT);
+	inline void mov_cursorp(const SIPOINT&);
 	///several set_* method
-	inline void set_select_font(SIFONT_PC tfontp);
+	inline void set_select_font(SIFONT_PC tfontpc);
 	inline void set_select_font(const SIFONT& tfont);
-	inline void set_curfont(SIFONT_PC tcurfontp);
+	inline void set_curfont(SIFONT_PC tcurfontpc);
 	inline void set_curfont(const SIFONT& tcurfont);
 	inline void set_select_color(COLORERF tcolor);
 	inline void set_select_lspace(LINESPACE tlspace);
@@ -252,6 +291,7 @@ public:
 		///divide line
 		///line texing
 	inline void repaint();
+	void print_list();
 ///<\interface>
 };
 
