@@ -171,6 +171,15 @@ public:
 		nextp = tnextp;
 	}
 
+	SICHARNODE(SICHAR_T tch, int tswidth, int tsheight)
+	{
+		ch = tch;
+		char_infop = new SICHAR_INFO;
+		draw_infop = new SIDRAW_INFO;
+		draw_infop->S.width = tswidth;
+		draw_infop->S.height = tsheight;
+	}
+
 	~SICHARNODE()
 	{
 		if (char_infop != NULL) delete char_infop;
@@ -257,6 +266,7 @@ private:
 	inline void draw_line_from_left(SICHARNODE_P ps, SICHARNODE_P pe, int sx, int y, int line_height, int deltax);
 	inline void proc_line(SICHARNODE_P ps, SICHARNODE_P pe, int n, int y, int line_height, int tot_weight, int align);
 	inline void proc_text();
+	inline void pre_proc();
 public:
 	
 	static const PAGEWIDTH DEFAULT_PAGEWIDTH = 110;
@@ -497,6 +507,8 @@ inline void SITEXT::draw_line_from_left(SICHARNODE_P ps, SICHARNODE_P pe, int sx
 	}
 
 }
+
+
 inline void SITEXT::proc_line(SICHARNODE_P ps, SICHARNODE_P pe,
 	int n, int y, int line_height, int tot_width, int align)
 {
@@ -541,6 +553,17 @@ inline int Max(int a, int b)
 	return a > b ? a : b;
 }
 
+inline void SITEXT::pre_proc()
+{
+	SICHARNODE_P p;
+	for (p = headp->nextp; p != tailp; p = p->nextp)
+	{
+		if (isenter(p->ch)&&isenter(p->nextp->ch))
+		{
+			p->ins_next(new SICHARNODE(' ', 1, p->draw_infop->S.height));
+		}
+	}
+}
 inline void SITEXT::proc_text()
 {
 	SICHARNODE_P ps, pe, pps;
@@ -620,9 +643,21 @@ inline void SITEXT::ins_char(SICHAR_T ch, int twidth, int theight)
 
 inline void SITEXT::del_char(bool backwards = true)
 {
-	if (backwards&&cursorp->prevp != headp) del(cursorp->prevp);
-	if ((!backwards) && cursorp->nextp != NULL)
+	SICHARNODE_P prevp, pprevp, curp, nextp;
+	prevp = cursorp->prevp;
+	curp = cursorp;
+	nextp = curp->nextp;
+	if (backwards&&prevp != headp)
 	{
+		pprevp = prevp->prevp;
+		if (prevp->ch == ' '&&pprevp != headp&&isenter(pprevp->ch))
+			del(pprevp);
+		del(prevp);
+	}
+	if ((!backwards) && nextp != NULL)
+	{
+		if (isenter(curp->ch) && nextp->ch == ' ')
+			del(nextp);
 		cursorp = cursorp->nextp;
 		del(cursorp->prevp);
 	}
@@ -778,6 +813,7 @@ inline SICURSORP SITEXT::point_to_cursorp(const SIPOINT& P)
 
 inline void SITEXT::repaint()
 {
+	pre_proc();
 	proc_text();
 }
 
