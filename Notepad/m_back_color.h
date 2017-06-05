@@ -9,12 +9,7 @@
 
 #pragma once
 #include "stdafx.h"
-#include "ChildView.h"
-#include "MainFrm.h"
-#include "Notepad.h"
-#include "afxcolorbutton.h"
-#include "kernal.h"
-#include "m_back_color.h"
+
 /**
 @brief 设置背景颜色的对话框类m_back_color \n
 该对话框用于用户选择当前文字的背景颜色\n

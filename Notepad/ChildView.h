@@ -8,7 +8,8 @@
 */
 
 #pragma once
-#include "M_PARA_DIA.h"
+#include "stdafx.h"
+#include "kernal.h"
 /**
 @brief 子视窗类CChildView \n
 子视窗是程序中客户区部分，即文本编辑的画布部分

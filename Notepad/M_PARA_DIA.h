@@ -9,8 +9,6 @@
 
 #pragma once
 #include "stdafx.h"
-#include "Notepad.h"
-#include "kernal.h"
 #include "resource.h"
 /**
 @brief 设置行间距以及字间距的对话框类M_PARA_DIA \n

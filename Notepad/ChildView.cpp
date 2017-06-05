@@ -3,7 +3,7 @@
 //
 
 #include "stdafx.h"
-#include "Notepad.h"
+//#include"kernal.h"
 #include "ChildView.h"
 
 #ifdef _DEBUG
@@ -86,10 +86,10 @@ void CChildView::m_paintText(CPaintDC& dc) {
     font.CreateFontIndirectW(&(*(curr->get_char_infop()->get_fontpc())));
     dc.SelectObject(&font);
     dc.SetTextColor(curr->get_char_infop()->get_color());
-    int posx = curr->get_draw_infop()->get_POS().x;
-    int posy = curr->get_draw_infop()->get_POS().y;
-    int width = curr->get_draw_infop()->get_L().width;
-    int height = curr->get_draw_infop()->get_L().height;
+	int posx = curr->draw_infop->POS.x;//curr->get_draw_infop()->get_POS().x;
+	int posy = curr->draw_infop->POS.y;//curr->get_draw_infop()->get_POS().y;
+	int width = curr->draw_infop->L.width;//get_draw_infop()->get_L().width;
+	int height = curr->draw_infop->L.height;//get_draw_infop()->get_L().height;
     CRect outrect(CPoint(posx, posy), CPoint(posx + width, posy + height));
     CString str(curr->ch);
     dc.DrawTextW(str, &outrect, DT_SINGLELINE | DT_CENTER | DT_BOTTOM);
@@ -109,7 +109,7 @@ void CChildView::m_paintCur(CPaintDC& dc) {
 
 void CChildView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags) {
   // TODO: 在此添加消息处理程序代码和/或调用默认值
-  wchar_t wchar = nChar;
+  SICHAR_T wchar = nChar;
   if (nChar == VK_BACK) {
     if (m_text->select.sp == NULL && m_text->select.ep == NULL) {
       m_text->del_char(SIBACKSPACE);
@@ -139,6 +139,7 @@ inline bool CChildView::is_input(UINT nChar) {
   if (nChar != VK_BACK && nChar != VK_DELETE) {
     return true;
   }
+  else return false;
 }
 
 inline void CChildView::m_changed() {

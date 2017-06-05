@@ -10,7 +10,8 @@
 #pragma once
 #include "stdafx.h"
 #include "ChildView.h"
-extern class CChildView;
+#include "m_back_color.h"
+#include "M_PARA_DIA.h"
 /**
 @brief 程序主框架类CMainFrame类 \n
 主框架包括子视图类以及滚动条

@@ -5,6 +5,7 @@
 #include "m_back_color.h"
 #include "Notepad.h"
 #include "afxdialogex.h"
+#include "resource.h"
 
 // m_back_color ¶Ô»°¿ò
 

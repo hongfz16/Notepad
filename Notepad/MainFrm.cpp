@@ -1,6 +1,7 @@
 ﻿
 // MainFrm.cpp : CMainFrame 类的实现
 //
+//#include"kernal.h"
 
 #include "stdafx.h"
 #include "Notepad.h"
