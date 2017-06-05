@@ -10,6 +10,9 @@
 #define new DEBUG_NEW
 #endif
 
+
+//#define M_DEBUG
+
 // CChildView
 
 CChildView::CChildView() {
@@ -71,10 +74,18 @@ void CChildView::OnPaint() {
   dc.Draw3dRect(&draw_ins, (0, 0, 0), (0, 0, 0));
   */
   // 不要为绘制消息而调用 CWnd::OnPaint()
+  //MessageBox(_T("before_repaint"));
   m_text->repaint();
+  
   if (m_text->text_changed_f) {
-    m_paintText(dc);
-    m_paintCur(dc);
+#ifdef M_DEBUG
+	  MessageBox(_T("after_repaint"));
+#endif
+	  m_paintText(dc);
+	  m_paintCur(dc);
+#ifdef M_DEBUG
+	  MessageBox(_T("End OnPaint"));
+#endif
   }
   m_text->text_changed_f = false;
 }
@@ -82,16 +93,27 @@ void CChildView::OnPaint() {
 void CChildView::m_paintText(CPaintDC& dc) {
   SICHARNODE_P curr = m_text->headp;
   while (curr->nextp != NULL) {
+#ifdef M_DEBUG
+	  MessageBox(_T("Not empty"));
+#endif
     CFont font;
     font.CreateFontIndirectW(&(*(curr->get_char_infop()->get_fontpc())));
     dc.SelectObject(&font);
     dc.SetTextColor(curr->get_char_infop()->get_color());
+#ifdef M_DEBUG
+	dc.SetTextColor(RGB(255, 0, 0));
+#endif
 	int posx = curr->draw_infop->POS.x;//curr->get_draw_infop()->get_POS().x;
 	int posy = curr->draw_infop->POS.y;//curr->get_draw_infop()->get_POS().y;
 	int width = curr->draw_infop->L.width;//get_draw_infop()->get_L().width;
 	int height = curr->draw_infop->L.height;//get_draw_infop()->get_L().height;
     CRect outrect(CPoint(posx, posy), CPoint(posx + width, posy + height));
     CString str(curr->ch);
+	
+#ifdef M_DEBUG
+	CRect outrect(CPoint(0, 0), CPoint(100, 100));
+	MessageBox(str);
+#endif
     dc.DrawTextW(str, &outrect, DT_SINGLELINE | DT_CENTER | DT_BOTTOM);
     curr = curr->nextp;
   }
@@ -103,6 +125,7 @@ void CChildView::m_paintCur(CPaintDC& dc) {
   int posy = curr->get_draw_infop()->get_POS().y;
   int width = curr->get_draw_infop()->get_L().width;
   int height = curr->get_draw_infop()->get_L().height;
+
   dc.MoveTo(posx + width, posy);
   dc.LineTo(posx + width, posy + height);
 }
@@ -122,9 +145,14 @@ void CChildView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags) {
     } else {
       m_text->del_select();
     }
-  } else if (is_input(nChar)) {
-    m_text->del_select();
-    m_text->ins_char(wchar);
+  }
+  else {//if (is_input(nChar)) {
+	  if (m_text->select.sp != NULL)
+		  m_text->del_select();
+#ifdef M_DEBUG
+	  MessageBox(_T("OnChar"));
+#endif
+	  m_text->ins_char(wchar);
   }
   m_changed();
   CWnd::OnChar(nChar, nRepCnt, nFlags);
@@ -158,6 +186,7 @@ void CChildView::OnLButtonDown(UINT nFlags, CPoint point) {
     // move?
     // need a move_flag for ONLButtonUp to decide whether to clear selection
   }
+  MessageBox(_T("LDown"));
   m_changed();
   CWnd::OnLButtonDown(nFlags, point);
 }
@@ -183,8 +212,9 @@ void CChildView::OnMouseMove(UINT nFlags, CPoint point) {
   if (LBuDown == true) {
     m_text->cursorp = m_text->point_to_cursorp(SIPOINT(point.x, point.y));
     m_text->mov_cursorp(m_text->cursorp);
+	m_changed();
   }
-  m_changed();
+  
   CWnd::OnMouseMove(nFlags, point);
 }
 
@@ -205,8 +235,8 @@ void CChildView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
         m_text->mov_cursorp(m_text->DRIGHT);
         break;
     }
+	m_changed();
   }
-  m_changed();
   CWnd::OnKeyDown(nChar, nRepCnt, nFlags);
 }
 
