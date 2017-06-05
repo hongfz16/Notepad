@@ -54,7 +54,7 @@ void del(SICHARNODE* ps, SICHARNODE* pe)
 	ps->prevp->nextp = pe->nextp;
 	pe->nextp->prevp = ps->prevp;
 	for (SICHARNODE_P p = ps->nextp; p != pe; p = p->nextp) delete p->prevp;
-	delete pe;
+	//delete pe;
 }
 void del(const SIRANGE& range)
 {

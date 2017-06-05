@@ -11,6 +11,24 @@ using namespace std;
 //typedef wchar_t SICHAR_T;
 typedef char SICHAR_T;
 typedef LOGFONT SIFONT;
+/*
+typedef struct tagLOGFONT
+{ LONG lfHeight;
+LONG lfWidth;
+LONG lfEscapement;
+LONG lfOrientation;
+LONG lfWeight;
+BYTE lfItalic;
+BYTE lfUnderline;
+BYTE lfStrikeOut;
+BYTE lfCharSet;
+BYTE lfOutPrecision;
+BYTE lfClipPrecision;
+BYTE lfQuality;
+BYTE lfPitchAndFamily;
+TCHAR lfFaceName[LF_FACESIZE];
+} LOGFONT;
+*/
 typedef SIFONT* SIFONT_P;
 typedef const SIFONT* SIFONT_PC;
 typedef int COLORERF;
