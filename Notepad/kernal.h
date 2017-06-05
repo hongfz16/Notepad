@@ -67,7 +67,7 @@ struct SIRECT
 {
 	int width;
 	int height;
-	SIRECT(int twidth = 50, int theight = 50)
+	SIRECT(int twidth = 15, int theight = 15)
 	{
 		width = twidth;
 		height = theight;
@@ -615,8 +615,8 @@ inline void SITEXT::start_select()
 inline void SITEXT::end_select()
 {
 	select.ep = cursorp;
-	if (fwdnum < 0) exchange<SICHARNODE_P>(select.sp, select.ep);
-	if (fwdnum == 0) select._clear();
+	//if (fwdnum < 0) exchange<SICHARNODE_P>(select.sp, select.ep);
+	//if (fwdnum == 0) select._clear();
 	inselect = false;
 	fwdnum = 0;
 }
@@ -787,7 +787,7 @@ textp->ins_char('d', 12, 10);
 textp->ins_char('\n', 0, 0);
 textp->ins_char('X', 1, 1);
 textp->cursorp->prevp->char_infop->set_lspace(10);
-textp->ins_char('Z', 12, 20);
+textp->('Z', 12, 20);
 textp->cursorp->prevp->char_infop->set_cspace(88);
 textp->repaint();
 textp->print_list();

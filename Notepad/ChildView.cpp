@@ -90,33 +90,39 @@ void CChildView::OnPaint() {
   m_text->text_changed_f = false;
 }
 
-void CChildView::m_paintText(CPaintDC& dc) {
-  SICHARNODE_P curr = m_text->headp;
-  while (curr->nextp != NULL) {
+void CChildView::m_paintText(CPaintDC& dc)
+{
+	SICHARNODE_P curr = m_text->headp->nextp;
+	while (curr->nextp != NULL)
+	{
+		if (isenter(curr->ch))
+		{
+			curr = curr->nextp;
+			continue;
+		}
 #ifdef M_DEBUG
-	  MessageBox(_T("Not empty"));
+		MessageBox(_T("Not empty"));
 #endif
-    CFont font;
-    font.CreateFontIndirectW(&(*(curr->get_char_infop()->get_fontpc())));
-    dc.SelectObject(&font);
-    dc.SetTextColor(curr->get_char_infop()->get_color());
+		CFont font;
+		font.CreateFontIndirectW(&(*(curr->get_char_infop()->get_fontpc())));
+		dc.SelectObject(&font);
+		dc.SetTextColor(curr->get_char_infop()->get_color());
 #ifdef M_DEBUG
-	dc.SetTextColor(RGB(255, 0, 0));
+		dc.SetTextColor(RGB(255, 0, 0));
 #endif
-	int posx = curr->draw_infop->POS.x;//curr->get_draw_infop()->get_POS().x;
-	int posy = curr->draw_infop->POS.y;//curr->get_draw_infop()->get_POS().y;
-	int width = curr->draw_infop->L.width;//get_draw_infop()->get_L().width;
-	int height = curr->draw_infop->L.height;//get_draw_infop()->get_L().height;
-    CRect outrect(CPoint(posx, posy), CPoint(posx + width, posy + height));
-    CString str(curr->ch);
-	
+		int posx = curr->draw_infop->POS.x;//curr->get_draw_infop()->get_POS().x;
+		int posy = curr->draw_infop->POS.y;//curr->get_draw_infop()->get_POS().y;
+		int width = curr->draw_infop->L.width;//get_draw_infop()->get_L().width;
+		int height = curr->draw_infop->L.height;//get_draw_infop()->get_L().height;
+		CRect outrect(CPoint(posx, posy), CPoint(posx + width, posy + height));
+		CString str(curr->ch);
 #ifdef M_DEBUG
-	CRect outrect(CPoint(0, 0), CPoint(100, 100));
-	MessageBox(str);
+		CRect outrect(CPoint(0, 0), CPoint(100, 100));
+		MessageBox(str);
 #endif
-    dc.DrawTextW(str, &outrect, DT_SINGLELINE | DT_CENTER | DT_BOTTOM);
-    curr = curr->nextp;
-  }
+		dc.DrawTextW(str, &outrect, DT_SINGLELINE | DT_CENTER | DT_BOTTOM);
+		curr = curr->nextp;
+	}
 }
 
 void CChildView::m_paintCur(CPaintDC& dc) {
@@ -126,8 +132,8 @@ void CChildView::m_paintCur(CPaintDC& dc) {
   int width = curr->get_draw_infop()->get_L().width;
   int height = curr->get_draw_infop()->get_L().height;
 
-  dc.MoveTo(posx + width, posy);
-  dc.LineTo(posx + width, posy + height);
+  dc.MoveTo(posx, posy);
+  dc.LineTo(posx, posy + height);
 }
 
 void CChildView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags) {
@@ -186,7 +192,9 @@ void CChildView::OnLButtonDown(UINT nFlags, CPoint point) {
     // move?
     // need a move_flag for ONLButtonUp to decide whether to clear selection
   }
+#ifdef M_DEBUG
   MessageBox(_T("LDown"));
+#endif
   m_changed();
   CWnd::OnLButtonDown(nFlags, point);
 }
@@ -221,20 +229,22 @@ void CChildView::OnMouseMove(UINT nFlags, CPoint point) {
 void CChildView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
   // TODO: 在此添加消息处理程序代码和/或调用默认值
   if (nRepCnt > 1) {
-    switch (nChar) {
-      case VK_UP:
-        m_text->mov_cursorp(m_text->DUP);
-        break;
-      case VK_DOWN:
-        m_text->mov_cursorp(m_text->DDOWN);
-        break;
-      case VK_LEFT:
-        m_text->mov_cursorp(m_text->DLEFT);
-        break;
-      case VK_RIGHT:
-        m_text->mov_cursorp(m_text->DRIGHT);
-        break;
-    }
+	  for (int i = nRepCnt; i != 0; --i) {
+		  switch (nChar) {
+		  case VK_UP:
+			  m_text->mov_cursorp(m_text->DUP);
+			  break;
+		  case VK_DOWN:
+			  m_text->mov_cursorp(m_text->DDOWN);
+			  break;
+		  case VK_LEFT:
+			  m_text->mov_cursorp(m_text->DLEFT);
+			  break;
+		  case VK_RIGHT:
+			  m_text->mov_cursorp(m_text->DRIGHT);
+			  break;
+		  }
+	  }
 	m_changed();
   }
   CWnd::OnKeyDown(nChar, nRepCnt, nFlags);
