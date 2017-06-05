@@ -67,7 +67,7 @@ struct SIRECT
 {
 	int width;
 	int height;
-	SIRECT(int twidth = 0, int theight = 0)
+	SIRECT(int twidth = 50, int theight = 50)
 	{
 		width = twidth;
 		height = theight;
@@ -672,7 +672,7 @@ inline void SITEXT::mov_cursorp(SIDIRECT tdir)
 		break;
 	case DUP:
 		if (cursorp->draw_infop->POS.y != 0)
-			cursorp = point_to_cursorp(cursorp->draw_infop->POS - (0, -1));
+			cursorp = point_to_cursorp(cursorp->draw_infop->POS - (0, -3));
 		break;
 	case DDOWN:
 		//if(cursorp->draw_infop->POS.y!=MAX_POSY)
