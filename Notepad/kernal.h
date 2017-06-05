@@ -578,7 +578,12 @@ inline void SITEXT::proc_text()
 		vlinep.push_back(SILINE(ps, pe));
 		proc_line(ps, pe, n, y, line_height, tot_width, ps->char_infop->align);
 		y += line_height;
-		if (pe == tailp) break;
+		if (pe == tailp)
+		{
+			tailp->draw_infop->POS = tailp->prevp->draw_infop->POS 
+									+ SIPOINT(tailp->prevp->draw_infop->L.width, 0);
+			break;
+		}
 	}
 }
 
