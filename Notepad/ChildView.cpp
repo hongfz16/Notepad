@@ -235,15 +235,21 @@ void CChildView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags) {
 #endif
 	  m_text->ins_char(wchar);
   }
-
-  if (m_text->cursorp->get_draw_infop()->get_POS().y < mainframep->maincy)
+  
+  if (m_text->tailp->get_draw_infop()->get_POS().y < mainframep->maincy)
 	  mainframep->m_client_cy = mainframep->maincy;
+  else if (m_text->tailp->get_draw_infop()->get_POS().y + m_text->tailp->get_draw_infop()->get_L().height< mainframep->m_client_cy)
+	  ;
   else
-	  mainframep->m_client_cy = m_text->cursorp->get_draw_infop()->get_POS().y +10+ m_text->cursorp->get_draw_infop()->get_L().height;
+	  mainframep->m_client_cy = m_text->tailp->get_draw_infop()->get_POS().y +10+ m_text->tailp->get_draw_infop()->get_L().height;
   
   
   if (m_text->cursorp->get_draw_infop()->get_POS().y - mainframep->scrolledpix + m_text->cursorp->get_draw_infop()->get_L().height > mainframep->maincy)
 	  mainframep->scrolledpix = m_text->cursorp->get_draw_infop()->get_POS().y - mainframep->maincy + m_text->cursorp->get_draw_infop()->get_L().height;
+  if (m_text->cursorp->get_draw_infop()->get_POS().y - mainframep->scrolledpix -10 < 0 && mainframep->scrolledpix!=0)
+	  mainframep->scrolledpix = m_text->cursorp->get_draw_infop()->get_POS().y - m_text->cursorp->get_draw_infop()->get_L().height;
+  
+  
   mainframep->UpdateClientRect();
   mainframep->UpdateScrollBarPos();
   

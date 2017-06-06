@@ -138,10 +138,10 @@ void CMainFrame::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 	{
 		nCurpos = nMax;
 	}
-	pScrollBar->SetScrollPos(nCurpos);  
+	pScrollBar->SetScrollPos(nCurpos,true);  
 	CRect temp = &m_client_rect;
 	temp.top = -nCurpos*prop;
-	temp.bottom = m_client_cy - nCurpos*prop;
+	temp.bottom = m_client_cy;// -nCurpos*prop;
 	scrolledpix = nCurpos*prop;
 	m_wndView.MoveWindow(temp);
 	m_wndView.m_changed();
@@ -160,7 +160,7 @@ void CMainFrame::UpdateScrollBarPos()
 	si.nMin = 0;
 	si.nMax = m_client_cy;//你滑动画面的高度
 	si.nPage = temp.Height();  //这个是你显示画面的高度
-	si.nPos = double(scrolledpix) * (maincy) / m_client_cy ;//这个是滑块的位置  初始化的时候是0 以后会根据你的操作变动
+	si.nPos = double(scrolledpix) * (maincy) / double(m_client_cy) ;//这个是滑块的位置  初始化的时候是0 以后会根据你的操作变动
 	m_scrollBar.SetScrollInfo(&si);
 
 	
@@ -180,8 +180,10 @@ void CMainFrame::UpdateClientRect()
 	viewrect.left = 0;
 	viewrect.top = -scrolledpix;
 	viewrect.bottom = viewrect.top + m_client_cy;
+	//m_client_cy = viewrect.bottom;
 	m_client_rect = viewrect;
 	m_wndView.MoveWindow(&viewrect);
+	m_wndView.m_changed();
 }
 
 void CMainFrame::OnSize(UINT nType, int cx, int cy)
