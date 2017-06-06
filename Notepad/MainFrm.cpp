@@ -30,7 +30,7 @@ END_MESSAGE_MAP()
 CMainFrame::CMainFrame()
 {
 	// TODO: 在此添加成员初始化代码
-	m_client_cy = 10000;
+	m_client_cy = 2500;
 	scrolledpix = 0;
 }
 
@@ -50,6 +50,9 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		TRACE0("未能创建视图窗口\n");
 		return -1;
 	}
+	m_wndView.mainframep = this;
+	//m_wndView.re_m_client_cy = m_client_cy;
+	//m_wndView.re_scrollpix = scrolledpix;
 	//create the scroll bar
 	m_scrollBar.Create(
 		SB_VERT | SBS_RIGHTALIGN | WS_CHILD | WS_VISIBLE, CRect(0, 0, 100, 100), this, 10);
@@ -111,10 +114,10 @@ void CMainFrame::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 	m_scrollBar.GetClientRect(&temp1);
 	int nMin, nMax, nCurpos;
 	pScrollBar = &m_scrollBar;
-	pScrollBar->SetScrollRange(0, temp1.bottom);
+	pScrollBar->SetScrollRange(0, m_client_cy);
 	pScrollBar->GetScrollRange(&nMin, &nMax);  
 	nCurpos = pScrollBar->GetScrollPos();
-	double prop = double(m_client_cy-(temp1.bottom-temp1.top)) / double(nMax - nMin);
+	double prop = double(m_client_cy) / double(maincy);// double(m_client_cy-(temp1.bottom-temp1.top)) / double(nMax - nMin);
 	switch (nSBCode)
 	{
 	case SB_LINEUP:
@@ -138,6 +141,7 @@ void CMainFrame::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 	pScrollBar->SetScrollPos(nCurpos);  
 	CRect temp = &m_client_rect;
 	temp.top = -nCurpos*prop;
+	temp.bottom = m_client_cy - nCurpos*prop;
 	scrolledpix = nCurpos*prop;
 	m_wndView.MoveWindow(temp);
 	m_wndView.m_changed();
@@ -149,18 +153,30 @@ void CMainFrame::UpdateScrollBarPos()
 	CRect temp;
 	m_scrollBar.GetClientRect(&temp);
 	int n_min, n_max;
-	m_scrollBar.SetScrollRange(0, temp.bottom);
-	m_scrollBar.GetScrollRange(&n_min, &n_max);
-	int new_pos = scrolledpix*(n_max - n_min) /(m_client_cy-temp.bottom);
-	m_scrollBar.SetScrollPos(new_pos);
+
+	SCROLLINFO si;
+	si.cbSize = sizeof(SCROLLINFO);
+	si.fMask = SIF_ALL;
+	si.nMin = 0;
+	si.nMax = m_client_cy;//你滑动画面的高度
+	si.nPage = temp.Height();  //这个是你显示画面的高度
+	si.nPos = double(scrolledpix) * (maincy) / m_client_cy ;//这个是滑块的位置  初始化的时候是0 以后会根据你的操作变动
+	m_scrollBar.SetScrollInfo(&si);
+
+	
+	//m_scrollBar.SetScrollRange(0, temp.bottom);
+	//m_scrollBar.GetScrollRange(&n_min, &n_max);
+	//int new_pos = scrolledpix*(n_max - n_min) /(m_client_cy-temp.Height());
+	//m_scrollBar.SetScrollPos(new_pos);
+	
 }
 
 
-void CMainFrame::UpdateClientRect(int cx,int cy)
+void CMainFrame::UpdateClientRect()
 {
 	CRect viewrect;
 	m_wndView.GetClientRect(&viewrect);
-	viewrect.right = cx - 20;
+	viewrect.right =maincx- 20;
 	viewrect.left = 0;
 	viewrect.top = -scrolledpix;
 	viewrect.bottom = viewrect.top + m_client_cy;
@@ -171,6 +187,9 @@ void CMainFrame::UpdateClientRect(int cx,int cy)
 void CMainFrame::OnSize(UINT nType, int cx, int cy)
 {
 	CFrameWnd::OnSize(nType, cx, cy);
+	maincx = cx;
+	maincy = cy;
+
 	//adjust the scroll bar
 	CRect rect;
 	m_scrollBar.GetClientRect(&rect);
@@ -179,12 +198,13 @@ void CMainFrame::OnSize(UINT nType, int cx, int cy)
 	rect.bottom = cy;
 	m_scrollBar.MoveWindow(&rect);
 	//adjust the client
-	UpdateClientRect(cx,cy);
+	UpdateClientRect();
 	//adjust the scroll bar pos
 	UpdateScrollBarPos();
 	//repaint
 	m_wndView.m_text->set_pagewidth(cx);
 	m_wndView.m_text->text_changed_f = true;
+	m_wndView.m_changed();
 	//Invalidate(true);
 	//Unsure if it is needed
 	// TODO: 在此处添加消息处理程序代码

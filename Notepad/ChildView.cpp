@@ -2,9 +2,11 @@
 // ChildView.cpp : CChildView 类的实现
 //
 
+
 #include "stdafx.h"
 //#include"kernal.h"
 #include "ChildView.h"
+#include"MainFrm.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -18,7 +20,7 @@
 
 // CChildView
 
-CChildView::CChildView() {
+CChildView::CChildView(){//:re_m_client_cy(temp) ,re_scrollpix(temp)  {
   m_text = new SITEXT;
   LBuDown = false;
 }
@@ -93,91 +95,7 @@ void CChildView::OnPaint() {
 		}
 		MemDC.DeleteDC();
 	}
-	
-	//CDC* pDC = GetDC();
-	//CMemDC mdc(*pDC,this);
-	//CDC& dc = mdc.GetDC();
-	/*
-	CPaintDC dc(this);
-	//CDC* dc = GetDC();
-	CRect rct;
-	GetClientRect(&rct);
-	CMemDC memDC(dc, rct);
-	CDC& pdc = memDC.GetDC();
-	pdc.FillSolidRect(&rct, RGB(255,255,255));
-	m_paintCur(pdc);
-	m_paintText(pdc);
-	//CDC *pDC = &memDC.GetDC();    
-	//填充背景色  
-	dc.BitBlt(0, 0, rct.right, rct.bottom, &pdc, 0, 0, SRCCOPY);
-	*/
-	//CDC* pDC = GetDC();
-	/*
-	CPaintDC pdc(this);
-	CRect rct;
-	GetClientRect(&rct);
-	int nWidth = rct.right-rct.left;
-	int nHeight = rct.bottom-rct.top;
-	
-	//nWidth = 1000;
-	//nHeight = 1000;
-	
-	CDC MemDC; //首先定义一个显示设备对象  
-	CBitmap MemBitmap;//定义一个位图对象  
-
-					  //随后建立与屏幕显示兼容的内存显示设备  
-	MemDC.CreateCompatibleDC(NULL);
-	//这时还不能绘图，因为没有地方画 ^_^  
-	//下面建立一个与屏幕显示兼容的位图，至于位图的大小嘛，可以用窗口的大小  
-	MemBitmap.CreateCompatibleBitmap(pDC, nWidth, nHeight);
-
-	//将位图选入到内存显示设备中  
-	//只有选入了位图的内存显示设备才有地方绘图，画到指定的位图上  
-	CBitmap *pOldBit = MemDC.SelectObject(&MemBitmap);
-
-	//先用背景色将位图清除干净，这里我用的是白色作为背景  
-	//你也可以用自己应该用的颜色  
-	MemDC.FillSolidRect(0, 0, nWidth, nHeight, RGB(255, 255, 255));
-
-	//绘图  
-	m_paintCur(MemDC);
-	m_paintText(MemDC);
-	//将内存中的图拷贝到屏幕上进行显示  
-	pDC->BitBlt(0, 0, nWidth, nHeight, &MemDC, 0, 0, SRCCOPY);
-
-	//绘图完成后的清理  
-	MemBitmap.DeleteObject();
-	MemDC.DeleteDC();
-	*/
 #endif
-	
-  // TODO: 在此处添加消息处理程序代码
-  /*
-  CRect draw;
-  this->GetClientRect(&draw);
-  LOGFONT lf;
-  CFontDialog dlg;
-  //if(dlg.DoModal() == IDOK)
-  //dlg.GetCurrentFont(&lf);
-  CFont font;
-  //font.CreateFontIndirectW(&lf);
-  font.CreatePointFont(100, L"ËÎÌå");
-  dc.SelectObject(&font);
-  //	LPRECT client;
-  //	GetClientRect(client);
-  //	CString str;
-  //	int temp = client->left;
-  //	str.Format(_T("%ld"), client->left);
-  CRect draw_ins;
-  draw_ins.left = draw.left;
-  draw_ins.right = draw.right;
-  draw_ins.top = 0;
-  draw_ins.bottom = 5000;
-  dc.DrawTextW(_T("SDI"), &draw_ins, DT_SINGLELINE | DT_CENTER | DT_BOTTOM);
-  dc.Draw3dRect(&draw_ins, (0, 0, 0), (0, 0, 0));
-  */
-  // 不要为绘制消息而调用 CWnd::OnPaint()
-  //MessageBox(_T("before_repaint"));
 #ifdef ORI
   CPaintDC dc(this);  // 用于绘制的设备上下文
   //CDC* dc = this->GetDC();
@@ -195,6 +113,9 @@ void CChildView::OnPaint() {
   }
 #endif
   m_text->text_changed_f = false;
+  CString strtemp;
+  strtemp.Format(_T("%d %d"), mainframep->maincy,mainframep->m_client_cy);
+  //MessageBox(_T("OnPaint"));
 }
 
 void CChildView::m_paintText(CDC& dc)
@@ -314,6 +235,22 @@ void CChildView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags) {
 #endif
 	  m_text->ins_char(wchar);
   }
+
+  if (m_text->cursorp->get_draw_infop()->get_POS().y < mainframep->maincy)
+	  mainframep->m_client_cy = mainframep->maincy;
+  else
+	  mainframep->m_client_cy = m_text->cursorp->get_draw_infop()->get_POS().y +10+ m_text->cursorp->get_draw_infop()->get_L().height;
+  
+  
+  if (m_text->cursorp->get_draw_infop()->get_POS().y - mainframep->scrolledpix + m_text->cursorp->get_draw_infop()->get_L().height > mainframep->maincy)
+	  mainframep->scrolledpix = m_text->cursorp->get_draw_infop()->get_POS().y - mainframep->maincy + m_text->cursorp->get_draw_infop()->get_L().height;
+  mainframep->UpdateClientRect();
+  mainframep->UpdateScrollBarPos();
+  
+  /*
+  
+  */
+  //mainframep->UpdateScrollBarPos();
   m_changed();
   CWnd::OnChar(nChar, nRepCnt, nFlags);
 }
@@ -429,19 +366,8 @@ BOOL CChildView::OnEraseBkgnd(CDC* pDC)
 {
 	// TODO: 在此添加消息处理程序代码和/或调用默认值
 #ifndef ORI
-	return true;
+	return false;
 #else
 	return CWnd::OnEraseBkgnd(pDC);
 #endif
-}
-
-void CChildView::EraseBkgnd(CDC* pDC)
-{
-	// TODO: Add your message handler code here and/or call default
-	CRect rect;
-	GetClientRect(&rect);
-	CBrush brush;
-	brush.CreateSolidBrush(RGB(0,0,0));
-	pDC->FillRect(&rect, &brush);
-
 }

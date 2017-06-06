@@ -8,8 +8,10 @@
 */
 
 #pragma once
+class CMainFrame;
 #include "stdafx.h"
 #include "kernal.h"
+//#include "MainFrm.h"
 /**
 @brief 子视窗类CChildView \n
 子视窗是程序中客户区部分，即文本编辑的画布部分
@@ -153,7 +155,7 @@ class CChildView : public CWnd {
 	  bool SIDELETE = false;
 public:
 	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
-	void EraseBkgnd(CDC * pDC);
+	CMainFrame* mainframep;
 };
 
 

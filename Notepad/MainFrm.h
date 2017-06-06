@@ -8,6 +8,7 @@
 */
 
 #pragma once
+class CChildView;
 #include "stdafx.h"
 #include "ChildView.h"
 #include "m_back_color.h"
@@ -75,7 +76,7 @@ public:
   @note 该函数仅在OnSize函数中被调用,因为传入的参数需要用到OnSize函数的传入值
   @see OnSize
   */
-  void UpdateClientRect(int cx, int cy);
+  void UpdateClientRect();
   /**
   @brief 当窗口大小被调整之后调用的消息响应函数\n
   当窗口大小被调整,共有两个地方需要调整\n
@@ -93,6 +94,7 @@ public:
  protected:
   ///滚动条类实例
   CScrollBar m_scrollBar;
+public:
   ///用于记录页面相对于上边界偏移量
   int scrolledpix;
 
@@ -113,6 +115,9 @@ public:
   @note 此函数仅在OnSize函数中调用 @see OnSize
   */
   void UpdateScrollBarPos();
+
+  int maincx;
+  int maincy;
 };
 
 
