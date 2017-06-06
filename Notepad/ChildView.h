@@ -52,6 +52,7 @@ class CChildView : public CWnd {
   @note 仅在OnPaint函数中调用
   @todo 绘制背景色
   */
+  void m_paintText(CDC& dc);
   void m_paintText(CPaintDC& dc);
 
   /**
@@ -60,8 +61,8 @@ class CChildView : public CWnd {
   @note 仅在OnPaint函数中调用
   @todo 绘制可以闪动的光标
   */
+  void m_paintCur(CDC& dc);
   void m_paintCur(CPaintDC& dc);
-
  public:
   /**
   @brief 响应发送文字消息的函数 \n
@@ -150,5 +151,10 @@ class CChildView : public CWnd {
   private:
 	  bool SIBACKSPACE = true;
 	  bool SIDELETE = false;
+public:
+	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
+	void EraseBkgnd(CDC * pDC);
 };
+
+
 

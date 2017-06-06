@@ -140,6 +140,7 @@ void CMainFrame::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 	temp.top = -nCurpos*prop;
 	scrolledpix = nCurpos*prop;
 	m_wndView.MoveWindow(temp);
+	m_wndView.m_changed();
 	CFrameWnd::OnVScroll(nSBCode, nPos, pScrollBar);
 }
 
