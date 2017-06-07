@@ -257,7 +257,7 @@ void CChildView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags) {
   }
   
   else {//if (is_input(nChar)) {
-	  if (m_text->select.ep != NULL)
+	  if (m_text->select.ep != m_text->select.sp && m_text->select.ep != NULL)
 		  m_text->del_select();
 #ifdef M_DEBUG
 	  MessageBox(_T("OnChar"));
