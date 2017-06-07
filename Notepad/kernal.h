@@ -741,8 +741,9 @@ inline void SITEXT::cancel_select()
 inline void SITEXT::del_select()
 {
 	cursorp = select.ep;
+	anticolor(select.sp, select.ep);
 	del(select.sp, select.ep);
-	cancel_select();
+	select._clear();
 }
 
 inline void SITEXT::replace_select(SICHARNODE_P ps, SICHARNODE_P pe)
@@ -891,6 +892,7 @@ inline void SITEXT::repaint()
 
 inline void SITEXT::anticolor(SICHARNODE_P ps, SICHARNODE_P pe)
 {
+	if (ps == NULL || pe == NULL) return;
 	for (SICHARNODE_P p = ps; p != pe; p = p->nextp)
 	{
 		p->char_infop->bgcolor = (~(p->char_infop->bgcolor))&((1 << 24) - 1);
