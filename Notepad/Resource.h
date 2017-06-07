@@ -25,13 +25,18 @@
 #define ID_FONT                         32777
 #define ID_DIALOGE                      32778
 #define ID_PARA                         32779
+#define ID_32780                        32780
+#define ID_ALIGN_LEFT                   32781
+#define ID_ALIGN_CENTER                 32782
+#define ID_ALIGN_RIGHT                  32783
+#define ID_ALIGN_DISTRIBUTE             32784
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        315
-#define _APS_NEXT_COMMAND_VALUE         32780
+#define _APS_NEXT_COMMAND_VALUE         32785
 #define _APS_NEXT_CONTROL_VALUE         1006
 #define _APS_NEXT_SYMED_VALUE           310
 #endif

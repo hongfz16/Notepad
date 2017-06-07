@@ -26,6 +26,10 @@ BEGIN_MESSAGE_MAP(CNotepadApp, CWinApp)
 	ON_COMMAND(ID_EDIT_CUT,&CNotepadApp::OnCut)
 	ON_COMMAND(ID_EDIT_COPY,&CNotepadApp::OnCopy)
 	ON_COMMAND(ID_EDIT_PASTE,&CNotepadApp::OnPaste)
+	ON_COMMAND(ID_ALIGN_LEFT, &CNotepadApp::OnAlignLeft)
+	ON_COMMAND(ID_ALIGN_CENTER, &CNotepadApp::OnAlignCenter)
+	ON_COMMAND(ID_ALIGN_RIGHT, &CNotepadApp::OnAlignRight)
+	ON_COMMAND(ID_ALIGN_DISTRIBUTE, &CNotepadApp::OnAlignDistribute)
 END_MESSAGE_MAP()
 
 
@@ -263,3 +267,37 @@ void CNotepadApp::OnAppAbout()
 
 
 
+
+
+void CNotepadApp::OnAlignLeft()
+{
+	// TODO: 在此添加命令处理程序代码
+	mainp->m_wndView.m_text->set_select_align(mainp->m_wndView.m_text->ALEFT);
+	mainp->m_wndView.m_changed();
+}
+
+
+void CNotepadApp::OnAlignCenter()
+{
+	// TODO: 在此添加命令处理程序代码
+	mainp->m_wndView.m_text->set_select_align(mainp->m_wndView.m_text->ACENTER);
+	mainp->m_wndView.m_changed();
+}
+
+
+
+
+void CNotepadApp::OnAlignRight()
+{
+	// TODO: 在此添加命令处理程序代码
+	mainp->m_wndView.m_text->set_select_align(mainp->m_wndView.m_text->ARIGHT);
+	mainp->m_wndView.m_changed();
+}
+
+
+void CNotepadApp::OnAlignDistribute()
+{
+	// TODO: 在此添加命令处理程序代码
+	mainp->m_wndView.m_text->set_select_align(mainp->m_wndView.m_text->ADISTRIBUTED);
+	mainp->m_wndView.m_changed();
+}

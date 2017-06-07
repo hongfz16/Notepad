@@ -54,6 +54,13 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "字体(&F)",                      ID_FONT
         MENUITEM "段落(&D)",                      ID_PARA
+        POPUP "align"
+        BEGIN
+            MENUITEM "left",                        ID_ALIGN_LEFT
+            MENUITEM "center",                      ID_ALIGN_CENTER
+            MENUITEM "right",                       ID_ALIGN_RIGHT
+            MENUITEM "distribute",                  ID_ALIGN_DISTRIBUTE
+        END
     END
     POPUP "帮助(&H)"
     BEGIN
@@ -333,8 +340,8 @@ BEGIN
     "\r\n"
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)\r\n"
     "LANGUAGE 4, 2\r\n"
-    "#include ""res\\Notepad.rc2""  // 非 Microsoft Visual C++ 编辑的资源\r\n"
-    "#include ""l.CHS\\afxres.rc""      // 标准组件\r\n"
+    "#include ""res\\Notepad.rc2""  // ? Microsoft Visual C++ ?????\r\n"
+    "#include ""l.CHS\\afxres.rc""      // ????\r\n"
     "#endif\r\n"
     "\0"
 END

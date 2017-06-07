@@ -78,7 +78,8 @@ public:
 	SICHAR_INFO() :fontpc(NULL)
 	{
 		//fontp = NULL;
-		color = size = cspace = lspace = align = 0;
+		color = size = cspace = lspace = 0;
+		align = 0;
 	}
 	inline void set_fontpc(SIFONT_PC tfontpc);
 	inline void set_fontpc(const SIFONT& tfont);
@@ -309,7 +310,7 @@ public:
 private:
 
 	inline void draw_line_from_left(SICHARNODE_P ps, SICHARNODE_P pe, int sx, int y, int line_height, int deltax);
-	inline void proc_line(SICHARNODE_P ps, SICHARNODE_P pe, int n, int y, int line_height, int tot_weight, int align);
+	inline void proc_line(SICHARNODE_P ps, SICHARNODE_P pe, int n, int y, int line_height, int tot_weight, SIALIGN align);
 	inline void proc_text();
 	inline void pre_proc();
 public:
@@ -365,6 +366,7 @@ public:
 	inline void set_select_lspace(LINESPACE tlspace);
 	inline void set_select_cspace(CHARSPACE tcspace);
 	inline void set_pagewidth(PAGEWIDTH tpagewidth);
+	inline void set_select_align(SIALIGN align);
 	///several get_* method
 	inline SICURSORP point_to_cursorp(const SIPOINT& P);
 	//Draw method
@@ -563,8 +565,9 @@ inline void SITEXT::draw_line_from_left(SICHARNODE_P ps, SICHARNODE_P pe, int sx
 
 
 inline void SITEXT::proc_line(SICHARNODE_P ps, SICHARNODE_P pe,
-	int n, int y, int line_height, int tot_width, int align)
+	int n, int y, int line_height, int tot_width, SIALIGN align)
 {
+	if (n == 0) return;
 	int sx = 0, deltax = 0;
 
 	if (align == ANORMAL || align == ALEFT)
@@ -841,6 +844,12 @@ inline void SITEXT::set_select_cspace(CHARSPACE tcspace)
 inline void SITEXT::set_pagewidth(PAGEWIDTH tpagewidth)
 {
 	pagewidth = tpagewidth;
+}
+
+inline void SITEXT::set_select_align(SIALIGN align)
+{
+	for (SICHARNODE_P p = select.sp; p != select.ep; p = p->nextp)
+		p->char_infop->align = align;
 }
 
 ///several get_* method
