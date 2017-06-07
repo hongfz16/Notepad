@@ -216,6 +216,7 @@ void CNotepadApp::OnPara()
 	{
 		mainp->m_wndView.m_text->set_select_lspace(paraDlg.m_linespace);
 		mainp->m_wndView.m_text->set_select_cspace(paraDlg.m_charaspace);
+		mainp->m_wndView.m_changed();
 	}
 }
 

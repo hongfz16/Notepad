@@ -138,37 +138,37 @@ void CMainFrame::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 	{
 		nCurpos = nMax;
 	}
-	pScrollBar->SetScrollPos(nCurpos,true);  
+	//pScrollBar->SetScrollPos(nCurpos,true);  
 	CRect temp = &m_client_rect;
-	temp.top = -nCurpos*prop;
+	temp.top = -nCurpos * prop;
 	temp.bottom = m_client_cy;// -nCurpos*prop;
-	scrolledpix = nCurpos*prop;
+	scrolledpix = nCurpos * prop;
+	UpdateScrollBarPos();
 	m_wndView.MoveWindow(temp);
 	m_wndView.m_changed();
 	CFrameWnd::OnVScroll(nSBCode, nPos, pScrollBar);
 }
-
+//#define ORISCROLL
 void CMainFrame::UpdateScrollBarPos()
 {
 	CRect temp;
 	m_scrollBar.GetClientRect(&temp);
 	int n_min, n_max;
-
+#ifndef ORISCROLL
 	SCROLLINFO si;
 	si.cbSize = sizeof(SCROLLINFO);
 	si.fMask = SIF_ALL;
 	si.nMin = 0;
 	si.nMax = m_client_cy;//你滑动画面的高度
-	si.nPage = temp.Height();  //这个是你显示画面的高度
+	si.nPage = maincy;//temp.Height();  //这个是你显示画面的高度
 	si.nPos = double(scrolledpix) * (maincy) / double(m_client_cy) ;//这个是滑块的位置  初始化的时候是0 以后会根据你的操作变动
 	m_scrollBar.SetScrollInfo(&si);
-
-	
-	//m_scrollBar.SetScrollRange(0, temp.bottom);
-	//m_scrollBar.GetScrollRange(&n_min, &n_max);
-	//int new_pos = scrolledpix*(n_max - n_min) /(m_client_cy-temp.Height());
-	//m_scrollBar.SetScrollPos(new_pos);
-	
+#else
+	m_scrollBar.SetScrollRange(0, temp.bottom);
+	m_scrollBar.GetScrollRange(&n_min, &n_max);
+	int new_pos = scrolledpix*(n_max - n_min) /(m_client_cy-temp.Height());
+	m_scrollBar.SetScrollPos(new_pos);
+#endif
 }
 
 
@@ -179,6 +179,8 @@ void CMainFrame::UpdateClientRect()
 	viewrect.right =maincx- 20;
 	viewrect.left = 0;
 	viewrect.top = -scrolledpix;
+	if (m_client_cy - scrolledpix < maincy)
+		m_client_cy = maincy + scrolledpix;
 	viewrect.bottom = viewrect.top + m_client_cy;
 	//m_client_cy = viewrect.bottom;
 	m_client_rect = viewrect;

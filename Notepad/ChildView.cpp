@@ -82,6 +82,10 @@ void CChildView::OnPaint() {
 #endif
 						m_paintText(MemDC);
 						m_paintCur(MemDC);
+
+						int temp = mainframep->m_client_cy;
+						MemDC.MoveTo(0, temp);
+						MemDC.LineTo(1000, temp);
 #ifdef M_DEBUG
 						MessageBox(_T("End OnPaint"));
 #endif
@@ -148,6 +152,7 @@ void CChildView::m_paintText(CDC& dc)
 		CRect outrect(CPoint(0, 0), CPoint(100, 100));
 		MessageBox(str);
 #endif
+		dc.FillSolidRect(&outrect,curr->char_infop->bgcolor);
 		dc.DrawTextW(str, &outrect, DT_SINGLELINE | DT_CENTER | DT_BOTTOM);
 		curr = curr->nextp;
 	}
@@ -242,20 +247,19 @@ void CChildView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags) {
 #endif
 	  m_text->ins_char(wchar);
   }
-  
-  if (m_text->tailp->get_draw_infop()->get_POS().y < mainframep->maincy)
+  ///<adjust the m_client_cy>
+  if (m_text->tailp->get_draw_infop()->get_POS().y + m_text->tailp->get_draw_infop()->get_L().height < mainframep->maincy)
 	  mainframep->m_client_cy = mainframep->maincy;
-  else if (m_text->tailp->get_draw_infop()->get_POS().y + m_text->tailp->get_draw_infop()->get_L().height< mainframep->m_client_cy)
-	  ;
-  else
-	  mainframep->m_client_cy = m_text->tailp->get_draw_infop()->get_POS().y +10+ m_text->tailp->get_draw_infop()->get_L().height;
-  
-  
+  else if (m_text->tailp->get_draw_infop()->get_POS().y + m_text->tailp->get_draw_infop()->get_L().height > mainframep->m_client_cy)
+	  mainframep->m_client_cy = m_text->tailp->get_draw_infop()->get_POS().y + 10 + m_text->tailp->get_draw_infop()->get_L().height;
+  ///</end>
+
+  ///<adjust the screen pos according to the cursor pos>
   if (m_text->cursorp->get_draw_infop()->get_POS().y - mainframep->scrolledpix + m_text->cursorp->get_draw_infop()->get_L().height > mainframep->maincy)
 	  mainframep->scrolledpix = m_text->cursorp->get_draw_infop()->get_POS().y - mainframep->maincy + m_text->cursorp->get_draw_infop()->get_L().height;
   if (m_text->cursorp->get_draw_infop()->get_POS().y - mainframep->scrolledpix -10 < 0 && mainframep->scrolledpix!=0)
 	  mainframep->scrolledpix = m_text->cursorp->get_draw_infop()->get_POS().y - m_text->cursorp->get_draw_infop()->get_L().height;
-  
+  ///</end>
   
   mainframep->UpdateClientRect();
   mainframep->UpdateScrollBarPos();
@@ -288,14 +292,15 @@ inline void CChildView::m_changed() {
 void CChildView::OnLButtonDown(UINT nFlags, CPoint point) {
   // TODO: 在此添加消息处理程序代码和/或调用默认值
   LBuDown = true;
-  if (m_text->select.ep == NULL && m_text->select.sp == NULL) {
+  //if (m_text->select.ep == NULL && m_text->select.sp == NULL) {
+	m_text->cancel_select();
     m_text->cursorp = m_text->point_to_cursorp(SIPOINT(point.x, point.y));
     m_text->mov_cursorp(m_text->cursorp);
     m_text->start_select();
-  } else {
+  //} else {
     // move?
     // need a move_flag for ONLButtonUp to decide whether to clear selection
-  }
+  //}
 #ifdef M_DEBUG
   MessageBox(_T("LDown"));
 #endif
@@ -306,14 +311,14 @@ void CChildView::OnLButtonDown(UINT nFlags, CPoint point) {
 void CChildView::OnLButtonUp(UINT nFlags, CPoint point) {
   // TODO: 在此添加消息处理程序代码和/或调用默认值
   LBuDown = false;
-  if (m_text->select.ep == NULL && m_text->select.sp == NULL) {
-    m_text->cursorp = m_text->point_to_cursorp(SIPOINT(point.x, point.y));
-    m_text->mov_cursorp(m_text->cursorp);
-    m_text->cancel_select();
-  } else {
+  if (m_text->select.ep == NULL) {
     m_text->cursorp = m_text->point_to_cursorp(SIPOINT(point.x, point.y));
     m_text->mov_cursorp(m_text->cursorp);
     m_text->end_select();
+  } else {
+    m_text->cursorp = m_text->point_to_cursorp(SIPOINT(point.x, point.y));
+    m_text->mov_cursorp(m_text->cursorp);
+    m_text->cancel_select();
   }
   m_changed();
   CWnd::OnLButtonUp(nFlags, point);
