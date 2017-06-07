@@ -757,6 +757,7 @@ inline void SITEXT::cancel_select()
 
 inline void SITEXT::del_select()
 {
+	if (select.ep == NULL) return;
 	cursorp = select.ep;
 	anticolor(select.sp, select.ep);
 	del(select.sp, select.ep);
