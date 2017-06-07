@@ -62,6 +62,10 @@ inline COLORERF anticolor_ext(COLORERF c)
 {
 	return (~c)&((1 << 24) - 1);
 }
+inline int ABS(int a)
+{
+	return a < 0 ? (-a) : a;
+}
 
 
 class SICHAR_INFO
@@ -472,13 +476,15 @@ inline SIPOINT& SIDRAW_INFO::get_POS()
 inline void SICHARNODE::set_fontpc(SIFONT_P tfontp)
 {
 	char_infop->set_fontpc(tfontp);
+//	int wd = ABS();
+//	int ht = ;
 	draw_infop->set_S(char_infop->fontpc->lfWidth, char_infop->fontpc->lfHeight);
 }
 inline void SICHARNODE::set_fontpc(SIFONT& tfont)
 {
 	char_infop->set_fontpc(tfont);
 	//char_infop->color=char_infop->fontpc->lf
-	draw_infop->set_S(char_infop->fontpc->lfWidth, char_infop->fontpc->lfHeight);
+	draw_infop->set_S((int)(char_infop->fontpc->lfWidth), (int)(char_infop->fontpc->lfHeight));
 }
 inline void SICHARNODE::set_color(COLORERF tcolor)
 {
