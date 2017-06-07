@@ -740,11 +740,11 @@ inline void SITEXT::mov_cursorp(SIDIRECT tdir)
 		break;
 	case DUP:
 		if (cursorp->draw_infop->POS.y != 0)
-			cursorp = point_to_cursorp(cursorp->draw_infop->POS - (0, -3));
+			cursorp = point_to_cursorp(cursorp->draw_infop->POS - SIPOINT(0, 1));
 		break;
 	case DDOWN:
 		//if(cursorp->draw_infop->POS.y!=MAX_POSY)
-		cursorp = point_to_cursorp(cursorp->draw_infop->POS + (0, cursorp->draw_infop->L.width + 1));
+		cursorp = point_to_cursorp(cursorp->draw_infop->POS + SIPOINT(0, cursorp->draw_infop->L.width + 2));
 		break;
 	}
 
@@ -815,6 +815,7 @@ inline SICURSORP SITEXT::point_to_cursorp(const SIPOINT& P)
 	std::vector<SILINE>::iterator it;
 	for (it = vlinep.begin(); it != vlinep.end(); ++it)
 		if (point_on_line(*it, P)) break;
+	if (it == vlinep.end()) return tailp;
 	for (p = it->sp; p != it->ep; p = p->nextp)
 		if (point_on_char_col(p, P)) break;
 	if (p == it->ep) p = p->prevp;
