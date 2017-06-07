@@ -38,6 +38,15 @@ void SITEXT::print_list()
 	}
 }
 
+inline void SITEXT::anticolor(SICHARNODE_P ps, SICHARNODE_P pe)
+{
+	for (SICHARNODE_P p = ps; p != pe; p = p->nextp)
+	{
+		p->char_infop->bgcolor = (~(p->char_infop->bgcolor))&((1 << 25) - 1);
+		p->char_infop->color = (~(p->char_infop->color))&((1 << 25) - 1);
+	}
+}
+
 void del(SICHARNODE* p)
 {
 	p->prevp->nextp = p->nextp;

@@ -379,6 +379,7 @@ public:
 	inline void repaint();
 	void print_list();
 	///<\interface>
+	inline void anticolor(SICHARNODE_P ps, SICHARNODE_P pe);
 };
 
 
@@ -723,7 +724,7 @@ inline void SITEXT::end_select()
 	select.ep = cursorp;
 	if (select.sp->draw_infop->POS > select.ep->draw_infop->POS)
 		exchange<SICHARNODE_P>(select.sp, select.ep);
-	bg_anticolor(select.sp, select.ep);
+	anticolor(select.sp, select.ep);
 	//if (fwdnum < 0) exchange<SICHARNODE_P>(select.sp, select.ep);
 	//if (fwdnum == 0) select._clear();
 	//inselect = false;
@@ -732,7 +733,7 @@ inline void SITEXT::end_select()
 
 inline void SITEXT::cancel_select()
 {
-	bg_anticlolor(select.sp, select.ep);
+	anticolor(select.sp, select.ep);
 	select._clear();
 }
 
