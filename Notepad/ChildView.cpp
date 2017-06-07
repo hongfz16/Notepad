@@ -227,6 +227,13 @@ void CChildView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags) {
       m_text->del_select();
     }
   }
+  
+  else if (nChar == VK_TAB)
+  {
+	  for (int i = 0; i < 4; ++i)
+		  m_text->ins_char(' ');
+  }
+  
   else {//if (is_input(nChar)) {
 	  if (m_text->select.sp != NULL)
 		  m_text->del_select();
