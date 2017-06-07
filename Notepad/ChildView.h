@@ -158,9 +158,9 @@ class CChildView : public CWnd {
 public:
 	///重载擦除屏幕函数，使它的返回值为false，即不擦除，配合双缓冲绘图使用
 	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
-	
+	///指向主窗口的指针
 	CMainFrame* mainframep;
-
+  ///需要重新计算页面布局的flag
 	bool need_recompute;
 };
 

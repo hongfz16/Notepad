@@ -484,7 +484,9 @@ inline void SICHARNODE::set_fontpc(SIFONT& tfont)
 {
 	char_infop->set_fontpc(tfont);
 	//char_infop->color=char_infop->fontpc->lf
-	draw_infop->set_S((int)(char_infop->fontpc->lfWidth), (int)(char_infop->fontpc->lfHeight));
+	int width;
+	int height=-MulDiv(char_infop->fontpc->lfHeight,72, GetDeviceCaps(hDC, LOGPIXELSY));
+	draw_infop->set_S(char_infop->fontpc->lfWidth, char_infop->fontpc->lfHeight);
 }
 inline void SICHARNODE::set_color(COLORERF tcolor)
 {
