@@ -69,6 +69,7 @@ private:
 public:
 	SIFONT_PC fontpc;
 	COLORERF color;
+	COLORERF bgcolor;
 	CHARSIZE size;
 	CHARSPACE cspace;
 	LINESPACE lspace;
@@ -78,7 +79,9 @@ public:
 	SICHAR_INFO() :fontpc(NULL)
 	{
 		//fontp = NULL;
-		color = size = cspace = lspace = 0;
+		color = 0x000000;
+		bgcolor = 0xffffff;
+		size = cspace = lspace = 0;
 		align = 0;
 	}
 	inline void set_fontpc(SIFONT_PC tfontpc);
@@ -720,6 +723,7 @@ inline void SITEXT::end_select()
 	select.ep = cursorp;
 	if (select.sp->draw_infop->POS > select.ep->draw_infop->POS)
 		exchange<SICHARNODE_P>(select.sp, select.ep);
+	bg_anticolor(select.sp, select.ep);
 	//if (fwdnum < 0) exchange<SICHARNODE_P>(select.sp, select.ep);
 	//if (fwdnum == 0) select._clear();
 	//inselect = false;
@@ -728,6 +732,7 @@ inline void SITEXT::end_select()
 
 inline void SITEXT::cancel_select()
 {
+	bg_anticlolor(select.sp, select.ep);
 	select._clear();
 }
 
