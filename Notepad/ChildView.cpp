@@ -325,7 +325,7 @@ void CChildView::OnMouseMove(UINT nFlags, CPoint point) {
 
 void CChildView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
   // TODO: 在此添加消息处理程序代码和/或调用默认值
-  if (nRepCnt > 1) {
+  if (nRepCnt >= 1) {
 	  for (int i = nRepCnt; i != 0; --i) {
 		  switch (nChar) {
 		  case VK_UP:
@@ -349,6 +349,7 @@ void CChildView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
 
 void CChildView::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags) {
   // TODO: 在此添加消息处理程序代码和/或调用默认值
+	/*
   switch (nChar) {
     case VK_UP:
       m_text->mov_cursorp(m_text->DUP);
@@ -364,6 +365,7 @@ void CChildView::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags) {
       break;
   }
   m_changed();
+  */
   CWnd::OnKeyUp(nChar, nRepCnt, nFlags);
 }
 
