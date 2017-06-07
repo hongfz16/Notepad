@@ -682,6 +682,7 @@ void exchange(T& a, T& b)
 inline void SITEXT::ins_char(SICHAR_T tchar)
 {
 	cursorp->ins_prev(new SICHARNODE(tchar));
+	
 }
 
 inline void SITEXT::ins_char(SICHAR_T ch, int twidth, int theight)
