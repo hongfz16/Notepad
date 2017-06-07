@@ -208,6 +208,7 @@ void CMainFrame::OnSize(UINT nType, int cx, int cy)
 	//repaint
 	m_wndView.m_text->set_pagewidth(cx-20);
 	m_wndView.m_text->text_changed_f = true;
+	m_wndView.need_recompute = true;
 	m_wndView.m_changed();
 	//Invalidate(true);
 	//Unsure if it is needed

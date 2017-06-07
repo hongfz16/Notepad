@@ -23,6 +23,17 @@
 CChildView::CChildView(){//:re_m_client_cy(temp) ,re_scrollpix(temp)  {
   m_text = new SITEXT;
   LBuDown = false;
+  need_recompute = true;
+  /*
+  for (int i = 0; i < 10000; ++i)
+  {
+//	  for (int j = 0; j < 20; ++j)
+	  {
+		  m_text->ins_char('A');
+	  }
+	//  m_text->ins_char('\n');
+  }
+  */
 }
 
 CChildView::~CChildView() { delete m_text; }
@@ -74,15 +85,19 @@ void CChildView::OnPaint() {
 					Gdiplus::Graphics g(MemDC);
 					MemDC.FillSolidRect(&PaintRect,RGB(255, 255, 255));
 					// Paint here ...  
-					m_text->repaint();
 
 					if (m_text->text_changed_f) {
 #ifdef M_DEBUG
 						MessageBox(_T("after_repaint"));
 #endif
-						m_paintText(MemDC);
-						m_paintCur(MemDC);
-
+						if (need_recompute)
+						{
+							//MessageBox(_T("recompute"));
+							m_text->repaint();
+						}
+							m_paintText(MemDC);
+							m_paintCur(MemDC);
+						
 						int temp = mainframep->m_client_cy;
 						MemDC.MoveTo(0, temp);
 						MemDC.LineTo(1000, temp);
@@ -117,6 +132,7 @@ void CChildView::OnPaint() {
   }
 #endif
   m_text->text_changed_f = false;
+  need_recompute = false;
   CString strtemp;
   strtemp.Format(_T("%d %d"), mainframep->maincy,mainframep->m_client_cy);
   //MessageBox(_T("OnPaint"));
@@ -188,6 +204,7 @@ void CChildView::m_paintText(CPaintDC& dc)
 		CRect outrect(CPoint(0, 0), CPoint(100, 100));
 		MessageBox(str);
 #endif
+		dc.FillSolidRect(&outrect, curr->char_infop->bgcolor);
 		dc.DrawTextW(str, &outrect, DT_SINGLELINE | DT_CENTER | DT_BOTTOM);
 		curr = curr->nextp;
 	}
@@ -240,7 +257,7 @@ void CChildView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags) {
   }
   
   else {//if (is_input(nChar)) {
-	  if (m_text->select.sp != NULL)
+	  if (m_text->select.ep != NULL)
 		  m_text->del_select();
 #ifdef M_DEBUG
 	  MessageBox(_T("OnChar"));
@@ -260,7 +277,6 @@ void CChildView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags) {
   if (m_text->cursorp->get_draw_infop()->get_POS().y - mainframep->scrolledpix -10 < 0 && mainframep->scrolledpix!=0)
 	  mainframep->scrolledpix = m_text->cursorp->get_draw_infop()->get_POS().y - m_text->cursorp->get_draw_infop()->get_L().height;
   ///</end>
-  
   mainframep->UpdateClientRect();
   mainframep->UpdateScrollBarPos();
   
@@ -268,6 +284,7 @@ void CChildView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags) {
   
   */
   //mainframep->UpdateScrollBarPos();
+  need_recompute = true;
   m_changed();
   CWnd::OnChar(nChar, nRepCnt, nFlags);
 }

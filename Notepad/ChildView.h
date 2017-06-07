@@ -151,11 +151,17 @@ class CChildView : public CWnd {
 
 
   private:
+	  ///按下Backspace的响应，即向反方向删除的flag
 	  bool SIBACKSPACE = true;
+	  ///按下delete的响应，即向正向删除的flag
 	  bool SIDELETE = false;
 public:
+	///重载擦除屏幕函数，使它的返回值为false，即不擦除，配合双缓冲绘图使用
 	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
+	
 	CMainFrame* mainframep;
+
+	bool need_recompute;
 };
 
 

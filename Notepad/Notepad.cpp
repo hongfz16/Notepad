@@ -195,12 +195,14 @@ TCHAR lfFaceName[LF_FACESIZE];
 	}
 	if (mainp->m_wndView.m_text->select.sp == NULL && mainp->m_wndView.m_text->select.ep == NULL)
 	{
-		mainp->m_wndView.m_text->set_curfont(&lf);
+		mainp->m_wndView.m_text->set_curfont(lf);
+		mainp->m_wndView.need_recompute = true;
 	}
 	else
 	{
-		mainp->m_wndView.m_text->set_select_font(&lf);
+		mainp->m_wndView.m_text->set_select_font(lf);
 		mainp->m_wndView.m_text->set_select_color(col);
+		mainp->m_wndView.need_recompute = true;
 	}
 }
 
@@ -216,6 +218,7 @@ void CNotepadApp::OnPara()
 	{
 		mainp->m_wndView.m_text->set_select_lspace(paraDlg.m_linespace);
 		mainp->m_wndView.m_text->set_select_cspace(paraDlg.m_charaspace);
+		mainp->m_wndView.need_recompute = true;
 		mainp->m_wndView.m_changed();
 	}
 }
