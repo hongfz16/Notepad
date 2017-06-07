@@ -567,7 +567,7 @@ inline void SITEXT::draw_line_from_left(SICHARNODE_P ps, SICHARNODE_P pe, int sx
 inline void SITEXT::proc_line(SICHARNODE_P ps, SICHARNODE_P pe,
 	int n, int y, int line_height, int tot_width, SIALIGN align)
 {
-	if (n == 0) return;
+	//if (n == 0) return;
 	int sx = 0, deltax = 0;
 
 	if (align == ANORMAL || align == ALEFT)
