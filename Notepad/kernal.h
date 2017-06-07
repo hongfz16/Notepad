@@ -560,7 +560,7 @@ inline void SITEXT::pre_proc()
 	{
 		if (isenter(p->ch)&&isenter(p->nextp->ch))
 		{
-			p->ins_next(new SICHARNODE(' ', 1, p->draw_infop->S.height));
+			p->ins_next(new SICHARNODE(' ', 0, p->draw_infop->S.height));
 		}
 	}
 }
@@ -650,13 +650,13 @@ inline void SITEXT::del_char(bool backwards = true)
 	if (backwards&&prevp != headp)
 	{
 		pprevp = prevp->prevp;
-		if (prevp->ch == ' '&&pprevp != headp&&isenter(pprevp->ch))
+		if (prevp->draw_infop->S.width == 0&&pprevp != headp&&isenter(pprevp->ch))
 			del(pprevp);
 		del(prevp);
 	}
 	if ((!backwards) && nextp != NULL)
 	{
-		if (isenter(curp->ch) && nextp->ch == ' ')
+		if (isenter(curp->ch) && nextp->draw_infop->S.width == 0)
 			del(nextp);
 		cursorp = cursorp->nextp;
 		del(cursorp->prevp);
@@ -723,10 +723,20 @@ inline void SITEXT::mov_cursorp(SIDIRECT tdir)
 	switch (tdir)
 	{
 	case DLEFT:
-		if (cursorp->prevp != headp) cursorp = cursorp->prevp;
+		if (cursorp->prevp != headp)
+		{
+			cursorp = cursorp->prevp;
+			if (cursorp->draw_infop->S.width == 0 && cursorp->prevp != headp && isenter(cursorp->prevp->ch))
+				cursorp = cursorp->prevp;
+		}
 		break;
 	case DRIGHT:
-		if (cursorp->nextp != NULL) cursorp = cursorp->nextp;
+		if (cursorp->nextp != NULL)
+		{
+			cursorp = cursorp->nextp;
+			if (cursorp->draw_infop->S.width == 0 && cursorp->nextp != NULL&&isenter(cursorp->prevp->ch))
+				cursorp = cursorp->nextp;
+		}
 		break;
 	case DUP:
 		if (cursorp->draw_infop->POS.y != 0)
