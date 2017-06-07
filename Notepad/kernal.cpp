@@ -38,6 +38,8 @@ void SITEXT::print_list()
 	}
 }
 
+
+
 void del(SICHARNODE* p)
 {
 	p->prevp->nextp = p->nextp;
