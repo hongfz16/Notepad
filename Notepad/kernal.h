@@ -11,6 +11,7 @@ using namespace std;
 //typedef wchar_t SICHAR_T;
 typedef char SICHAR_T;
 typedef LOGFONT SIFONT;
+//void isenter(SICHAR_T);
 /*
 typedef struct tagLOGFONT
 { LONG lfHeight;
@@ -46,6 +47,20 @@ struct SIPOINT;
 struct SIRANGE;
 //struct SITEXT;
 
+
+
+inline bool isenter(SICHAR_T ch)
+{
+	return ch == '\n' || ch == '\r';
+}
+
+inline int Max(int a, int b)
+{
+	return a > b ? a : b;
+}
+
+
+
 class SICHAR_INFO
 {
 private:
@@ -60,7 +75,7 @@ public:
 	SIALIGN align;
 
 	friend class SICHARNODE;
-	SICHAR_INFO():fontpc(NULL)
+	SICHAR_INFO() :fontpc(NULL)
 	{
 		//fontp = NULL;
 		color = size = cspace = lspace = align = 0;
@@ -71,11 +86,11 @@ public:
 	inline void set_size(CHARSIZE tsize);
 	inline void set_cspace(CHARSPACE tcspace);
 	inline void set_lspace(LINESPACE tlspace);
-///<interface>
+	///<interface>
 	inline SIFONT_PC get_fontpc();
 	inline COLORERF get_color();
 	inline CHARSIZE get_size();
-///<interface>
+	///<interface>
 	inline CHARSPACE get_cspace();
 	inline LINESPACE get_lspace();
 };
@@ -116,6 +131,15 @@ struct SIPOINT
 	{
 		return SIPOINT(A.x - B.x, A.y - B.y);
 	}
+	friend bool operator < (const SIPOINT& A, const SIPOINT& B)
+	{
+		return	A.y < B.y ||
+			A.y == B.y && (A.x < B.x);
+	}
+	friend bool operator > (const SIPOINT& A, const SIPOINT& B)
+	{
+		return B < A;
+	}
 };
 
 class SIDRAW_INFO
@@ -132,18 +156,18 @@ public:
 	{
 		S = SIRECT(); L = SIRECT(); POS = SIPOINT();
 	}
-	SIDRAW_INFO(const SIRECT& TS, const SIRECT& TL,const SIPOINT& TPOS)
+	SIDRAW_INFO(const SIRECT& TS, const SIRECT& TL, const SIPOINT& TPOS)
 	{
 		S = TS; L = TL; POS = TPOS;
 	}
 	inline void set_S(const SIRECT&);
 	inline void set_L(const SIRECT&);
 	inline void set_POS(const SIPOINT&);
-///<interface>
+	///<interface>
 	inline const SIRECT& get_S();
 	inline SIRECT& get_L();
 	inline SIPOINT& get_POS();
-///<interface>
+	///<interface>
 };
 typedef SIDRAW_INFO* SIDRAW_INFO_P;
 
@@ -189,13 +213,13 @@ public:
 	inline void set_fontpc(const SIFONT& tfont);
 	inline void set_color(COLORERF tcolor);
 	inline void set_size(CHARSIZE tsize);
-//	inline void set_char_infop(const SIFONT& tfont, COLORERF tcolor, CHARSIZE tsize);
-//	inline void set_char_infop(SIFONT_P tfontp, COLORERF tcolor, CHARSIZE tsize);
+	//	inline void set_char_infop(const SIFONT& tfont, COLORERF tcolor, CHARSIZE tsize);
+	//	inline void set_char_infop(SIFONT_P tfontp, COLORERF tcolor, CHARSIZE tsize);
 	inline void set_draw_infop_S(const SIRECT& TS);
 	inline void set_draw_infop_L(const SIRECT& TL);
 	inline void set_draw_infop_P(const SIPOINT& TP);
-//	inline void set_draw_infop_LP(const SIRECT& TL, const SIPOINT& TP);
-//	inline void set_draw_infop(const SIRECT& TS, const SIRECT& TL, const SIPOINT& TP);
+	//	inline void set_draw_infop_LP(const SIRECT& TL, const SIPOINT& TP);
+	//	inline void set_draw_infop(const SIRECT& TS, const SIRECT& TL, const SIPOINT& TP);
 	inline void ins_prev(SICHARNODE* p);
 	inline void ins_next(SICHARNODE* p);
 	inline void ins_prev(SICHARNODE* ps, SICHARNODE* pe);
@@ -205,10 +229,31 @@ public:
 	friend void del(SICHARNODE* p);
 	friend void del(SICHARNODE* ps, SICHARNODE* pe);
 	friend void del(const SIRANGE& range);
-///<interface>
+	///<interface>
 	inline const SICHAR_INFO_P get_char_infop();
 	inline const SIDRAW_INFO_P get_draw_infop();
-///<\interface>
+	///<\interface>
+
+	void print()
+	{
+		//		SICHARNODE_P p = this;
+		if (isenter(ch))
+		{
+			printf("ENTER\n");
+			draw_infop->POS.print();
+			printf("\n");
+			draw_infop->L.print();
+			printf("\n\n");
+			return;
+		}
+		printf("%c\n", ch);
+		//		p->draw_infop->POS->print();
+		draw_infop->POS.print();
+		printf("\n");
+		draw_infop->L.print();
+		printf("\n\n");
+
+	}
 };
 typedef SICHARNODE* SICHARNODE_P;
 
@@ -254,11 +299,11 @@ public:
 	std::vector<SIPARAGRAPH> vparap;
 
 	//set true when text changed specifically when \
-		effectable methods are called		\
+				effectable methods are called		\
 	  set false when repaint() is called
 	bool text_changed_f;
 	//set true when set_curfontp() is called \
-	  set false when cursor moved
+			  set false when cursor moved
 	bool set_curfontp_f;
 
 private:
@@ -268,7 +313,7 @@ private:
 	inline void proc_text();
 	inline void pre_proc();
 public:
-	
+
 	static const PAGEWIDTH DEFAULT_PAGEWIDTH = 110;
 
 	static const SIDIRECT DLEFT = 0;
@@ -281,13 +326,21 @@ public:
 	static const SIALIGN ARIGHT = 1;
 	static const SIALIGN ACENTER = 2;
 	static const SIALIGN ADISTRIBUTED = 3;
+
+	//debug mod
+	void print_cursorp()
+	{
+		cursorp->draw_infop->POS.print();
+		printf("\n");
+	}
+	//end debug
 	//constructor
 	SITEXT();
-///<interface>
+	///<interface>
 	//Operate method
 	///inline void load();
 	///inline void save();
-//	inline void _init();
+	//	inline void _init();
 	inline void ins_char(SICHAR_T);
 	//debug mod?
 	inline void ins_char(SICHAR_T, int, int);
@@ -315,12 +368,12 @@ public:
 	///several get_* method
 	inline SICURSORP point_to_cursorp(const SIPOINT& P);
 	//Draw method
-		///cursor - coord transparent
-		///divide line
-		///line texing
+	///cursor - coord transparent
+	///divide line
+	///line texing
 	inline void repaint();
 	void print_list();
-///<\interface>
+	///<\interface>
 };
 
 
@@ -542,23 +595,12 @@ inline void SITEXT::proc_line(SICHARNODE_P ps, SICHARNODE_P pe,
 	draw_line_from_left(ps, pe, sx, y, line_height, deltax);
 	return;
 }
-
-inline bool isenter(SICHAR_T ch)
-{
-	return ch == '\n' || ch == '\r';
-}
-
-inline int Max(int a, int b)
-{
-	return a > b ? a : b;
-}
-
 inline void SITEXT::pre_proc()
 {
 	SICHARNODE_P p;
 	for (p = headp->nextp; p != tailp; p = p->nextp)
 	{
-		if (isenter(p->ch)&&isenter(p->nextp->ch))
+		if (isenter(p->ch) && isenter(p->nextp->ch))
 		{
 			p->ins_next(new SICHARNODE(' ', 0, p->draw_infop->S.height));
 		}
@@ -603,8 +645,8 @@ inline void SITEXT::proc_text()
 		y += line_height;
 		if (pe == tailp)
 		{
-			tailp->draw_infop->POS = tailp->prevp->draw_infop->POS 
-									+ SIPOINT(tailp->prevp->draw_infop->L.width, 0);
+			tailp->draw_infop->POS = tailp->prevp->draw_infop->POS
+				+ SIPOINT(tailp->prevp->draw_infop->L.width, 0);
 			break;
 		}
 	}
@@ -650,7 +692,7 @@ inline void SITEXT::del_char(bool backwards = true)
 	if (backwards&&prevp != headp)
 	{
 		pprevp = prevp->prevp;
-		if (prevp->draw_infop->S.width == 0&&pprevp != headp&&isenter(pprevp->ch))
+		if (prevp->draw_infop->S.width == 0 && pprevp != headp&&isenter(pprevp->ch))
 			del(pprevp);
 		del(prevp);
 	}
@@ -673,10 +715,12 @@ inline void SITEXT::start_select()
 inline void SITEXT::end_select()
 {
 	select.ep = cursorp;
+	if (select.sp->draw_infop->POS > select.ep->draw_infop->POS)
+		exchange<SICHARNODE_P>(select.sp, select.ep);
 	//if (fwdnum < 0) exchange<SICHARNODE_P>(select.sp, select.ep);
 	//if (fwdnum == 0) select._clear();
-	inselect = false;
-	fwdnum = 0;
+	//inselect = false;
+	//fwdnum = 0;
 }
 
 inline void SITEXT::cancel_select()
@@ -686,6 +730,7 @@ inline void SITEXT::cancel_select()
 
 inline void SITEXT::del_select()
 {
+	cursorp = select.ep;
 	del(select.sp, select.ep);
 	cancel_select();
 }
