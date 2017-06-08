@@ -10,6 +10,8 @@
 #include "stdafx.h"
 #include "MainFrm.h"
 #include "resource.h"
+
+
 /**
 @brief 程序大类CNotepadApp\n
 程序启动时创建,初始化函数中创建其他的对象\n
@@ -78,9 +80,13 @@ class CNotepadApp : public CWinApp {
  	///"关于"窗口的消息相应函数
   afx_msg void OnAppAbout();
   DECLARE_MESSAGE_MAP()
+  ///左对齐的消息响应函数
   afx_msg void OnAlignLeft();
+  ///居中的消息响应函数农户
   afx_msg void OnAlignCenter();
+  ///右对齐的消息响应函数
   afx_msg void OnAlignRight();
+  ///分散对齐的消息响应函数
   afx_msg void OnAlignDistribute();
 };
 

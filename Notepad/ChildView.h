@@ -11,6 +11,8 @@
 class CMainFrame;
 #include "stdafx.h"
 #include "kernal.h"
+
+
 //#include "MainFrm.h"
 /**
 @brief 子视窗类CChildView \n
@@ -127,7 +129,8 @@ class CChildView : public CWnd {
   afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 
  private:
-  bool LBuDown;///指示鼠标左键是否按下的flag
+  ///指示鼠标左键是否按下的flag
+  bool LBuDown;
 
  public:
   /**

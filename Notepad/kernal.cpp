@@ -1,5 +1,17 @@
 #include "stdafx.h"
+#include "lib.h"
 #include "kernal.h"
+
+HDC globalhdc;
+
+void SICHARNODE::set_fontpc(SIFONT& tfont)
+{
+	char_infop->set_fontpc(tfont);
+	//char_infop->color=char_infop->fontpc->lf
+	int height = -char_infop->fontpc->lfHeight * 72 / GetDeviceCaps(globalhdc, LOGPIXELSY) + 10;
+	int width = height;
+	draw_infop->set_S(width, height);
+}
 
 SITEXT::SITEXT()
 {
