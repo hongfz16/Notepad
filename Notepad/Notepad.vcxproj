@@ -182,7 +182,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChildView.h" />
-    <ClInclude Include="CmemDC.h" />
     <ClInclude Include="kernal.h" />
     <ClInclude Include="lib.h" />
     <ClInclude Include="MainFrm.h" />

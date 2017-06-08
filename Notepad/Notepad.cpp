@@ -168,24 +168,6 @@ END_MESSAGE_MAP()
 
 void CNotepadApp::OnFont()
 {
-	/*
-	typedef struct tagLOGFONT
-{ LONG lfHeight;
-LONG lfWidth;
-LONG lfEscapement;
-LONG lfOrientation;
-LONG lfWeight;
-BYTE lfItalic;
-BYTE lfUnderline;
-BYTE lfStrikeOut;
-BYTE lfCharSet;
-BYTE lfOutPrecision;
-BYTE lfClipPrecision;
-BYTE lfQuality;
-BYTE lfPitchAndFamily;
-TCHAR lfFaceName[LF_FACESIZE];
-} LOGFONT;
-	*/
 	LOGFONT lf;
 	CFontDialog dlg;
 	COLORERF col;
@@ -263,16 +245,14 @@ void CNotepadApp::OnAppAbout()
 void CNotepadApp::OnAlignLeft()
 {
 	// TODO: 在此添加命令处理程序代码
-	mainp->m_wndView.m_text->set_select_align(mainp->m_wndView.m_text->ALEFT);
-	mainp->m_wndView.m_changed();
+	change_align(mainp->m_wndView.m_text->ALEFT);
 }
 
 
 void CNotepadApp::OnAlignCenter()
 {
 	// TODO: 在此添加命令处理程序代码
-	mainp->m_wndView.m_text->set_select_align(mainp->m_wndView.m_text->ACENTER);
-	mainp->m_wndView.m_changed();
+	change_align(mainp->m_wndView.m_text->ACENTER);
 }
 
 
@@ -281,16 +261,14 @@ void CNotepadApp::OnAlignCenter()
 void CNotepadApp::OnAlignRight()
 {
 	// TODO: 在此添加命令处理程序代码
-	mainp->m_wndView.m_text->set_select_align(mainp->m_wndView.m_text->ARIGHT);
-	mainp->m_wndView.m_changed();
+	change_align(mainp->m_wndView.m_text->ARIGHT);
 }
 
 
 void CNotepadApp::OnAlignDistribute()
 {
 	// TODO: 在此添加命令处理程序代码
-	mainp->m_wndView.m_text->set_select_align(mainp->m_wndView.m_text->ADISTRIBUTED);
-	mainp->m_wndView.m_changed();
+	change_align(mainp->m_wndView.m_text->ADISTRIBUTED);
 }
 
 

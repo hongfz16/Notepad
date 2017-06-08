@@ -124,7 +124,7 @@ class CNotepadApp : public CWinApp {
   
   CNotepadApp();///<默认构造函数
   
-  CMainFrame* mainp;///《指向主窗口的指针
+  CMainFrame* mainp;///<指向主窗口的指针
 
  public:
   
@@ -151,22 +151,8 @@ class CNotepadApp : public CWinApp {
   afx_msg void OnPara();
 
  public:
-  /**
-  @brief 剪切消息响应函数\n
-  - 将用户选中的文字复制入剪贴板
-  - 将选中的文字删除
-  */
   afx_msg void OnCut();
-  /**
-  @brief 复制消息响应函数\n
-  - 将用户选中的文字复制入剪贴板
-  */
   afx_msg void OnCopy();
-  /**
-  @brief 粘贴消息响应函数\n
-  - 如果有文字处于选中状态,先将选中的文字删除,再在光标处粘贴剪贴板中的文字
-  - 如果没有文字处于选中状态,直接在光标处粘贴剪贴板中的文字
-  */
   afx_msg void OnPaste();
 
   SIRANGE m_cutBoard; ///<剪贴板,实际上是两个指向文字节点的指针组成的结构体
@@ -188,6 +174,17 @@ class CNotepadApp : public CWinApp {
   afx_msg void OnOpen();///<打开文件的消息响应函数
   
   afx_msg void OnClose();///<关闭文件的消息响应函数
+
+  inline void change_align(int flag)
+  {
+	  if(mainp->m_wndView.m_text->select.ep!=NULL)
+		mainp->m_wndView.m_text->set_select_align(flag);
+	  else
+		  mainp->m_wndView.m_text->set_cursorp_align(flag);
+	  mainp->m_wndView.need_recompute = true;
+	  mainp->m_wndView.m_changed();
+	  mainp->m_wndView.curchanged();
+  }///<改变对齐方式的函数
 
 };
 
