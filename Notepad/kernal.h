@@ -266,6 +266,7 @@ public:
 	inline void set_draw_infop_S(const SIRECT& TS);
 	inline void set_draw_infop_L(const SIRECT& TL);
 	inline void set_draw_infop_P(const SIPOINT& TP);
+	inline void set_align(SIALIGN align);
 	//	inline void set_draw_infop_LP(const SIRECT& TL, const SIPOINT& TP);
 	//	inline void set_draw_infop(const SIRECT& TS, const SIRECT& TL, const SIPOINT& TP);
 	inline void ins_prev(SICHARNODE* p);
@@ -365,6 +366,8 @@ private:
 	inline void proc_line(SICHARNODE_P ps, SICHARNODE_P pe, int n, int y, int line_height, int tot_weight, SIALIGN align);
 	inline void proc_text();
 	inline void pre_proc();
+	inline std::vector<SILINE>::iterator point_to_line(const SIPOINT& P);
+	inline void set_line_align(const SILINE& line, SIALIGN align);
 public:
 
 	static const PAGEWIDTH DEFAULT_PAGEWIDTH = 110;
@@ -421,6 +424,9 @@ public:
 	inline void set_select_cspace(CHARSPACE tcspace);
 	inline void set_pagewidth(PAGEWIDTH tpagewidth);
 	inline void set_select_align(SIALIGN align);
+	inline void set_cursorp_align(SIALIGN align);
+	inline SIALIGN get_range_align(SICHARNODE_P ps,SICHARNODE_P pe);
+	inline SIALIGN get_range_align(const SIRANGE& range);
 
 	inline void set_save_path(string tsave_path);
 	inline void set_open_path(string topen_path);
@@ -556,6 +562,10 @@ inline void SICHARNODE::set_draw_infop_P(const SIPOINT& TP)
 {
 	draw_infop->set_POS(TP);
 }
+inline void SICHARNODE::set_align(SIALIGN align)
+{
+	char_infop->align = align;
+}
 /**
 inline void SICHARNODE::set_draw_infop_LP(const SIRECT& TL, const SIPOINT& TP);
 inline void SICHARNODE::set_draw_infop(const SIRECT& TS, const SIRECT& TL, const SIPOINT& TP);
@@ -631,6 +641,7 @@ inline void SITEXT::draw_line_from_left(SICHARNODE_P ps, SICHARNODE_P pe, int sx
 		pd->L.height = line_height;
 		pd->L.width = pd->S.width + p->char_infop->cspace + deltax;
 		pd->POS = SIPOINT(x, y);
+		if (pd->S.width == 0) pd->L.width = 0;
 		x += pd->L.width;
 	}
 
@@ -665,7 +676,7 @@ inline void SITEXT::proc_line(SICHARNODE_P ps, SICHARNODE_P pe,
 	{
 		//draw_line_from_left(ps, pe, 0, y, line_height, (pagewidth - tot_width) / n);
 		sx = 0;
-		deltax = (pagewidth - tot_width) / n;
+		if (n > 0) deltax = (pagewidth - tot_width) / n;
 	}
 
 	draw_line_from_left(ps, pe, sx, y, line_height, deltax);
@@ -697,6 +708,7 @@ inline void SITEXT::proc_text()
 	int n;
 	int line_height;
 	int y;
+	int align;
 
 	vlinep.clear();
 	vparap.clear();
@@ -713,17 +725,25 @@ inline void SITEXT::proc_text()
 			pc = pe->char_infop;
 			tot_width += (pd->S.width + pc->cspace);
 			line_height = Max(line_height, pd->S.height + pc->lspace);
-			if (tot_width > pagewidth) break;
+			if (tot_width > pagewidth)
+			{
+				tot_width -= (pd->S.width + pc->cspace);
+				--n;
+				break;
+			}
 		}
-		--n;
+		//if(tot_width>)--n;
+		//if (ps->draw_infop->S.width == 0) --n;
 		if (isenter(pe->ch) && pe != tailp)
 		{
 			vparap.push_back(SIPARAGRAPH(pps->nextp, pe));
 			pps = pe;
 			pe = pe->nextp;
 		}
+		if (ps->draw_infop->S.width == 0) --n;
 		vlinep.push_back(SILINE(ps, pe));
-		proc_line(ps, pe, n, y, line_height, tot_width, ps->char_infop->align);
+		align = get_range_align(ps, pe);
+		proc_line(ps, pe, n, y, line_height, tot_width, align);
 		y += line_height;
 		if (pe == tailp)
 		{
@@ -733,6 +753,7 @@ inline void SITEXT::proc_text()
 		}
 	}
 	tailp->draw_infop->L.height = tailp->prevp->draw_infop->L.height;
+	if (tailp->prevp == headp) tailp->draw_infop->POS.x = 0;
 }
 
 ///<\private>
@@ -891,7 +912,7 @@ inline void SITEXT::mov_cursorp(SIDIRECT tdir)
 		break;
 	case DDOWN:
 		//if(cursorp->draw_infop->POS.y!=MAX_POSY)
-		cursorp = point_to_cursorp(cursorp->draw_infop->POS + SIPOINT(0, cursorp->draw_infop->L.width + 2));
+		cursorp = point_to_cursorp(cursorp->draw_infop->POS + SIPOINT(0, cursorp->draw_infop->L.height + 2));
 		break;
 	}
 
@@ -962,12 +983,47 @@ inline void SITEXT::set_pagewidth(PAGEWIDTH tpagewidth)
 	pagewidth = tpagewidth;
 }
 
-inline void SITEXT::set_select_align(SIALIGN align)
+inline void SITEXT::set_line_align(const SILINE& line, SIALIGN align)
 {
-	for (SICHARNODE_P p = select.sp; p != select.ep; p = p->nextp)
-		p->char_infop->align = align;
+	for (SICHARNODE_P p = line.sp; p != line.ep; p = p->nextp)
+		p->set_align(align);
+//	line.ep->set_align(align);
 }
 
+inline void SITEXT::set_select_align(SIALIGN align)
+{
+//	for (SICHARNODE_P p = select.sp; p != select.ep; p = p->nextp)
+//		p->char_infop->align = align;
+	std::vector<SILINE>::iterator sl, el;
+	sl = point_to_line(select.sp->draw_infop->POS);
+	el = point_to_line(select.ep->prevp->draw_infop->POS);
+	for (std::vector<SILINE>::iterator it = sl; it != el; ++it)
+		set_line_align(*it, align);
+	set_line_align(*el, align);
+	return;
+}
+
+inline void SITEXT::set_cursorp_align(SIALIGN align)
+{
+	std::vector<SILINE>::iterator it = point_to_line(cursorp->draw_infop->POS);
+	set_line_align(*it, align);
+	return;
+}
+
+inline SIALIGN SITEXT::get_range_align(SICHARNODE_P ps, SICHARNODE_P pe)
+{
+	for (SICHARNODE_P p = ps; p != pe; p = p->nextp)
+	{
+		if (p->char_infop->align != ANORMAL)
+			return p->char_infop->align;
+	}
+	return ANORMAL;
+}
+
+inline SIALIGN SITEXT::get_range_align(const SIRANGE& range)
+{
+	return get_range_align(range.sp, range.ep);
+}
 ///several get_* method
 inline bool point_on_line(SILINE L, const SIPOINT& P)
 {
@@ -986,10 +1042,31 @@ inline SICURSORP SITEXT::point_to_cursorp(const SIPOINT& P)
 	for (it = vlinep.begin(); it != vlinep.end(); ++it)
 		if (point_on_line(*it, P)) break;
 	if (it == vlinep.end()) return tailp;
+	p = it->sp;
+	if (p->draw_infop->POS.y <= P.y&&P.y < p->draw_infop->POS.y + p->draw_infop->L.height
+		&& P.x < p->draw_infop->POS.x) 
+	{
+		if (p->draw_infop->L.width == 0) p = p->nextp;
+		return p;
+	}
 	for (p = it->sp; p != it->ep; p = p->nextp)
 		if (point_on_char_col(p, P)) break;
-	if (p == it->ep) p = p->prevp;
-	return p;
+	if (p == it->ep) 
+		if(p!=tailp)
+			p = p->prevp;
+	if (p->nextp != NULL && (p->nextp != it->ep || p->nextp == tailp) && (P.x > p->draw_infop->POS.x + (double)(p->draw_infop->L.width) / 2.0))
+		return p->nextp;
+	else
+		return p;
+}
+
+inline std::vector<SILINE>::iterator SITEXT::point_to_line(const SIPOINT& P)
+{
+	std::vector<SILINE>::iterator it;
+	for (it = vlinep.begin(); it != vlinep.end(); ++it)
+		if (point_on_line(*it, P)) break;
+	return it;
+
 }
 
 inline void SITEXT::repaint()
