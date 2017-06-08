@@ -733,6 +733,7 @@ inline void SITEXT::proc_text()
 		}
 	}
 	tailp->draw_infop->L.height = tailp->prevp->draw_infop->L.height;
+	if (tailp->prevp == headp) tailp->draw_infop->POS.x = 0;
 }
 
 ///<\private>
@@ -891,7 +892,7 @@ inline void SITEXT::mov_cursorp(SIDIRECT tdir)
 		break;
 	case DDOWN:
 		//if(cursorp->draw_infop->POS.y!=MAX_POSY)
-		cursorp = point_to_cursorp(cursorp->draw_infop->POS + SIPOINT(0, cursorp->draw_infop->L.width + 2));
+		cursorp = point_to_cursorp(cursorp->draw_infop->POS + SIPOINT(0, cursorp->draw_infop->L.height + 2));
 		break;
 	}
 
@@ -988,7 +989,9 @@ inline SICURSORP SITEXT::point_to_cursorp(const SIPOINT& P)
 	if (it == vlinep.end()) return tailp;
 	for (p = it->sp; p != it->ep; p = p->nextp)
 		if (point_on_char_col(p, P)) break;
-	if (p == it->ep) p = p->prevp;
+	if (p == it->ep) 
+		if(p!=tailp)
+			p = p->prevp;
 	return p;
 }
 
