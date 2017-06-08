@@ -199,6 +199,7 @@ TCHAR lfFaceName[LF_FACESIZE];
 			mainp->m_wndView.m_text->set_curfont(lf);
 			mainp->m_wndView.need_recompute = true;
 			mainp->m_wndView.m_changed();
+			mainp->m_wndView.curchanged();
 		}
 		else
 		{
@@ -206,6 +207,7 @@ TCHAR lfFaceName[LF_FACESIZE];
 			mainp->m_wndView.m_text->set_select_color(col);
 			mainp->m_wndView.need_recompute = true;
 			mainp->m_wndView.m_changed();
+			mainp->m_wndView.curchanged();
 		}
 	}
 	

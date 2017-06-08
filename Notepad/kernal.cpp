@@ -7,8 +7,8 @@ HDC globalhdc;
 void SICHARNODE::calc_S_from_font()
 {
 	//problem
-	int height = 1.5*(-char_infop->fontpc->lfHeight * 72 / GetDeviceCaps(globalhdc, LOGPIXELSY));
-	int width = height;
+	int height = (-char_infop->fontpc->lfHeight * 72 / GetDeviceCaps(globalhdc, LOGPIXELSY));
+	int width = 0.65 * height;
 	draw_infop->set_S(width, height);
 }
 

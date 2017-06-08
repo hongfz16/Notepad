@@ -66,6 +66,9 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs) {
 
 void CChildView::OnPaint() {
 
+	if (mainframep->scrolledpix < 0)
+		mainframep->scrolledpix = 0;
+
 #ifndef ORI
 	
 	CRect PaintRect;
@@ -99,9 +102,9 @@ void CChildView::OnPaint() {
 							m_paintText(MemDC);
 							m_paintCur(MemDC);
 						
-						int temp = mainframep->m_client_cy;
-						MemDC.MoveTo(0, temp);
-						MemDC.LineTo(1000, temp);
+						//int temp = mainframep->m_client_cy;
+						//MemDC.MoveTo(0, temp);
+						//MemDC.LineTo(1000, temp);
 #ifdef M_DEBUG
 						MessageBox(_T("End OnPaint"));
 #endif
@@ -164,6 +167,9 @@ void CChildView::m_paintText(CDC& dc)
 		int posy = curr->draw_infop->POS.y;//curr->get_draw_infop()->get_POS().y;
 		int width = curr->draw_infop->L.width;//get_draw_infop()->get_L().width;
 		int height = curr->draw_infop->L.height;//get_draw_infop()->get_L().height;
+
+		//posy += width * 0.2;
+
 		CRect outrect(CPoint(posx, posy), CPoint(posx + width, posy + height));
 		CString str(curr->ch);
 #ifdef M_DEBUG
@@ -171,7 +177,7 @@ void CChildView::m_paintText(CDC& dc)
 		MessageBox(str);
 #endif
 		dc.FillSolidRect(&outrect,curr->char_infop->bgcolor);
-		dc.DrawTextW(str, &outrect, DT_SINGLELINE | DT_CENTER | DT_BOTTOM);
+		dc.DrawTextW(str, &outrect, DT_SINGLELINE | DT_CENTER | DT_VCENTER);
 		curr = curr->nextp;
 	}
 }
