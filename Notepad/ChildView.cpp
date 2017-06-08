@@ -24,11 +24,7 @@ CChildView::CChildView(){//:re_m_client_cy(temp) ,re_scrollpix(temp)  {
   m_text = new SITEXT;
   LBuDown = false;
   need_recompute = true;
-  CFont defau;
-  defau.CreatePointFont(300, _T("@Terminal"), NULL);
-  LOGFONT lfdefau;
-  defau.GetLogFont(&lfdefau);
-  m_text->set_default_font(lfdefau);
+  
   /*
   for (int i = 0; i < 10000; ++i)
   {
