@@ -4,13 +4,22 @@
 
 HDC globalhdc;
 
+void SICHARNODE::calc_S_from_font()
+{
+	//problem
+	int height = 1.5*(-char_infop->fontpc->lfHeight * 72 / GetDeviceCaps(globalhdc, LOGPIXELSY));
+	int width = height;
+	draw_infop->set_S(width, height);
+}
+
 void SICHARNODE::set_fontpc(SIFONT& tfont)
 {
 	char_infop->set_fontpc(tfont);
 	//char_infop->color=char_infop->fontpc->lf
-	int height = -char_infop->fontpc->lfHeight * 72 / GetDeviceCaps(globalhdc, LOGPIXELSY) + 10;
-	int width = height;
-	draw_infop->set_S(width, height);
+	//int height = -char_infop->fontpc->lfHeight * 72 / GetDeviceCaps(globalhdc, LOGPIXELSY) + 10;
+	//int width = height;
+	//draw_infop->set_S(width, height);
+	calc_S_from_font();
 }
 
 SITEXT::SITEXT()

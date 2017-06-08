@@ -90,7 +90,21 @@ public:
 		bgcolor = 0xffffff;
 		size = cspace = lspace = 0;
 		align = 0;
-		fontpc = NULL;//new SIFONT;
+		fontpc = new SIFONT;
+	}
+	SICHAR_INFO(const SICHAR_INFO& tinfo)
+	{
+
+		*fontpc = *(tinfo.fontpc);
+		color = tinfo.color;
+		bgcolor = tinfo.bgcolor;
+		cspace = tinfo.cspace;
+		lspace = tinfo.lspace;
+		align = tinfo.align;
+	}
+	~SICHAR_INFO()
+	{
+		delete fontpc;
 	}
 	inline void set_fontpc(SIFONT_P tfontpc);
 	inline void set_fontpc(SIFONT& tfont);
@@ -105,6 +119,18 @@ public:
 	///<interface>
 	inline CHARSPACE get_cspace();
 	inline LINESPACE get_lspace();
+
+	SICHAR_INFO& operator = (const SICHAR_INFO& tinfo)
+	{
+		if (&tinfo == this) return *this;
+		*fontpc = *(tinfo.fontpc);
+		color = tinfo.color;
+		bgcolor = tinfo.bgcolor;
+		cspace = tinfo.cspace;
+		lspace = tinfo.lspace;
+		align = tinfo.align;
+		return *this;
+	}
 };
 typedef SICHAR_INFO* SICHAR_INFO_P;
 
@@ -118,6 +144,12 @@ struct SIRECT
 	{
 		width = twidth;
 		height = theight;
+	}
+
+	SIRECT(const SIRECT& trect)
+	{
+		width = trect.width;
+		height = trect.height;
 	}
 	void print()
 	{
@@ -224,6 +256,7 @@ public:
 		if (char_infop != NULL) delete char_infop;
 		if (draw_infop != NULL) delete draw_infop;
 	}
+	void calc_S_from_font();
 	inline void set_fontpc(SIFONT_P tfontpc);
 	void set_fontpc(SIFONT& tfont);
 	inline void set_color(COLORERF tcolor);
@@ -298,6 +331,10 @@ class SITEXT
 {
 private:
 public:
+
+	string save_path;
+	string open_path;
+
 	SICHARNODE_P headp;
 	SICHARNODE_P tailp;
 
@@ -373,7 +410,7 @@ public:
 	inline void mov_cursorp(SIDIRECT);
 	inline void mov_cursorp(const SIPOINT&);
 	///several set_* method
-	inline void set_default_font(const SIFONT& tfont);
+	inline void set_default_font(SIFONT& tfont);
 	inline void set_default_font(SIFONT_P tfontp);
 	inline void set_select_font(SIFONT_P tfontpc);
 	inline void set_select_font(SIFONT& tfont);
@@ -384,6 +421,9 @@ public:
 	inline void set_select_cspace(CHARSPACE tcspace);
 	inline void set_pagewidth(PAGEWIDTH tpagewidth);
 	inline void set_select_align(SIALIGN align);
+
+	inline void set_save_path(string tsave_path);
+	inline void set_open_path(string topen_path);
 	///several get_* method
 	inline SICURSORP point_to_cursorp(const SIPOINT& P);
 	//Draw method
@@ -477,6 +517,8 @@ inline SIPOINT& SIDRAW_INFO::get_POS()
 	return POS;
 }
 //SICHARNODE
+
+
 inline void SICHARNODE::set_fontpc(SIFONT_P tfontp)
 {
 	char_infop->set_fontpc(tfontp);
@@ -524,6 +566,8 @@ inline void SICHARNODE::ins_prev(SICHARNODE* p)
 	p->nextp = this;
 	this->prevp->nextp = p;
 	this->prevp = p;
+	*(prevp->char_infop) = *(prevp->prevp->char_infop);
+	prevp->calc_S_from_font();
 }
 inline void SICHARNODE::ins_next(SICHARNODE* p)
 {
@@ -531,6 +575,9 @@ inline void SICHARNODE::ins_next(SICHARNODE* p)
 	p->nextp = this->nextp;
 	this->nextp->prevp = p;
 	this->nextp = p;
+
+	(*nextp->char_infop) = *(char_infop);
+	nextp->calc_S_from_font();
 }
 inline void SICHARNODE::ins_prev(SICHARNODE* ps, SICHARNODE* pe)
 {
@@ -685,6 +732,7 @@ inline void SITEXT::proc_text()
 			break;
 		}
 	}
+	tailp->draw_infop->L.height = tailp->prevp->draw_infop->L.height;
 }
 
 ///<\private>
@@ -706,10 +754,24 @@ void exchange(T& a, T& b)
 	b = tmp;
 }
 
+inline void SITEXT::set_save_path(string tsave_path)
+{
+	save_path = tsave_path;
+}
+inline void SITEXT::set_open_path(string topen_path)
+{
+	open_path = topen_path;
+}
 inline void SITEXT::ins_char(SICHAR_T tchar)
 {
 	cursorp->ins_prev(new SICHARNODE(tchar));
-	cursorp->prevp->set_fontpc(default_font);
+//	*(cursorp->prevp->char_infop) = *(cursorp->prevp->prevp->char_infop);
+//	cursorp->prevp->calc_S_from_font();
+	//cursorp->
+	//(cursorp->prevp->draw_infop->S) = (cursorp->prevp->prevp->draw_infop->S);
+	//cursorp->prevp->set_fontpc(cursorp->prevp->prevp->char_infop->fontpc);
+	//cursorp->prevp->set_color()
+	//cursorp->prevp->char_infop
 }
 
 inline void SITEXT::ins_char(SICHAR_T ch, int twidth, int theight)
@@ -840,13 +902,15 @@ inline void SITEXT::mov_cursorp(const SIPOINT& P)
 }
 
 ///several set_* method
-inline void SITEXT::set_default_font(const SIFONT& tfont)
+inline void SITEXT::set_default_font(SIFONT& tfont)
 {
 	default_font = tfont;
+	headp->set_fontpc(default_font);
 }
 inline void SITEXT::set_default_font(SIFONT_P tfontp)
 {
-	default_font = *tfontp;
+//	default_font = *tfontp;
+	headp->set_fontpc(tfontp);
 }
 inline void SITEXT::set_select_font(SIFONT_P tfontpc)
 {
