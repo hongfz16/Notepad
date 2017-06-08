@@ -1,4 +1,5 @@
-/**\mainpage A simple notepad
+/**\mainpage 
+##A simple notepad##
 breif introduciton
 */
 
