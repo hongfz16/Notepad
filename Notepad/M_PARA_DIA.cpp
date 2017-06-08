@@ -14,7 +14,8 @@ IMPLEMENT_DYNAMIC(M_PARA_DIA, CDialogEx)
 M_PARA_DIA::M_PARA_DIA(CWnd* pParent /*=NULL*/)
 	: CDialogEx(IDD_PARA_DIALOG, pParent)
 {
-	
+	m_linespace = 0;
+	m_charaspace = 0;
 }
 
 M_PARA_DIA::~M_PARA_DIA()

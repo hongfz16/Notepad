@@ -45,6 +45,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CFrameWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
+	globalhdc = GetDC()->GetSafeHdc();
 	// 创建一个视图以占用框架的工作区
 	if (!m_wndView.Create(NULL, NULL, AFX_WS_DEFAULT_VIEW,
 		CRect(0, 0, 0, 0), this, AFX_IDW_PANE_FIRST, NULL))
@@ -52,7 +53,6 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		TRACE0("未能创建视图窗口\n");
 		return -1;
 	}
-	globalhdc = GetDC()->GetSafeHdc();
 	m_wndView.mainframep = this;
 	//m_wndView.re_m_client_cy = m_client_cy;
 	//m_wndView.re_scrollpix = scrolledpix;

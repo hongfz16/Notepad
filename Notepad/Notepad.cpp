@@ -192,20 +192,21 @@ TCHAR lfFaceName[LF_FACESIZE];
 	{
 		dlg.GetCurrentFont(&lf);
 		col = dlg.GetColor();
+		if (mainp->m_wndView.m_text->select.sp == NULL && mainp->m_wndView.m_text->select.ep == NULL)
+		{
+			mainp->m_wndView.m_text->set_curfont(lf);
+			mainp->m_wndView.need_recompute = true;
+			mainp->m_wndView.m_changed();
+		}
+		else
+		{
+			mainp->m_wndView.m_text->set_select_font(lf);
+			mainp->m_wndView.m_text->set_select_color(col);
+			mainp->m_wndView.need_recompute = true;
+			mainp->m_wndView.m_changed();
+		}
 	}
-	if (mainp->m_wndView.m_text->select.sp == NULL && mainp->m_wndView.m_text->select.ep == NULL)
-	{
-		mainp->m_wndView.m_text->set_curfont(lf);
-		mainp->m_wndView.need_recompute = true;
-		mainp->m_wndView.m_changed();
-	}
-	else
-	{
-		mainp->m_wndView.m_text->set_select_font(lf);
-		mainp->m_wndView.m_text->set_select_color(col);
-		mainp->m_wndView.need_recompute = true;
-		mainp->m_wndView.m_changed();
-	}
+	
 }
 
 void CNotepadApp::OnPara()

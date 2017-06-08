@@ -42,7 +42,7 @@ class M_PARA_DIA : public CDialogEx {
   ///当按下OK按钮的消息响应函数
   afx_msg void OnBnClickedOk();
   ///行间距
-  int m_linespace;
+  int m_linespace = 0;
   ///字间距
-  int m_charaspace;
+  int m_charaspace = 0;
 };

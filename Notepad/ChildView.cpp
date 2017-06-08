@@ -256,7 +256,6 @@ void CChildView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags) {
       m_text->del_select();
     }
   }
-  
   else if (nChar == VK_TAB)
   {
 	  for (int i = 0; i < 4; ++i)
@@ -271,6 +270,7 @@ void CChildView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags) {
 #endif
 	  m_text->ins_char(wchar);
   }
+  /*
   ///<adjust the m_client_cy>
   if (m_text->tailp->get_draw_infop()->get_POS().y + m_text->tailp->get_draw_infop()->get_L().height < mainframep->maincy)
 	  mainframep->m_client_cy = mainframep->maincy;
@@ -286,13 +286,13 @@ void CChildView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags) {
   ///</end>
   mainframep->UpdateClientRect();
   mainframep->UpdateScrollBarPos();
-  
+  */
   /*
   
   */
   //mainframep->UpdateScrollBarPos();
   need_recompute = true;
-  m_changed();
+  curchanged();
   CWnd::OnChar(nChar, nRepCnt, nFlags);
 }
 
@@ -378,7 +378,7 @@ void CChildView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
 			  break;
 		  }
 	  }
-	m_changed();
+	  curchanged();
   }
   CWnd::OnKeyDown(nChar, nRepCnt, nFlags);
 }
@@ -414,4 +414,30 @@ BOOL CChildView::OnEraseBkgnd(CDC* pDC)
 #else
 	return CWnd::OnEraseBkgnd(pDC);
 #endif
+}
+
+void CChildView::curchanged()
+{
+	///<adjust the m_client_cy>
+	if (m_text->tailp->get_draw_infop()->get_POS().y + m_text->tailp->get_draw_infop()->get_L().height < mainframep->maincy)
+		mainframep->m_client_cy = mainframep->maincy;
+	else if (m_text->tailp->get_draw_infop()->get_POS().y + m_text->tailp->get_draw_infop()->get_L().height > mainframep->m_client_cy)
+		mainframep->m_client_cy = m_text->tailp->get_draw_infop()->get_POS().y + 10 + m_text->tailp->get_draw_infop()->get_L().height;
+	///</end>
+
+	///<adjust the screen pos according to the cursor pos>
+	if (m_text->cursorp->get_draw_infop()->get_POS().y - mainframep->scrolledpix + m_text->cursorp->get_draw_infop()->get_L().height > mainframep->maincy)
+		mainframep->scrolledpix = m_text->cursorp->get_draw_infop()->get_POS().y - mainframep->maincy + m_text->cursorp->get_draw_infop()->get_L().height;
+	if (m_text->cursorp->get_draw_infop()->get_POS().y - mainframep->scrolledpix - 10 < 0 && mainframep->scrolledpix != 0)
+		mainframep->scrolledpix = m_text->cursorp->get_draw_infop()->get_POS().y - m_text->cursorp->get_draw_infop()->get_L().height;
+	///</end>
+	mainframep->UpdateClientRect();
+	mainframep->UpdateScrollBarPos();
+
+	/*
+
+	*/
+	//mainframep->UpdateScrollBarPos();
+	//need_recompute = true;
+	m_changed();
 }

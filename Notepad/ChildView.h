@@ -165,6 +165,8 @@ public:
 	CMainFrame* mainframep;
   ///需要重新计算页面布局的flag
 	bool need_recompute;
+
+	void curchanged();
 };
 
 
