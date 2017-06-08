@@ -1,3 +1,7 @@
+/**\mainpage A simple notepad
+breif introduciton
+*/
+
 /**
 @brief 声明程序大类CNotepadApp \n
 @file ChildView.h
@@ -88,6 +92,8 @@ class CNotepadApp : public CWinApp {
   afx_msg void OnAlignRight();
   ///分散对齐的消息响应函数
   afx_msg void OnAlignDistribute();
+  afx_msg void OnOpen();
+  afx_msg void OnClose();
 };
 
 extern CNotepadApp theApp;

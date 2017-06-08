@@ -30,6 +30,8 @@ BEGIN_MESSAGE_MAP(CNotepadApp, CWinApp)
 	ON_COMMAND(ID_ALIGN_CENTER, &CNotepadApp::OnAlignCenter)
 	ON_COMMAND(ID_ALIGN_RIGHT, &CNotepadApp::OnAlignRight)
 	ON_COMMAND(ID_ALIGN_DISTRIBUTE, &CNotepadApp::OnAlignDistribute)
+	ON_COMMAND(ID_OPEN, &CNotepadApp::OnOpen)
+	ON_COMMAND(ID_CLOSE, &CNotepadApp::OnClose)
 END_MESSAGE_MAP()
 
 
@@ -307,4 +309,38 @@ void CNotepadApp::OnAlignDistribute()
 	// TODO: 在此添加命令处理程序代码
 	mainp->m_wndView.m_text->set_select_align(mainp->m_wndView.m_text->ADISTRIBUTED);
 	mainp->m_wndView.m_changed();
+}
+
+
+void CNotepadApp::OnOpen()
+{
+	// TODO: 在此添加命令处理程序代码
+	BOOL isOpen = TRUE;     //是否打开(否则为保存)  
+	CString defaultDir = L"C:";   //默认打开的文件路径  
+	CString fileName = L"";         //默认打开的文件名  
+	CString filter = L"文件 (*.orz;*.txt)|*.orz;*.txt||";   //文件过虑的类型  
+	CFileDialog openFileDlg(isOpen, defaultDir, fileName, OFN_HIDEREADONLY | OFN_READONLY, filter, NULL);
+	INT_PTR result = openFileDlg.DoModal();
+	CString filePath;
+	if (result == IDOK) {
+		filePath = openFileDlg.GetPathName();
+	}
+
+	//TODO:调用接口
+}
+
+
+void CNotepadApp::OnClose()
+{
+	// TODO: 在此添加命令处理程序代码
+	BOOL isOpen = FALSE;        //是否打开(否则为保存)  
+	CString defaultDir = L"C:\\";   //默认打开的文件路径  
+	CString fileName = L"";         //默认打开的文件名  
+	CString filter = L"文件 (*.orz;*.txt)|*.orz;*.txt||";   //文件过虑的类型  
+	CFileDialog openFileDlg(isOpen, defaultDir, fileName, OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT, filter, NULL);
+	INT_PTR result = openFileDlg.DoModal();
+	CString filePath;
+	if (result == IDOK) {
+		filePath = openFileDlg.GetPathName();
+	}
 }
