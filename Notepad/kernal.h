@@ -31,7 +31,7 @@ TCHAR lfFaceName[LF_FACESIZE];
 } LOGFONT;
 */
 typedef SIFONT* SIFONT_P;
-typedef const SIFONT* SIFONT_PC;
+//typedef const SIFONT* SIFONT_PC;
 typedef int COLORERF;
 typedef int CHARSIZE;
 typedef int CHARSPACE;
@@ -99,7 +99,7 @@ public:
 	inline void set_cspace(CHARSPACE tcspace);
 	inline void set_lspace(LINESPACE tlspace);
 	///<interface>
-	inline SIFONT_PC get_fontpc();
+	inline SIFONT_P get_fontpc();
 	inline COLORERF get_color();
 	inline CHARSIZE get_size();
 	///<interface>
@@ -306,7 +306,8 @@ public:
 
 	PAGEWIDTH pagewidth;
 
-	SIFONT_PC curfontpc;
+	SIFONT_P curfontpc;
+	SIFONT default_font;
 
 	bool inselect;
 	int fwdnum;
@@ -372,10 +373,12 @@ public:
 	inline void mov_cursorp(SIDIRECT);
 	inline void mov_cursorp(const SIPOINT&);
 	///several set_* method
+	inline void set_default_font(const SIFONT& tfont);
+	inline void set_default_font(SIFONT_P tfontp);
 	inline void set_select_font(SIFONT_P tfontpc);
 	inline void set_select_font(SIFONT& tfont);
-	inline void set_curfont(SIFONT_PC tcurfontpc);
-	inline void set_curfont(const SIFONT& tcurfont);
+	inline void set_curfont(SIFONT_P tcurfontpc);
+	inline void set_curfont(SIFONT& tcurfont);
 	inline void set_select_color(COLORERF tcolor);
 	inline void set_select_lspace(LINESPACE tlspace);
 	inline void set_select_cspace(CHARSPACE tcspace);
@@ -422,7 +425,7 @@ inline void SICHAR_INFO::set_lspace(LINESPACE tlspace)
 {
 	lspace = tlspace;
 }
-inline SIFONT_PC SICHAR_INFO::get_fontpc()
+inline SIFONT_P SICHAR_INFO::get_fontpc()
 {
 	return fontpc;
 }
@@ -629,6 +632,12 @@ inline void SITEXT::pre_proc()
 		if (isenter(p->ch) && isenter(p->nextp->ch))
 		{
 			p->ins_next(new SICHARNODE(' ', 0, p->draw_infop->S.height));
+			p->nextp->set_size(-1);
+		}
+		if (p->char_infop->size == -1)
+		{
+			p->draw_infop->S.width = 0;
+			p->char_infop->cspace = 0;
 		}
 	}
 }
@@ -700,7 +709,7 @@ void exchange(T& a, T& b)
 inline void SITEXT::ins_char(SICHAR_T tchar)
 {
 	cursorp->ins_prev(new SICHARNODE(tchar));
-	
+	cursorp->set_fontpc(default_font);
 }
 
 inline void SITEXT::ins_char(SICHAR_T ch, int twidth, int theight)
@@ -831,6 +840,14 @@ inline void SITEXT::mov_cursorp(const SIPOINT& P)
 }
 
 ///several set_* method
+inline void SITEXT::set_default_font(const SIFONT& tfont)
+{
+	default_font = tfont;
+}
+inline void SITEXT::set_default_font(SIFONT_P tfontp)
+{
+	default_font = *tfontp;
+}
 inline void SITEXT::set_select_font(SIFONT_P tfontpc)
 {
 	if (select.ep == NULL) return;
@@ -848,11 +865,11 @@ inline void SITEXT::set_select_font(SIFONT& tfont)
 		//p->char_infop->fontpc = &tfont;
 	//select.ep->char_infop->fontpc = &tfont;
 }
-inline void SITEXT::set_curfont(SIFONT_PC tcurfontpc)
+inline void SITEXT::set_curfont(SIFONT_P tcurfontpc)
 {
 	curfontpc = tcurfontpc;
 }
-inline void SITEXT::set_curfont(const SIFONT& tcurfont)
+inline void SITEXT::set_curfont(SIFONT& tcurfont)
 {
 	curfontpc = &tcurfont;
 }

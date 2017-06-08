@@ -152,6 +152,7 @@ void CChildView::m_paintText(CDC& dc)
 		MessageBox(_T("Not empty"));
 #endif
 		CFont font;
+		SIFONT_P fontp = curr->get_char_infop()->get_fontpc();
 		font.CreateFontIndirectW(&(*(curr->get_char_infop()->get_fontpc())));
 		dc.SelectObject(&font);
 		dc.SetTextColor(curr->get_char_infop()->get_color());

@@ -20,6 +20,8 @@ SITEXT::SITEXT()
 	headp->nextp = tailp;
 	tailp->prevp = headp;
 	cursorp = tailp;
+	//default_fontp = new SIFONT;
+	curfontpc = NULL;
 	pagewidth = DEFAULT_PAGEWIDTH;
 	vlinep.clear();
 	vparap.clear();
