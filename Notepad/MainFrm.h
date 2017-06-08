@@ -115,8 +115,9 @@ public:
   @note 此函数仅在OnSize函数中调用 @see OnSize
   */
   void UpdateScrollBarPos();
-
+  ///记录当前客户区的宽度
   int maincx;
+  ///记录当前客户区的高度
   int maincy;
 };
 

@@ -80,9 +80,13 @@ class CNotepadApp : public CWinApp {
  	///"关于"窗口的消息相应函数
   afx_msg void OnAppAbout();
   DECLARE_MESSAGE_MAP()
+  ///左对齐的消息响应函数
   afx_msg void OnAlignLeft();
+  ///居中的消息响应函数农户
   afx_msg void OnAlignCenter();
+  ///右对齐的消息响应函数
   afx_msg void OnAlignRight();
+  ///分散对齐的消息响应函数
   afx_msg void OnAlignDistribute();
 };
 
