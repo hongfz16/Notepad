@@ -24,6 +24,11 @@ CChildView::CChildView(){//:re_m_client_cy(temp) ,re_scrollpix(temp)  {
   m_text = new SITEXT;
   LBuDown = false;
   need_recompute = true;
+  CFont defau;
+  defau.CreatePointFont(300, _T("@Terminal"), NULL);
+  LOGFONT lfdefau;
+  defau.GetLogFont(&lfdefau);
+  m_text->set_default_font(lfdefau);
   /*
   for (int i = 0; i < 10000; ++i)
   {
@@ -189,8 +194,8 @@ void CChildView::m_paintText(CPaintDC& dc)
 		MessageBox(_T("Not empty"));
 #endif
 		CFont font;
-		font.CreateFontIndirectW(&(*(curr->get_char_infop()->get_fontpc())));
-		dc.SelectObject(&font);
+		font.CreateFontIndirectW(curr->get_char_infop()->get_fontpc());
+		CFont* oldfont = dc.SelectObject(&font);
 		dc.SetTextColor(curr->get_char_infop()->get_color());
 #ifdef M_DEBUG
 		dc.SetTextColor(RGB(255, 0, 0));
@@ -207,6 +212,7 @@ void CChildView::m_paintText(CPaintDC& dc)
 #endif
 		dc.FillSolidRect(&outrect, curr->char_infop->bgcolor);
 		dc.DrawTextW(str, &outrect, DT_SINGLELINE | DT_CENTER | DT_BOTTOM);
+		dc.SelectObject(oldfont);
 		curr = curr->nextp;
 	}
 }
