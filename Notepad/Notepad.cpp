@@ -10,7 +10,6 @@
 #include "M_PARA_DIA.h"
 #include "kernal.h"
 #include "ChildView.h"
-#include "m_back_color.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -246,25 +245,6 @@ void CNotepadApp::OnCopy()
 void CNotepadApp::OnPaste()
 {
 	//TODO:insert a text range
-}
-
-void CNotepadApp::OnBackColor()
-{
-	COLORREF tempcol;
-	m_back_color colDlg;
-	if (colDlg.DoModal() == IDOK)
-	{
-		tempcol = colDlg.color;
-	}
-	SITEXT* b_text = mainp->m_wndView.m_text;
-	if (b_text->select.ep == NULL && b_text->select.sp == NULL)
-	{
-		//TODO:set current color
-	}
-	else
-	{
-		//TODO:set select color
-	}
 }
 
 // 用于运行对话框的应用程序命令

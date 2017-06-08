@@ -21,16 +21,16 @@ class CMainFrame;
 */
 class CChildView : public CWnd {
  public:
-  /// CChildView类构造函数
-  CChildView();
+  
+  CChildView();///<CChildView类构造函数
 
  protected:
-  ///创建窗口的预处理函数
-  virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+  
+  virtual BOOL PreCreateWindow(CREATESTRUCT& cs);///<创建窗口的预处理函数
 
  public:
-  /// CChildView类析构函数
-  virtual ~CChildView();
+ 
+  virtual ~CChildView(); ///<CChildView类析构函数
 
  protected:
   /**
@@ -46,8 +46,8 @@ class CChildView : public CWnd {
   DECLARE_MESSAGE_MAP()
 
  public:
-  ///自定义的文本文字类成员@see SITEXT
-  SITEXT* m_text;
+  
+  SITEXT* m_text;///<自定义的文本文字类成员@see class SITEXT
 
  public:
   /**
@@ -129,8 +129,8 @@ class CChildView : public CWnd {
   afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 
  private:
-  ///指示鼠标左键是否按下的flag
-  bool LBuDown;
+  
+  bool LBuDown;///<指示鼠标左键是否按下的flag
 
  public:
   /**
@@ -154,19 +154,19 @@ class CChildView : public CWnd {
 
 
   private:
-	  ///按下Backspace的响应，即向反方向删除的flag
-	  bool SIBACKSPACE = true;
-	  ///按下delete的响应，即向正向删除的flag
-	  bool SIDELETE = false;
+	 
+	  bool SIBACKSPACE = true; ///<按下Backspace的响应，即向反方向删除的flag
+	  
+	  bool SIDELETE = false;///<按下delete的响应，即向正向删除的flag
 public:
-	///重载擦除屏幕函数，使它的返回值为false，即不擦除，配合双缓冲绘图使用
-	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
-	///指向主窗口的指针
-	CMainFrame* mainframep;
-  ///需要重新计算页面布局的flag
-	bool need_recompute;
+	
+	afx_msg BOOL OnEraseBkgnd(CDC* pDC);///<重载擦除屏幕函数，使它的返回值为false，即不擦除，配合双缓冲绘图使用
+	
+	CMainFrame* mainframep;///<指向主窗口的指针
+  
+	bool need_recompute;///<需要重新计算页面布局的flag
 
-	void curchanged();
+	void curchanged();///<重新计算页面长度以及滚动条位置
 };
 
 

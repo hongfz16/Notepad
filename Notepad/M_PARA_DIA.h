@@ -20,18 +20,18 @@ class M_PARA_DIA : public CDialogEx {
   DECLARE_DYNAMIC(M_PARA_DIA)
 
  public:
-  ///默认构造函数
-  M_PARA_DIA(CWnd* pParent = NULL);
-  ///默认析构函数
-  virtual ~M_PARA_DIA();
+
+  M_PARA_DIA(CWnd* pParent = NULL);  ///<默认构造函数
+  
+  virtual ~M_PARA_DIA();///<默认析构函数
 
 #ifdef AFX_DESIGN_TIME
   enum { IDD = IDD_PARA_DIALOG };
 #endif
 
  protected:
-  ///数据交换函数
-  virtual void DoDataExchange(CDataExchange* pDX);
+  
+  virtual void DoDataExchange(CDataExchange* pDX);///<数据交换函数
 
   DECLARE_MESSAGE_MAP()
  public:
@@ -39,10 +39,10 @@ class M_PARA_DIA : public CDialogEx {
   afx_msg void OnEnChangeEdit3();
   afx_msg void OnEnUpdateLine();
   afx_msg void OnEnUpdateCharac();
-  ///当按下OK按钮的消息响应函数
-  afx_msg void OnBnClickedOk();
-  ///行间距
-  int m_linespace = 0;
-  ///字间距
-  int m_charaspace = 0;
+  
+  afx_msg void OnBnClickedOk();///<当按下OK按钮的消息响应函数
+  
+  int m_linespace = 0;///<行间距，默认值为0
+  
+  int m_charaspace = 0;///<字间距，默认值为0
 };

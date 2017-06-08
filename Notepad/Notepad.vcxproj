@@ -186,7 +186,6 @@
     <ClInclude Include="kernal.h" />
     <ClInclude Include="lib.h" />
     <ClInclude Include="MainFrm.h" />
-    <ClInclude Include="m_back_color.h" />
     <ClInclude Include="M_PARA_DIA.h" />
     <ClInclude Include="Notepad.h" />
     <ClInclude Include="Resource.h" />
@@ -197,7 +196,6 @@
     <ClCompile Include="ChildView.cpp" />
     <ClCompile Include="kernal.cpp" />
     <ClCompile Include="MainFrm.cpp" />
-    <ClCompile Include="m_back_color.cpp" />
     <ClCompile Include="M_PARA_DIA.cpp" />
     <ClCompile Include="Notepad.cpp" />
     <ClCompile Include="stdafx.cpp">
