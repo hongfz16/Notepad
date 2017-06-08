@@ -108,7 +108,7 @@ struct SIRECT
 {
 	int width;
 	int height;
-	SIRECT(int twidth = 50, int theight = 50)
+	SIRECT(int twidth = 20, int theight = 20)
 	{
 		width = twidth;
 		height = theight;
@@ -219,8 +219,7 @@ public:
 		if (draw_infop != NULL) delete draw_infop;
 	}
 	inline void set_fontpc(SIFONT_P tfontpc);
-	inline void set_fontpc(
-		SIFONT& tfont);
+	void set_fontpc(SIFONT& tfont);
 	inline void set_color(COLORERF tcolor);
 	inline void set_size(CHARSIZE tsize);
 	//	inline void set_char_infop(const SIFONT& tfont, COLORERF tcolor, CHARSIZE tsize);
@@ -474,14 +473,7 @@ inline void SICHARNODE::set_fontpc(SIFONT_P tfontp)
 	char_infop->set_fontpc(tfontp);
 	draw_infop->set_S(char_infop->fontpc->lfWidth, char_infop->fontpc->lfHeight);
 }
-inline void SICHARNODE::set_fontpc(SIFONT& tfont)
-{
-	char_infop->set_fontpc(tfont);
-	//char_infop->color=char_infop->fontpc->lf
-	int width;
-	int height=-MulDiv(char_infop->fontpc->lfHeight,72, GetDeviceCaps(hDC, LOGPIXELSY));
-	draw_infop->set_S(char_infop->fontpc->lfWidth, char_infop->fontpc->lfHeight);
-}
+
 inline void SICHARNODE::set_color(COLORERF tcolor)
 {
 	char_infop->set_color(tcolor);

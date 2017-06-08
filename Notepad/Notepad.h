@@ -10,6 +10,8 @@
 #include "stdafx.h"
 #include "MainFrm.h"
 #include "resource.h"
+
+
 /**
 @brief 程序大类CNotepadApp\n
 程序启动时创建,初始化函数中创建其他的对象\n

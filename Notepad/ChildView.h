@@ -11,6 +11,8 @@
 class CMainFrame;
 #include "stdafx.h"
 #include "kernal.h"
+
+
 //#include "MainFrm.h"
 /**
 @brief 子视窗类CChildView \n

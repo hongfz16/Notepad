@@ -64,13 +64,13 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs) {
 }
 
 void CChildView::OnPaint() {
+
 #ifndef ORI
 	
 	CRect PaintRect;
 	CPaintDC dc(this);
 	CDC MemDC;
 	CBitmap MemBitmap;
-
 	// 双缓冲绘图  
 	GetClientRect(PaintRect);
 	if (MemDC.CreateCompatibleDC(&dc))

@@ -10,6 +10,8 @@
 
 #include "M_PARA_DIA.h"
 
+#include "lib.h"
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -50,6 +52,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		TRACE0("未能创建视图窗口\n");
 		return -1;
 	}
+	globalhdc = GetDC()->GetSafeHdc();
 	m_wndView.mainframep = this;
 	//m_wndView.re_m_client_cy = m_client_cy;
 	//m_wndView.re_scrollpix = scrolledpix;
