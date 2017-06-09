@@ -367,15 +367,23 @@ void CChildView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
 		  switch (nChar) {
 		  case VK_UP:
 			  m_text->mov_cursorp(m_text->DUP);
+			  if (m_text->select.ep != NULL)
+				  m_text->cancel_select();
 			  break;
 		  case VK_DOWN:
 			  m_text->mov_cursorp(m_text->DDOWN);
+			  if (m_text->select.ep != NULL)
+				  m_text->cancel_select();
 			  break;
 		  case VK_LEFT:
 			  m_text->mov_cursorp(m_text->DLEFT);
+			  if (m_text->select.ep != NULL)
+				  m_text->cancel_select();
 			  break;
 		  case VK_RIGHT:
 			  m_text->mov_cursorp(m_text->DRIGHT);
+			  if (m_text->select.ep != NULL)
+				  m_text->cancel_select();
 			  break;
 		  }
 	  }
