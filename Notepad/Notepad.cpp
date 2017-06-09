@@ -284,10 +284,14 @@ void CNotepadApp::OnOpen()
 	CString filePath;
 	if (result == IDOK) {
 		filePath = openFileDlg.GetPathName();
+		string path = (CStringA)filePath;
+		mainp->m_wndView.m_text->set_open_path(path);
+		mainp->m_wndView.m_text->open();
+		mainp->m_wndView.need_recompute=true;
+		mainp->m_wndView.curchanged();
+		mainp->m_wndView.m_changed();
 	}
-	string path = (CStringA)filePath;
-	mainp->m_wndView.m_text->set_open_path(path);
-	mainp->m_wndView.m_text->open();
+	
 	//TODO:调用接口
 }
 
@@ -304,8 +308,11 @@ void CNotepadApp::OnClose()
 	CString filePath;
 	if (result == IDOK) {
 		filePath = openFileDlg.GetPathName();
+		string path = (CStringA)filePath;
+		mainp->m_wndView.m_text->set_save_path(path);
+		mainp->m_wndView.m_text->save();
+		mainp->m_wndView.need_recompute=true;
+		mainp->m_wndView.curchanged();
+		mainp->m_wndView.m_changed();
 	}
-	string path = (CStringA)filePath;
-	mainp->m_wndView.m_text->set_save_path(path);
-	mainp->m_wndView.m_text->save();
 }
