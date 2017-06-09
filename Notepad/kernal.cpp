@@ -2,6 +2,9 @@
 #include "lib.h"
 #include "kernal.h"
 #include <iostream>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
 HDC globalhdc;
 
 void SICHARNODE::calc_S_from_font()
@@ -145,6 +148,20 @@ void print_font(const SIFONT& tfont)
 		tfont.lfStrikeOut, tfont.lfCharSet, tfont.lfOrientation,
 		tfont.lfClipPrecision, tfont.lfQuality, tfont.lfPitchAndFamily);
 	printf("%ls\n", tfont.lfFaceName);
+	//wprintf(L"%s\n", tfont.lfFaceName);
+}
+
+inline void si_getline(wchar_t* S)
+{
+	wchar_t t = getwchar();
+	while (t == L' ' || t == L'\n' || t == L'\r') t = getwchar();
+	int N = 0;
+	while (t != L'\n'&&t != L'\r')
+	{
+		S[N++] = t;
+		t = getwchar();
+	}
+	S[N++] = L'\0';
 }
 void read_font(SIFONT& tfont)
 {
@@ -161,8 +178,12 @@ void read_font(SIFONT& tfont)
 	scanf("%u %u %u %u %u %u %u", &tfont.lfItalic, &tfont.lfUnderline,
 		&tfont.lfStrikeOut, &tfont.lfCharSet, &tfont.lfOrientation,
 		&tfont.lfClipPrecision, &tfont.lfQuality, &tfont.lfPitchAndFamily);
-
-	scanf("%ls", tfont.lfFaceName);
+	
+	//scanf("%ls", tfont.lfFaceName);
+	//gets(tfont.lfFaceName);
+	//std::wcin >> tfont.lfFaceName;
+	//wscanf(L"%[^\n]", tfont.lfFaceName);
+	si_getline(tfont.lfFaceName);
 }
 void print_ch(const SICHAR_T& tch)
 {
