@@ -10,7 +10,6 @@
 #include "M_PARA_DIA.h"
 #include "kernal.h"
 #include "ChildView.h"
-#include "m_back_color.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -169,24 +168,6 @@ END_MESSAGE_MAP()
 
 void CNotepadApp::OnFont()
 {
-	/*
-	typedef struct tagLOGFONT
-{ LONG lfHeight;
-LONG lfWidth;
-LONG lfEscapement;
-LONG lfOrientation;
-LONG lfWeight;
-BYTE lfItalic;
-BYTE lfUnderline;
-BYTE lfStrikeOut;
-BYTE lfCharSet;
-BYTE lfOutPrecision;
-BYTE lfClipPrecision;
-BYTE lfQuality;
-BYTE lfPitchAndFamily;
-TCHAR lfFaceName[LF_FACESIZE];
-} LOGFONT;
-	*/
 	LOGFONT lf;
 	CFontDialog dlg;
 	COLORERF col;
@@ -248,25 +229,6 @@ void CNotepadApp::OnPaste()
 	//TODO:insert a text range
 }
 
-void CNotepadApp::OnBackColor()
-{
-	COLORREF tempcol;
-	m_back_color colDlg;
-	if (colDlg.DoModal() == IDOK)
-	{
-		tempcol = colDlg.color;
-	}
-	SITEXT* b_text = mainp->m_wndView.m_text;
-	if (b_text->select.ep == NULL && b_text->select.sp == NULL)
-	{
-		//TODO:set current color
-	}
-	else
-	{
-		//TODO:set select color
-	}
-}
-
 // 用于运行对话框的应用程序命令
 void CNotepadApp::OnAppAbout()
 {
@@ -283,16 +245,14 @@ void CNotepadApp::OnAppAbout()
 void CNotepadApp::OnAlignLeft()
 {
 	// TODO: 在此添加命令处理程序代码
-	mainp->m_wndView.m_text->set_select_align(mainp->m_wndView.m_text->ALEFT);
-	mainp->m_wndView.m_changed();
+	change_align(mainp->m_wndView.m_text->ALEFT);
 }
 
 
 void CNotepadApp::OnAlignCenter()
 {
 	// TODO: 在此添加命令处理程序代码
-	mainp->m_wndView.m_text->set_select_align(mainp->m_wndView.m_text->ACENTER);
-	mainp->m_wndView.m_changed();
+	change_align(mainp->m_wndView.m_text->ACENTER);
 }
 
 
@@ -301,16 +261,14 @@ void CNotepadApp::OnAlignCenter()
 void CNotepadApp::OnAlignRight()
 {
 	// TODO: 在此添加命令处理程序代码
-	mainp->m_wndView.m_text->set_select_align(mainp->m_wndView.m_text->ARIGHT);
-	mainp->m_wndView.m_changed();
+	change_align(mainp->m_wndView.m_text->ARIGHT);
 }
 
 
 void CNotepadApp::OnAlignDistribute()
 {
 	// TODO: 在此添加命令处理程序代码
-	mainp->m_wndView.m_text->set_select_align(mainp->m_wndView.m_text->ADISTRIBUTED);
-	mainp->m_wndView.m_changed();
+	change_align(mainp->m_wndView.m_text->ADISTRIBUTED);
 }
 
 

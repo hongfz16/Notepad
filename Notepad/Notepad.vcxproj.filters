@@ -42,13 +42,7 @@
     <ClInclude Include="M_PARA_DIA.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="m_back_color.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="lib.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="CmemDC.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -66,9 +60,6 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="M_PARA_DIA.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="m_back_color.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="kernal.cpp">

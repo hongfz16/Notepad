@@ -1,6 +1,6 @@
 /**
 @brief 声明程序主框架类CMainframe类 \n
-@file MainFrame.h
+@file MainFrm.h
 @author 洪方舟
 @email hongfz16@163.com
 @version 1.0
@@ -11,7 +11,6 @@
 class CChildView;
 #include "stdafx.h"
 #include "ChildView.h"
-#include "m_back_color.h"
 #include "M_PARA_DIA.h"
 /**
 @brief 程序主框架类CMainFrame类 \n
@@ -32,24 +31,24 @@ class CMainFrame : public CFrameWnd {
   DECLARE_DYNAMIC(CMainFrame)
 
  public:
-  ///绘图预处理函数,如果需要修改窗口样式则改写该函数
-  virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
-  ///主消息循环函数,无需修改
+  
+  virtual BOOL PreCreateWindow(CREATESTRUCT& cs);///<绘图预处理函数,如果需要修改窗口样式则改写该函数
+ 
   virtual BOOL OnCmdMsg(UINT nID, int nCode, void* pExtra,
-                        AFX_CMDHANDLERINFO* pHandlerInfo);
+                        AFX_CMDHANDLERINFO* pHandlerInfo); ///<主消息循环函数,无需修改
 
  public:
-  ///默认析构函数
-  virtual ~CMainFrame();
+  
+  virtual ~CMainFrame();///<默认析构函数
 
 #ifdef _DEBUG
   virtual void AssertValid() const;
   virtual void Dump(CDumpContext& dc) const;
 #endif
 
-  ///子视图类成员变量
+  
 public:
-  CChildView m_wndView;
+  CChildView m_wndView;///<子视图类成员变量
 
  protected:
   /**
@@ -60,15 +59,15 @@ public:
   @param[in] lpCreateStruct 至于这个是什么不重要,不需要自己调用这个函数
   */
   afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-  ///当窗口被聚焦的时候调用,无需修改
-  afx_msg void OnSetFocus(CWnd* pOldWnd);
+ 
+  afx_msg void OnSetFocus(CWnd* pOldWnd); ///<当窗口被聚焦的时候调用,无需修改
   DECLARE_MESSAGE_MAP()
 
  public:
-  ///用于存储客户区的大小的变量
-  CRect m_client_rect;
-  ///用于存储子视图的y方向的长度
-  int m_client_cy;
+  
+  CRect m_client_rect;///<用于存储客户区的大小的变量
+  
+  int m_client_cy;///<用于存储子视图的y方向的长度
   /**
   @brief 当窗口大小被调整之后调用的函数\n
   @param[in] cx 当前窗口x方向长度
@@ -92,11 +91,11 @@ public:
 
   // scroll bar
  protected:
-  ///滚动条类实例
-  CScrollBar m_scrollBar;
+  
+  CScrollBar m_scrollBar;///<滚动条类成员
 public:
-  ///用于记录页面相对于上边界偏移量
-  int scrolledpix;
+  
+  int scrolledpix;///<用于记录页面相对于上边界偏移量
 
  public:
   /**
@@ -114,11 +113,11 @@ public:
   通过记录页面相对于上边界的偏移量来调整
   @note 此函数仅在OnSize函数中调用 @see OnSize
   */
-  void UpdateScrollBarPos();
-  ///记录当前客户区的宽度
-  int maincx;
-  ///记录当前客户区的高度
-  int maincy;
+  void UpdateScrollBarPos();///<重置滚动条位置
+  
+  int maincx;///<记录当前客户区的宽度
+ 
+  int maincy; ///<记录当前客户区的高度
 };
 
 

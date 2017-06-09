@@ -42,24 +42,20 @@ IDR_MAINFRAME MENU
 BEGIN
     POPUP "文件(&F)"
     BEGIN
-        MENUITEM "Open(&O)",                    ID_OPEN
-        MENUITEM "Save(&S)",                    ID_CLOSE
+        MENUITEM "打开(&O)",                      ID_OPEN
+        MENUITEM "保存(&S)",                      ID_CLOSE
         MENUITEM "退出(&X)",                      ID_APP_EXIT
     END
     POPUP "编辑(&E)"
     BEGIN
-        MENUITEM "剪切(&T)\tCtrl+X",              ID_EDIT_CUT
-        MENUITEM "复制(&C)\tCtrl+C",              ID_EDIT_COPY
-        MENUITEM "粘贴(&P)\tCtrl+V",              ID_EDIT_PASTE
-        MENUITEM SEPARATOR
         MENUITEM "字体(&F)",                      ID_FONT
         MENUITEM "段落(&D)",                      ID_PARA
-        POPUP "align"
+        POPUP "对齐方式"
         BEGIN
-            MENUITEM "left",                        ID_ALIGN_LEFT
-            MENUITEM "center",                      ID_ALIGN_CENTER
-            MENUITEM "right",                       ID_ALIGN_RIGHT
-            MENUITEM "distribute",                  ID_ALIGN_DISTRIBUTE
+            MENUITEM "左对齐",                         ID_ALIGN_LEFT
+            MENUITEM "居中",                          ID_ALIGN_CENTER
+            MENUITEM "右对齐",                         ID_ALIGN_RIGHT
+            MENUITEM "分散对齐",                        ID_ALIGN_DISTRIBUTE
         END
     END
     POPUP "帮助(&H)"
@@ -410,8 +406,8 @@ END
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
 LANGUAGE 4, 2
-#include "res\Notepad.rc2"  // ·? Microsoft Visual C++ ±à?-μ?×ê?′
-#include "l.CHS\afxres.rc"      // ±ê×?×é?t
+#include "res\Notepad.rc2"  // ? Microsoft Visual C++ ?????
+#include "l.CHS\afxres.rc"      // ????
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
