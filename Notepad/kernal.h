@@ -378,10 +378,10 @@ public:
 	static const SIDIRECT DDOWN = 3;
 
 	static const SIALIGN ANORMAL = 0;
-	static const SIALIGN ALEFT = 0;
-	static const SIALIGN ARIGHT = 1;
-	static const SIALIGN ACENTER = 2;
-	static const SIALIGN ADISTRIBUTED = 3;
+	static const SIALIGN ALEFT = 1;
+	static const SIALIGN ARIGHT = 2;
+	static const SIALIGN ACENTER = 3;
+	static const SIALIGN ADISTRIBUTED = 4;
 
 	//debug mod
 	void print_cursorp()
