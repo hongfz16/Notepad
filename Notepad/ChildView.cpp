@@ -245,14 +245,13 @@ void CChildView::m_paintCur(CPaintDC& dc) {
 void CChildView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags) {
   // TODO: 在此添加消息处理程序代码和/或调用默认值
   SICHAR_T wchar = nChar;
-  if (nChar == VK_BACK) {
-    if (m_text->select.sp == NULL && m_text->select.ep == NULL) {
+  if (nChar == VK_BACK) {    if (m_text->select.ep == NULL) {
       m_text->del_char(SIBACKSPACE);
     } else {
       m_text->del_select();
     }
   } else if (nChar == VK_DELETE) {
-    if (m_text->select.sp == NULL && m_text->select.ep == NULL) {
+    if (m_text->select.ep == NULL) {
       m_text->del_char(SIDELETE);
     } else {
       m_text->del_select();

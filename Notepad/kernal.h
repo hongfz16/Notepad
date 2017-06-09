@@ -3,6 +3,7 @@
 #define kernal_h
 
 #include "stdafx.h"
+#include<string>
 #include<vector>
 //#include<Windows.h>
 
@@ -119,7 +120,8 @@ public:
 	///<interface>
 	inline CHARSPACE get_cspace();
 	inline LINESPACE get_lspace();
-
+	void print_info();
+	void read_info();
 	SICHAR_INFO& operator = (const SICHAR_INFO& tinfo)
 	{
 		if (&tinfo == this) return *this;
@@ -155,6 +157,9 @@ struct SIRECT
 	{
 		printf("%d %d", width, height);
 	}
+
+	void print_info();
+	void read_info();
 };
 
 struct SIPOINT
@@ -169,6 +174,8 @@ struct SIPOINT
 	{
 		printf("%d %d", x, y);
 	}
+	void print_info();
+	void read_info();
 	friend SIPOINT operator + (const SIPOINT& A, const SIPOINT& B)
 	{
 		return SIPOINT(A.x + B.x, A.y + B.y);
@@ -215,6 +222,9 @@ public:
 	inline SIRECT& get_L();
 	inline SIPOINT& get_POS();
 	///<interface>
+	void print_info();
+	void read_info();
+
 };
 typedef SIDRAW_INFO* SIDRAW_INFO_P;
 
@@ -303,6 +313,10 @@ public:
 		printf("\n\n");
 
 	}
+
+	void print_info();
+	void read_info();
+
 };
 typedef SICHARNODE* SICHARNODE_P;
 
@@ -319,6 +333,8 @@ struct SIRANGE
 	{
 		sp = ep = NULL;
 	}
+	void print_info();
+	void read_info();
 };
 typedef SIRANGE SISELECT;
 typedef SIRANGE SIPARAGRAPH;
@@ -392,7 +408,10 @@ public:
 	//end debug
 	//constructor
 	SITEXT();
+	~SITEXT();
 	///<interface>
+	inline void save();
+	inline void open();
 	//Operate method
 	///inline void load();
 	///inline void save();
@@ -439,7 +458,10 @@ public:
 	inline void repaint();
 	void print_list();
 	///<\interface>
-	
+	void print_info();
+	void read_info();
+	void _init();
+	void _destroy();
 	inline void anticolor(SICHARNODE_P ps, SICHARNODE_P pe);
 };
 
@@ -491,6 +513,9 @@ inline LINESPACE SICHAR_INFO::get_lspace()
 {
 	return lspace;
 }
+
+
+
 
 //SIDRAW_INFO
 inline void SIDRAW_INFO::set_S(const SIRECT& TS)
@@ -833,9 +858,11 @@ inline void SITEXT::start_select()
 
 inline void SITEXT::end_select()
 {
+	if (select.sp == NULL) return;
 	select.ep = cursorp;
 	if (select.sp->draw_infop->POS > select.ep->draw_infop->POS)
 		exchange<SICHARNODE_P>(select.sp, select.ep);
+	if (select.sp == select.ep) select._clear();
 	anticolor(select.sp, select.ep);
 	//if (fwdnum < 0) exchange<SICHARNODE_P>(select.sp, select.ep);
 	//if (fwdnum == 0) select._clear();
@@ -926,12 +953,14 @@ inline void SITEXT::mov_cursorp(const SIPOINT& P)
 inline void SITEXT::set_default_font(SIFONT& tfont)
 {
 	default_font = tfont;
-	headp->set_fontpc(default_font);
+	headp->set_fontpc(tfont);
+	tailp->set_fontpc(tfont);
 }
 inline void SITEXT::set_default_font(SIFONT_P tfontp)
 {
 //	default_font = *tfontp;
 	headp->set_fontpc(tfontp);
+	tailp->set_fontpc(tfontp);
 }
 inline void SITEXT::set_select_font(SIFONT_P tfontpc)
 {
@@ -1084,7 +1113,19 @@ inline void SITEXT::anticolor(SICHARNODE_P ps, SICHARNODE_P pe)
 		p->char_infop->color = anticolor_ext(p->char_infop->color);//(~(p->char_infop->color))&((1 << 24) - 1);
 	}
 }
+inline void SITEXT::save()
+{
+	freopen(save_path.c_str(), "w", stdout);
+	print_info();
+	fclose(stdout);
+}
 
+inline void SITEXT::open()
+{
+	freopen(open_path.c_str(), "r", stdin);
+	read_info();
+	fclose(stdin);
+}
 /*
 //Draw method
 ///cursor - coord transparent

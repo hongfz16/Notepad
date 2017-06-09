@@ -111,7 +111,7 @@ UI及交互部分遇到的问题及解决方案
 #include "stdafx.h"
 #include "MainFrm.h"
 #include "resource.h"
-
+#include <string>
 
 /**
 @brief 程序大类CNotepadApp\n
