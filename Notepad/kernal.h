@@ -1,6 +1,15 @@
 #ifndef kernal_h
 #define kernal_h
 
+/**
+@brief 记事本的内核\n
+@file kernal.h
+@author 李仁杰
+@email ShadowIterator@hotmail.com
+@version 1.0
+@date 2015.5.28
+*/
+
 #include "stdafx.h"
 #include<string>
 #include<vector>
@@ -16,25 +25,26 @@ struct SIPOINT;
 struct SIRANGE;
 
 
-
-typedef char SICHAR_T;
-typedef LOGFONT SIFONT;
-typedef SIFONT* SIFONT_P;
+typedef int SIDIRECT;
+typedef int SIALIGN;
+typedef int PAGEWIDTH;
 typedef int COLORERF;
 typedef int CHARSIZE;
 typedef int CHARSPACE;
 typedef int LINESPACE;
 typedef int SIALIGN;
+typedef char SICHAR_T;
+typedef LOGFONT SIFONT;
+typedef SIFONT* SIFONT_P;
+typedef SIPOINT SIVECTOR;
 typedef SICHAR_INFO* SICHAR_INFO_P;
 typedef SIDRAW_INFO* SIDRAW_INFO_P;
 typedef SICHARNODE* SICHARNODE_P;
 typedef SIRANGE SISELECT;
 typedef SIRANGE SIPARAGRAPH;
 typedef SIRANGE SILINE;
-typedef int PAGEWIDTH;
 typedef SICHARNODE_P SICURSORP;
-typedef int SIDIRECT;
-typedef int SIALIGN;
+
 
 template<class T>
 void exchange(T& a, T& b)
@@ -53,29 +63,172 @@ inline int Max(int a, int b)
 {
 	return a > b ? a : b;
 }
+
+/**
+@brief 反色函数\n
+@param[in] c 当前颜色
+@retval 反色后的颜色
+*/
 inline COLORERF anticolor_ext(COLORERF c)
 {
 	return (~c)&((1 << 24) - 1);
 }
+
 inline int ABS(int a)
 {
 	return a < 0 ? (-a) : a;
 }
+/**
+@brief 矩形结构体\n
+用于表示一个字符占据的屏幕空间大小
+*/
+struct SIRECT
+{
+	int width;	///<宽度(px)
+	int height;	///<高度(px)
 
+	SIRECT(int twidth = 20, int theight = 20) ///<构造函数1(默认)
+	{
+		width = twidth;
+		height = theight;
+	}
 
+	SIRECT(const SIRECT& trect)	///<构造函数2
+	{
+		width = trect.width;
+		height = trect.height;
+	}
+	void print_info();	///<输出信息
+	void read_info();	///<读入信息
+};
+/**
+@brief 点/向量结构体\n
+用于表示一个字符(的左上角)在屏幕上的位置
+*/
+struct SIPOINT
+{
+	int x;	///<x坐标(px)
+	int y;	///<y坐标(px)
+	SIPOINT(int tx = 0, int ty = 0)	///<构造函数
+	{
+		x = tx; y = ty;
+	}
+	friend SIPOINT operator + (const SIPOINT& A, const SIPOINT& B)	///<向量加法
+	{
+		return SIPOINT(A.x + B.x, A.y + B.y);
+	}
+	friend SIPOINT operator - (const SIPOINT& A, const SIPOINT& B)	///<向量减法
+	{
+		return SIPOINT(A.x - B.x, A.y - B.y);
+	}
+	/**
+	@brief 定义两个点的小于关系
+	@param[in] A 左操作数
+	@param[in] B 右操作数
+	@retval true A的x坐标更小 或 AB的x坐标相等且A的y坐标更小
+	@retval false B的x坐标更小 或 AB的x坐标相等且B的y坐标更小
+	*/
+	friend bool operator < (const SIPOINT& A, const SIPOINT& B)
+	{
+		return	A.y < B.y ||
+			A.y == B.y && (A.x < B.x);
+	}
+	friend bool operator > (const SIPOINT& A, const SIPOINT& B)	///<定义两个点的大于关系，与小于关系相反 @see operator <
+	{
+		return B < A;
+	}
+	void print_info();	///<输出信息
+	void read_info();	///<读入信息
+};
+
+/**
+@brief 表示文本链表中的一段节点
+*/
+struct SIRANGE
+{
+	SICHARNODE_P sp;	///<指向这段节点的头指针 @see SICHARNODE_P
+	SICHARNODE_P ep;	///<指向这段节点的尾指针 @see SICHARNODE_P
+	SIRANGE(SICHARNODE_P tsp = NULL, SICHARNODE_P tep = NULL)	///<构造函数(默认)
+	{
+		sp = tsp;
+		ep = tep;
+	}
+	/**
+	@brief 清空函数\n
+	@note 这个函数只是把sp和ep的值赋为NULL，并不会清空链表中的节点
+	*/
+	void _clear()
+	{
+		sp = ep = NULL;
+	}
+};
+
+/**
+@brief 表示一个字符的与绘制相关的信息\n
+把每个字符抽象成一个屏幕上的矩形，每两个矩形之间没有缝隙
+*/
+class SIDRAW_INFO
+{
+public:
+	/**
+	@brief 一个字符初始矩形的形状\n
+	影响它的属性是\n
+		-字体
+		-字号
+	@see struct SIRECT
+	*/
+	SIRECT S;		//small rectangle	
+	/**
+	@brief 一个字符画在屏幕上的形状\n
+	影响它的属性是\n
+		-字体
+		-字号
+		-字间距
+		-行间距
+		-该字符当前所在行高度最高的字符的高度
+	@see struct SIRECT
+	*/
+	SIRECT L;		//large rectangle	
+	SIPOINT POS;	//coor. (left_top)	///<表示一个字符的左上角在屏幕上的位置 @see struct SIPOINT
+
+	friend class SICHARNODE;
+	SIDRAW_INFO()	///<构造函数1(默认)
+	{
+		S = SIRECT(); L = SIRECT(); POS = SIPOINT();
+	}
+	SIDRAW_INFO::SIDRAW_INFO(const SIRECT& TS, const SIRECT& TL, const SIPOINT& TPOS)	///<构造函数2
+	{
+		S = TS; L = TL; POS = TPOS;
+	}	
+	void set_S(const SIRECT&);	///<设置S的值(重载:1)
+	void set_S(int, int);	///<设置S的值(重载:2)
+	void set_L(const SIRECT&);	///<设置L的值
+	void set_POS(const SIPOINT&);	///<设置POS的值
+	const SIRECT& get_S();	///<获得S的值
+	SIRECT& get_L();	///<获得L的值
+	SIPOINT& get_POS();	///<获得POS的值
+	///<interface>
+	void print_info();	///<输出信息
+	void read_info();	///<读入信息
+
+};
+
+/**
+@brief 表示一个字符的可以"设置"的信息
+*/
 class SICHAR_INFO
 {
 public:
-	SIFONT_P fontpc;
-	COLORERF color;
-	COLORERF bgcolor;
-	CHARSIZE size;
-	CHARSPACE cspace;
-	LINESPACE lspace;
-	SIALIGN align;
+	SIFONT_P fontpc;	///<字体信息,详见MSDN @see SIFONT_P
+	COLORERF color;	///<颜色信息 @COLORERF
+	COLORERF bgcolor;	///<背景颜色信息 @COLORERF
+	CHARSIZE size;	///<字体大小，这里用作标识符 @CHARSIZE
+	CHARSPACE cspace;	///<字间距 @CHARSPACE
+	LINESPACE lspace;	///<行间距 @LINESPACE
+	SIALIGN align;	///<对齐方式 @SIALIGN
 
 	friend class SICHARNODE;
-	SICHAR_INFO() :fontpc(NULL)
+	SICHAR_INFO() :fontpc(NULL)	///<构造函数1(默认)
 	{
 		//fontp = NULL;
 		color = 0x000000;
@@ -84,7 +237,7 @@ public:
 		align = 0;
 		fontpc = new SIFONT;
 	};
-	SICHAR_INFO(const SICHAR_INFO& tinfo)
+	SICHAR_INFO(const SICHAR_INFO& tinfo)	///<构造函数2
 	{
 
 		*fontpc = *(tinfo.fontpc);
@@ -94,117 +247,81 @@ public:
 		lspace = tinfo.lspace;
 		align = tinfo.align;
 	}
-	~SICHAR_INFO()
+	~SICHAR_INFO()	///<析构函数
 	{
 		delete fontpc;
 	}
-	void set_fontpc(SIFONT_P tfontpc);
-	void set_fontpc(SIFONT& tfont);
-	void set_color(COLORERF tcolor);
-	void set_size(CHARSIZE tsize);
-	void set_cspace(CHARSPACE tcspace);
-	void set_lspace(LINESPACE tlspace);
+	void set_fontpc(SIFONT_P tfontpc);	///<设置fontpc成员(重载:1) @see fontpc
+	void set_fontpc(SIFONT& tfont);	///<设置fontpc成员(重载:2) @see fontpc
+	void set_color(COLORERF tcolor);	///<设置color成员 @see color
+	void set_size(CHARSIZE tsize);	///<设置size成员 @see size
+	void set_cspace(CHARSPACE tcspace);	///<设置cspace成员 @see cspace
+	void set_lspace(LINESPACE tlspace);	///<设置lspace成员 @see lspace
 	///<interface>
-	SIFONT_P get_fontpc();
-	COLORERF get_color();
+	/**
+	@brief 得到字体信息\n
+	@retval 一个指向SIFONT的指针，表示字体信息
+	*/
+	SIFONT_P get_fontpc();	
+	/**
+	@brief 得到颜色信息\n
+	@retval 一个COLORREF类型的变量，表示颜色
+	*/
+	COLORERF get_color();	
+	/**
+	@brief 得到字体大小\n
+	@retval 一个CHARSIZE类型的变量，表示字体大小
+	*/
 	CHARSIZE get_size();
 	///<interface>
+	/**
+	@brief 得到字间距\n
+	@retval 一个CHARSPACE类型的变量，表示字间距
+	*/
 	CHARSPACE get_cspace();
+	/**
+	@brief 得到行间距\n
+	@retval 一个LINESPACE类型的变量，表示行间距
+	*/
 	LINESPACE get_lspace();
-	void print_info();
-	void read_info();
-	SICHAR_INFO& operator = (const SICHAR_INFO& tinfo);
+	void print_info();	///<输出信息
+	void read_info();	///<读入信息
+	/**
+	@brief 重载赋值函数\n
+	@note 这个函数中，fontpc是复制指针指向的内容而不是指针本身
+	@param[in] *this 左操作数
+	@param[in] tinfo 右操作数
+	@retval *this 
+	*/
+	SICHAR_INFO& operator = (const SICHAR_INFO& tinfo);	
 };
 
-struct SIRECT
-{
-	int width;
-	int height;
 
-	SIRECT(int twidth = 20, int theight = 20)
-	{
-		width = twidth;
-		height = theight;
-	}
-
-	SIRECT(const SIRECT& trect)
-	{
-		width = trect.width;
-		height = trect.height;
-	}
-	void print_info();
-	void read_info();
-};
-
-struct SIPOINT
-{
-	int x;
-	int y;
-	SIPOINT(int tx = 0, int ty = 0)
-	{
-		x = tx; y = ty;
-	}
-	void print_info();
-	void read_info();
-	friend SIPOINT operator + (const SIPOINT& A, const SIPOINT& B)
-	{
-		return SIPOINT(A.x + B.x, A.y + B.y);
-	}
-	friend SIPOINT operator - (const SIPOINT& A, const SIPOINT& B)
-	{
-		return SIPOINT(A.x - B.x, A.y - B.y);
-	}
-	friend bool operator < (const SIPOINT& A, const SIPOINT& B)
-	{
-		return	A.y < B.y ||
-			A.y == B.y && (A.x < B.x);
-	}
-	friend bool operator > (const SIPOINT& A, const SIPOINT& B)
-	{
-		return B < A;
-	}
-};
-
-class SIDRAW_INFO
-{
-private:
-
-public:
-	SIRECT S;		//small rectangle
-	SIRECT L;		//large rectangle
-	SIPOINT POS;	//coor. (left_top)
-
-	friend class SICHARNODE;
-	SIDRAW_INFO();
-	SIDRAW_INFO(const SIRECT& TS, const SIRECT& TL, const SIPOINT& TPOS);
-	void set_S(const SIRECT&);
-	void set_S(int, int);
-	void set_L(const SIRECT&);
-	void set_POS(const SIPOINT&);
-	///<interface>
-	const SIRECT& get_S();
-	SIRECT& get_L();
-	SIPOINT& get_POS();
-	///<interface>
-	void print_info();
-	void read_info();
-
-};
-
+/**
+@brief 表示文本链表的一个节点\n
+*/
 class SICHARNODE
 {
-private:
-
 public:
-	SICHAR_T ch;
-	SICHAR_INFO_P char_infop;
+	SICHAR_T ch;	///<字符 @see SICHAR_T
+	/**
+	@brief 字体信息\n
+	一个指向SICHAR_INFO类型的指针，储存该字符的字体信息 
+	@see class SICHAR_INFO
+	*/
+	SICHAR_INFO_P char_infop; 
+	/**
+	@brief 绘制信息\n
+	一个指向SIDRAW_INFO类型的指针，储存该字符的绘制信息
+	@see class SIDRAW_INFO
+	*/
 	SIDRAW_INFO_P draw_infop;
-	SICHARNODE *prevp;
-	SICHARNODE *nextp;
+	SICHARNODE *prevp;	///<指向链表前一个节点的指针
+	SICHARNODE *nextp;	///<指向链表后一个节点的指针
 
 	friend class SITEXT;
 	SICHARNODE(SICHAR_T tch, SICHARNODE* tprevp = NULL, SICHARNODE* tnextp = NULL
-		, SICHAR_INFO_P tchar_infop = NULL, SIDRAW_INFO_P tdraw_infop = NULL)
+		, SICHAR_INFO_P tchar_infop = NULL, SIDRAW_INFO_P tdraw_infop = NULL)	///<构造函数1
 	{
 		ch = tch;
 		char_infop = new SICHAR_INFO;
@@ -215,7 +332,7 @@ public:
 		nextp = tnextp;
 	}
 
-	SICHARNODE(SICHAR_T tch, int tswidth, int tsheight)
+	SICHARNODE(SICHAR_T tch, int tswidth, int tsheight)	///<构造函数2
 	{
 		ch = tch;
 		char_infop = new SICHAR_INFO;
@@ -223,15 +340,15 @@ public:
 		draw_infop->S.width = tswidth;
 		draw_infop->S.height = tsheight;
 	}
-
-	~SICHARNODE()
+	~SICHARNODE()	///<析构函数
 	{
 		if (char_infop != NULL) delete char_infop;
 		if (draw_infop != NULL) delete draw_infop;
 	}
-
-	void calc_S_from_font();
-	void set_fontpc(SIFONT_P tfontpc);
+private:
+	void calc_S_from_font();///<从当前的字体计算出绘制信息中的S的大小 @see S @see fontpc
+public:
+	void set_fontpc(SIFONT_P tfontpc);	///<设置char_infop中的fontpc并重新计算draw_infop中的S的大小
 	void set_fontpc(SIFONT& tfont);
 	void set_color(COLORERF tcolor);
 	void set_size(CHARSIZE tsize);
@@ -239,72 +356,126 @@ public:
 	void set_draw_infop_L(const SIRECT& TL);
 	void set_draw_infop_P(const SIPOINT& TP);
 	void set_align(SIALIGN align);
+	/**
+	@brief 在当前字符的前面插入一个节点\n
+	@param[in] p 指向被插入节点的指针
+	@note 该函数会把p指向的节点的字体信息改为和p的前一个节点相同
+	*/
 	void ins_prev(SICHARNODE* p);
+	/**
+	@brief 在当前字符的后面插入一个节点\n
+	@param[in] p 指向被插入节点的指针
+	@note 该函数会把p指向的节点的字体信息改为和p的前一个节点相同
+	*/
 	void ins_next(SICHARNODE* p);
+	/**
+	@brief 在当前字符的前面插入一段节点\n
+	@param[in] ps 指向被插入节点段的头指针
+	@param[in] pe 指向被插入节点段的尾指针
+	@note 该函数不会改变被插入节点段的字体信息\n
+	要求这段节点必须事先已经用链表的结构组织好了
+	*/
 	void ins_prev(SICHARNODE* ps, SICHARNODE* pe);
+	/**
+	@brief 在当前字符的后面插入一段节点\n
+	@param[in] ps 指向被插入节点段的头指针
+	@param[in] pe 指向被插入节点段的尾指针
+	@note 该函数不会改变被插入节点段的字体信息\n
+	要求这段节点必须事先已经用链表的结构组织好了
+	*/
 	void ins_next(SICHARNODE* ps, SICHARNODE* pe);
-	void ins_prev(const SIRANGE& range);
-	void ins_next(const SIRANGE& range);
+	void ins_prev(const SIRANGE& range);	///<@see ins_prev
+	void ins_next(const SIRANGE& range);	///<@see ins_next
+	/**
+	@brief 从链表中删除一个节点\n
+	@param[in] p 待删除的节点
+	@note p不能是链表的头节点或尾节点
+	*/
 	friend void del(SICHARNODE* p);
-	friend void del(SICHARNODE* ps, SICHARNODE* pe);
-	friend void del(const SIRANGE& range);
+	/**
+	@brief 从链表中删除一段节点\n
+	@param[in] ps 指向被删除节点段的头节点
+	@param[in] pe 指向被删除节点段的尾节点
+	@note 该节点段不能包含链表的头节点或尾节点
+	*/
+	friend void del(SICHARNODE* ps, SICHARNODE* pe);	///
+	friend void del(const SIRANGE& range);	///<@see del
 	///<interface>
-	const SICHAR_INFO_P get_char_infop();
-	const SIDRAW_INFO_P get_draw_infop();
+	const SICHAR_INFO_P get_char_infop();	///<得到一个char_infop的const副本 @see char_infop
+	const SIDRAW_INFO_P get_draw_infop();	///<得到一个draw_infop的const副本 @see draw_infop
 	///<\interface>
-	void print_info();
-	void read_info();
+	void print_info();	///<输出信息
+	void read_info();	///<输入信息
 
 };
 
-struct SIRANGE
-{
-	SICHARNODE_P sp;
-	SICHARNODE_P ep;
-	SIRANGE(SICHARNODE_P tsp = NULL, SICHARNODE_P tep = NULL)
-	{
-		sp = tsp;
-		ep = tep;
-	}
-	void _clear()
-	{
-		sp = ep = NULL;
-	}
-};
+
+/**
+@brief 文本链表\n
+把文本从头到尾抽象成一个链表
+*/
 class SITEXT
 {
 public:
 
-	string save_path;
-	string open_path;
+	string save_path;	///<保存路径
+	string open_path;	///<打开路径
 
-	SICHARNODE_P headp;
-	SICHARNODE_P tailp;
+	SICHARNODE_P headp;	///<文本链表头指针 @see SICHARNODE_P
+	SICHARNODE_P tailp;	///<文本链表尾指针 @see SICHARNODE_P
 
+	/**
+	@brief 光标位置\n
+	一个指向链表中一个节点的指针，用来表示光标目前所在的位置
+	@note 该指针指向的节点代表屏幕上显示的光标的后一个字符
+	@see SICURSORP
+	*/
 	SICURSORP cursorp;
-	SISELECT select;
+	SISELECT select;	///<当前选中的区间 @see SISELECT
 
-	PAGEWIDTH pagewidth;
+	PAGEWIDTH pagewidth;	///<页面宽度，用于计算字符的位置 @see PAGEWIDTH
 
-	SIFONT_P curfontpc;
-	SIFONT default_font;
+	SIFONT_P curfontpc;	
+	SIFONT default_font;	///<初始的默认字体 @see SIFONT
 
-	bool inselect;
+	bool inselect;	
 	int fwdnum;
-	std::vector<SILINE> vlinep;
-	std::vector<SIPARAGRAPH> vparap;
+	std::vector<SILINE> vlinep;	///<按顺序储存屏幕上从上到下的每一行 @see SILINE
+	std::vector<SIPARAGRAPH> vparap;	///<按顺序储存屏幕上从上到下每一段 @see SIPARAGRAPH
 
 	//set true when text changed specifically when \
 				effectable methods are called		\
 	  set false when repaint() is called
-	bool text_changed_f;
+	bool text_changed_f;	///<文本改变标志
 	//set true when set_curfontp() is called \
 			  set false when cursor moved
 	bool set_curfontp_f;
 
 private:
 
+	/**
+	@brief 行计算函数\n
+	用于计算一行字符的绘制信息
+	@param[in] ps 指向该行头节点的指针
+	@param[in] pe 指向该行尾节点的指针
+	@param[in] sx 该行左上角的x坐标
+	@param[in] y  该行左上角的y坐标
+	@param[in] line_height 行高
+	@param[in] delta 每个字符除了自身的宽度外的附加宽度(只在分散对齐时不为0)
+	*/
 	void draw_line_from_left(SICHARNODE_P ps, SICHARNODE_P pe, int sx, int y, int line_height, int deltax);
+	/**
+	@brief 行处理函数\n
+	根据不同对齐方式用于计算一行字符的绘制信息
+	@param[in] ps 指向该行头节点的指针
+	@param[in] pe 指向该行尾节点的指针
+	@param[in] n  该行的字符总数(不包括换行符)
+	@param[in] y  该行左上角的坐标
+	@param[in] line_height 行高
+	@param[in] tot_width 该行字符自身的宽度总和
+	@param[in] align 该行的对齐方式
+	@todo 补充对align的介绍
+	*/
 	void proc_line(SICHARNODE_P ps, SICHARNODE_P pe, int n, int y, int line_height, int tot_weight, SIALIGN align);
 	void proc_text();
 	void pre_proc();

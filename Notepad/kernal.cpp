@@ -198,14 +198,7 @@ void SIPOINT::read_info()
 {
 	std::cin >> x >> y;
 }
-SIDRAW_INFO::SIDRAW_INFO()
-{
-	S = SIRECT(); L = SIRECT(); POS = SIPOINT();
-}
-SIDRAW_INFO::SIDRAW_INFO(const SIRECT& TS, const SIRECT& TL, const SIPOINT& TPOS)
-{
-	S = TS; L = TL; POS = TPOS;
-}
+
 void SIDRAW_INFO::print_info()
 {
 	S.print_info();
