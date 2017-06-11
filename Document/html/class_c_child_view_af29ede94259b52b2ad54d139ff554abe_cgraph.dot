@@ -1,0 +1,20 @@
+digraph "CChildView::OnChar"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node32 [label="CChildView::OnChar",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node32 -> Node33 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node33 [label="SITEXT::ins_char",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_i_t_e_x_t.html#a6324f46cb5b509caca467ee700305f0c"];
+  Node33 -> Node34 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node34 [label="SICHARNODE::ins_prev",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_i_c_h_a_r_n_o_d_e.html#a0aba68c10438db18bea07bb77d70f839"];
+  Node32 -> Node35 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node35 [label="CChildView::curchanged",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_child_view.html#ab68bf2b03a8e9aab3f2aac2b9ec3177a"];
+  Node35 -> Node36 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node36 [label="CMainFrame::UpdateClientRect",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_main_frame.html#a2500e3a6ace77e01430f5ff4b9a6f182",tooltip="当窗口大小被调整之后调用的函数 "];
+  Node36 -> Node37 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node37 [label="CChildView::m_changed",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_child_view.html#acff91e8fc8cc40cd1ebe1d24a6be4945",tooltip="当文本内容根据用户的操作有变化的时候调用  操作如下 "];
+  Node35 -> Node38 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node38 [label="CMainFrame::UpdateScroll\lBarPos",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_main_frame.html#a4f7c9f6d9aeae93045c5dd2047ccebf1",tooltip="当改变窗口大小时,调整滚动块的位置 通过记录页面相对于上边界的偏移量来调整 "];
+  Node35 -> Node37 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

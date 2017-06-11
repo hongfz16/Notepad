@@ -1,0 +1,397 @@
+\hypertarget{class_c_child_view}{}\section{C\+Child\+View Class Reference}
+\label{class_c_child_view}\index{C\+Child\+View@{C\+Child\+View}}
+
+
+子视窗类\+C\+Child\+View ~\newline
+子视窗是程序中客户区部分，即文本编辑的画布部分 -\/此类继承自\+C\+Wnd  
+
+
+
+
+{\ttfamily \#include $<$Child\+View.\+h$>$}
+
+Inheritance diagram for C\+Child\+View\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_c_child_view}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_c_child_view_aff5af7c162c10755edbe58f260ded6d4}\label{class_c_child_view_aff5af7c162c10755edbe58f260ded6d4}} 
+\hyperlink{class_c_child_view_aff5af7c162c10755edbe58f260ded6d4}{C\+Child\+View} ()
+\begin{DoxyCompactList}\small\item\em C\+Child\+View类构造函数 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_child_view_a5b033b5e0a130950719a173b86418698}\label{class_c_child_view_a5b033b5e0a130950719a173b86418698}} 
+virtual \hyperlink{class_c_child_view_a5b033b5e0a130950719a173b86418698}{$\sim$\+C\+Child\+View} ()
+\begin{DoxyCompactList}\small\item\em C\+Child\+View类析构函数 \end{DoxyCompactList}\item 
+void \hyperlink{class_c_child_view_a4764e41ed2ac3f2ce69916b3881894fe}{m\+\_\+paint\+Text} (C\+DC \&dc)
+\begin{DoxyCompactList}\small\item\em 绘制所有文字以及背景色的函数 ~\newline
+\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_child_view_a5acb3356732e7ea39a4468855f90fc85}\label{class_c_child_view_a5acb3356732e7ea39a4468855f90fc85}} 
+void {\bfseries m\+\_\+paint\+Text} (C\+Paint\+DC \&dc)
+\item 
+void \hyperlink{class_c_child_view_a434383ba85ab567141366ecddeb2c9d6}{m\+\_\+paint\+Cur} (C\+DC \&dc)
+\begin{DoxyCompactList}\small\item\em 绘制光标 ~\newline
+\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_child_view_a40222a570c569017c93dd3fc088aa893}\label{class_c_child_view_a40222a570c569017c93dd3fc088aa893}} 
+void {\bfseries m\+\_\+paint\+Cur} (C\+Paint\+DC \&dc)
+\item 
+afx\+\_\+msg void \hyperlink{class_c_child_view_af29ede94259b52b2ad54d139ff554abe}{On\+Char} (U\+I\+NT n\+Char, U\+I\+NT n\+Rep\+Cnt, U\+I\+NT n\+Flags)
+\begin{DoxyCompactList}\small\item\em 响应发送文字消息的函数 ~\newline
+响应\+O\+N\+\_\+\+W\+M\+\_\+\+C\+H\+A\+R消息 \end{DoxyCompactList}\item 
+bool \hyperlink{class_c_child_view_a32656902f423e5c809ca20f3013fc107}{is\+\_\+input} (U\+I\+NT n\+Char)
+\begin{DoxyCompactList}\small\item\em 判断是否为正常字符范围的输入 \end{DoxyCompactList}\item 
+void \hyperlink{class_c_child_view_acff91e8fc8cc40cd1ebe1d24a6be4945}{m\+\_\+changed} ()
+\begin{DoxyCompactList}\small\item\em 当文本内容根据用户的操作有变化的时候调用 ~\newline
+操作如下~\newline
+\end{DoxyCompactList}\item 
+afx\+\_\+msg void \hyperlink{class_c_child_view_af513a57c45ce8b9dcc09dd934e228534}{On\+L\+Button\+Down} (U\+I\+NT n\+Flags, C\+Point point)
+\begin{DoxyCompactList}\small\item\em 响应鼠标左键按下消息的函数 ~\newline
+当程序收到\+O\+N\+\_\+\+W\+M\+\_\+\+L\+B\+U\+T\+T\+O\+N\+D\+O\+W\+N消息时调用该函数~\newline
+主要处理两种情况~\newline
+
+\begin{DoxyEnumerate}
+\item 当没有文字被选中的时候，将光标位置调整为当前点击位置，进入选择状态
+\item 没有文字被选中的时候,不作任何动作 
+\end{DoxyEnumerate}\end{DoxyCompactList}\item 
+afx\+\_\+msg void \hyperlink{class_c_child_view_ae81948a77ebf3744bd0f9449af57ee21}{On\+L\+Button\+Up} (U\+I\+NT n\+Flags, C\+Point point)
+\begin{DoxyCompactList}\small\item\em 响应鼠标左键抬起消息的函数 ~\newline
+当程序收到\+O\+N\+\_\+\+W\+M\+\_\+\+L\+B\+U\+T\+T\+O\+N\+U\+P消息时调用该函数~\newline
+主要处理两种情况~\newline
+
+\begin{DoxyEnumerate}
+\item 当没有文字被选中的时候，将光标位置调整为当前抬起的位置，结束选中状态。如果鼠标左键在按下与抬起之间有移动，则会有文字被选中
+\item 当有文字被选中的时候，将光标位置更新，并且取消选中状态 
+\end{DoxyEnumerate}\end{DoxyCompactList}\item 
+afx\+\_\+msg void \hyperlink{class_c_child_view_ad3cb2f8d9fa9a6fb06989513dee5a8bc}{On\+Mouse\+Move} (U\+I\+NT n\+Flags, C\+Point point)
+\begin{DoxyCompactList}\small\item\em 响应鼠标移动消息的函数 ~\newline
+当程序收到\+O\+N\+\_\+\+W\+M\+\_\+\+M\+O\+U\+S\+E\+M\+O\+V\+E消息时调用该函数~\newline
+进入函数之后需要鼠标左键被按下的flag为true才会做出操作~\newline
+操作主要为更新选择文字过程中的光标位置以及画面~\newline
+\end{DoxyCompactList}\item 
+afx\+\_\+msg void \hyperlink{class_c_child_view_a74d87512b76128e2eedea87811363e45}{On\+Key\+Down} (U\+I\+NT n\+Char, U\+I\+NT n\+Rep\+Cnt, U\+I\+NT n\+Flags)
+\begin{DoxyCompactList}\small\item\em 键盘按下消息响应函数 ~\newline
+此函数内部对n\+Char有判断，也就是说此函数只处理按下上下左右键的消息 \end{DoxyCompactList}\item 
+afx\+\_\+msg void \hyperlink{class_c_child_view_afec062448272d8f1e15bcedcb8765abe}{On\+Key\+Up} (U\+I\+NT n\+Char, U\+I\+NT n\+Rep\+Cnt, U\+I\+NT n\+Flags)
+\begin{DoxyCompactList}\small\item\em 键盘抬起消息响应函数 ~\newline
+此函数内部对n\+Char有判断，也就是说此函数只处理按下上下左右键的消息 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_child_view_a6060e6d09d522d345dcee5a01d41c1f0}\label{class_c_child_view_a6060e6d09d522d345dcee5a01d41c1f0}} 
+afx\+\_\+msg B\+O\+OL \hyperlink{class_c_child_view_a6060e6d09d522d345dcee5a01d41c1f0}{On\+Erase\+Bkgnd} (C\+DC $\ast$p\+DC)
+\begin{DoxyCompactList}\small\item\em 重载擦除屏幕函数，使它的返回值为false，即不擦除，配合双缓冲绘图使用 \end{DoxyCompactList}\item 
+void \hyperlink{class_c_child_view_ab68bf2b03a8e9aab3f2aac2b9ec3177a}{curchanged} ()
+\begin{DoxyCompactList}\small\item\em 重新计算页面长度以及滚动条位置 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_s_i_t_e_x_t}{S\+I\+T\+E\+XT} $\ast$ \hyperlink{class_c_child_view_a7a8d14e1c1adfb50fa6e033ebc05a357}{m\+\_\+text}
+\begin{DoxyCompactList}\small\item\em 自定义的文本文字类成员 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_child_view_a5c52f5e75191a707906b1334f0281376}\label{class_c_child_view_a5c52f5e75191a707906b1334f0281376}} 
+\hyperlink{class_c_main_frame}{C\+Main\+Frame} $\ast$ \hyperlink{class_c_child_view_a5c52f5e75191a707906b1334f0281376}{mainframep}
+\begin{DoxyCompactList}\small\item\em 指向主窗口的指针 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_child_view_a7a2763ed4f49e10e4efc2c89fdf3bbbf}\label{class_c_child_view_a7a2763ed4f49e10e4efc2c89fdf3bbbf}} 
+bool \hyperlink{class_c_child_view_a7a2763ed4f49e10e4efc2c89fdf3bbbf}{need\+\_\+recompute}
+\begin{DoxyCompactList}\small\item\em 需要重新计算页面布局的flag \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_c_child_view_a07e87a6c3606422ff10d45a47d702c7e}\label{class_c_child_view_a07e87a6c3606422ff10d45a47d702c7e}} 
+virtual B\+O\+OL \hyperlink{class_c_child_view_a07e87a6c3606422ff10d45a47d702c7e}{Pre\+Create\+Window} (C\+R\+E\+A\+T\+E\+S\+T\+R\+U\+CT \&cs)
+\begin{DoxyCompactList}\small\item\em 创建窗口的预处理函数 \end{DoxyCompactList}\item 
+afx\+\_\+msg void \hyperlink{class_c_child_view_a8ea6d42631a4f9f446923ff864b239ab}{On\+Paint} ()
+\begin{DoxyCompactList}\small\item\em 绘图函数 ~\newline
+当程序接受到\+O\+N\+\_\+\+W\+M\+\_\+\+P\+A\+I\+N\+T的消息的时候就会调用该函数~\newline
+该函数所做工作包括~\newline
+\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+子视窗类\+C\+Child\+View ~\newline
+子视窗是程序中客户区部分，即文本编辑的画布部分 -\/此类继承自\+C\+Wnd 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_c_child_view_ab68bf2b03a8e9aab3f2aac2b9ec3177a}\label{class_c_child_view_ab68bf2b03a8e9aab3f2aac2b9ec3177a}} 
+\index{C\+Child\+View@{C\+Child\+View}!curchanged@{curchanged}}
+\index{curchanged@{curchanged}!C\+Child\+View@{C\+Child\+View}}
+\subsubsection{\texorpdfstring{curchanged()}{curchanged()}}
+{\footnotesize\ttfamily void C\+Child\+View\+::curchanged (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+重新计算页面长度以及滚动条位置 
+
+$<$adjust the=\char`\"{}\char`\"{} m\+\_\+client\+\_\+cy$>$=\char`\"{}\char`\"{}$>$
+
+$<$/end$>$
+
+$<$adjust the=\char`\"{}\char`\"{} screen=\char`\"{}\char`\"{} pos=\char`\"{}\char`\"{} according=\char`\"{}\char`\"{} to=\char`\"{}\char`\"{} the=\char`\"{}\char`\"{} cursor=\char`\"{}\char`\"{} pos$>$=\char`\"{}\char`\"{}$>$
+
+$<$/end$>$ \mbox{\Hypertarget{class_c_child_view_a32656902f423e5c809ca20f3013fc107}\label{class_c_child_view_a32656902f423e5c809ca20f3013fc107}} 
+\index{C\+Child\+View@{C\+Child\+View}!is\+\_\+input@{is\+\_\+input}}
+\index{is\+\_\+input@{is\+\_\+input}!C\+Child\+View@{C\+Child\+View}}
+\subsubsection{\texorpdfstring{is\+\_\+input()}{is\_input()}}
+{\footnotesize\ttfamily bool C\+Child\+View\+::is\+\_\+input (\begin{DoxyParamCaption}\item[{U\+I\+NT}]{n\+Char }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+判断是否为正常字符范围的输入 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em n\+Char} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_c_child_view_af29ede94259b52b2ad54d139ff554abe}{On\+Char} 
+\end{DoxySeeAlso}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & 是正常范围的字符 \\
+\hline
+{\em false} & 不是正常范围的字符 \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{class_c_child_view_acff91e8fc8cc40cd1ebe1d24a6be4945}\label{class_c_child_view_acff91e8fc8cc40cd1ebe1d24a6be4945}} 
+\index{C\+Child\+View@{C\+Child\+View}!m\+\_\+changed@{m\+\_\+changed}}
+\index{m\+\_\+changed@{m\+\_\+changed}!C\+Child\+View@{C\+Child\+View}}
+\subsubsection{\texorpdfstring{m\+\_\+changed()}{m\_changed()}}
+{\footnotesize\ttfamily void C\+Child\+View\+::m\+\_\+changed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+当文本内容根据用户的操作有变化的时候调用 ~\newline
+操作如下~\newline
+
+
+
+\begin{DoxyItemize}
+\item 设置画面变化的flag(即text\+\_\+changed\+\_\+f)为true
+\item 调用\+Invalidate(false)函数向程序发送重绘消息 
+\end{DoxyItemize}\mbox{\Hypertarget{class_c_child_view_a434383ba85ab567141366ecddeb2c9d6}\label{class_c_child_view_a434383ba85ab567141366ecddeb2c9d6}} 
+\index{C\+Child\+View@{C\+Child\+View}!m\+\_\+paint\+Cur@{m\+\_\+paint\+Cur}}
+\index{m\+\_\+paint\+Cur@{m\+\_\+paint\+Cur}!C\+Child\+View@{C\+Child\+View}}
+\subsubsection{\texorpdfstring{m\+\_\+paint\+Cur()}{m\_paintCur()}}
+{\footnotesize\ttfamily void C\+Child\+View\+::m\+\_\+paint\+Cur (\begin{DoxyParamCaption}\item[{C\+DC \&}]{dc }\end{DoxyParamCaption})}
+
+
+
+绘制光标 ~\newline
+
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em dc} & 当前绘图区的句柄 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+仅在\+On\+Paint函数中调用 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_c_child_view_a4764e41ed2ac3f2ce69916b3881894fe}\label{class_c_child_view_a4764e41ed2ac3f2ce69916b3881894fe}} 
+\index{C\+Child\+View@{C\+Child\+View}!m\+\_\+paint\+Text@{m\+\_\+paint\+Text}}
+\index{m\+\_\+paint\+Text@{m\+\_\+paint\+Text}!C\+Child\+View@{C\+Child\+View}}
+\subsubsection{\texorpdfstring{m\+\_\+paint\+Text()}{m\_paintText()}}
+{\footnotesize\ttfamily void C\+Child\+View\+::m\+\_\+paint\+Text (\begin{DoxyParamCaption}\item[{C\+DC \&}]{dc }\end{DoxyParamCaption})}
+
+
+
+绘制所有文字以及背景色的函数 ~\newline
+
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em dc} & 当前绘图区的句柄 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+仅在\+On\+Paint函数中调用 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_c_child_view_af29ede94259b52b2ad54d139ff554abe}\label{class_c_child_view_af29ede94259b52b2ad54d139ff554abe}} 
+\index{C\+Child\+View@{C\+Child\+View}!On\+Char@{On\+Char}}
+\index{On\+Char@{On\+Char}!C\+Child\+View@{C\+Child\+View}}
+\subsubsection{\texorpdfstring{On\+Char()}{OnChar()}}
+{\footnotesize\ttfamily void C\+Child\+View\+::\+On\+Char (\begin{DoxyParamCaption}\item[{U\+I\+NT}]{n\+Char,  }\item[{U\+I\+NT}]{n\+Rep\+Cnt,  }\item[{U\+I\+NT}]{n\+Flags }\end{DoxyParamCaption})}
+
+
+
+响应发送文字消息的函数 ~\newline
+响应\+O\+N\+\_\+\+W\+M\+\_\+\+C\+H\+A\+R消息 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em n\+Char} & 用户发送给系统的字符，为\+U\+I\+N\+T型，需要手动转化为wchar\+\_\+t型 \\
+\hline
+\mbox{\tt in}  & {\em n\+Rep\+Cnt} & 重复发送同一个消息（用户按下一个键不松手）的次数 \\
+\hline
+\mbox{\tt in}  & {\em n\+Flags} & 各个符号位的具体作用参见\+M\+S\+D\+N官方文档 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+请不要手动调用该函数 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_c_child_view_a74d87512b76128e2eedea87811363e45}\label{class_c_child_view_a74d87512b76128e2eedea87811363e45}} 
+\index{C\+Child\+View@{C\+Child\+View}!On\+Key\+Down@{On\+Key\+Down}}
+\index{On\+Key\+Down@{On\+Key\+Down}!C\+Child\+View@{C\+Child\+View}}
+\subsubsection{\texorpdfstring{On\+Key\+Down()}{OnKeyDown()}}
+{\footnotesize\ttfamily void C\+Child\+View\+::\+On\+Key\+Down (\begin{DoxyParamCaption}\item[{U\+I\+NT}]{n\+Char,  }\item[{U\+I\+NT}]{n\+Rep\+Cnt,  }\item[{U\+I\+NT}]{n\+Flags }\end{DoxyParamCaption})}
+
+
+
+键盘按下消息响应函数 ~\newline
+此函数内部对n\+Char有判断，也就是说此函数只处理按下上下左右键的消息 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em n\+Char} & 用户按下的键值 \\
+\hline
+\mbox{\tt in}  & {\em n\+Rep\+Cnt} & 用户按下该键的重复次数（用户按住该键） \\
+\hline
+\mbox{\tt in}  & {\em n\+Flags} & 各个符号位的具体作用参见\+M\+S\+D\+N官方文档 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+本函数只处理将光标上下左右移动的键盘消息，并且本函数只在用户按住一个键重复次数超过一的时候有效 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_c_child_view_afec062448272d8f1e15bcedcb8765abe}\label{class_c_child_view_afec062448272d8f1e15bcedcb8765abe}} 
+\index{C\+Child\+View@{C\+Child\+View}!On\+Key\+Up@{On\+Key\+Up}}
+\index{On\+Key\+Up@{On\+Key\+Up}!C\+Child\+View@{C\+Child\+View}}
+\subsubsection{\texorpdfstring{On\+Key\+Up()}{OnKeyUp()}}
+{\footnotesize\ttfamily void C\+Child\+View\+::\+On\+Key\+Up (\begin{DoxyParamCaption}\item[{U\+I\+NT}]{n\+Char,  }\item[{U\+I\+NT}]{n\+Rep\+Cnt,  }\item[{U\+I\+NT}]{n\+Flags }\end{DoxyParamCaption})}
+
+
+
+键盘抬起消息响应函数 ~\newline
+此函数内部对n\+Char有判断，也就是说此函数只处理按下上下左右键的消息 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em n\+Char} & 用户按下后抬起的键值 \\
+\hline
+\mbox{\tt in}  & {\em n\+Rep\+Cnt} & 用处不明 \\
+\hline
+\mbox{\tt in}  & {\em n\+Flags} & 各个符号位的具体作用参见\+M\+S\+D\+N官方文档 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+本函数只处理将光标上下左右移动的键盘消息 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_c_child_view_af513a57c45ce8b9dcc09dd934e228534}\label{class_c_child_view_af513a57c45ce8b9dcc09dd934e228534}} 
+\index{C\+Child\+View@{C\+Child\+View}!On\+L\+Button\+Down@{On\+L\+Button\+Down}}
+\index{On\+L\+Button\+Down@{On\+L\+Button\+Down}!C\+Child\+View@{C\+Child\+View}}
+\subsubsection{\texorpdfstring{On\+L\+Button\+Down()}{OnLButtonDown()}}
+{\footnotesize\ttfamily void C\+Child\+View\+::\+On\+L\+Button\+Down (\begin{DoxyParamCaption}\item[{U\+I\+NT}]{n\+Flags,  }\item[{C\+Point}]{point }\end{DoxyParamCaption})}
+
+
+
+响应鼠标左键按下消息的函数 ~\newline
+当程序收到\+O\+N\+\_\+\+W\+M\+\_\+\+L\+B\+U\+T\+T\+O\+N\+D\+O\+W\+N消息时调用该函数~\newline
+主要处理两种情况~\newline
+
+\begin{DoxyEnumerate}
+\item 当没有文字被选中的时候，将光标位置调整为当前点击位置，进入选择状态
+\item 没有文字被选中的时候,不作任何动作 
+\end{DoxyEnumerate}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em n\+Flags} & 各个符号位的具体作用参见\+M\+S\+D\+N官方文档 \\
+\hline
+\mbox{\tt in}  & {\em point} & 返回鼠标左键按下时的屏幕坐标 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+返回的坐标值是相对于客户区左上角而言的 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_c_child_view_ae81948a77ebf3744bd0f9449af57ee21}\label{class_c_child_view_ae81948a77ebf3744bd0f9449af57ee21}} 
+\index{C\+Child\+View@{C\+Child\+View}!On\+L\+Button\+Up@{On\+L\+Button\+Up}}
+\index{On\+L\+Button\+Up@{On\+L\+Button\+Up}!C\+Child\+View@{C\+Child\+View}}
+\subsubsection{\texorpdfstring{On\+L\+Button\+Up()}{OnLButtonUp()}}
+{\footnotesize\ttfamily void C\+Child\+View\+::\+On\+L\+Button\+Up (\begin{DoxyParamCaption}\item[{U\+I\+NT}]{n\+Flags,  }\item[{C\+Point}]{point }\end{DoxyParamCaption})}
+
+
+
+响应鼠标左键抬起消息的函数 ~\newline
+当程序收到\+O\+N\+\_\+\+W\+M\+\_\+\+L\+B\+U\+T\+T\+O\+N\+U\+P消息时调用该函数~\newline
+主要处理两种情况~\newline
+
+\begin{DoxyEnumerate}
+\item 当没有文字被选中的时候，将光标位置调整为当前抬起的位置，结束选中状态。如果鼠标左键在按下与抬起之间有移动，则会有文字被选中
+\item 当有文字被选中的时候，将光标位置更新，并且取消选中状态 
+\end{DoxyEnumerate}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em n\+Flags} & 各个符号位的具体作用参见\+M\+S\+D\+N官方文档 \\
+\hline
+\mbox{\tt in}  & {\em point} & 返回鼠标左键抬起时的屏幕坐标 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+返回的坐标值是相对于客户区左上角而言的 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_c_child_view_ad3cb2f8d9fa9a6fb06989513dee5a8bc}\label{class_c_child_view_ad3cb2f8d9fa9a6fb06989513dee5a8bc}} 
+\index{C\+Child\+View@{C\+Child\+View}!On\+Mouse\+Move@{On\+Mouse\+Move}}
+\index{On\+Mouse\+Move@{On\+Mouse\+Move}!C\+Child\+View@{C\+Child\+View}}
+\subsubsection{\texorpdfstring{On\+Mouse\+Move()}{OnMouseMove()}}
+{\footnotesize\ttfamily void C\+Child\+View\+::\+On\+Mouse\+Move (\begin{DoxyParamCaption}\item[{U\+I\+NT}]{n\+Flags,  }\item[{C\+Point}]{point }\end{DoxyParamCaption})}
+
+
+
+响应鼠标移动消息的函数 ~\newline
+当程序收到\+O\+N\+\_\+\+W\+M\+\_\+\+M\+O\+U\+S\+E\+M\+O\+V\+E消息时调用该函数~\newline
+进入函数之后需要鼠标左键被按下的flag为true才会做出操作~\newline
+操作主要为更新选择文字过程中的光标位置以及画面~\newline
+
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em n\+Flags} & 各个符号位的具体作用参见\+M\+S\+D\+N官方文档 \\
+\hline
+\mbox{\tt in}  & {\em point} & 返回鼠标移动时的屏幕坐标 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+返回的坐标值是相对于客户区左上角而言的 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_c_child_view_a8ea6d42631a4f9f446923ff864b239ab}\label{class_c_child_view_a8ea6d42631a4f9f446923ff864b239ab}} 
+\index{C\+Child\+View@{C\+Child\+View}!On\+Paint@{On\+Paint}}
+\index{On\+Paint@{On\+Paint}!C\+Child\+View@{C\+Child\+View}}
+\subsubsection{\texorpdfstring{On\+Paint()}{OnPaint()}}
+{\footnotesize\ttfamily void C\+Child\+View\+::\+On\+Paint (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+绘图函数 ~\newline
+当程序接受到\+O\+N\+\_\+\+W\+M\+\_\+\+P\+A\+I\+N\+T的消息的时候就会调用该函数~\newline
+该函数所做工作包括~\newline
+
+
+
+\begin{DoxyItemize}
+\item 重新计算所有文字的位置
+\item 重新绘制画面，包括所有文字以及背景色
+\item 将需要重绘的flag(即text\+\_\+changed\+\_\+f)置为flase \begin{DoxyNote}{Note}
+请不要手动调用该函数，如需重绘画面请用\+Invalidate(false);函数 
+\end{DoxyNote}
+
+\end{DoxyItemize}
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_c_child_view_a7a8d14e1c1adfb50fa6e033ebc05a357}\label{class_c_child_view_a7a8d14e1c1adfb50fa6e033ebc05a357}} 
+\index{C\+Child\+View@{C\+Child\+View}!m\+\_\+text@{m\+\_\+text}}
+\index{m\+\_\+text@{m\+\_\+text}!C\+Child\+View@{C\+Child\+View}}
+\subsubsection{\texorpdfstring{m\+\_\+text}{m\_text}}
+{\footnotesize\ttfamily \hyperlink{class_s_i_t_e_x_t}{S\+I\+T\+E\+XT}$\ast$ C\+Child\+View\+::m\+\_\+text}
+
+
+
+自定义的文本文字类成员 
+
+\begin{DoxySeeAlso}{See also}
+class \hyperlink{class_s_i_t_e_x_t}{S\+I\+T\+E\+XT} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Notepad/\hyperlink{_child_view_8h}{Child\+View.\+h}\item 
+Notepad/Child\+View.\+cpp\end{DoxyCompactItemize}

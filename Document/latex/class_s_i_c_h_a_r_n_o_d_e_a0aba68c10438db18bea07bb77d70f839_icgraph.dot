@@ -1,0 +1,11 @@
+digraph "SICHARNODE::ins_prev"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="SICHARNODE::ins_prev",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="SITEXT::ins_char",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_i_t_e_x_t.html#a6324f46cb5b509caca467ee700305f0c"];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="CChildView::OnChar",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_child_view.html#af29ede94259b52b2ad54d139ff554abe",tooltip="响应发送文字消息的函数  响应ON_WM_CHAR消息 "];
+}

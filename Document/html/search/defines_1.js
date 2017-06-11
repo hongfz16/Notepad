@@ -1,0 +1,26 @@
+var searchData=
+[
+  ['id_5f32771',['ID_32771',['../resource_8h.html#a53581c94d68a38214c88769cb8a6f872',1,'resource.h']]],
+  ['id_5f32772',['ID_32772',['../resource_8h.html#afac62c38d3d7d17bfa00cfaa8d7bff7b',1,'resource.h']]],
+  ['id_5f32773',['ID_32773',['../resource_8h.html#a819102713d6561c3dd023adfd9400663',1,'resource.h']]],
+  ['id_5f32774',['ID_32774',['../resource_8h.html#ada4cdc34f1f76a213824725e14bf18ee',1,'resource.h']]],
+  ['id_5fclose',['ID_CLOSE',['../resource_8h.html#a77e1610c2bff26f1bda65e699995528e',1,'resource.h']]],
+  ['id_5fdialoge',['ID_DIALOGE',['../resource_8h.html#a86142773e4a0e4b636a56f538490f891',1,'resource.h']]],
+  ['id_5ffont',['ID_FONT',['../resource_8h.html#a693f7526107dce26003fe9fc28420f6e',1,'resource.h']]],
+  ['id_5fopen',['ID_OPEN',['../resource_8h.html#a4e7e98949ad60384b8b23bae068980c4',1,'resource.h']]],
+  ['id_5fpara',['ID_PARA',['../resource_8h.html#a952aed1669b5c95097ea86394e9bb7f5',1,'resource.h']]],
+  ['idc_5fcharac',['IDC_CHARAC',['../resource_8h.html#a44ab5071159b299701e00bc768c3964b',1,'resource.h']]],
+  ['idc_5fedit3',['IDC_EDIT3',['../resource_8h.html#aab8e26a871c7d6001a506892afab2fe9',1,'resource.h']]],
+  ['idc_5fline',['IDC_LINE',['../resource_8h.html#a3cee273b28801c854e3c97f69319d9da',1,'resource.h']]],
+  ['idc_5fmfccolorbutton1',['IDC_MFCCOLORBUTTON1',['../resource_8h.html#a094655da596b1caa93aa38749eae7cc0',1,'resource.h']]],
+  ['idc_5frichedit21',['IDC_RICHEDIT21',['../resource_8h.html#ab506cac121180eb0d73862e0bef00ebf',1,'resource.h']]],
+  ['idc_5frichedit22',['IDC_RICHEDIT22',['../resource_8h.html#a25fb9079fdc67e913eae4efa628fca9e',1,'resource.h']]],
+  ['idd_5faboutbox',['IDD_ABOUTBOX',['../resource_8h.html#a77a06326b569136edbb6c766bc98c33c',1,'resource.h']]],
+  ['idd_5fbackgrond_5fcolor',['IDD_BACKGROND_COLOR',['../resource_8h.html#aa04fc414b81b338a6856af86d815b1ff',1,'resource.h']]],
+  ['idd_5fdialog1',['IDD_DIALOG1',['../resource_8h.html#ab794ba40dfcf73e112ade9f50c4565da',1,'resource.h']]],
+  ['idd_5fdialog2',['IDD_DIALOG2',['../resource_8h.html#aff1d921b2629e8fd4227c879dbf6b258',1,'resource.h']]],
+  ['idd_5fpara_5fdialog',['IDD_PARA_DIALOG',['../resource_8h.html#a7469c20bfabee1ad0137668c049dda5a',1,'resource.h']]],
+  ['idp_5fole_5finit_5ffailed',['IDP_OLE_INIT_FAILED',['../resource_8h.html#a3bc3617e97f6aa1d2ae8cde548dcf6b9',1,'resource.h']]],
+  ['idr_5fmainframe',['IDR_MAINFRAME',['../resource_8h.html#a9772c84d39896ad00b9aeb34b15d324d',1,'resource.h']]],
+  ['idr_5fnotepadtype',['IDR_NotepadTYPE',['../resource_8h.html#a9172f0048e280dc086579a490f3f77a8',1,'resource.h']]]
+];

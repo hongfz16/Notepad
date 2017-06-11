@@ -1,5 +1,5 @@
-/**\mainpage 基于MFC的文本编辑器
-说明文档
+/**\mainpage 说明文档
+基于MFC的文本编辑器
 ===================
 
 目标
@@ -13,6 +13,28 @@
     * 保存、打开自定义格式的文件
     * 设置对齐方式，包括左对齐、居中对齐、右对齐、分散对齐
     * 设置行间距
+
+使用方法
+-------------------
+1. 常规操作与普通文本编辑器相同
+2. 设置字体、颜色、字号：
+	- 选中想要改变的文本内容
+	- 点击编辑菜单栏，点击字体，将会弹出选择字体的窗口
+	- 选择想要设置的格式即可
+3. 设置对齐方式：
+	- 如果只需要设置单行的格式，请直接将光标移到该行
+	- 如果需要设置多行的格式，请选中多行
+	- 点击编辑菜单栏，点击对齐方式
+	- 在弹出的右侧菜单栏中选择需要的对齐方式
+4. 设置行间距、字间距：
+	- 选中需要设置的文本内容
+	- 点击编辑菜单栏，点击段落
+	- 在弹出的窗口中输入需要设置的行间距以及字间距
+	- 注意单位为像素
+5. 打开与保存
+	- 首先注意，本文本编辑器只支持自定义格式的（后缀名为`.orz`）文件，其他格式的文件一律无法打开
+	- 打开：点击菜单栏，点击打开，在文件浏览器中选择想要打开的文件，点击确定即可
+	- 保存：点击菜单栏，点击保存，在文件浏览器中选择想要保存的目录，点击确定即可
 
 构件库
 -------------------
@@ -36,19 +58,19 @@ UI界面的交互实现方法说明
 
 后端（kernal）实现方法说明
 -------------------
-1. 抽象
-	*把画在屏幕上的字符看作一个矩形
-	*用链表从前往后储存字符
-2. 计算绘制信息
-	*遍历文本链表，进行预处理
-	*遍历文本链表，把链表分成很多行
-		**当某行的字符宽度之和($tot_width$)将要超过页面宽度($pagewidth)时，开一个新行
-		**当遇到换行符时，开一格新行
-	*从上往下遍历每一行，根据相关信息计算该行内的$n$个字符矩形的位置
-		**如果该行是默认对齐方式或者左对齐，那么x坐标从0开始，每个矩形宽度加上字间距，从左往右计算
-		**如果该行是右对齐，那么x坐标从$pagewidth$-$tot_width$开始，每个矩形宽度加上字间距，从左往右计算
-		**如果对齐方式是居中对齐，那么x坐标从($pagewidth$-$tot_width$)/2开始，每个矩形宽度加上字间距，从左往右计算
-		**如果对齐方式是分散对齐，那么x坐标从0开始，每个矩形宽度加上字间距和$delta$=($pagewidth$-$tot_width$)/$n$
+1. 抽象\n
+	- 把画在屏幕上的字符看作一个矩形\n
+	- 用链表从前往后储存字符\n
+2. 计算绘制信息\n
+	- 遍历文本链表，进行预处理\n
+	- 遍历文本链表，把链表分成很多行\n
+		+ 当某行的字符宽度之和(`tot_width`)将要超过页面宽度(`pagewidth`)时，开一个新行\n
+		+ 当遇到换行符时，开一格新行\n
+	- 从上往下遍历每一行，根据相关信息计算该行内的`n`个字符矩形的位置\n
+		+ 如果该行是默认对齐方式或者左对齐，那么x坐标从0开始，每个矩形宽度加上字间距，从左往右计算\n
+		+ 如果该行是右对齐，那么x坐标从`pagewidth`-`tot_width`开始，每个矩形宽度加上字间距，从左往右计算\n
+		+ 如果对齐方式是居中对齐，那么x坐标从(`pagewidth`-`tot_width`)/2开始，每个矩形宽度加上字间距，从左往右计算\n
+		+ 如果对齐方式是分散对齐，那么x坐标从0开始，每个矩形宽度加上字间距和`delta`=(`pagewidth`-`tot_width`)/`n`\n
 
 
 UI及交互部分遇到的问题及解决方案
@@ -94,15 +116,16 @@ UI及交互部分遇到的问题及解决方案
 解决方案：在对选中区域执行任何操作前，先检查是否存在选中区域\n
 
 3. "打开"命令对于某些字体无法执行的问题\n
-问题描述：当打开包含字体名称($lfFaceName$)为多个单词的文件时，"打开"操作会失败\n
+问题描述：当打开包含字体名称(`lfFaceName`)为多个单词的文件时，"打开"操作会失败\n
 问题原因：字体名称是`wchar_t`类型的,最初我用的scanf("%ls")来读取字体名称，这样就只能读到字体名称的第一个单词，而且我没有找到\n
 针对`wchar_t`数组的getline函数。
-解决方案：手写针对`wchar_t`的`si_getline`函数 @see si_getline\n
-
+解决方案：手写针对`wchar_t`的`si_getline`函数\n
 
 测试用例
 -------------------
-
+1. `align.orz`：测试四种对齐方式
+2. `keepcalm.orz`：测试设置字体、字号、颜色
+3. `linechaspace.orz`：测试设置行间距、字间距
 
 总结
 -------------------
@@ -116,7 +139,7 @@ UI及交互部分遇到的问题及解决方案
     + 学院：清华大学软件学院\n
     + 班级：软件62\n
     + 学号：2016013271\n
-    + e-mail：ShadowIterator@hotmail.com\n
+    + e-mail：ShadowIterator\@hotmail.com\n
     + 电话：18801005736\n
 - UI及交互部分作者：洪方舟\n
     + 学院：清华大学软件学院\n
@@ -130,7 +153,7 @@ UI及交互部分遇到的问题及解决方案
 @brief 声明程序大类CNotepadApp \n
 @file Notepad.h
 @author 洪方舟
-@email hongfz16@163.com
+@email hongfz16\@163.com
 @version 1.0
 @date 2017.5.25
 */
@@ -147,71 +170,71 @@ UI及交互部分遇到的问题及解决方案
 继承自CWinApp
 */
 class CNotepadApp : public CWinApp {
- public:
-  
-  CNotepadApp();///<默认构造函数
-  
-  CMainFrame* mainp;///<指向主窗口的指针
+public:
 
- public:
-  
-  virtual BOOL InitInstance();///<初始化函数,实例化CMainFrame类,并且将mainp指针指向它
-  
-  virtual int ExitInstance();///<退出程序调用函数
+	CNotepadApp();///<默认构造函数
 
- public:
-  /**
-  @brief 选择字体消息响应函数\n
-  - 实例化MFC字体选择对话框
-  - 将用户选择的字体传入SITEXT实例中 @see SITEXT
-  @note 该函数响应ID_FONT消息,当用户点击菜单栏中"字体"一项时发送该消息
-  */
-  afx_msg void OnFont();
+	CMainFrame* mainp;///<指向主窗口的指针
 
- public:
-  /**
-  @brief 选择行间距字间距消息响应函数\n
-  - 实例化选择行间距字间距的对话框
-  - 将用户设置的行间距以及字间距传入SITEXT实例中 @see SITEXT
-  @note 该函数响应ID_PARA消息,当用户点击菜单栏中"段落"一项时发送该消息
-  */
-  afx_msg void OnPara();
+public:
 
- public:
-  afx_msg void OnCut();
-  afx_msg void OnCopy();
-  afx_msg void OnPaste();
+	virtual BOOL InitInstance();///<初始化函数,实例化CMainFrame类,并且将mainp指针指向它
 
-  SIRANGE m_cutBoard; ///<剪贴板,实际上是两个指向文字节点的指针组成的结构体
+	virtual int ExitInstance();///<退出程序调用函数
 
- public:
- 	
-  afx_msg void OnAppAbout();///<"关于"窗口的消息相应函数
+public:
+	/**
+	@brief 选择字体消息响应函数\n
+	- 实例化MFC字体选择对话框
+	- 将用户选择的字体传入SITEXT实例中 @see SITEXT
+	@note 该函数响应ID_FONT消息,当用户点击菜单栏中"字体"一项时发送该消息
+	*/
+	afx_msg void OnFont();
 
-  DECLARE_MESSAGE_MAP()
-  
-  afx_msg void OnAlignLeft();///<左对齐的消息响应函数
-  
-  afx_msg void OnAlignCenter();///<居中的消息响应函数农户
-  
-  afx_msg void OnAlignRight();///<右对齐的消息响应函数
-  
-  afx_msg void OnAlignDistribute();///<分散对齐的消息响应函数
+public:
+	/**
+	@brief 选择行间距字间距消息响应函数\n
+	- 实例化选择行间距字间距的对话框
+	- 将用户设置的行间距以及字间距传入SITEXT实例中 @see SITEXT
+	@note 该函数响应ID_PARA消息,当用户点击菜单栏中"段落"一项时发送该消息
+	*/
+	afx_msg void OnPara();
 
-  afx_msg void OnOpen();///<打开文件的消息响应函数
-  
-  afx_msg void OnClose();///<关闭文件的消息响应函数
+public:
+	afx_msg void OnCut();
+	afx_msg void OnCopy();
+	afx_msg void OnPaste();
 
-  inline void change_align(int flag)
-  {
-	  if(mainp->m_wndView.m_text->select.ep!=NULL)
-		mainp->m_wndView.m_text->set_select_align(flag);
-	  else
-		  mainp->m_wndView.m_text->set_cursorp_align(flag);
-	  mainp->m_wndView.need_recompute = true;
-	  mainp->m_wndView.m_changed();
-	  mainp->m_wndView.curchanged();
-  }///<改变对齐方式的函数
+	SIRANGE m_cutBoard; ///<剪贴板,实际上是两个指向文字节点的指针组成的结构体
+
+public:
+
+	afx_msg void OnAppAbout();///<"关于"窗口的消息相应函数
+
+	DECLARE_MESSAGE_MAP()
+
+	afx_msg void OnAlignLeft();///<左对齐的消息响应函数
+
+	afx_msg void OnAlignCenter();///<居中的消息响应函数农户
+
+	afx_msg void OnAlignRight();///<右对齐的消息响应函数
+
+	afx_msg void OnAlignDistribute();///<分散对齐的消息响应函数
+
+	afx_msg void OnOpen();///<打开文件的消息响应函数
+
+	afx_msg void OnClose();///<关闭文件的消息响应函数
+
+	inline void change_align(int flag)
+	{
+		if (mainp->m_wndView.m_text->select.ep != NULL)
+			mainp->m_wndView.m_text->set_select_align(flag);
+		else
+			mainp->m_wndView.m_text->set_cursorp_align(flag);
+		mainp->m_wndView.need_recompute = true;
+		mainp->m_wndView.m_changed();
+		mainp->m_wndView.curchanged();
+	}///<改变对齐方式的函数
 
 };
 

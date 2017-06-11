@@ -1,0 +1,9 @@
+digraph "CMainFrame::UpdateClientRect"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node14 [label="CMainFrame::UpdateClientRect",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node14 -> Node15 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node15 [label="CChildView::m_changed",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_child_view.html#acff91e8fc8cc40cd1ebe1d24a6be4945",tooltip="当文本内容根据用户的操作有变化的时候调用  操作如下 "];
+}

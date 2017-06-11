@@ -1,0 +1,9 @@
+digraph "Graphical Class Hierarchy"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node14 [label="CFrameWnd",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node14 -> Node0 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node0 [label="CMainFrame",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_main_frame.html",tooltip="程序主框架类CMainFrame类  主框架包括子视图类以及滚动条 继承自CFrameWnd类 "];
+}

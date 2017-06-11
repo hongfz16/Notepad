@@ -1,0 +1,9 @@
+digraph "Graphical Class Hierarchy"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node10 [label="CWnd",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node10 -> Node0 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node0 [label="CChildView",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_child_view.html",tooltip="子视窗类CChildView  子视窗是程序中客户区部分，即文本编辑的画布部分 -此类继承自CWnd ..."];
+}

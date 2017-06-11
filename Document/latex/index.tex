@@ -1,0 +1,212 @@
+\section*{基于\+M\+F\+C的文本编辑器 }
+
+\subsection*{目标 }
+
+
+\begin{DoxyEnumerate}
+\item 不使用\+M\+F\+C文本框控件，实现一个简单的文本编辑器
+\item 最低要求如下： 带有图形界面 能够比较方便的给不同的字符设置不同的字体、颜色和字号 可以设置字与字之间的间距
+\item 另外还实现了以下功能 保存、打开自定义格式的文件 设置对齐方式，包括左对齐、居中对齐、右对齐、分散对齐 设置行间距
+\end{DoxyEnumerate}
+
+\subsection*{使用方法 }
+
+
+\begin{DoxyEnumerate}
+\item 常规操作与普通文本编辑器相同
+\item 设置字体、颜色、字号：
+\begin{DoxyItemize}
+\item 选中想要改变的文本内容
+\item 点击编辑菜单栏，点击字体，将会弹出选择字体的窗口
+\item 选择想要设置的格式即可
+\end{DoxyItemize}
+\item 设置对齐方式：
+\begin{DoxyItemize}
+\item 如果只需要设置单行的格式，请直接将光标移到该行
+\item 如果需要设置多行的格式，请选中多行
+\item 点击编辑菜单栏，点击对齐方式
+\item 在弹出的右侧菜单栏中选择需要的对齐方式
+\end{DoxyItemize}
+\item 设置行间距、字间距：
+\begin{DoxyItemize}
+\item 选中需要设置的文本内容
+\item 点击编辑菜单栏，点击段落
+\item 在弹出的窗口中输入需要设置的行间距以及字间距
+\item 注意单位为像素
+\end{DoxyItemize}
+\item 打开与保存
+\begin{DoxyItemize}
+\item 首先注意，本文本编辑器只支持自定义格式的（后缀名为$<$tt$>$.\+orz）文件，其他格式的文件一律无法打开
+\item 打开：点击菜单栏，点击打开，在文件浏览器中选择想要打开的文件，点击确定即可
+\item 保存：点击菜单栏，点击保存，在文件浏览器中选择想要保存的目录，点击确定即可
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+\subsection*{构件库 }
+
+详情请参见\+Class List
+
+\subsection*{U\+I界面的交互实现方法说明 }
+
+
+\begin{DoxyEnumerate}
+\item 设置字体字号颜色 ~\newline
+通过{\ttfamily C\+Font\+Dialog}窗口类，创建选择字体的窗口 ~\newline
+用户选择字体以及颜色后，获取字体信息{\ttfamily L\+O\+G\+F\+O\+NT}以及颜色信息{\ttfamily R\+E\+F\+C\+O\+L\+OR}~\newline
+通过{\ttfamily set\+\_\+select\+\_\+font}与{\ttfamily set\+\_\+select\+\_\+col}函数将字体以及颜色信息传递给后端~\newline
+
+\item 设置字间距行间距 ~\newline
+通过{\ttfamily \hyperlink{class_m___p_a_r_a___d_i_a}{M\+\_\+\+P\+A\+R\+A\+\_\+\+D\+IA}}对话框，获取用户设置的字间距与行间距的值 ~\newline
+通过{\ttfamily set\+\_\+select\+\_\+lspace}与{\ttfamily set\+\_\+select\+\_\+cspace}函数将字间距与行间距传给后端~\newline
+
+\item 保存、打开文件 ~\newline
+通过{\ttfamily C\+File\+Dialog}类，返回用户需要保存或者打开文件的路径~\newline
+通过{\ttfamily \#}与{\ttfamily \#}函数将路径作为字符串传给后端~\newline
+
+\item 设置对齐方式 ~\newline
+直接通过消息响应函数，调用{\ttfamily set\+\_\+select\+\_\+align}函数,设置对齐方式~\newline
+
+\end{DoxyEnumerate}
+
+\subsection*{后端（kernal）实现方法说明 }
+
+
+\begin{DoxyEnumerate}
+\item 抽象~\newline
+
+\begin{DoxyItemize}
+\item 把画在屏幕上的字符看作一个矩形~\newline
+
+\item 用链表从前往后储存字符~\newline
+
+\end{DoxyItemize}
+\item 计算绘制信息~\newline
+
+\begin{DoxyItemize}
+\item 遍历文本链表，进行预处理~\newline
+
+\item 遍历文本链表，把链表分成很多行~\newline
+
+\begin{DoxyItemize}
+\item 当某行的字符宽度之和({\ttfamily tot\+\_\+width})将要超过页面宽度({\ttfamily pagewidth})时，开一个新行~\newline
+
+\item 当遇到换行符时，开一格新行~\newline
+
+\end{DoxyItemize}
+\item 从上往下遍历每一行，根据相关信息计算该行内的{\ttfamily n}个字符矩形的位置~\newline
+
+\begin{DoxyItemize}
+\item 如果该行是默认对齐方式或者左对齐，那么x坐标从0开始，每个矩形宽度加上字间距，从左往右计算~\newline
+
+\item 如果该行是右对齐，那么x坐标从{\ttfamily pagewidth}-\/{\ttfamily tot\+\_\+width}开始，每个矩形宽度加上字间距，从左往右计算~\newline
+
+\item 如果对齐方式是居中对齐，那么x坐标从({\ttfamily pagewidth}-\/{\ttfamily tot\+\_\+width})/2开始，每个矩形宽度加上字间距，从左往右计算~\newline
+
+\item 如果对齐方式是分散对齐，那么x坐标从0开始，每个矩形宽度加上字间距和{\ttfamily delta}=({\ttfamily pagewidth}-\/{\ttfamily tot\+\_\+width})/{\ttfamily n}~\newline
+
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+\subsection*{U\+I及交互部分遇到的问题及解决方案 }
+
+
+\begin{DoxyEnumerate}
+\item 绘图过程闪烁的问题 ~\newline
+问题描述：使用过程中每当需要屏幕刷新的时候，画面会不停的闪烁 ~\newline
+可能原因：每次调用\+On\+Paint函数的时候都会先将屏幕清空，由于绘制屏幕仍然需要一定的时间，所以每次重绘都会出现闪烁的情况 ~\newline
+解决方案：使用双缓冲绘图，分为两个部分：~\newline
+(1)重载{\ttfamily B\+O\+OL \hyperlink{class_c_child_view_a6060e6d09d522d345dcee5a01d41c1f0}{C\+Child\+View\+::\+On\+Erase\+Bkgnd(\+C\+D\+C$\ast$ p\+D\+C)}}函数，使得画面不会被擦除~\newline
+(2)先在使用内存\+D\+C上画图，画好后直接调用{\ttfamily Bit\+Blt}函数将画面传给物理\+DC~\newline
+
+\item 滚动条位置以及大小的问题~\newline
+问题描述：滚动条大小以及位置随着窗口大小改变而随机变动~\newline
+可能原因：由于滚动条控件需要手动设置大小以及位置，所以当改变窗口大小的时候会出现滚动条位置偏移的情况~\newline
+解决方案：设置两个变量：{\ttfamily m\+\_\+client\+\_\+cy}记录页面长度，{\ttfamily scrolledpix}记录页面相对于窗口上端的偏移量~\newline
+每次重绘的时候通过这两个量来重新计算滚动条的大小以及位置~\newline
+
+\item 解析用户传入的键盘消息~\newline
+问题描述：根据官方文档，键盘消息的对应关系很复杂，需要解析传入的参数才能获得字符信息~\newline
+解决方案：使用{\ttfamily void \hyperlink{class_c_child_view_af29ede94259b52b2ad54d139ff554abe}{C\+Child\+View\+::\+On\+Char(\+U\+I\+N\+T n\+Char, U\+I\+N\+T n\+Rep\+Cnt, U\+I\+N\+T n\+Flags)}}的消息响应函数~\newline
+系统将键盘消息处理后返回用户输入的字符~\newline
+
+\item 连按消息的问题~\newline
+问题描述：通常连按一个按键，被认为是连续输入字符~\newline
+解决方案：在{\ttfamily void \hyperlink{class_c_child_view_a74d87512b76128e2eedea87811363e45}{C\+Child\+View\+::\+On\+Key\+Down(\+U\+I\+N\+T n\+Char, U\+I\+N\+T n\+Rep\+Cnt, U\+I\+N\+T n\+Flags)}}函数中~\newline
+{\ttfamily n\+Rep\+Cnt}参数是用于标记连按消息的次数的，循环相应的次数即可实现连续输入~\newline
+
+\item 获取字体的像素大小的问题~\newline
+问题描述：{\ttfamily L\+O\+G\+F\+O\+NT}结构体的成员{\ttfamily lf\+Height}与{\ttfamily lf\+Width}不是像素高度~\newline
+解决方案：通过公式{\ttfamily pix\+Height = -\/(lf\+Height $\ast$ 72) / Get\+Device\+Caps(h\+D\+C,\+L\+O\+G\+P\+I\+X\+E\+L\+S\+Y)}转换为像素高度~\newline
+参考资料：\href{https://msdn.microsoft.com/zh-cn/library/bb773327.aspx}{\tt M\+S\+D\+N上关于\+L\+O\+G\+F\+O\+N\+T的说明}~\newline
+
+\end{DoxyEnumerate}
+
+\subsection*{后端（kernal）遇到的问题及解决方案 }
+
+
+\begin{DoxyEnumerate}
+\item 空行的问题~\newline
+问题描述：链表中换行符只用作开启一行的标识符，如果用户连续键入两个换行，第二个换行会变成\char`\"{}空行\char`\"{}而无法在屏幕上打出来~\newline
+解决方案：在预处理中，先遍历链表，在相邻两个换行符之间插入一个{\ttfamily S.\+width}=0，{\ttfamily size}=-\/1的字符，避免\char`\"{}空行\char`\"{}的产生~\newline
+
+\item 使用\char`\"{}打开\char`\"{}命令后单击屏幕会崩溃的问题~\newline
+问题描述：添加\char`\"{}打开\char`\"{}模块后，用户在界面上单击会导致崩溃~\newline
+问题原因：执行\char`\"{}打开\char`\"{}命令后，后端的选中信息会丢失，而\+U\+I当作用户\char`\"{}完成\char`\"{}了一次选中操作调用了{\ttfamily end\+\_\+select}函数，导致内存无效访问~\newline
+解决方案：在对选中区域执行任何操作前，先检查是否存在选中区域~\newline
+
+\item \char`\"{}打开\char`\"{}命令对于某些字体无法执行的问题~\newline
+问题描述：当打开包含字体名称({\ttfamily lf\+Face\+Name})为多个单词的文件时，\char`\"{}打开\char`\"{}操作会失败~\newline
+问题原因：字体名称是{\ttfamily wchar\+\_\+t}类型的,最初我用的scanf(\char`\"{}\%ls\char`\"{})来读取字体名称，这样就只能读到字体名称的第一个单词，而且我没有找到~\newline
+针对{\ttfamily wchar\+\_\+t}数组的getline函数。 解决方案：手写针对{\ttfamily wchar\+\_\+t}的{\ttfamily si\+\_\+getline}函数~\newline
+ \subsection*{测试用例 }
+\end{DoxyEnumerate}
+
+
+\begin{DoxyEnumerate}
+\item {\ttfamily align.\+orz}：测试四种对齐方式
+\item {\ttfamily keepcalm.\+orz}：测试设置字体、字号、颜色
+\item {\ttfamily linechaspace.\+orz}：测试设置行间距、字间距
+\end{DoxyEnumerate}
+
+\subsection*{总结 }
+
+
+\begin{DoxyEnumerate}
+\item 程序具有一定的可使用性，实现了基本目标，在数据规模不太大的情况下可以达到较好效果
+\item 当数据规模较大时（超过50000字符），会出现明显的卡顿现象，所以程序仍然有很大改进空间 可以通过每次只计算、绘制当前屏幕附近的字符来解决这个问题
+\end{DoxyEnumerate}
+
+\subsection*{作者信息 }
+
+
+\begin{DoxyItemize}
+\item kernal部分作者：李仁杰~\newline
+
+\begin{DoxyItemize}
+\item 学院：清华大学软件学院~\newline
+
+\item 班级：软件62~\newline
+
+\item 学号：2016013271~\newline
+
+\item e-\/mail：\+Shadow\+Iterator@hotmail.\+com~\newline
+
+\item 电话：18801005736~\newline
+
+\end{DoxyItemize}
+\item U\+I及交互部分作者：洪方舟~\newline
+
+\begin{DoxyItemize}
+\item 学院：清华大学软件学院~\newline
+
+\item 班级：软件62~\newline
+
+\item 学号： 2016013259~\newline
+
+\item e-\/mail\+: \href{mailto:hongfz16@163.com}{\tt hongfz16@163.\+com}~\newline
+
+\item 电话：15062727188~\newline
+
+\end{DoxyItemize}
+\end{DoxyItemize}

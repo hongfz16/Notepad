@@ -1,0 +1,14 @@
+digraph "CChildView::curchanged"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="CChildView::curchanged",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node0 -> Node1 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 [label="CMainFrame::UpdateClientRect",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_main_frame.html#a2500e3a6ace77e01430f5ff4b9a6f182",tooltip="当窗口大小被调整之后调用的函数 "];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="CChildView::m_changed",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_child_view.html#acff91e8fc8cc40cd1ebe1d24a6be4945",tooltip="当文本内容根据用户的操作有变化的时候调用  操作如下 "];
+  Node0 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="CMainFrame::UpdateScroll\lBarPos",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_main_frame.html#a4f7c9f6d9aeae93045c5dd2047ccebf1",tooltip="当改变窗口大小时,调整滚动块的位置 通过记录页面相对于上边界的偏移量来调整 "];
+  Node0 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

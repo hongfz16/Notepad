@@ -1,0 +1,492 @@
+\hypertarget{class_s_i_t_e_x_t}{}\section{S\+I\+T\+E\+XT Class Reference}
+\label{class_s_i_t_e_x_t}\index{S\+I\+T\+E\+XT@{S\+I\+T\+E\+XT}}
+
+
+文本链表~\newline
+把文本从头到尾抽象成一个链表  
+
+
+
+
+{\ttfamily \#include $<$kernal.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_a944194c2df3c4ba2c599de6fbe0f98c2}\label{class_s_i_t_e_x_t_a944194c2df3c4ba2c599de6fbe0f98c2}} 
+set false when \hyperlink{class_s_i_t_e_x_t_a944194c2df3c4ba2c599de6fbe0f98c2}{repaint} () is called bool text\+\_\+changed\+\_\+f
+\begin{DoxyCompactList}\small\item\em 文本改变标志 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_a4dd44878d55139898fcead669e074c2e}\label{class_s_i_t_e_x_t_a4dd44878d55139898fcead669e074c2e}} 
+void \hyperlink{class_s_i_t_e_x_t_a4dd44878d55139898fcead669e074c2e}{save} ()
+\begin{DoxyCompactList}\small\item\em 保存文本 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_a270a832a88596618a424d8d9f9d3cb80}\label{class_s_i_t_e_x_t_a270a832a88596618a424d8d9f9d3cb80}} 
+void \hyperlink{class_s_i_t_e_x_t_a270a832a88596618a424d8d9f9d3cb80}{open} ()
+\begin{DoxyCompactList}\small\item\em 打开文本 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_a6324f46cb5b509caca467ee700305f0c}\label{class_s_i_t_e_x_t_a6324f46cb5b509caca467ee700305f0c}} 
+void \hyperlink{class_s_i_t_e_x_t_a6324f46cb5b509caca467ee700305f0c}{ins\+\_\+char} (S\+I\+C\+H\+A\+R\+\_\+T)
+\begin{DoxyCompactList}\small\item\em 在光标前方插入一个字符 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_aad511d1ac1db11e0f7e462e927562c4d}\label{class_s_i_t_e_x_t_aad511d1ac1db11e0f7e462e927562c4d}} 
+void \hyperlink{class_s_i_t_e_x_t_aad511d1ac1db11e0f7e462e927562c4d}{ins\+\_\+char} (S\+I\+C\+H\+A\+R\+\_\+T, int, int)
+\begin{DoxyCompactList}\small\item\em 在光标前方插入一个字符，指定\+S的大小 \end{DoxyCompactList}\item 
+void \hyperlink{class_s_i_t_e_x_t_ac7262ab8b1305edc15cc6e4fb783f7d6}{del\+\_\+char} (bool backwards)
+\begin{DoxyCompactList}\small\item\em 删除字符~\newline
+\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_a64816d0a3be43c67522eb09cd6b4eb94}\label{class_s_i_t_e_x_t_a64816d0a3be43c67522eb09cd6b4eb94}} 
+void \hyperlink{class_s_i_t_e_x_t_a64816d0a3be43c67522eb09cd6b4eb94}{start\+\_\+select} ()
+\begin{DoxyCompactList}\small\item\em 进入选择状态 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_ab33035ffd92c0d5859c61c37f26de48c}\label{class_s_i_t_e_x_t_ab33035ffd92c0d5859c61c37f26de48c}} 
+void \hyperlink{class_s_i_t_e_x_t_ab33035ffd92c0d5859c61c37f26de48c}{end\+\_\+select} ()
+\begin{DoxyCompactList}\small\item\em 结束选择状态 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_a4b703f105335a08b6080cb8b233ea6c0}\label{class_s_i_t_e_x_t_a4b703f105335a08b6080cb8b233ea6c0}} 
+void \hyperlink{class_s_i_t_e_x_t_a4b703f105335a08b6080cb8b233ea6c0}{del\+\_\+select} ()
+\begin{DoxyCompactList}\small\item\em 删除被选中的字符 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_a5919f6a8ad7413503660035259a84fbe}\label{class_s_i_t_e_x_t_a5919f6a8ad7413503660035259a84fbe}} 
+void \hyperlink{class_s_i_t_e_x_t_a5919f6a8ad7413503660035259a84fbe}{replace\+\_\+select} (const \hyperlink{struct_s_i_r_a_n_g_e}{S\+I\+R\+A\+N\+GE} \&)
+\begin{DoxyCompactList}\small\item\em 替换被选中的字符(重载1) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_ac2480043349d0c611a717c87ffbc6415}\label{class_s_i_t_e_x_t_ac2480043349d0c611a717c87ffbc6415}} 
+void \hyperlink{class_s_i_t_e_x_t_ac2480043349d0c611a717c87ffbc6415}{replace\+\_\+select} (\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{S\+I\+C\+H\+A\+R\+N\+O\+D\+E\+\_\+P} ps, \hyperlink{class_s_i_c_h_a_r_n_o_d_e}{S\+I\+C\+H\+A\+R\+N\+O\+D\+E\+\_\+P} pe)
+\begin{DoxyCompactList}\small\item\em 替换被选中的字符(重载2) \end{DoxyCompactList}\item 
+void \hyperlink{class_s_i_t_e_x_t_a3a942ca324f4c37a4d747ba7a91a293b}{cancel\+\_\+select} ()
+\begin{DoxyCompactList}\small\item\em 取消选中~\newline
+\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_abb0fb0438be292cc363813dece5b6258}\label{class_s_i_t_e_x_t_abb0fb0438be292cc363813dece5b6258}} 
+void \hyperlink{class_s_i_t_e_x_t_abb0fb0438be292cc363813dece5b6258}{mov\+\_\+select} (\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{S\+I\+C\+U\+R\+S\+O\+RP})
+\begin{DoxyCompactList}\small\item\em 把选中字符移到光标区域 \end{DoxyCompactList}\item 
+void \hyperlink{class_s_i_t_e_x_t_a79c57242ea31d6792f319aaf5ac8d8f0}{mov\+\_\+cursorp} (\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{S\+I\+C\+U\+R\+S\+O\+RP})
+\begin{DoxyCompactList}\small\item\em 移动光标(重载1)~\newline
+把光标移到参数指定的节点处 \end{DoxyCompactList}\item 
+void \hyperlink{class_s_i_t_e_x_t_afdf96b3841922ef6436666b9e7bc884d}{mov\+\_\+cursorp} (S\+I\+D\+I\+R\+E\+CT)
+\begin{DoxyCompactList}\small\item\em 移动光标(重载2)~\newline
+把光标往上/下/左/右移动一格 \end{DoxyCompactList}\item 
+void \hyperlink{class_s_i_t_e_x_t_a4542e94a4f3d3e4d47983bf051dc7ec4}{mov\+\_\+cursorp} (const \hyperlink{struct_s_i_p_o_i_n_t}{S\+I\+P\+O\+I\+NT} \&)
+\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_a3e04be8b17cd6702fc52158f9b3b276b}\label{class_s_i_t_e_x_t_a3e04be8b17cd6702fc52158f9b3b276b}} 
+void \hyperlink{class_s_i_t_e_x_t_a3e04be8b17cd6702fc52158f9b3b276b}{set\+\_\+default\+\_\+font} (S\+I\+F\+O\+NT \&tfont)
+\begin{DoxyCompactList}\small\item\em 设置默认字体(重载1) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_a8fcd320042283b60f57630bdb8fd5bc8}\label{class_s_i_t_e_x_t_a8fcd320042283b60f57630bdb8fd5bc8}} 
+void \hyperlink{class_s_i_t_e_x_t_a8fcd320042283b60f57630bdb8fd5bc8}{set\+\_\+default\+\_\+font} (S\+I\+F\+O\+N\+T\+\_\+P tfontp)
+\begin{DoxyCompactList}\small\item\em 设置默认字体(重载2) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_a4e33142038f2ba1d42660dec1134d2f9}\label{class_s_i_t_e_x_t_a4e33142038f2ba1d42660dec1134d2f9}} 
+void \hyperlink{class_s_i_t_e_x_t_a4e33142038f2ba1d42660dec1134d2f9}{set\+\_\+select\+\_\+font} (S\+I\+F\+O\+N\+T\+\_\+P tfontpc)
+\begin{DoxyCompactList}\small\item\em 设置选中区域的字体(重载1) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_a2b1208eb0796a08112449e7273b271df}\label{class_s_i_t_e_x_t_a2b1208eb0796a08112449e7273b271df}} 
+void \hyperlink{class_s_i_t_e_x_t_a2b1208eb0796a08112449e7273b271df}{set\+\_\+select\+\_\+font} (S\+I\+F\+O\+NT \&tfont)
+\begin{DoxyCompactList}\small\item\em 设置选中区域的字体(重载2) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_a957ff893dd8fa93cbc9df1702a8b953d}\label{class_s_i_t_e_x_t_a957ff893dd8fa93cbc9df1702a8b953d}} 
+void {\bfseries set\+\_\+curfont} (S\+I\+F\+O\+N\+T\+\_\+P tcurfontpc)
+\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_a128951fbee38cb8ba2e389441acb3fd5}\label{class_s_i_t_e_x_t_a128951fbee38cb8ba2e389441acb3fd5}} 
+void {\bfseries set\+\_\+curfont} (S\+I\+F\+O\+NT \&tcurfont)
+\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_abfd80c912a40b72c0cb113ad147b3d33}\label{class_s_i_t_e_x_t_abfd80c912a40b72c0cb113ad147b3d33}} 
+void \hyperlink{class_s_i_t_e_x_t_abfd80c912a40b72c0cb113ad147b3d33}{set\+\_\+select\+\_\+color} (C\+O\+L\+O\+R\+E\+RF tcolor)
+\begin{DoxyCompactList}\small\item\em 设置选中区域的颜色 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_af79cfc54434033545610de0dc0580fa9}\label{class_s_i_t_e_x_t_af79cfc54434033545610de0dc0580fa9}} 
+void \hyperlink{class_s_i_t_e_x_t_af79cfc54434033545610de0dc0580fa9}{set\+\_\+select\+\_\+lspace} (L\+I\+N\+E\+S\+P\+A\+CE tlspace)
+\begin{DoxyCompactList}\small\item\em 设置选中区域的行距 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_a4fde9667222b3289a6c98da2871661af}\label{class_s_i_t_e_x_t_a4fde9667222b3289a6c98da2871661af}} 
+void \hyperlink{class_s_i_t_e_x_t_a4fde9667222b3289a6c98da2871661af}{set\+\_\+select\+\_\+cspace} (C\+H\+A\+R\+S\+P\+A\+CE tcspace)
+\begin{DoxyCompactList}\small\item\em 设置选中区域的字间距 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_a324e28153c8ebfeb4cabc3b82171c5e5}\label{class_s_i_t_e_x_t_a324e28153c8ebfeb4cabc3b82171c5e5}} 
+void \hyperlink{class_s_i_t_e_x_t_a324e28153c8ebfeb4cabc3b82171c5e5}{set\+\_\+pagewidth} (P\+A\+G\+E\+W\+I\+D\+TH tpagewidth)
+\begin{DoxyCompactList}\small\item\em 设置页面宽度 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_ad37947fae9aa012847b5b32c73d32af7}\label{class_s_i_t_e_x_t_ad37947fae9aa012847b5b32c73d32af7}} 
+void \hyperlink{class_s_i_t_e_x_t_ad37947fae9aa012847b5b32c73d32af7}{set\+\_\+select\+\_\+align} (S\+I\+A\+L\+I\+GN align)
+\begin{DoxyCompactList}\small\item\em 设置选中区域的对齐方式 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_a1717bc1a3f8d797fc52654ffb7aafb87}\label{class_s_i_t_e_x_t_a1717bc1a3f8d797fc52654ffb7aafb87}} 
+void \hyperlink{class_s_i_t_e_x_t_a1717bc1a3f8d797fc52654ffb7aafb87}{set\+\_\+cursorp\+\_\+align} (S\+I\+A\+L\+I\+GN align)
+\begin{DoxyCompactList}\small\item\em 设置光标所在行的对其方式 \end{DoxyCompactList}\item 
+S\+I\+A\+L\+I\+GN \hyperlink{class_s_i_t_e_x_t_a43b43ba8dc025b49555f527734508465}{get\+\_\+range\+\_\+align} (\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{S\+I\+C\+H\+A\+R\+N\+O\+D\+E\+\_\+P} ps, \hyperlink{class_s_i_c_h_a_r_n_o_d_e}{S\+I\+C\+H\+A\+R\+N\+O\+D\+E\+\_\+P} pe)
+\begin{DoxyCompactList}\small\item\em 得到一段节点的对齐方式(重载1)~\newline
+\end{DoxyCompactList}\item 
+S\+I\+A\+L\+I\+GN \hyperlink{class_s_i_t_e_x_t_a53c41b86be047c49946fab50ef79563b}{get\+\_\+range\+\_\+align} (const \hyperlink{struct_s_i_r_a_n_g_e}{S\+I\+R\+A\+N\+GE} \&range)
+\begin{DoxyCompactList}\small\item\em 得到一段节点的对齐方式(重载2) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_a150118dc911f012d521f64a54fbc05f5}\label{class_s_i_t_e_x_t_a150118dc911f012d521f64a54fbc05f5}} 
+void \hyperlink{class_s_i_t_e_x_t_a150118dc911f012d521f64a54fbc05f5}{set\+\_\+save\+\_\+path} (string tsave\+\_\+path)
+\begin{DoxyCompactList}\small\item\em 设置保存路径 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_aaf81d56b98488470fb9b7eba1f570d8e}\label{class_s_i_t_e_x_t_aaf81d56b98488470fb9b7eba1f570d8e}} 
+void \hyperlink{class_s_i_t_e_x_t_aaf81d56b98488470fb9b7eba1f570d8e}{set\+\_\+open\+\_\+path} (string topen\+\_\+path)
+\begin{DoxyCompactList}\small\item\em 设置打开路径 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_a7855275742bfdd1634cdadaae7199c14}\label{class_s_i_t_e_x_t_a7855275742bfdd1634cdadaae7199c14}} 
+\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{S\+I\+C\+U\+R\+S\+O\+RP} \hyperlink{class_s_i_t_e_x_t_a7855275742bfdd1634cdadaae7199c14}{point\+\_\+to\+\_\+cursorp} (const \hyperlink{struct_s_i_p_o_i_n_t}{S\+I\+P\+O\+I\+NT} \&P)
+\begin{DoxyCompactList}\small\item\em 把屏幕上的点转换为光标位置 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_a522c51f7d06db3e4797ee004666fa260}\label{class_s_i_t_e_x_t_a522c51f7d06db3e4797ee004666fa260}} 
+void \hyperlink{class_s_i_t_e_x_t_a522c51f7d06db3e4797ee004666fa260}{repaint} ()
+\begin{DoxyCompactList}\small\item\em 重新计算所有信息 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_a9555644951be5d9def8c2a8d4843bf4c}\label{class_s_i_t_e_x_t_a9555644951be5d9def8c2a8d4843bf4c}} 
+void \hyperlink{class_s_i_t_e_x_t_a9555644951be5d9def8c2a8d4843bf4c}{print\+\_\+info} ()
+\begin{DoxyCompactList}\small\item\em 输出信息 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_acb96e6f11f61d17d4361d895614bfd2d}\label{class_s_i_t_e_x_t_acb96e6f11f61d17d4361d895614bfd2d}} 
+void \hyperlink{class_s_i_t_e_x_t_acb96e6f11f61d17d4361d895614bfd2d}{read\+\_\+info} ()
+\begin{DoxyCompactList}\small\item\em 读入信息 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_af62ce4105e9450cc8c2319fed9fa7218}\label{class_s_i_t_e_x_t_af62ce4105e9450cc8c2319fed9fa7218}} 
+void \hyperlink{class_s_i_t_e_x_t_af62ce4105e9450cc8c2319fed9fa7218}{anticolor} (\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{S\+I\+C\+H\+A\+R\+N\+O\+D\+E\+\_\+P} ps, \hyperlink{class_s_i_c_h_a_r_n_o_d_e}{S\+I\+C\+H\+A\+R\+N\+O\+D\+E\+\_\+P} pe)
+\begin{DoxyCompactList}\small\item\em 把一段字符反色 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_a0d602676667071382638f8b27850c6a6}\label{class_s_i_t_e_x_t_a0d602676667071382638f8b27850c6a6}} 
+string \hyperlink{class_s_i_t_e_x_t_a0d602676667071382638f8b27850c6a6}{save\+\_\+path}
+\begin{DoxyCompactList}\small\item\em 保存路径 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_a7d7def7333970c953f9daebfe22155a8}\label{class_s_i_t_e_x_t_a7d7def7333970c953f9daebfe22155a8}} 
+string \hyperlink{class_s_i_t_e_x_t_a7d7def7333970c953f9daebfe22155a8}{open\+\_\+path}
+\begin{DoxyCompactList}\small\item\em 打开路径 \end{DoxyCompactList}\item 
+\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{S\+I\+C\+H\+A\+R\+N\+O\+D\+E\+\_\+P} \hyperlink{class_s_i_t_e_x_t_a50c3c59ac0a71a940d688e9d4d901bee}{headp}
+\begin{DoxyCompactList}\small\item\em 文本链表头指针 \end{DoxyCompactList}\item 
+\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{S\+I\+C\+H\+A\+R\+N\+O\+D\+E\+\_\+P} \hyperlink{class_s_i_t_e_x_t_a65fc82385d60763d2f3bcca67abf99bc}{tailp}
+\begin{DoxyCompactList}\small\item\em 文本链表尾指针 \end{DoxyCompactList}\item 
+\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{S\+I\+C\+U\+R\+S\+O\+RP} \hyperlink{class_s_i_t_e_x_t_a1841f3bacc1a8c468203f44e904afc73}{cursorp}
+\begin{DoxyCompactList}\small\item\em 光标位置~\newline
+一个指向链表中一个节点的指针，用来表示光标目前所在的位置 \end{DoxyCompactList}\item 
+\hyperlink{struct_s_i_r_a_n_g_e}{S\+I\+S\+E\+L\+E\+CT} \hyperlink{class_s_i_t_e_x_t_a536f8decde35b0149619ca1719c887b0}{select}
+\begin{DoxyCompactList}\small\item\em 当前选中的区间 \end{DoxyCompactList}\item 
+P\+A\+G\+E\+W\+I\+D\+TH \hyperlink{class_s_i_t_e_x_t_afcb828b5d1da58d0f60088097e8c107b}{pagewidth}
+\begin{DoxyCompactList}\small\item\em 页面宽度，用于计算字符的位置 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_a7f543155db7c4b28c4268ea34d07665b}\label{class_s_i_t_e_x_t_a7f543155db7c4b28c4268ea34d07665b}} 
+S\+I\+F\+O\+N\+T\+\_\+P {\bfseries curfontpc}
+\item 
+S\+I\+F\+O\+NT \hyperlink{class_s_i_t_e_x_t_abdacda1b7e48087a0aa2905702cb1d68}{default\+\_\+font}
+\begin{DoxyCompactList}\small\item\em 初始的默认字体 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_a2e5859744c880a32ed48594f61c4a230}\label{class_s_i_t_e_x_t_a2e5859744c880a32ed48594f61c4a230}} 
+bool {\bfseries inselect}
+\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_adeaaaf6ca797c54b57b97ee6bbe41541}\label{class_s_i_t_e_x_t_adeaaaf6ca797c54b57b97ee6bbe41541}} 
+int {\bfseries fwdnum}
+\item 
+std\+::vector$<$ \hyperlink{struct_s_i_r_a_n_g_e}{S\+I\+L\+I\+NE} $>$ \hyperlink{class_s_i_t_e_x_t_abdabb47ab701f95f73b806df2c440347}{vlinep}
+\begin{DoxyCompactList}\small\item\em 按顺序储存屏幕上从上到下的每一行 \end{DoxyCompactList}\item 
+std\+::vector$<$ \hyperlink{struct_s_i_r_a_n_g_e}{S\+I\+P\+A\+R\+A\+G\+R\+A\+PH} $>$ \hyperlink{class_s_i_t_e_x_t_aeeeed4da4b7633b913a7a98336a91d75}{vparap}
+\begin{DoxyCompactList}\small\item\em 按顺序储存屏幕上从上到下每一段 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_adf51b732a1a52c962864a3a38c5b0041}\label{class_s_i_t_e_x_t_adf51b732a1a52c962864a3a38c5b0041}} 
+bool {\bfseries set\+\_\+curfontp\+\_\+f}
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_ad4c4ba4c15b734d5038ae82f038779f1}\label{class_s_i_t_e_x_t_ad4c4ba4c15b734d5038ae82f038779f1}} 
+static const P\+A\+G\+E\+W\+I\+D\+TH {\bfseries D\+E\+F\+A\+U\+L\+T\+\_\+\+P\+A\+G\+E\+W\+I\+D\+TH} = 110
+\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_acd47e2cd990b809fd5b3df970f25eda3}\label{class_s_i_t_e_x_t_acd47e2cd990b809fd5b3df970f25eda3}} 
+static const S\+I\+D\+I\+R\+E\+CT {\bfseries D\+L\+E\+FT} = 0
+\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_ac683b6b1392ce822739d6babb5c29b85}\label{class_s_i_t_e_x_t_ac683b6b1392ce822739d6babb5c29b85}} 
+static const S\+I\+D\+I\+R\+E\+CT {\bfseries D\+R\+I\+G\+HT} = 1
+\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_a9cdedd80b9b3c3004f358c84cf48eead}\label{class_s_i_t_e_x_t_a9cdedd80b9b3c3004f358c84cf48eead}} 
+static const S\+I\+D\+I\+R\+E\+CT {\bfseries D\+UP} = 2
+\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_a4f9934231fee1aa7f8dbfe99a3445b00}\label{class_s_i_t_e_x_t_a4f9934231fee1aa7f8dbfe99a3445b00}} 
+static const S\+I\+D\+I\+R\+E\+CT {\bfseries D\+D\+O\+WN} = 3
+\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_a70ee6d49ffd606c7ec5630405e40e9cc}\label{class_s_i_t_e_x_t_a70ee6d49ffd606c7ec5630405e40e9cc}} 
+static const S\+I\+A\+L\+I\+GN {\bfseries A\+N\+O\+R\+M\+AL} = 0
+\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_ae6b33fa9357761a024a62610768c0eba}\label{class_s_i_t_e_x_t_ae6b33fa9357761a024a62610768c0eba}} 
+static const S\+I\+A\+L\+I\+GN {\bfseries A\+L\+E\+FT} = 1
+\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_a434d89edad0962a98947b25ac6f4ae00}\label{class_s_i_t_e_x_t_a434d89edad0962a98947b25ac6f4ae00}} 
+static const S\+I\+A\+L\+I\+GN {\bfseries A\+R\+I\+G\+HT} = 2
+\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_a9689bfe5dd5cf248de2f6ae14981034e}\label{class_s_i_t_e_x_t_a9689bfe5dd5cf248de2f6ae14981034e}} 
+static const S\+I\+A\+L\+I\+GN {\bfseries A\+C\+E\+N\+T\+ER} = 3
+\item 
+\mbox{\Hypertarget{class_s_i_t_e_x_t_a2e657aa73d2793472e6179a05ed4c40c}\label{class_s_i_t_e_x_t_a2e657aa73d2793472e6179a05ed4c40c}} 
+static const S\+I\+A\+L\+I\+GN {\bfseries A\+D\+I\+S\+T\+R\+I\+B\+U\+T\+ED} = 4
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{class_s_i_t_e_x_t_ae39165f0f00583edee6fe18ea6bdf5e3}{point\+\_\+on\+\_\+line} (\hyperlink{struct_s_i_r_a_n_g_e}{S\+I\+L\+I\+NE} L, const \hyperlink{struct_s_i_p_o_i_n_t}{S\+I\+P\+O\+I\+NT} \&P)
+\begin{DoxyCompactList}\small\item\em 判断一个屏幕上的点是否在某一行内~\newline
+\end{DoxyCompactList}\item 
+bool \hyperlink{class_s_i_t_e_x_t_a98cfecde826e07d0286c4e279554d1fa}{point\+\_\+on\+\_\+char\+\_\+col} (\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{S\+I\+C\+H\+A\+R\+N\+O\+D\+E\+\_\+P} np, const \hyperlink{struct_s_i_p_o_i_n_t}{S\+I\+P\+O\+I\+NT} \&P)
+\begin{DoxyCompactList}\small\item\em 判断一个屏幕上的点是否在某一个字符所处的列内~\newline
+\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+文本链表~\newline
+把文本从头到尾抽象成一个链表 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_s_i_t_e_x_t_a3a942ca324f4c37a4d747ba7a91a293b}\label{class_s_i_t_e_x_t_a3a942ca324f4c37a4d747ba7a91a293b}} 
+\index{S\+I\+T\+E\+XT@{S\+I\+T\+E\+XT}!cancel\+\_\+select@{cancel\+\_\+select}}
+\index{cancel\+\_\+select@{cancel\+\_\+select}!S\+I\+T\+E\+XT@{S\+I\+T\+E\+XT}}
+\subsubsection{\texorpdfstring{cancel\+\_\+select()}{cancel\_select()}}
+{\footnotesize\ttfamily void S\+I\+T\+E\+X\+T\+::cancel\+\_\+select (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+取消选中~\newline
+
+
+\begin{DoxyNote}{Note}
+该函数把选中区域赋为\+N\+U\+L\+L，不会对文本做出更改 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_s_i_t_e_x_t_ac7262ab8b1305edc15cc6e4fb783f7d6}\label{class_s_i_t_e_x_t_ac7262ab8b1305edc15cc6e4fb783f7d6}} 
+\index{S\+I\+T\+E\+XT@{S\+I\+T\+E\+XT}!del\+\_\+char@{del\+\_\+char}}
+\index{del\+\_\+char@{del\+\_\+char}!S\+I\+T\+E\+XT@{S\+I\+T\+E\+XT}}
+\subsubsection{\texorpdfstring{del\+\_\+char()}{del\_char()}}
+{\footnotesize\ttfamily void S\+I\+T\+E\+X\+T\+::del\+\_\+char (\begin{DoxyParamCaption}\item[{bool}]{backwards = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+删除字符~\newline
+
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em backwards} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_s_i_t_e_x_t_a43b43ba8dc025b49555f527734508465}\label{class_s_i_t_e_x_t_a43b43ba8dc025b49555f527734508465}} 
+\index{S\+I\+T\+E\+XT@{S\+I\+T\+E\+XT}!get\+\_\+range\+\_\+align@{get\+\_\+range\+\_\+align}}
+\index{get\+\_\+range\+\_\+align@{get\+\_\+range\+\_\+align}!S\+I\+T\+E\+XT@{S\+I\+T\+E\+XT}}
+\subsubsection{\texorpdfstring{get\+\_\+range\+\_\+align()}{get\_range\_align()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily S\+I\+A\+L\+I\+GN S\+I\+T\+E\+X\+T\+::get\+\_\+range\+\_\+align (\begin{DoxyParamCaption}\item[{\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{S\+I\+C\+H\+A\+R\+N\+O\+D\+E\+\_\+P}}]{ps,  }\item[{\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{S\+I\+C\+H\+A\+R\+N\+O\+D\+E\+\_\+P}}]{pe }\end{DoxyParamCaption})}
+
+
+
+得到一段节点的对齐方式(重载1)~\newline
+
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em 该节点段的头节点} & \\
+\hline
+\mbox{\tt in}  & {\em 该节点段的尾节点} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+如果这段节点有多种非默认的对齐方式，选择最靠前的节点的对齐方式 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_s_i_t_e_x_t_a53c41b86be047c49946fab50ef79563b}\label{class_s_i_t_e_x_t_a53c41b86be047c49946fab50ef79563b}} 
+\index{S\+I\+T\+E\+XT@{S\+I\+T\+E\+XT}!get\+\_\+range\+\_\+align@{get\+\_\+range\+\_\+align}}
+\index{get\+\_\+range\+\_\+align@{get\+\_\+range\+\_\+align}!S\+I\+T\+E\+XT@{S\+I\+T\+E\+XT}}
+\subsubsection{\texorpdfstring{get\+\_\+range\+\_\+align()}{get\_range\_align()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily S\+I\+A\+L\+I\+GN S\+I\+T\+E\+X\+T\+::get\+\_\+range\+\_\+align (\begin{DoxyParamCaption}\item[{const \hyperlink{struct_s_i_r_a_n_g_e}{S\+I\+R\+A\+N\+GE} \&}]{range }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+得到一段节点的对齐方式(重载2) 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_s_i_t_e_x_t_a43b43ba8dc025b49555f527734508465}{get\+\_\+range\+\_\+align} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_s_i_t_e_x_t_a79c57242ea31d6792f319aaf5ac8d8f0}\label{class_s_i_t_e_x_t_a79c57242ea31d6792f319aaf5ac8d8f0}} 
+\index{S\+I\+T\+E\+XT@{S\+I\+T\+E\+XT}!mov\+\_\+cursorp@{mov\+\_\+cursorp}}
+\index{mov\+\_\+cursorp@{mov\+\_\+cursorp}!S\+I\+T\+E\+XT@{S\+I\+T\+E\+XT}}
+\subsubsection{\texorpdfstring{mov\+\_\+cursorp()}{mov\_cursorp()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily void S\+I\+T\+E\+X\+T\+::mov\+\_\+cursorp (\begin{DoxyParamCaption}\item[{\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{S\+I\+C\+U\+R\+S\+O\+RP}}]{tcursorp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+移动光标(重载1)~\newline
+把光标移到参数指定的节点处 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em tcursorp} & 移动的目标节点 \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_s_i_t_e_x_t_afdf96b3841922ef6436666b9e7bc884d}\label{class_s_i_t_e_x_t_afdf96b3841922ef6436666b9e7bc884d}} 
+\index{S\+I\+T\+E\+XT@{S\+I\+T\+E\+XT}!mov\+\_\+cursorp@{mov\+\_\+cursorp}}
+\index{mov\+\_\+cursorp@{mov\+\_\+cursorp}!S\+I\+T\+E\+XT@{S\+I\+T\+E\+XT}}
+\subsubsection{\texorpdfstring{mov\+\_\+cursorp()}{mov\_cursorp()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily void S\+I\+T\+E\+X\+T\+::mov\+\_\+cursorp (\begin{DoxyParamCaption}\item[{S\+I\+D\+I\+R\+E\+CT}]{tdir }\end{DoxyParamCaption})}
+
+
+
+移动光标(重载2)~\newline
+把光标往上/下/左/右移动一格 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em tdir} & 移动方向 \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_s_i_t_e_x_t_a4542e94a4f3d3e4d47983bf051dc7ec4}\label{class_s_i_t_e_x_t_a4542e94a4f3d3e4d47983bf051dc7ec4}} 
+\index{S\+I\+T\+E\+XT@{S\+I\+T\+E\+XT}!mov\+\_\+cursorp@{mov\+\_\+cursorp}}
+\index{mov\+\_\+cursorp@{mov\+\_\+cursorp}!S\+I\+T\+E\+XT@{S\+I\+T\+E\+XT}}
+\subsubsection{\texorpdfstring{mov\+\_\+cursorp()}{mov\_cursorp()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily void S\+I\+T\+E\+X\+T\+::mov\+\_\+cursorp (\begin{DoxyParamCaption}\item[{const \hyperlink{struct_s_i_p_o_i_n_t}{S\+I\+P\+O\+I\+NT} \&}]{P }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+@移动光标(重载3)~\newline
+把光标移到屏幕上一点给定的位置 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em P} & 目标位置 \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_s_i_t_e_x_t_a98cfecde826e07d0286c4e279554d1fa}\label{class_s_i_t_e_x_t_a98cfecde826e07d0286c4e279554d1fa}} 
+\index{S\+I\+T\+E\+XT@{S\+I\+T\+E\+XT}!point\+\_\+on\+\_\+char\+\_\+col@{point\+\_\+on\+\_\+char\+\_\+col}}
+\index{point\+\_\+on\+\_\+char\+\_\+col@{point\+\_\+on\+\_\+char\+\_\+col}!S\+I\+T\+E\+XT@{S\+I\+T\+E\+XT}}
+\subsubsection{\texorpdfstring{point\+\_\+on\+\_\+char\+\_\+col}{point\_on\_char\_col}}
+{\footnotesize\ttfamily bool point\+\_\+on\+\_\+char\+\_\+col (\begin{DoxyParamCaption}\item[{\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{S\+I\+C\+H\+A\+R\+N\+O\+D\+E\+\_\+P}}]{np,  }\item[{const \hyperlink{struct_s_i_p_o_i_n_t}{S\+I\+P\+O\+I\+NT} \&}]{P }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+判断一个屏幕上的点是否在某一个字符所处的列内~\newline
+
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em np} & 指向被判断字符的节点指针 \\
+\hline
+\mbox{\tt in}  & {\em P} & 被判断的点 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & 该点在该字符所在的列内 \\
+\hline
+{\em false} & 该点不在该字符所在列内 \\
+\hline
+\end{DoxyRetVals}
+\begin{DoxyNote}{Note}
+该函数判断的只有列，不是判断点是否在字符上 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_s_i_t_e_x_t_ae39165f0f00583edee6fe18ea6bdf5e3}\label{class_s_i_t_e_x_t_ae39165f0f00583edee6fe18ea6bdf5e3}} 
+\index{S\+I\+T\+E\+XT@{S\+I\+T\+E\+XT}!point\+\_\+on\+\_\+line@{point\+\_\+on\+\_\+line}}
+\index{point\+\_\+on\+\_\+line@{point\+\_\+on\+\_\+line}!S\+I\+T\+E\+XT@{S\+I\+T\+E\+XT}}
+\subsubsection{\texorpdfstring{point\+\_\+on\+\_\+line}{point\_on\_line}}
+{\footnotesize\ttfamily bool point\+\_\+on\+\_\+line (\begin{DoxyParamCaption}\item[{\hyperlink{struct_s_i_r_a_n_g_e}{S\+I\+L\+I\+NE}}]{L,  }\item[{const \hyperlink{struct_s_i_p_o_i_n_t}{S\+I\+P\+O\+I\+NT} \&}]{P }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+判断一个屏幕上的点是否在某一行内~\newline
+
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em L} & 被判断的行 \\
+\hline
+\mbox{\tt in}  & {\em P} & 被判断的点 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & 该点在这一行内 \\
+\hline
+{\em false} & 该点不在这一行内 \\
+\hline
+\end{DoxyRetVals}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_s_i_t_e_x_t_a1841f3bacc1a8c468203f44e904afc73}\label{class_s_i_t_e_x_t_a1841f3bacc1a8c468203f44e904afc73}} 
+\index{S\+I\+T\+E\+XT@{S\+I\+T\+E\+XT}!cursorp@{cursorp}}
+\index{cursorp@{cursorp}!S\+I\+T\+E\+XT@{S\+I\+T\+E\+XT}}
+\subsubsection{\texorpdfstring{cursorp}{cursorp}}
+{\footnotesize\ttfamily \hyperlink{class_s_i_c_h_a_r_n_o_d_e}{S\+I\+C\+U\+R\+S\+O\+RP} S\+I\+T\+E\+X\+T\+::cursorp}
+
+
+
+光标位置~\newline
+一个指向链表中一个节点的指针，用来表示光标目前所在的位置 
+
+\begin{DoxyNote}{Note}
+该指针指向的节点代表屏幕上显示的光标的后一个字符 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+S\+I\+C\+U\+R\+S\+O\+RP 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_s_i_t_e_x_t_abdacda1b7e48087a0aa2905702cb1d68}\label{class_s_i_t_e_x_t_abdacda1b7e48087a0aa2905702cb1d68}} 
+\index{S\+I\+T\+E\+XT@{S\+I\+T\+E\+XT}!default\+\_\+font@{default\+\_\+font}}
+\index{default\+\_\+font@{default\+\_\+font}!S\+I\+T\+E\+XT@{S\+I\+T\+E\+XT}}
+\subsubsection{\texorpdfstring{default\+\_\+font}{default\_font}}
+{\footnotesize\ttfamily S\+I\+F\+O\+NT S\+I\+T\+E\+X\+T\+::default\+\_\+font}
+
+
+
+初始的默认字体 
+
+\begin{DoxySeeAlso}{See also}
+S\+I\+F\+O\+NT 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_s_i_t_e_x_t_a50c3c59ac0a71a940d688e9d4d901bee}\label{class_s_i_t_e_x_t_a50c3c59ac0a71a940d688e9d4d901bee}} 
+\index{S\+I\+T\+E\+XT@{S\+I\+T\+E\+XT}!headp@{headp}}
+\index{headp@{headp}!S\+I\+T\+E\+XT@{S\+I\+T\+E\+XT}}
+\subsubsection{\texorpdfstring{headp}{headp}}
+{\footnotesize\ttfamily \hyperlink{class_s_i_c_h_a_r_n_o_d_e}{S\+I\+C\+H\+A\+R\+N\+O\+D\+E\+\_\+P} S\+I\+T\+E\+X\+T\+::headp}
+
+
+
+文本链表头指针 
+
+\begin{DoxySeeAlso}{See also}
+S\+I\+C\+H\+A\+R\+N\+O\+D\+E\+\_\+P 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_s_i_t_e_x_t_afcb828b5d1da58d0f60088097e8c107b}\label{class_s_i_t_e_x_t_afcb828b5d1da58d0f60088097e8c107b}} 
+\index{S\+I\+T\+E\+XT@{S\+I\+T\+E\+XT}!pagewidth@{pagewidth}}
+\index{pagewidth@{pagewidth}!S\+I\+T\+E\+XT@{S\+I\+T\+E\+XT}}
+\subsubsection{\texorpdfstring{pagewidth}{pagewidth}}
+{\footnotesize\ttfamily P\+A\+G\+E\+W\+I\+D\+TH S\+I\+T\+E\+X\+T\+::pagewidth}
+
+
+
+页面宽度，用于计算字符的位置 
+
+\begin{DoxySeeAlso}{See also}
+P\+A\+G\+E\+W\+I\+D\+TH 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_s_i_t_e_x_t_a536f8decde35b0149619ca1719c887b0}\label{class_s_i_t_e_x_t_a536f8decde35b0149619ca1719c887b0}} 
+\index{S\+I\+T\+E\+XT@{S\+I\+T\+E\+XT}!select@{select}}
+\index{select@{select}!S\+I\+T\+E\+XT@{S\+I\+T\+E\+XT}}
+\subsubsection{\texorpdfstring{select}{select}}
+{\footnotesize\ttfamily \hyperlink{struct_s_i_r_a_n_g_e}{S\+I\+S\+E\+L\+E\+CT} S\+I\+T\+E\+X\+T\+::select}
+
+
+
+当前选中的区间 
+
+\begin{DoxySeeAlso}{See also}
+S\+I\+S\+E\+L\+E\+CT 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_s_i_t_e_x_t_a65fc82385d60763d2f3bcca67abf99bc}\label{class_s_i_t_e_x_t_a65fc82385d60763d2f3bcca67abf99bc}} 
+\index{S\+I\+T\+E\+XT@{S\+I\+T\+E\+XT}!tailp@{tailp}}
+\index{tailp@{tailp}!S\+I\+T\+E\+XT@{S\+I\+T\+E\+XT}}
+\subsubsection{\texorpdfstring{tailp}{tailp}}
+{\footnotesize\ttfamily \hyperlink{class_s_i_c_h_a_r_n_o_d_e}{S\+I\+C\+H\+A\+R\+N\+O\+D\+E\+\_\+P} S\+I\+T\+E\+X\+T\+::tailp}
+
+
+
+文本链表尾指针 
+
+\begin{DoxySeeAlso}{See also}
+S\+I\+C\+H\+A\+R\+N\+O\+D\+E\+\_\+P 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_s_i_t_e_x_t_abdabb47ab701f95f73b806df2c440347}\label{class_s_i_t_e_x_t_abdabb47ab701f95f73b806df2c440347}} 
+\index{S\+I\+T\+E\+XT@{S\+I\+T\+E\+XT}!vlinep@{vlinep}}
+\index{vlinep@{vlinep}!S\+I\+T\+E\+XT@{S\+I\+T\+E\+XT}}
+\subsubsection{\texorpdfstring{vlinep}{vlinep}}
+{\footnotesize\ttfamily std\+::vector$<$\hyperlink{struct_s_i_r_a_n_g_e}{S\+I\+L\+I\+NE}$>$ S\+I\+T\+E\+X\+T\+::vlinep}
+
+
+
+按顺序储存屏幕上从上到下的每一行 
+
+\begin{DoxySeeAlso}{See also}
+S\+I\+L\+I\+NE 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_s_i_t_e_x_t_aeeeed4da4b7633b913a7a98336a91d75}\label{class_s_i_t_e_x_t_aeeeed4da4b7633b913a7a98336a91d75}} 
+\index{S\+I\+T\+E\+XT@{S\+I\+T\+E\+XT}!vparap@{vparap}}
+\index{vparap@{vparap}!S\+I\+T\+E\+XT@{S\+I\+T\+E\+XT}}
+\subsubsection{\texorpdfstring{vparap}{vparap}}
+{\footnotesize\ttfamily std\+::vector$<$\hyperlink{struct_s_i_r_a_n_g_e}{S\+I\+P\+A\+R\+A\+G\+R\+A\+PH}$>$ S\+I\+T\+E\+X\+T\+::vparap}
+
+
+
+按顺序储存屏幕上从上到下每一段 
+
+\begin{DoxySeeAlso}{See also}
+S\+I\+P\+A\+R\+A\+G\+R\+A\+PH 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Notepad/\hyperlink{kernal_8h}{kernal.\+h}\item 
+Notepad/kernal.\+cpp\end{DoxyCompactItemize}
