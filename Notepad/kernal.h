@@ -85,14 +85,18 @@ struct SIRECT
 {
 	int width;	///<宽度(px)
 	int height;	///<高度(px)
-
-	SIRECT(int twidth = 20, int theight = 20) ///<构造函数1
+	/**
+	@brief 构造函数1\n
+	*/
+	SIRECT(int twidth = 20, int theight = 20) 
 	{
 		width = twidth;
 		height = theight;
 	}
-
-	SIRECT(const SIRECT& trect)	///<构造函数2
+	/**
+	@brief 构造函数2
+	*/
+	SIRECT(const SIRECT& trect)	
 	{
 		width = trect.width;
 		height = trect.height;
@@ -108,7 +112,10 @@ struct SIPOINT
 {
 	int x;	///<x坐标(px)
 	int y;	///<y坐标(px)
-	SIPOINT(int tx = 0, int ty = 0)	///<构造函数
+	/**
+	@brief 构造函数\n
+	*/
+	SIPOINT(int tx = 0, int ty = 0)	
 	{
 		x = tx; y = ty;
 	}
@@ -147,7 +154,10 @@ struct SIRANGE
 {
 	SICHARNODE_P sp;	///<指向这段节点的头指针 @see SICHARNODE_P
 	SICHARNODE_P ep;	///<指向这段节点的尾指针 @see SICHARNODE_P
-	SIRANGE(SICHARNODE_P tsp = NULL, SICHARNODE_P tep = NULL)	///<构造函数(默认)
+	/**
+	@brief 构造函数(默认)
+	*/
+	SIRANGE(SICHARNODE_P tsp = NULL, SICHARNODE_P tep = NULL)	
 	{
 		sp = tsp;
 		ep = tep;
@@ -172,30 +182,36 @@ public:
 	/**
 	@brief 一个字符初始矩形的形状\n
 	影响它的属性是\n
-		-字体
-		-字号
+		- 字体
+		- 字号
 	@see struct SIRECT
 	*/
 	SIRECT S;		//small rectangle	
 	/**
 	@brief 一个字符画在屏幕上的形状\n
 	影响它的属性是\n
-		-字体
-		-字号
-		-字间距
-		-行间距
-		-该字符当前所在行高度最高的字符的高度
+		- 字体
+		- 字号
+		- 字间距
+		- 行间距
+		- 该字符当前所在行高度最高的字符的高度
 	@see struct SIRECT
 	*/
 	SIRECT L;		//large rectangle	
 	SIPOINT POS;	//coor. (left_top)	///<表示一个字符的左上角在屏幕上的位置 @see struct SIPOINT
 
 	friend class SICHARNODE;
-	SIDRAW_INFO()	///<构造函数1(默认)
+	/**
+	@brief 构造函数1(默认)
+	*/
+	SIDRAW_INFO()	
 	{
 		S = SIRECT(); L = SIRECT(); POS = SIPOINT();
 	}
-	SIDRAW_INFO::SIDRAW_INFO(const SIRECT& TS, const SIRECT& TL, const SIPOINT& TPOS)	///<构造函数2
+	/**
+	@brief 构造函数2
+	*/
+	SIDRAW_INFO::SIDRAW_INFO(const SIRECT& TS, const SIRECT& TL, const SIPOINT& TPOS)	
 	{
 		S = TS; L = TL; POS = TPOS;
 	}	
@@ -206,7 +222,6 @@ public:
 	const SIRECT& get_S();	///<获得S的值
 	SIRECT& get_L();	///<获得L的值
 	SIPOINT& get_POS();	///<获得POS的值
-	///<interface>
 	void print_info();	///<输出信息
 	void read_info();	///<读入信息
 
@@ -227,7 +242,10 @@ public:
 	SIALIGN align;	///<对齐方式 @SIALIGN
 
 	friend class SICHARNODE;
-	SICHAR_INFO() :fontpc(NULL)	///<构造函数1(默认)
+	/**
+	@brief 构造函数1(默认)\n
+	*/
+	SICHAR_INFO() :fontpc(NULL)	
 	{
 		//fontp = NULL;
 		color = 0x000000;
@@ -236,7 +254,10 @@ public:
 		align = 0;
 		fontpc = new SIFONT;
 	};
-	SICHAR_INFO(const SICHAR_INFO& tinfo)	///<构造函数2
+	/**
+	@brief 构造函数2\n
+	*/
+	SICHAR_INFO(const SICHAR_INFO& tinfo)	
 	{
 
 		*fontpc = *(tinfo.fontpc);
@@ -256,7 +277,7 @@ public:
 	void set_size(CHARSIZE tsize);	///<设置size成员 @see size
 	void set_cspace(CHARSPACE tcspace);	///<设置cspace成员 @see cspace
 	void set_lspace(LINESPACE tlspace);	///<设置lspace成员 @see lspace
-	///<interface>
+
 	/**
 	@brief 得到字体信息\n
 	@retval 一个指向SIFONT的指针，表示字体信息
@@ -272,7 +293,6 @@ public:
 	@retval 一个CHARSIZE类型的变量，表示字体大小
 	*/
 	CHARSIZE get_size();
-	///<interface>
 	/**
 	@brief 得到字间距\n
 	@retval 一个CHARSPACE类型的变量，表示字间距
@@ -319,8 +339,11 @@ public:
 	SICHARNODE *nextp;	///<指向链表后一个节点的指针
 
 	friend class SITEXT;
+	/**
+	@brief 构造函数1
+	*/
 	SICHARNODE(SICHAR_T tch, SICHARNODE* tprevp = NULL, SICHARNODE* tnextp = NULL
-		, SICHAR_INFO_P tchar_infop = NULL, SIDRAW_INFO_P tdraw_infop = NULL)	///<构造函数1
+		, SICHAR_INFO_P tchar_infop = NULL, SIDRAW_INFO_P tdraw_infop = NULL)	
 	{
 		ch = tch;
 		char_infop = new SICHAR_INFO;
@@ -330,8 +353,10 @@ public:
 		prevp = tprevp;
 		nextp = tnextp;
 	}
-
-	SICHARNODE(SICHAR_T tch, int tswidth, int tsheight)	///<构造函数2
+	/**
+	@brief 构造函数2
+	*/
+	SICHARNODE(SICHAR_T tch, int tswidth, int tsheight)	
 	{
 		ch = tch;
 		char_infop = new SICHAR_INFO;
@@ -409,10 +434,9 @@ public:
 	*/
 	friend void del(SICHARNODE* ps, SICHARNODE* pe);	///
 	friend void del(const SIRANGE& range);	///<@see del
-	///<interface>
+
 	const SICHAR_INFO_P get_char_infop();	///<得到一个char_infop的const副本 @see char_infop
 	const SIDRAW_INFO_P get_draw_infop();	///<得到一个draw_infop的const副本 @see draw_infop
-	///<\interface>
 	void print_info();	///<输出信息
 	void read_info();	///<输入信息
 
