@@ -5,6 +5,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
+
 HDC globalhdc;
 
 
@@ -14,6 +15,7 @@ void del(SICHARNODE* p)
 	p->nextp->prevp = p->prevp;
 	delete p;
 }
+
 void del(SICHARNODE* ps, SICHARNODE* pe)
 {
 	if (ps == pe) return;
@@ -29,6 +31,7 @@ void del(SICHARNODE* ps, SICHARNODE* pe)
 	delete p->prevp;
 	delete p;
 }
+
 void del(const SIRANGE& range)
 {
 	del(range.sp, range.ep);
@@ -58,6 +61,7 @@ inline void si_getline(wchar_t* S)
 	}
 	S[N++] = L'\0';
 }
+
 void read_font(SIFONT& tfont)
 {
 	std::cin >> tfont.lfHeight >> tfont.lfWidth
@@ -68,10 +72,12 @@ void read_font(SIFONT& tfont)
 		&tfont.lfClipPrecision, &tfont.lfQuality, &tfont.lfPitchAndFamily);
 	si_getline(tfont.lfFaceName);
 }
+
 void print_ch(const SICHAR_T& tch)
 {
 	printf("%d\n", tch);
 }
+
 void read_ch(SICHAR_T& tch)
 {
 	int d;
@@ -79,7 +85,64 @@ void read_ch(SICHAR_T& tch)
 	tch = d;
 }
 
+//SICHAR_INFO
+SICHAR_INFO& SICHAR_INFO::operator =(const SICHAR_INFO& tinfo)
+{
+	if (&tinfo == this) return *this;
+	*fontpc = *(tinfo.fontpc);
+	color = tinfo.color;
+	bgcolor = tinfo.bgcolor;
+	cspace = tinfo.cspace;
+	lspace = tinfo.lspace;
+	align = tinfo.align;
+	return *this;
+}
+void SICHAR_INFO::print_info()
+{
+	print_font(*fontpc);
+	printf("%d %d %d %d %d %d\n", color, bgcolor, size, cspace, lspace, align);
+}
+void SICHAR_INFO::read_info()
+{
+	read_font(*fontpc);
+	std::cin >> color >> bgcolor >> size >> cspace >> lspace >> align;
+}
 
+//SIRECT
+void SIRECT::print_info()
+{
+	printf("%d %d\n", width, height);
+}
+void SIRECT::read_info()
+{
+	std::cin >> width >> height;
+}
+
+//SIPOINT
+void SIPOINT::print_info()
+{
+	printf("%d %d\n", x, y);
+}
+void SIPOINT::read_info()
+{
+	std::cin >> x >> y;
+}
+
+//SIDRAW_INFO
+void SIDRAW_INFO::print_info()
+{
+	S.print_info();
+	L.print_info();
+	POS.print_info();
+}
+void SIDRAW_INFO::read_info()
+{
+	S.read_info();
+	L.read_info();
+	POS.read_info();
+}
+
+//SICHARNODE
 void SICHARNODE::ins_prev(SICHARNODE* p)
 {
 	p->prevp = this->prevp;
@@ -95,7 +158,6 @@ void SICHARNODE::ins_next(SICHARNODE* p)
 	p->nextp = this->nextp;
 	this->nextp->prevp = p;
 	this->nextp = p;
-
 	(*nextp->char_infop) = *(char_infop);
 	nextp->calc_S_from_font();
 }
@@ -113,19 +175,32 @@ void SICHARNODE::ins_next(SICHARNODE* ps, SICHARNODE* pe)
 	this->nextp->prevp = pe;
 	this->nextp = ps;
 }
-
 void SICHARNODE::calc_S_from_font()
 {
 	int height = 1.5 * (-char_infop->fontpc->lfHeight * 72 / GetDeviceCaps(globalhdc, LOGPIXELSY));
 	int width = 0.7 * height;
 	draw_infop->set_S(width, height);
 }
-
 void SICHARNODE::set_fontpc(SIFONT& tfont)
 {
 	char_infop->set_fontpc(tfont);
 	calc_S_from_font();
 }
+void SICHARNODE::print_info()
+{
+	print_ch(ch);
+	char_infop->print_info();
+	draw_infop->print_info();
+	printf("\n\n");
+}
+void SICHARNODE::read_info()
+{
+	read_ch(ch);
+	char_infop->read_info();
+	draw_infop->read_info();
+}
+
+//SITEXT
 void SITEXT::_init()
 {
 	headp = new SICHARNODE('\n');
@@ -158,75 +233,6 @@ void SITEXT::_destroy()
 		delete p->prevp;
 	delete tailp;
 }
-
-
-SICHAR_INFO& SICHAR_INFO::operator =(const SICHAR_INFO& tinfo)
-{
-	if (&tinfo == this) return *this;
-	*fontpc = *(tinfo.fontpc);
-	color = tinfo.color;
-	bgcolor = tinfo.bgcolor;
-	cspace = tinfo.cspace;
-	lspace = tinfo.lspace;
-	align = tinfo.align;
-	return *this;
-}
-void SICHAR_INFO::print_info()
-{
-	print_font(*fontpc);
-	printf("%d %d %d %d %d %d\n", color, bgcolor, size, cspace, lspace, align);
-}
-void SICHAR_INFO::read_info()
-{
-	read_font(*fontpc);
-	std::cin >> color >> bgcolor >> size >> cspace >> lspace >> align;
-}
-
-void SIRECT::print_info()
-{
-	printf("%d %d\n", width, height);
-}
-void SIRECT::read_info()
-{
-	std::cin >> width >> height;
-}
-void SIPOINT::print_info()
-{
-	printf("%d %d\n", x, y);
-}
-void SIPOINT::read_info()
-{
-	std::cin >> x >> y;
-}
-
-void SIDRAW_INFO::print_info()
-{
-	S.print_info();
-	L.print_info();
-	POS.print_info();
-}
-void SIDRAW_INFO::read_info()
-{
-	S.read_info();
-	L.read_info();
-	POS.read_info();
-}
-
-void SICHARNODE::print_info()
-{
-	print_ch(ch);
-	char_infop->print_info();
-	draw_infop->print_info();
-	printf("\n\n");
-}
-void SICHARNODE::read_info()
-{
-	read_ch(ch);
-	char_infop->read_info();
-	draw_infop->read_info();
-}
-
-
 void SITEXT::print_info()
 {
 	int N = 1;
@@ -240,7 +246,6 @@ void SITEXT::print_info()
 	for (SICHARNODE_P p = headp->nextp; p != tailp; p = p->nextp)
 		p->print_info();
 }
-
 void SITEXT::read_info()
 {
 	_destroy();
@@ -256,7 +261,6 @@ void SITEXT::read_info()
 		p->read_info();
 
 }
-
 void SITEXT::draw_line_from_left(SICHARNODE_P ps, SICHARNODE_P pe, int sx, int y, int line_height, int deltax)
 {
 	int x;
@@ -274,35 +278,28 @@ void SITEXT::draw_line_from_left(SICHARNODE_P ps, SICHARNODE_P pe, int sx, int y
 	}
 
 }
-
-
 void SITEXT::proc_line(SICHARNODE_P ps, SICHARNODE_P pe,
 	int n, int y, int line_height, int tot_width, SIALIGN align)
 {
-	//if (n == 0) return;
 	int sx = 0, deltax = 0;
 
 	if (align == ANORMAL || align == ALEFT)
 	{
-		//draw_line_from_left(ps, pe, 0, y, line_height, 0);
 		sx = 0;
 		deltax = 0;
 	}
 	if (align == ARIGHT)
 	{
-		//draw_line_from_left(ps, pe, pagewidth - tot_width, y, line_height, 0);
 		sx = pagewidth - tot_width;
 		deltax = 0;
 	}
 	if (align == ACENTER)
 	{
-		//draw_line_from_left(ps, pe, (pagewidth - tot_width) >> 1, y, line_height, 0);
 		sx = (pagewidth - tot_width) >> 1;
 		deltax = 0;
 	}
 	if (align == ADISTRIBUTED)
 	{
-		//draw_line_from_left(ps, pe, 0, y, line_height, (pagewidth - tot_width) / n);
 		sx = 0;
 		if (n > 0) deltax = (pagewidth - tot_width) / n;
 	}
@@ -360,8 +357,6 @@ void SITEXT::proc_text()
 				break;
 			}
 		}
-		//if(tot_width>)--n;
-		//if (ps->draw_infop->S.width == 0) --n;
 		if (isenter(pe->ch) && pe != tailp)
 		{
 			vparap.push_back(SIPARAGRAPH(pps->nextp, pe));
@@ -428,7 +423,6 @@ void SITEXT::del_char(bool backwards = true)
 		del(cursorp->prevp);
 	}
 }
-
 void SITEXT::end_select()
 {
 	if (select.sp == NULL) return;
@@ -437,10 +431,6 @@ void SITEXT::end_select()
 		exchange<SICHARNODE_P>(select.sp, select.ep);
 	if (select.sp == select.ep) select._clear();
 	anticolor(select.sp, select.ep);
-	//if (fwdnum < 0) exchange<SICHARNODE_P>(select.sp, select.ep);
-	//if (fwdnum == 0) select._clear();
-	//inselect = false;
-	//fwdnum = 0;
 }
 void SITEXT::del_select()
 {
@@ -450,7 +440,6 @@ void SITEXT::del_select()
 	del(select.sp, select.ep);
 	select._clear();
 }
-
 void SITEXT::mov_cursorp(SIDIRECT tdir)
 {
 	switch (tdir)
@@ -476,7 +465,6 @@ void SITEXT::mov_cursorp(SIDIRECT tdir)
 			cursorp = point_to_cursorp(cursorp->draw_infop->POS - SIPOINT(0, 1));
 		break;
 	case DDOWN:
-		//if(cursorp->draw_infop->POS.y!=MAX_POSY)
 		cursorp = point_to_cursorp(cursorp->draw_infop->POS + SIPOINT(0, cursorp->draw_infop->L.height + 2));
 		break;
 	}
@@ -491,7 +479,6 @@ void SITEXT::set_select_align(SIALIGN align)
 	set_line_align(*el, align);
 	return;
 }
-
 SIALIGN SITEXT::get_range_align(SICHARNODE_P ps, SICHARNODE_P pe)
 {
 	for (SICHARNODE_P p = ps; p != pe; p = p->nextp)
