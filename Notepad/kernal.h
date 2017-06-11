@@ -86,7 +86,7 @@ struct SIRECT
 	int width;	///<宽度(px)
 	int height;	///<高度(px)
 
-	SIRECT(int twidth = 20, int theight = 20) ///<构造函数1(默认)
+	SIRECT(int twidth = 20, int theight = 20) ///<构造函数1
 	{
 		width = twidth;
 		height = theight;
@@ -344,7 +344,7 @@ public:
 		if (char_infop != NULL) delete char_infop;
 		if (draw_infop != NULL) delete draw_infop;
 	}
-private:
+public:
 	void calc_S_from_font();///<从当前的字体计算出绘制信息中的S的大小 @see S @see fontpc
 public:
 	void set_fontpc(SIFONT_P tfontpc);	///<设置char_infop中的fontpc并重新计算draw_infop中的S的大小
@@ -383,8 +383,18 @@ public:
 	要求这段节点必须事先已经用链表的结构组织好了
 	*/
 	void ins_next(SICHARNODE* ps, SICHARNODE* pe);
-	void ins_prev(const SIRANGE& range);	///<@see ins_prev
-	void ins_next(const SIRANGE& range);	///<@see ins_next
+	/**
+	@brief 等价于`ins_prev(range.sp,range.ep)`\n
+	@see ins_prev(SICHARNODE* ps, SICHARNODE* pe)
+	@see SIRANGE
+	*/
+	void ins_prev(const SIRANGE& range);	
+	/**
+	@brief 等价于`ins_next(range.sp,range.ep)`\n
+	@see ins_next(SICHARNODE* ps, SICHARNODE* pe)
+	@see SIRANGE
+	*/
+	void ins_next(const SIRANGE& range);	
 	/**
 	@brief 从链表中删除一个节点\n
 	@param[in] p 待删除的节点
@@ -450,7 +460,7 @@ public:
 			  set false when cursor moved
 	bool set_curfontp_f;
 
-private:
+public:
 
 	void _init();	///<初始化方法
 	void _destroy();	///<清除数据并释放内存
@@ -474,12 +484,12 @@ private:
 	@param[in] y  该行左上角的坐标
 	@param[in] line_height 行高
 	@param[in] tot_width 该行字符自身的宽度总和
-	@param[in] align 该行的对齐方式
-		-ANORMAL 0 默认对齐方式(左对齐)
-		-ALEFT 1 左对齐
-		-ARIGHT 2 右对齐
-		-ACENTER 3 居中对齐
-		-ADISTRIBUTED 4 分散对齐
+	@param[in] align 该行的对齐方式\n
+		-ANORMAL 0 默认对齐方式(左对齐)\n
+		-ALEFT 1 左对齐\n
+		-ARIGHT 2 右对齐\n
+		-ACENTER 3 居中对齐\n
+		-ADISTRIBUTED 4 分散对齐\n
 	*/
 	void proc_line(SICHARNODE_P ps, SICHARNODE_P pe, int n, int y, int line_height, int tot_weight, SIALIGN align);
 	/**
@@ -521,9 +531,9 @@ public:
 	void ins_char(SICHAR_T, int, int);	///<在光标前方插入一个字符，指定S的大小
 	/**
 	@brief 删除字符\n
-	@param[in] backwards\n
-		-true 删除前一个字符
-		-false 删除后一个字符
+	@param[in] backwards 表示删除的方向\n
+		-true 删除前一个字符\n
+		-false 删除后一个字符\n
 	*/
 	void del_char(bool backwards);
 	void start_select();	///<进入选择状态
