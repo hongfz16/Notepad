@@ -475,7 +475,11 @@ private:
 	@param[in] line_height 行高
 	@param[in] tot_width 该行字符自身的宽度总和
 	@param[in] align 该行的对齐方式
-	@todo 补充对align的介绍
+		-ANORMAL 0 默认对齐方式(左对齐)
+		-ALEFT 1 左对齐
+		-ARIGHT 2 右对齐
+		-ACENTER 3 居中对齐
+		-ADISTRIBUTED 4 分散对齐
 	*/
 	void proc_line(SICHARNODE_P ps, SICHARNODE_P pe, int n, int y, int line_height, int tot_weight, SIALIGN align);
 	/**
@@ -517,8 +521,9 @@ public:
 	void ins_char(SICHAR_T, int, int);	///<在光标前方插入一个字符，指定S的大小
 	/**
 	@brief 删除字符\n
-	@param[in] backwards
-	@todo 补充对backwards可能的取值的说明
+	@param[in] backwards\n
+		-true 删除前一个字符
+		-false 删除后一个字符
 	*/
 	void del_char(bool backwards);
 	void start_select();	///<进入选择状态
