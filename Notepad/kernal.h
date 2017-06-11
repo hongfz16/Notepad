@@ -2,9 +2,9 @@
 #define kernal_h
 
 /**
-@brief ¼ÇÊÂ±¾µÄÄÚºË\n
+@brief è®°äº‹æœ¬çš„å†…æ ¸\n
 @file kernal.h
-@author ÀîÈÊ½Ü
+@author æä»æ°
 @email ShadowIterator@hotmail.com
 @version 1.0
 @date 2015.5.28
@@ -64,9 +64,9 @@ inline int Max(int a, int b)
 }
 
 /**
-@brief ·´É«º¯Êı\n
-@param[in] c µ±Ç°ÑÕÉ«
-@retval ·´É«ºóµÄÑÕÉ«
+@brief åè‰²å‡½æ•°\n
+@param[in] c å½“å‰é¢œè‰²
+@retval åè‰²åçš„é¢œè‰²
 */
 inline COLORERF anticolor_ext(COLORERF c)
 {
@@ -78,83 +78,83 @@ inline int ABS(int a)
 	return a < 0 ? (-a) : a;
 }
 /**
-@brief ¾ØĞÎ½á¹¹Ìå\n
-ÓÃÓÚ±íÊ¾Ò»¸ö×Ö·ûÕ¼¾İµÄÆÁÄ»¿Õ¼ä´óĞ¡
+@brief çŸ©å½¢ç»“æ„ä½“\n
+ç”¨äºè¡¨ç¤ºä¸€ä¸ªå­—ç¬¦å æ®çš„å±å¹•ç©ºé—´å¤§å°
 */
 struct SIRECT
 {
-	int width;	///<¿í¶È(px)
-	int height;	///<¸ß¶È(px)
+	int width;	///<å®½åº¦(px)
+	int height;	///<é«˜åº¦(px)
 
-	SIRECT(int twidth = 20, int theight = 20) ///<¹¹Ôìº¯Êı1(Ä¬ÈÏ)
+	SIRECT(int twidth = 20, int theight = 20) ///<æ„é€ å‡½æ•°1(é»˜è®¤)
 	{
 		width = twidth;
 		height = theight;
 	}
 
-	SIRECT(const SIRECT& trect)	///<¹¹Ôìº¯Êı2
+	SIRECT(const SIRECT& trect)	///<æ„é€ å‡½æ•°2
 	{
 		width = trect.width;
 		height = trect.height;
 	}
-	void print_info();	///<Êä³öĞÅÏ¢
-	void read_info();	///<¶ÁÈëĞÅÏ¢
+	void print_info();	///<è¾“å‡ºä¿¡æ¯
+	void read_info();	///<è¯»å…¥ä¿¡æ¯
 };
 /**
-@brief µã/ÏòÁ¿½á¹¹Ìå\n
-ÓÃÓÚ±íÊ¾Ò»¸ö×Ö·û(µÄ×óÉÏ½Ç)ÔÚÆÁÄ»ÉÏµÄÎ»ÖÃ
+@brief ç‚¹/å‘é‡ç»“æ„ä½“\n
+ç”¨äºè¡¨ç¤ºä¸€ä¸ªå­—ç¬¦(çš„å·¦ä¸Šè§’)åœ¨å±å¹•ä¸Šçš„ä½ç½®
 */
 struct SIPOINT
 {
-	int x;	///<x×ø±ê(px)
-	int y;	///<y×ø±ê(px)
-	SIPOINT(int tx = 0, int ty = 0)	///<¹¹Ôìº¯Êı
+	int x;	///<xåæ ‡(px)
+	int y;	///<yåæ ‡(px)
+	SIPOINT(int tx = 0, int ty = 0)	///<æ„é€ å‡½æ•°
 	{
 		x = tx; y = ty;
 	}
-	friend SIPOINT operator + (const SIPOINT& A, const SIPOINT& B)	///<ÏòÁ¿¼Ó·¨
+	friend SIPOINT operator + (const SIPOINT& A, const SIPOINT& B)	///<å‘é‡åŠ æ³•
 	{
 		return SIPOINT(A.x + B.x, A.y + B.y);
 	}
-	friend SIPOINT operator - (const SIPOINT& A, const SIPOINT& B)	///<ÏòÁ¿¼õ·¨
+	friend SIPOINT operator - (const SIPOINT& A, const SIPOINT& B)	///<å‘é‡å‡æ³•
 	{
 		return SIPOINT(A.x - B.x, A.y - B.y);
 	}
 	/**
-	@brief ¶¨ÒåÁ½¸öµãµÄĞ¡ÓÚ¹ØÏµ
-	@param[in] A ×ó²Ù×÷Êı
-	@param[in] B ÓÒ²Ù×÷Êı
-	@retval true AµÄx×ø±ê¸üĞ¡ »ò ABµÄx×ø±êÏàµÈÇÒAµÄy×ø±ê¸üĞ¡
-	@retval false BµÄx×ø±ê¸üĞ¡ »ò ABµÄx×ø±êÏàµÈÇÒBµÄy×ø±ê¸üĞ¡
+	@brief å®šä¹‰ä¸¤ä¸ªç‚¹çš„å°äºå…³ç³»
+	@param[in] A å·¦æ“ä½œæ•°
+	@param[in] B å³æ“ä½œæ•°
+	@retval true Açš„xåæ ‡æ›´å° æˆ– ABçš„xåæ ‡ç›¸ç­‰ä¸”Açš„yåæ ‡æ›´å°
+	@retval false Bçš„xåæ ‡æ›´å° æˆ– ABçš„xåæ ‡ç›¸ç­‰ä¸”Bçš„yåæ ‡æ›´å°
 	*/
 	friend bool operator < (const SIPOINT& A, const SIPOINT& B)
 	{
 		return	A.y < B.y ||
 			A.y == B.y && (A.x < B.x);
 	}
-	friend bool operator > (const SIPOINT& A, const SIPOINT& B)	///<¶¨ÒåÁ½¸öµãµÄ´óÓÚ¹ØÏµ£¬ÓëĞ¡ÓÚ¹ØÏµÏà·´ @see operator <
+	friend bool operator > (const SIPOINT& A, const SIPOINT& B)	///<å®šä¹‰ä¸¤ä¸ªç‚¹çš„å¤§äºå…³ç³»ï¼Œä¸å°äºå…³ç³»ç›¸å @see operator <
 	{
 		return B < A;
 	}
-	void print_info();	///<Êä³öĞÅÏ¢
-	void read_info();	///<¶ÁÈëĞÅÏ¢
+	void print_info();	///<è¾“å‡ºä¿¡æ¯
+	void read_info();	///<è¯»å…¥ä¿¡æ¯
 };
 
 /**
-@brief ±íÊ¾ÎÄ±¾Á´±íÖĞµÄÒ»¶Î½Úµã
+@brief è¡¨ç¤ºæ–‡æœ¬é“¾è¡¨ä¸­çš„ä¸€æ®µèŠ‚ç‚¹
 */
 struct SIRANGE
 {
-	SICHARNODE_P sp;	///<Ö¸ÏòÕâ¶Î½ÚµãµÄÍ·Ö¸Õë @see SICHARNODE_P
-	SICHARNODE_P ep;	///<Ö¸ÏòÕâ¶Î½ÚµãµÄÎ²Ö¸Õë @see SICHARNODE_P
-	SIRANGE(SICHARNODE_P tsp = NULL, SICHARNODE_P tep = NULL)	///<¹¹Ôìº¯Êı(Ä¬ÈÏ)
+	SICHARNODE_P sp;	///<æŒ‡å‘è¿™æ®µèŠ‚ç‚¹çš„å¤´æŒ‡é’ˆ @see SICHARNODE_P
+	SICHARNODE_P ep;	///<æŒ‡å‘è¿™æ®µèŠ‚ç‚¹çš„å°¾æŒ‡é’ˆ @see SICHARNODE_P
+	SIRANGE(SICHARNODE_P tsp = NULL, SICHARNODE_P tep = NULL)	///<æ„é€ å‡½æ•°(é»˜è®¤)
 	{
 		sp = tsp;
 		ep = tep;
 	}
 	/**
-	@brief Çå¿Õº¯Êı\n
-	@note Õâ¸öº¯ÊıÖ»ÊÇ°ÑspºÍepµÄÖµ¸³ÎªNULL£¬²¢²»»áÇå¿ÕÁ´±íÖĞµÄ½Úµã
+	@brief æ¸…ç©ºå‡½æ•°\n
+	@note è¿™ä¸ªå‡½æ•°åªæ˜¯æŠŠspå’Œepçš„å€¼èµ‹ä¸ºNULLï¼Œå¹¶ä¸ä¼šæ¸…ç©ºé“¾è¡¨ä¸­çš„èŠ‚ç‚¹
 	*/
 	void _clear()
 	{
@@ -163,71 +163,71 @@ struct SIRANGE
 };
 
 /**
-@brief ±íÊ¾Ò»¸ö×Ö·ûµÄÓë»æÖÆÏà¹ØµÄĞÅÏ¢\n
-°ÑÃ¿¸ö×Ö·û³éÏó³ÉÒ»¸öÆÁÄ»ÉÏµÄ¾ØĞÎ£¬Ã¿Á½¸ö¾ØĞÎÖ®¼äÃ»ÓĞ·ìÏ¶
+@brief è¡¨ç¤ºä¸€ä¸ªå­—ç¬¦çš„ä¸ç»˜åˆ¶ç›¸å…³çš„ä¿¡æ¯\n
+æŠŠæ¯ä¸ªå­—ç¬¦æŠ½è±¡æˆä¸€ä¸ªå±å¹•ä¸Šçš„çŸ©å½¢ï¼Œæ¯ä¸¤ä¸ªçŸ©å½¢ä¹‹é—´æ²¡æœ‰ç¼éš™
 */
 class SIDRAW_INFO
 {
 public:
 	/**
-	@brief Ò»¸ö×Ö·û³õÊ¼¾ØĞÎµÄĞÎ×´\n
-	Ó°ÏìËüµÄÊôĞÔÊÇ\n
-		-×ÖÌå
-		-×ÖºÅ
+	@brief ä¸€ä¸ªå­—ç¬¦åˆå§‹çŸ©å½¢çš„å½¢çŠ¶\n
+	å½±å“å®ƒçš„å±æ€§æ˜¯\n
+		-å­—ä½“
+		-å­—å·
 	@see struct SIRECT
 	*/
 	SIRECT S;		//small rectangle	
 	/**
-	@brief Ò»¸ö×Ö·û»­ÔÚÆÁÄ»ÉÏµÄĞÎ×´\n
-	Ó°ÏìËüµÄÊôĞÔÊÇ\n
-		-×ÖÌå
-		-×ÖºÅ
-		-×Ö¼ä¾à
-		-ĞĞ¼ä¾à
-		-¸Ã×Ö·ûµ±Ç°ËùÔÚĞĞ¸ß¶È×î¸ßµÄ×Ö·ûµÄ¸ß¶È
+	@brief ä¸€ä¸ªå­—ç¬¦ç”»åœ¨å±å¹•ä¸Šçš„å½¢çŠ¶\n
+	å½±å“å®ƒçš„å±æ€§æ˜¯\n
+		-å­—ä½“
+		-å­—å·
+		-å­—é—´è·
+		-è¡Œé—´è·
+		-è¯¥å­—ç¬¦å½“å‰æ‰€åœ¨è¡Œé«˜åº¦æœ€é«˜çš„å­—ç¬¦çš„é«˜åº¦
 	@see struct SIRECT
 	*/
 	SIRECT L;		//large rectangle	
-	SIPOINT POS;	//coor. (left_top)	///<±íÊ¾Ò»¸ö×Ö·ûµÄ×óÉÏ½ÇÔÚÆÁÄ»ÉÏµÄÎ»ÖÃ @see struct SIPOINT
+	SIPOINT POS;	//coor. (left_top)	///<è¡¨ç¤ºä¸€ä¸ªå­—ç¬¦çš„å·¦ä¸Šè§’åœ¨å±å¹•ä¸Šçš„ä½ç½® @see struct SIPOINT
 
 	friend class SICHARNODE;
-	SIDRAW_INFO()	///<¹¹Ôìº¯Êı1(Ä¬ÈÏ)
+	SIDRAW_INFO()	///<æ„é€ å‡½æ•°1(é»˜è®¤)
 	{
 		S = SIRECT(); L = SIRECT(); POS = SIPOINT();
 	}
-	SIDRAW_INFO::SIDRAW_INFO(const SIRECT& TS, const SIRECT& TL, const SIPOINT& TPOS)	///<¹¹Ôìº¯Êı2
+	SIDRAW_INFO::SIDRAW_INFO(const SIRECT& TS, const SIRECT& TL, const SIPOINT& TPOS)	///<æ„é€ å‡½æ•°2
 	{
 		S = TS; L = TL; POS = TPOS;
 	}	
-	void set_S(const SIRECT&);	///<ÉèÖÃSµÄÖµ(ÖØÔØ:1)
-	void set_S(int, int);	///<ÉèÖÃSµÄÖµ(ÖØÔØ:2)
-	void set_L(const SIRECT&);	///<ÉèÖÃLµÄÖµ
-	void set_POS(const SIPOINT&);	///<ÉèÖÃPOSµÄÖµ
-	const SIRECT& get_S();	///<»ñµÃSµÄÖµ
-	SIRECT& get_L();	///<»ñµÃLµÄÖµ
-	SIPOINT& get_POS();	///<»ñµÃPOSµÄÖµ
+	void set_S(const SIRECT&);	///<è®¾ç½®Sçš„å€¼(é‡è½½:1)
+	void set_S(int, int);	///<è®¾ç½®Sçš„å€¼(é‡è½½:2)
+	void set_L(const SIRECT&);	///<è®¾ç½®Lçš„å€¼
+	void set_POS(const SIPOINT&);	///<è®¾ç½®POSçš„å€¼
+	const SIRECT& get_S();	///<è·å¾—Sçš„å€¼
+	SIRECT& get_L();	///<è·å¾—Lçš„å€¼
+	SIPOINT& get_POS();	///<è·å¾—POSçš„å€¼
 	///<interface>
-	void print_info();	///<Êä³öĞÅÏ¢
-	void read_info();	///<¶ÁÈëĞÅÏ¢
+	void print_info();	///<è¾“å‡ºä¿¡æ¯
+	void read_info();	///<è¯»å…¥ä¿¡æ¯
 
 };
 
 /**
-@brief ±íÊ¾Ò»¸ö×Ö·ûµÄ¿ÉÒÔ"ÉèÖÃ"µÄĞÅÏ¢
+@brief è¡¨ç¤ºä¸€ä¸ªå­—ç¬¦çš„å¯ä»¥"è®¾ç½®"çš„ä¿¡æ¯
 */
 class SICHAR_INFO
 {
 public:
-	SIFONT_P fontpc;	///<×ÖÌåĞÅÏ¢,Ïê¼ûMSDN @see SIFONT_P
-	COLORERF color;	///<ÑÕÉ«ĞÅÏ¢ @COLORERF
-	COLORERF bgcolor;	///<±³¾°ÑÕÉ«ĞÅÏ¢ @COLORERF
-	CHARSIZE size;	///<×ÖÌå´óĞ¡£¬ÕâÀïÓÃ×÷±êÊ¶·û @CHARSIZE
-	CHARSPACE cspace;	///<×Ö¼ä¾à @CHARSPACE
-	LINESPACE lspace;	///<ĞĞ¼ä¾à @LINESPACE
-	SIALIGN align;	///<¶ÔÆë·½Ê½ @SIALIGN
+	SIFONT_P fontpc;	///<å­—ä½“ä¿¡æ¯,è¯¦è§MSDN @see SIFONT_P
+	COLORERF color;	///<é¢œè‰²ä¿¡æ¯ @COLORERF
+	COLORERF bgcolor;	///<èƒŒæ™¯é¢œè‰²ä¿¡æ¯ @COLORERF
+	CHARSIZE size;	///<å­—ä½“å¤§å°ï¼Œè¿™é‡Œç”¨ä½œæ ‡è¯†ç¬¦ @CHARSIZE
+	CHARSPACE cspace;	///<å­—é—´è· @CHARSPACE
+	LINESPACE lspace;	///<è¡Œé—´è· @LINESPACE
+	SIALIGN align;	///<å¯¹é½æ–¹å¼ @SIALIGN
 
 	friend class SICHARNODE;
-	SICHAR_INFO() :fontpc(NULL)	///<¹¹Ôìº¯Êı1(Ä¬ÈÏ)
+	SICHAR_INFO() :fontpc(NULL)	///<æ„é€ å‡½æ•°1(é»˜è®¤)
 	{
 		//fontp = NULL;
 		color = 0x000000;
@@ -236,7 +236,7 @@ public:
 		align = 0;
 		fontpc = new SIFONT;
 	};
-	SICHAR_INFO(const SICHAR_INFO& tinfo)	///<¹¹Ôìº¯Êı2
+	SICHAR_INFO(const SICHAR_INFO& tinfo)	///<æ„é€ å‡½æ•°2
 	{
 
 		*fontpc = *(tinfo.fontpc);
@@ -246,50 +246,50 @@ public:
 		lspace = tinfo.lspace;
 		align = tinfo.align;
 	}
-	~SICHAR_INFO()	///<Îö¹¹º¯Êı
+	~SICHAR_INFO()	///<ææ„å‡½æ•°
 	{
 		delete fontpc;
 	}
-	void set_fontpc(SIFONT_P tfontpc);	///<ÉèÖÃfontpc³ÉÔ±(ÖØÔØ:1) @see fontpc
-	void set_fontpc(SIFONT& tfont);	///<ÉèÖÃfontpc³ÉÔ±(ÖØÔØ:2) @see fontpc
-	void set_color(COLORERF tcolor);	///<ÉèÖÃcolor³ÉÔ± @see color
-	void set_size(CHARSIZE tsize);	///<ÉèÖÃsize³ÉÔ± @see size
-	void set_cspace(CHARSPACE tcspace);	///<ÉèÖÃcspace³ÉÔ± @see cspace
-	void set_lspace(LINESPACE tlspace);	///<ÉèÖÃlspace³ÉÔ± @see lspace
+	void set_fontpc(SIFONT_P tfontpc);	///<è®¾ç½®fontpcæˆå‘˜(é‡è½½:1) @see fontpc
+	void set_fontpc(SIFONT& tfont);	///<è®¾ç½®fontpcæˆå‘˜(é‡è½½:2) @see fontpc
+	void set_color(COLORERF tcolor);	///<è®¾ç½®coloræˆå‘˜ @see color
+	void set_size(CHARSIZE tsize);	///<è®¾ç½®sizeæˆå‘˜ @see size
+	void set_cspace(CHARSPACE tcspace);	///<è®¾ç½®cspaceæˆå‘˜ @see cspace
+	void set_lspace(LINESPACE tlspace);	///<è®¾ç½®lspaceæˆå‘˜ @see lspace
 	///<interface>
 	/**
-	@brief µÃµ½×ÖÌåĞÅÏ¢\n
-	@retval Ò»¸öÖ¸ÏòSIFONTµÄÖ¸Õë£¬±íÊ¾×ÖÌåĞÅÏ¢
+	@brief å¾—åˆ°å­—ä½“ä¿¡æ¯\n
+	@retval ä¸€ä¸ªæŒ‡å‘SIFONTçš„æŒ‡é’ˆï¼Œè¡¨ç¤ºå­—ä½“ä¿¡æ¯
 	*/
 	SIFONT_P get_fontpc();	
 	/**
-	@brief µÃµ½ÑÕÉ«ĞÅÏ¢\n
-	@retval Ò»¸öCOLORREFÀàĞÍµÄ±äÁ¿£¬±íÊ¾ÑÕÉ«
+	@brief å¾—åˆ°é¢œè‰²ä¿¡æ¯\n
+	@retval ä¸€ä¸ªCOLORREFç±»å‹çš„å˜é‡ï¼Œè¡¨ç¤ºé¢œè‰²
 	*/
 	COLORERF get_color();	
 	/**
-	@brief µÃµ½×ÖÌå´óĞ¡\n
-	@retval Ò»¸öCHARSIZEÀàĞÍµÄ±äÁ¿£¬±íÊ¾×ÖÌå´óĞ¡
+	@brief å¾—åˆ°å­—ä½“å¤§å°\n
+	@retval ä¸€ä¸ªCHARSIZEç±»å‹çš„å˜é‡ï¼Œè¡¨ç¤ºå­—ä½“å¤§å°
 	*/
 	CHARSIZE get_size();
 	///<interface>
 	/**
-	@brief µÃµ½×Ö¼ä¾à\n
-	@retval Ò»¸öCHARSPACEÀàĞÍµÄ±äÁ¿£¬±íÊ¾×Ö¼ä¾à
+	@brief å¾—åˆ°å­—é—´è·\n
+	@retval ä¸€ä¸ªCHARSPACEç±»å‹çš„å˜é‡ï¼Œè¡¨ç¤ºå­—é—´è·
 	*/
 	CHARSPACE get_cspace();
 	/**
-	@brief µÃµ½ĞĞ¼ä¾à\n
-	@retval Ò»¸öLINESPACEÀàĞÍµÄ±äÁ¿£¬±íÊ¾ĞĞ¼ä¾à
+	@brief å¾—åˆ°è¡Œé—´è·\n
+	@retval ä¸€ä¸ªLINESPACEç±»å‹çš„å˜é‡ï¼Œè¡¨ç¤ºè¡Œé—´è·
 	*/
 	LINESPACE get_lspace();
-	void print_info();	///<Êä³öĞÅÏ¢
-	void read_info();	///<¶ÁÈëĞÅÏ¢
+	void print_info();	///<è¾“å‡ºä¿¡æ¯
+	void read_info();	///<è¯»å…¥ä¿¡æ¯
 	/**
-	@brief ÖØÔØ¸³Öµº¯Êı\n
-	@note Õâ¸öº¯ÊıÖĞ£¬fontpcÊÇ¸´ÖÆÖ¸ÕëÖ¸ÏòµÄÄÚÈİ¶ø²»ÊÇÖ¸Õë±¾Éí
-	@param[in] *this ×ó²Ù×÷Êı
-	@param[in] tinfo ÓÒ²Ù×÷Êı
+	@brief é‡è½½èµ‹å€¼å‡½æ•°\n
+	@note è¿™ä¸ªå‡½æ•°ä¸­ï¼Œfontpcæ˜¯å¤åˆ¶æŒ‡é’ˆæŒ‡å‘çš„å†…å®¹è€Œä¸æ˜¯æŒ‡é’ˆæœ¬èº«
+	@param[in] *this å·¦æ“ä½œæ•°
+	@param[in] tinfo å³æ“ä½œæ•°
 	@retval *this 
 	*/
 	SICHAR_INFO& operator = (const SICHAR_INFO& tinfo);	
@@ -297,30 +297,30 @@ public:
 
 
 /**
-@brief ±íÊ¾ÎÄ±¾Á´±íµÄÒ»¸ö½Úµã\n
+@brief è¡¨ç¤ºæ–‡æœ¬é“¾è¡¨çš„ä¸€ä¸ªèŠ‚ç‚¹\n
 */
 class SICHARNODE
 {
 public:
-	SICHAR_T ch;	///<×Ö·û @see SICHAR_T
+	SICHAR_T ch;	///<å­—ç¬¦ @see SICHAR_T
 	/**
-	@brief ×ÖÌåĞÅÏ¢\n
-	Ò»¸öÖ¸ÏòSICHAR_INFOÀàĞÍµÄÖ¸Õë£¬´¢´æ¸Ã×Ö·ûµÄ×ÖÌåĞÅÏ¢ 
+	@brief å­—ä½“ä¿¡æ¯\n
+	ä¸€ä¸ªæŒ‡å‘SICHAR_INFOç±»å‹çš„æŒ‡é’ˆï¼Œå‚¨å­˜è¯¥å­—ç¬¦çš„å­—ä½“ä¿¡æ¯ 
 	@see class SICHAR_INFO
 	*/
 	SICHAR_INFO_P char_infop; 
 	/**
-	@brief »æÖÆĞÅÏ¢\n
-	Ò»¸öÖ¸ÏòSIDRAW_INFOÀàĞÍµÄÖ¸Õë£¬´¢´æ¸Ã×Ö·ûµÄ»æÖÆĞÅÏ¢
+	@brief ç»˜åˆ¶ä¿¡æ¯\n
+	ä¸€ä¸ªæŒ‡å‘SIDRAW_INFOç±»å‹çš„æŒ‡é’ˆï¼Œå‚¨å­˜è¯¥å­—ç¬¦çš„ç»˜åˆ¶ä¿¡æ¯
 	@see class SIDRAW_INFO
 	*/
 	SIDRAW_INFO_P draw_infop;
-	SICHARNODE *prevp;	///<Ö¸ÏòÁ´±íÇ°Ò»¸ö½ÚµãµÄÖ¸Õë
-	SICHARNODE *nextp;	///<Ö¸ÏòÁ´±íºóÒ»¸ö½ÚµãµÄÖ¸Õë
+	SICHARNODE *prevp;	///<æŒ‡å‘é“¾è¡¨å‰ä¸€ä¸ªèŠ‚ç‚¹çš„æŒ‡é’ˆ
+	SICHARNODE *nextp;	///<æŒ‡å‘é“¾è¡¨åä¸€ä¸ªèŠ‚ç‚¹çš„æŒ‡é’ˆ
 
 	friend class SITEXT;
 	SICHARNODE(SICHAR_T tch, SICHARNODE* tprevp = NULL, SICHARNODE* tnextp = NULL
-		, SICHAR_INFO_P tchar_infop = NULL, SIDRAW_INFO_P tdraw_infop = NULL)	///<¹¹Ôìº¯Êı1
+		, SICHAR_INFO_P tchar_infop = NULL, SIDRAW_INFO_P tdraw_infop = NULL)	///<æ„é€ å‡½æ•°1
 	{
 		ch = tch;
 		char_infop = new SICHAR_INFO;
@@ -331,7 +331,7 @@ public:
 		nextp = tnextp;
 	}
 
-	SICHARNODE(SICHAR_T tch, int tswidth, int tsheight)	///<¹¹Ôìº¯Êı2
+	SICHARNODE(SICHAR_T tch, int tswidth, int tsheight)	///<æ„é€ å‡½æ•°2
 	{
 		ch = tch;
 		char_infop = new SICHAR_INFO;
@@ -339,15 +339,15 @@ public:
 		draw_infop->S.width = tswidth;
 		draw_infop->S.height = tsheight;
 	}
-	~SICHARNODE()	///<Îö¹¹º¯Êı
+	~SICHARNODE()	///<ææ„å‡½æ•°
 	{
 		if (char_infop != NULL) delete char_infop;
 		if (draw_infop != NULL) delete draw_infop;
 	}
 private:
-	void calc_S_from_font();///<´Óµ±Ç°µÄ×ÖÌå¼ÆËã³ö»æÖÆĞÅÏ¢ÖĞµÄSµÄ´óĞ¡ @see S @see fontpc
+	void calc_S_from_font();///<ä»å½“å‰çš„å­—ä½“è®¡ç®—å‡ºç»˜åˆ¶ä¿¡æ¯ä¸­çš„Sçš„å¤§å° @see S @see fontpc
 public:
-	void set_fontpc(SIFONT_P tfontpc);	///<ÉèÖÃchar_infopÖĞµÄfontpc²¢ÖØĞÂ¼ÆËãdraw_infopÖĞµÄSµÄ´óĞ¡
+	void set_fontpc(SIFONT_P tfontpc);	///<è®¾ç½®char_infopä¸­çš„fontpcå¹¶é‡æ–°è®¡ç®—draw_infopä¸­çš„Sçš„å¤§å°
 	void set_fontpc(SIFONT& tfont);
 	void set_color(COLORERF tcolor);
 	void set_size(CHARSIZE tsize);
@@ -356,136 +356,136 @@ public:
 	void set_draw_infop_P(const SIPOINT& TP);
 	void set_align(SIALIGN align);
 	/**
-	@brief ÔÚµ±Ç°×Ö·ûµÄÇ°Ãæ²åÈëÒ»¸ö½Úµã\n
-	@param[in] p Ö¸Ïò±»²åÈë½ÚµãµÄÖ¸Õë
-	@note ¸Ãº¯Êı»á°ÑpÖ¸ÏòµÄ½ÚµãµÄ×ÖÌåĞÅÏ¢¸ÄÎªºÍpµÄÇ°Ò»¸ö½ÚµãÏàÍ¬
+	@brief åœ¨å½“å‰å­—ç¬¦çš„å‰é¢æ’å…¥ä¸€ä¸ªèŠ‚ç‚¹\n
+	@param[in] p æŒ‡å‘è¢«æ’å…¥èŠ‚ç‚¹çš„æŒ‡é’ˆ
+	@note è¯¥å‡½æ•°ä¼šæŠŠpæŒ‡å‘çš„èŠ‚ç‚¹çš„å­—ä½“ä¿¡æ¯æ”¹ä¸ºå’Œpçš„å‰ä¸€ä¸ªèŠ‚ç‚¹ç›¸åŒ
 	*/
 	void ins_prev(SICHARNODE* p);
 	/**
-	@brief ÔÚµ±Ç°×Ö·ûµÄºóÃæ²åÈëÒ»¸ö½Úµã\n
-	@param[in] p Ö¸Ïò±»²åÈë½ÚµãµÄÖ¸Õë
-	@note ¸Ãº¯Êı»á°ÑpÖ¸ÏòµÄ½ÚµãµÄ×ÖÌåĞÅÏ¢¸ÄÎªºÍpµÄÇ°Ò»¸ö½ÚµãÏàÍ¬
+	@brief åœ¨å½“å‰å­—ç¬¦çš„åé¢æ’å…¥ä¸€ä¸ªèŠ‚ç‚¹\n
+	@param[in] p æŒ‡å‘è¢«æ’å…¥èŠ‚ç‚¹çš„æŒ‡é’ˆ
+	@note è¯¥å‡½æ•°ä¼šæŠŠpæŒ‡å‘çš„èŠ‚ç‚¹çš„å­—ä½“ä¿¡æ¯æ”¹ä¸ºå’Œpçš„å‰ä¸€ä¸ªèŠ‚ç‚¹ç›¸åŒ
 	*/
 	void ins_next(SICHARNODE* p);
 	/**
-	@brief ÔÚµ±Ç°×Ö·ûµÄÇ°Ãæ²åÈëÒ»¶Î½Úµã\n
-	@param[in] ps Ö¸Ïò±»²åÈë½Úµã¶ÎµÄÍ·Ö¸Õë
-	@param[in] pe Ö¸Ïò±»²åÈë½Úµã¶ÎµÄÎ²Ö¸Õë
-	@note ¸Ãº¯Êı²»»á¸Ä±ä±»²åÈë½Úµã¶ÎµÄ×ÖÌåĞÅÏ¢\n
-	ÒªÇóÕâ¶Î½Úµã±ØĞëÊÂÏÈÒÑ¾­ÓÃÁ´±íµÄ½á¹¹×éÖ¯ºÃÁË
+	@brief åœ¨å½“å‰å­—ç¬¦çš„å‰é¢æ’å…¥ä¸€æ®µèŠ‚ç‚¹\n
+	@param[in] ps æŒ‡å‘è¢«æ’å…¥èŠ‚ç‚¹æ®µçš„å¤´æŒ‡é’ˆ
+	@param[in] pe æŒ‡å‘è¢«æ’å…¥èŠ‚ç‚¹æ®µçš„å°¾æŒ‡é’ˆ
+	@note è¯¥å‡½æ•°ä¸ä¼šæ”¹å˜è¢«æ’å…¥èŠ‚ç‚¹æ®µçš„å­—ä½“ä¿¡æ¯\n
+	è¦æ±‚è¿™æ®µèŠ‚ç‚¹å¿…é¡»äº‹å…ˆå·²ç»ç”¨é“¾è¡¨çš„ç»“æ„ç»„ç»‡å¥½äº†
 	*/
 	void ins_prev(SICHARNODE* ps, SICHARNODE* pe);
 	/**
-	@brief ÔÚµ±Ç°×Ö·ûµÄºóÃæ²åÈëÒ»¶Î½Úµã\n
-	@param[in] ps Ö¸Ïò±»²åÈë½Úµã¶ÎµÄÍ·Ö¸Õë
-	@param[in] pe Ö¸Ïò±»²åÈë½Úµã¶ÎµÄÎ²Ö¸Õë
-	@note ¸Ãº¯Êı²»»á¸Ä±ä±»²åÈë½Úµã¶ÎµÄ×ÖÌåĞÅÏ¢\n
-	ÒªÇóÕâ¶Î½Úµã±ØĞëÊÂÏÈÒÑ¾­ÓÃÁ´±íµÄ½á¹¹×éÖ¯ºÃÁË
+	@brief åœ¨å½“å‰å­—ç¬¦çš„åé¢æ’å…¥ä¸€æ®µèŠ‚ç‚¹\n
+	@param[in] ps æŒ‡å‘è¢«æ’å…¥èŠ‚ç‚¹æ®µçš„å¤´æŒ‡é’ˆ
+	@param[in] pe æŒ‡å‘è¢«æ’å…¥èŠ‚ç‚¹æ®µçš„å°¾æŒ‡é’ˆ
+	@note è¯¥å‡½æ•°ä¸ä¼šæ”¹å˜è¢«æ’å…¥èŠ‚ç‚¹æ®µçš„å­—ä½“ä¿¡æ¯\n
+	è¦æ±‚è¿™æ®µèŠ‚ç‚¹å¿…é¡»äº‹å…ˆå·²ç»ç”¨é“¾è¡¨çš„ç»“æ„ç»„ç»‡å¥½äº†
 	*/
 	void ins_next(SICHARNODE* ps, SICHARNODE* pe);
 	void ins_prev(const SIRANGE& range);	///<@see ins_prev
 	void ins_next(const SIRANGE& range);	///<@see ins_next
 	/**
-	@brief ´ÓÁ´±íÖĞÉ¾³ıÒ»¸ö½Úµã\n
-	@param[in] p ´ıÉ¾³ıµÄ½Úµã
-	@note p²»ÄÜÊÇÁ´±íµÄÍ·½Úµã»òÎ²½Úµã
+	@brief ä»é“¾è¡¨ä¸­åˆ é™¤ä¸€ä¸ªèŠ‚ç‚¹\n
+	@param[in] p å¾…åˆ é™¤çš„èŠ‚ç‚¹
+	@note pä¸èƒ½æ˜¯é“¾è¡¨çš„å¤´èŠ‚ç‚¹æˆ–å°¾èŠ‚ç‚¹
 	*/
 	friend void del(SICHARNODE* p);
 	/**
-	@brief ´ÓÁ´±íÖĞÉ¾³ıÒ»¶Î½Úµã\n
-	@param[in] ps Ö¸Ïò±»É¾³ı½Úµã¶ÎµÄÍ·½Úµã
-	@param[in] pe Ö¸Ïò±»É¾³ı½Úµã¶ÎµÄÎ²½Úµã
-	@note ¸Ã½Úµã¶Î²»ÄÜ°üº¬Á´±íµÄÍ·½Úµã»òÎ²½Úµã
+	@brief ä»é“¾è¡¨ä¸­åˆ é™¤ä¸€æ®µèŠ‚ç‚¹\n
+	@param[in] ps æŒ‡å‘è¢«åˆ é™¤èŠ‚ç‚¹æ®µçš„å¤´èŠ‚ç‚¹
+	@param[in] pe æŒ‡å‘è¢«åˆ é™¤èŠ‚ç‚¹æ®µçš„å°¾èŠ‚ç‚¹
+	@note è¯¥èŠ‚ç‚¹æ®µä¸èƒ½åŒ…å«é“¾è¡¨çš„å¤´èŠ‚ç‚¹æˆ–å°¾èŠ‚ç‚¹
 	*/
 	friend void del(SICHARNODE* ps, SICHARNODE* pe);	///
 	friend void del(const SIRANGE& range);	///<@see del
 	///<interface>
-	const SICHAR_INFO_P get_char_infop();	///<µÃµ½Ò»¸öchar_infopµÄconst¸±±¾ @see char_infop
-	const SIDRAW_INFO_P get_draw_infop();	///<µÃµ½Ò»¸ödraw_infopµÄconst¸±±¾ @see draw_infop
+	const SICHAR_INFO_P get_char_infop();	///<å¾—åˆ°ä¸€ä¸ªchar_infopçš„constå‰¯æœ¬ @see char_infop
+	const SIDRAW_INFO_P get_draw_infop();	///<å¾—åˆ°ä¸€ä¸ªdraw_infopçš„constå‰¯æœ¬ @see draw_infop
 	///<\interface>
-	void print_info();	///<Êä³öĞÅÏ¢
-	void read_info();	///<ÊäÈëĞÅÏ¢
+	void print_info();	///<è¾“å‡ºä¿¡æ¯
+	void read_info();	///<è¾“å…¥ä¿¡æ¯
 
 };
 
 
 /**
-@brief ÎÄ±¾Á´±í\n
-°ÑÎÄ±¾´ÓÍ·µ½Î²³éÏó³ÉÒ»¸öÁ´±í
+@brief æ–‡æœ¬é“¾è¡¨\n
+æŠŠæ–‡æœ¬ä»å¤´åˆ°å°¾æŠ½è±¡æˆä¸€ä¸ªé“¾è¡¨
 */
 class SITEXT
 {
 public:
 
-	string save_path;	///<±£´æÂ·¾¶
-	string open_path;	///<´ò¿ªÂ·¾¶
+	string save_path;	///<ä¿å­˜è·¯å¾„
+	string open_path;	///<æ‰“å¼€è·¯å¾„
 
-	SICHARNODE_P headp;	///<ÎÄ±¾Á´±íÍ·Ö¸Õë @see SICHARNODE_P
-	SICHARNODE_P tailp;	///<ÎÄ±¾Á´±íÎ²Ö¸Õë @see SICHARNODE_P
+	SICHARNODE_P headp;	///<æ–‡æœ¬é“¾è¡¨å¤´æŒ‡é’ˆ @see SICHARNODE_P
+	SICHARNODE_P tailp;	///<æ–‡æœ¬é“¾è¡¨å°¾æŒ‡é’ˆ @see SICHARNODE_P
 
 	/**
-	@brief ¹â±êÎ»ÖÃ\n
-	Ò»¸öÖ¸ÏòÁ´±íÖĞÒ»¸ö½ÚµãµÄÖ¸Õë£¬ÓÃÀ´±íÊ¾¹â±êÄ¿Ç°ËùÔÚµÄÎ»ÖÃ
-	@note ¸ÃÖ¸ÕëÖ¸ÏòµÄ½Úµã´ú±íÆÁÄ»ÉÏÏÔÊ¾µÄ¹â±êµÄºóÒ»¸ö×Ö·û
+	@brief å…‰æ ‡ä½ç½®\n
+	ä¸€ä¸ªæŒ‡å‘é“¾è¡¨ä¸­ä¸€ä¸ªèŠ‚ç‚¹çš„æŒ‡é’ˆï¼Œç”¨æ¥è¡¨ç¤ºå…‰æ ‡ç›®å‰æ‰€åœ¨çš„ä½ç½®
+	@note è¯¥æŒ‡é’ˆæŒ‡å‘çš„èŠ‚ç‚¹ä»£è¡¨å±å¹•ä¸Šæ˜¾ç¤ºçš„å…‰æ ‡çš„åä¸€ä¸ªå­—ç¬¦
 	@see SICURSORP
 	*/
 	SICURSORP cursorp;
-	SISELECT select;	///<µ±Ç°Ñ¡ÖĞµÄÇø¼ä @see SISELECT
+	SISELECT select;	///<å½“å‰é€‰ä¸­çš„åŒºé—´ @see SISELECT
 
-	PAGEWIDTH pagewidth;	///<Ò³Ãæ¿í¶È£¬ÓÃÓÚ¼ÆËã×Ö·ûµÄÎ»ÖÃ @see PAGEWIDTH
+	PAGEWIDTH pagewidth;	///<é¡µé¢å®½åº¦ï¼Œç”¨äºè®¡ç®—å­—ç¬¦çš„ä½ç½® @see PAGEWIDTH
 
 	SIFONT_P curfontpc;	
-	SIFONT default_font;	///<³õÊ¼µÄÄ¬ÈÏ×ÖÌå @see SIFONT
+	SIFONT default_font;	///<åˆå§‹çš„é»˜è®¤å­—ä½“ @see SIFONT
 
 	bool inselect;	
 	int fwdnum;
-	std::vector<SILINE> vlinep;	///<°´Ë³Ğò´¢´æÆÁÄ»ÉÏ´ÓÉÏµ½ÏÂµÄÃ¿Ò»ĞĞ @see SILINE
-	std::vector<SIPARAGRAPH> vparap;	///<°´Ë³Ğò´¢´æÆÁÄ»ÉÏ´ÓÉÏµ½ÏÂÃ¿Ò»¶Î @see SIPARAGRAPH
+	std::vector<SILINE> vlinep;	///<æŒ‰é¡ºåºå‚¨å­˜å±å¹•ä¸Šä»ä¸Šåˆ°ä¸‹çš„æ¯ä¸€è¡Œ @see SILINE
+	std::vector<SIPARAGRAPH> vparap;	///<æŒ‰é¡ºåºå‚¨å­˜å±å¹•ä¸Šä»ä¸Šåˆ°ä¸‹æ¯ä¸€æ®µ @see SIPARAGRAPH
 
 	//set true when text changed specifically when \
 				effectable methods are called		\
 	  set false when repaint() is called
-	bool text_changed_f;	///<ÎÄ±¾¸Ä±ä±êÖ¾
+	bool text_changed_f;	///<æ–‡æœ¬æ”¹å˜æ ‡å¿—
 	//set true when set_curfontp() is called \
 			  set false when cursor moved
 	bool set_curfontp_f;
 
 private:
 
-	void _init();	///<³õÊ¼»¯·½·¨
-	void _destroy();	///<Çå³ıÊı¾İ²¢ÊÍ·ÅÄÚ´æ
+	void _init();	///<åˆå§‹åŒ–æ–¹æ³•
+	void _destroy();	///<æ¸…é™¤æ•°æ®å¹¶é‡Šæ”¾å†…å­˜
 	/**
-	@brief ĞĞ¼ÆËãº¯Êı\n
-	ÓÃÓÚ¼ÆËãÒ»ĞĞ×Ö·ûµÄ»æÖÆĞÅÏ¢
-	@param[in] ps Ö¸Ïò¸ÃĞĞÍ·½ÚµãµÄÖ¸Õë
-	@param[in] pe Ö¸Ïò¸ÃĞĞÎ²½ÚµãµÄÖ¸Õë
-	@param[in] sx ¸ÃĞĞ×óÉÏ½ÇµÄx×ø±ê
-	@param[in] y  ¸ÃĞĞ×óÉÏ½ÇµÄy×ø±ê
-	@param[in] line_height ĞĞ¸ß
-	@param[in] delta Ã¿¸ö×Ö·û³ıÁË×ÔÉíµÄ¿í¶ÈÍâµÄ¸½¼Ó¿í¶È(Ö»ÔÚ·ÖÉ¢¶ÔÆëÊ±²»Îª0)
+	@brief è¡Œè®¡ç®—å‡½æ•°\n
+	ç”¨äºè®¡ç®—ä¸€è¡Œå­—ç¬¦çš„ç»˜åˆ¶ä¿¡æ¯
+	@param[in] ps æŒ‡å‘è¯¥è¡Œå¤´èŠ‚ç‚¹çš„æŒ‡é’ˆ
+	@param[in] pe æŒ‡å‘è¯¥è¡Œå°¾èŠ‚ç‚¹çš„æŒ‡é’ˆ
+	@param[in] sx è¯¥è¡Œå·¦ä¸Šè§’çš„xåæ ‡
+	@param[in] y  è¯¥è¡Œå·¦ä¸Šè§’çš„yåæ ‡
+	@param[in] line_height è¡Œé«˜
+	@param[in] delta æ¯ä¸ªå­—ç¬¦é™¤äº†è‡ªèº«çš„å®½åº¦å¤–çš„é™„åŠ å®½åº¦(åªåœ¨åˆ†æ•£å¯¹é½æ—¶ä¸ä¸º0)
 	*/
 	void draw_line_from_left(SICHARNODE_P ps, SICHARNODE_P pe, int sx, int y, int line_height, int deltax);
 	/**
-	@brief ĞĞ´¦Àíº¯Êı\n
-	¸ù¾İ²»Í¬¶ÔÆë·½Ê½ÓÃÓÚ¼ÆËãÒ»ĞĞ×Ö·ûµÄ»æÖÆĞÅÏ¢
-	@param[in] ps Ö¸Ïò¸ÃĞĞÍ·½ÚµãµÄÖ¸Õë
-	@param[in] pe Ö¸Ïò¸ÃĞĞÎ²½ÚµãµÄÖ¸Õë
-	@param[in] n  ¸ÃĞĞµÄ×Ö·û×ÜÊı(²»°üÀ¨»»ĞĞ·û)
-	@param[in] y  ¸ÃĞĞ×óÉÏ½ÇµÄ×ø±ê
-	@param[in] line_height ĞĞ¸ß
-	@param[in] tot_width ¸ÃĞĞ×Ö·û×ÔÉíµÄ¿í¶È×ÜºÍ
-	@param[in] align ¸ÃĞĞµÄ¶ÔÆë·½Ê½
-	@todo ²¹³ä¶ÔalignµÄ½éÉÜ
+	@brief è¡Œå¤„ç†å‡½æ•°\n
+	æ ¹æ®ä¸åŒå¯¹é½æ–¹å¼ç”¨äºè®¡ç®—ä¸€è¡Œå­—ç¬¦çš„ç»˜åˆ¶ä¿¡æ¯
+	@param[in] ps æŒ‡å‘è¯¥è¡Œå¤´èŠ‚ç‚¹çš„æŒ‡é’ˆ
+	@param[in] pe æŒ‡å‘è¯¥è¡Œå°¾èŠ‚ç‚¹çš„æŒ‡é’ˆ
+	@param[in] n  è¯¥è¡Œçš„å­—ç¬¦æ€»æ•°(ä¸åŒ…æ‹¬æ¢è¡Œç¬¦)
+	@param[in] y  è¯¥è¡Œå·¦ä¸Šè§’çš„åæ ‡
+	@param[in] line_height è¡Œé«˜
+	@param[in] tot_width è¯¥è¡Œå­—ç¬¦è‡ªèº«çš„å®½åº¦æ€»å’Œ
+	@param[in] align è¯¥è¡Œçš„å¯¹é½æ–¹å¼
+	@todo è¡¥å……å¯¹alignçš„ä»‹ç»
 	*/
 	void proc_line(SICHARNODE_P ps, SICHARNODE_P pe, int n, int y, int line_height, int tot_weight, SIALIGN align);
 	/**
-	@brief Ô¤´¦Àíº¯Êı\n
-	¶ÔÎÄ±¾×öÔ¤´¦Àí(Ö÷ÒªÊÇÌí¼Ó·Ö¶Î·û)
+	@brief é¢„å¤„ç†å‡½æ•°\n
+	å¯¹æ–‡æœ¬åšé¢„å¤„ç†(ä¸»è¦æ˜¯æ·»åŠ åˆ†æ®µç¬¦)
 	*/
 	void pre_proc();
-	void proc_text();	///<ÎÄ±¾´¦Àíº¯Êı
-	inline std::vector<SILINE>::iterator point_to_line(const SIPOINT& P);	///<Çó°üº¬ÆÁÄ»ÉÏÄ³Ò»µãµÄÄÇÒ»ĞĞ
-	inline void set_line_align(const SILINE& line, SIALIGN align);	///<ÉèÖÃÄ³Ò»ĞĞµÄ¶ÔÆë·½Ê½
+	void proc_text();	///<æ–‡æœ¬å¤„ç†å‡½æ•°
+	inline std::vector<SILINE>::iterator point_to_line(const SIPOINT& P);	///<æ±‚åŒ…å«å±å¹•ä¸ŠæŸä¸€ç‚¹çš„é‚£ä¸€è¡Œ
+	inline void set_line_align(const SILINE& line, SIALIGN align);	///<è®¾ç½®æŸä¸€è¡Œçš„å¯¹é½æ–¹å¼
 
 public:
 
@@ -502,99 +502,99 @@ public:
 	static const SIALIGN ACENTER = 3;
 	static const SIALIGN ADISTRIBUTED = 4;
 	//constructor
-	SITEXT()	///<¹¹Ôìº¯Êı @see _init
+	SITEXT()	///<æ„é€ å‡½æ•° @see _init
 	{
 		_init();
 	}
-	~SITEXT()	///<Îö¹¹º¯Êı @see _destroy
+	~SITEXT()	///<ææ„å‡½æ•° @see _destroy
 	{
 		_destroy();
 	}
 	
-	void save();	///<±£´æÎÄ±¾
-	void open();	///<´ò¿ªÎÄ±¾
-	void ins_char(SICHAR_T);	///<ÔÚ¹â±êÇ°·½²åÈëÒ»¸ö×Ö·û
-	void ins_char(SICHAR_T, int, int);	///<ÔÚ¹â±êÇ°·½²åÈëÒ»¸ö×Ö·û£¬Ö¸¶¨SµÄ´óĞ¡
+	void save();	///<ä¿å­˜æ–‡æœ¬
+	void open();	///<æ‰“å¼€æ–‡æœ¬
+	void ins_char(SICHAR_T);	///<åœ¨å…‰æ ‡å‰æ–¹æ’å…¥ä¸€ä¸ªå­—ç¬¦
+	void ins_char(SICHAR_T, int, int);	///<åœ¨å…‰æ ‡å‰æ–¹æ’å…¥ä¸€ä¸ªå­—ç¬¦ï¼ŒæŒ‡å®šSçš„å¤§å°
 	/**
-	@brief É¾³ı×Ö·û\n
+	@brief åˆ é™¤å­—ç¬¦\n
 	@param[in] backwards
-	@todo ²¹³ä¶Ôbackwards¿ÉÄÜµÄÈ¡ÖµµÄËµÃ÷
+	@todo è¡¥å……å¯¹backwardså¯èƒ½çš„å–å€¼çš„è¯´æ˜
 	*/
 	void del_char(bool backwards);
-	void start_select();	///<½øÈëÑ¡Ôñ×´Ì¬
-	void end_select();	///<½áÊøÑ¡Ôñ×´Ì¬
-	void del_select();	///<É¾³ı±»Ñ¡ÖĞµÄ×Ö·û
-	void replace_select(const SIRANGE&);	///<Ìæ»»±»Ñ¡ÖĞµÄ×Ö·û(ÖØÔØ1)
-	void replace_select(SICHARNODE_P ps, SICHARNODE_P pe);	///<Ìæ»»±»Ñ¡ÖĞµÄ×Ö·û(ÖØÔØ2)
+	void start_select();	///<è¿›å…¥é€‰æ‹©çŠ¶æ€
+	void end_select();	///<ç»“æŸé€‰æ‹©çŠ¶æ€
+	void del_select();	///<åˆ é™¤è¢«é€‰ä¸­çš„å­—ç¬¦
+	void replace_select(const SIRANGE&);	///<æ›¿æ¢è¢«é€‰ä¸­çš„å­—ç¬¦(é‡è½½1)
+	void replace_select(SICHARNODE_P ps, SICHARNODE_P pe);	///<æ›¿æ¢è¢«é€‰ä¸­çš„å­—ç¬¦(é‡è½½2)
 	/**
-	@brief È¡ÏûÑ¡ÖĞ\n
-	@note ¸Ãº¯Êı°ÑÑ¡ÖĞÇøÓò¸³ÎªNULL£¬²»»á¶ÔÎÄ±¾×ö³ö¸ü¸Ä
+	@brief å–æ¶ˆé€‰ä¸­\n
+	@note è¯¥å‡½æ•°æŠŠé€‰ä¸­åŒºåŸŸèµ‹ä¸ºNULLï¼Œä¸ä¼šå¯¹æ–‡æœ¬åšå‡ºæ›´æ”¹
 	*/
 	void cancel_select();
-	void mov_select(SICURSORP);	///<°ÑÑ¡ÖĞ×Ö·ûÒÆµ½¹â±êÇøÓò
+	void mov_select(SICURSORP);	///<æŠŠé€‰ä¸­å­—ç¬¦ç§»åˆ°å…‰æ ‡åŒºåŸŸ
 	/**
-	@brief ÒÆ¶¯¹â±ê(ÖØÔØ1)\n
-	°Ñ¹â±êÒÆµ½²ÎÊıÖ¸¶¨µÄ½Úµã´¦
-	@param[in] tcursorp ÒÆ¶¯µÄÄ¿±ê½Úµã
+	@brief ç§»åŠ¨å…‰æ ‡(é‡è½½1)\n
+	æŠŠå…‰æ ‡ç§»åˆ°å‚æ•°æŒ‡å®šçš„èŠ‚ç‚¹å¤„
+	@param[in] tcursorp ç§»åŠ¨çš„ç›®æ ‡èŠ‚ç‚¹
 	*/
 	void mov_cursorp(SICURSORP);	
 	/**
-	@brief ÒÆ¶¯¹â±ê(ÖØÔØ2)\n
-	°Ñ¹â±êÍùÉÏ/ÏÂ/×ó/ÓÒÒÆ¶¯Ò»¸ñ
-	@param[in] tdir ÒÆ¶¯·½Ïò
+	@brief ç§»åŠ¨å…‰æ ‡(é‡è½½2)\n
+	æŠŠå…‰æ ‡å¾€ä¸Š/ä¸‹/å·¦/å³ç§»åŠ¨ä¸€æ ¼
+	@param[in] tdir ç§»åŠ¨æ–¹å‘
 	*/
 	void mov_cursorp(SIDIRECT);
 	/**
-	@ÒÆ¶¯¹â±ê(ÖØÔØ3)\n
-	°Ñ¹â±êÒÆµ½ÆÁÄ»ÉÏÒ»µã¸ø¶¨µÄÎ»ÖÃ
-	@param[in] P Ä¿±êÎ»ÖÃ
+	@ç§»åŠ¨å…‰æ ‡(é‡è½½3)\n
+	æŠŠå…‰æ ‡ç§»åˆ°å±å¹•ä¸Šä¸€ç‚¹ç»™å®šçš„ä½ç½®
+	@param[in] P ç›®æ ‡ä½ç½®
 	*/
 	void mov_cursorp(const SIPOINT&);
 	
-	void set_default_font(SIFONT& tfont);	///<ÉèÖÃÄ¬ÈÏ×ÖÌå(ÖØÔØ1)
-	void set_default_font(SIFONT_P tfontp);	///<ÉèÖÃÄ¬ÈÏ×ÖÌå(ÖØÔØ2)
-	void set_select_font(SIFONT_P tfontpc);	///<ÉèÖÃÑ¡ÖĞÇøÓòµÄ×ÖÌå(ÖØÔØ1)
-	void set_select_font(SIFONT& tfont);	///<ÉèÖÃÑ¡ÖĞÇøÓòµÄ×ÖÌå(ÖØÔØ2)
+	void set_default_font(SIFONT& tfont);	///<è®¾ç½®é»˜è®¤å­—ä½“(é‡è½½1)
+	void set_default_font(SIFONT_P tfontp);	///<è®¾ç½®é»˜è®¤å­—ä½“(é‡è½½2)
+	void set_select_font(SIFONT_P tfontpc);	///<è®¾ç½®é€‰ä¸­åŒºåŸŸçš„å­—ä½“(é‡è½½1)
+	void set_select_font(SIFONT& tfont);	///<è®¾ç½®é€‰ä¸­åŒºåŸŸçš„å­—ä½“(é‡è½½2)
 	void set_curfont(SIFONT_P tcurfontpc);	
 	void set_curfont(SIFONT& tcurfont);
-	void set_select_color(COLORERF tcolor);	///<ÉèÖÃÑ¡ÖĞÇøÓòµÄÑÕÉ«
-	void set_select_lspace(LINESPACE tlspace);	///<ÉèÖÃÑ¡ÖĞÇøÓòµÄĞĞ¾à
-	void set_select_cspace(CHARSPACE tcspace);	///<ÉèÖÃÑ¡ÖĞÇøÓòµÄ×Ö¼ä¾à
-	void set_pagewidth(PAGEWIDTH tpagewidth);	///<ÉèÖÃÒ³Ãæ¿í¶È
-	void set_select_align(SIALIGN align);	///<ÉèÖÃÑ¡ÖĞÇøÓòµÄ¶ÔÆë·½Ê½
-	void set_cursorp_align(SIALIGN align);	///<ÉèÖÃ¹â±êËùÔÚĞĞµÄ¶ÔÆä·½Ê½
+	void set_select_color(COLORERF tcolor);	///<è®¾ç½®é€‰ä¸­åŒºåŸŸçš„é¢œè‰²
+	void set_select_lspace(LINESPACE tlspace);	///<è®¾ç½®é€‰ä¸­åŒºåŸŸçš„è¡Œè·
+	void set_select_cspace(CHARSPACE tcspace);	///<è®¾ç½®é€‰ä¸­åŒºåŸŸçš„å­—é—´è·
+	void set_pagewidth(PAGEWIDTH tpagewidth);	///<è®¾ç½®é¡µé¢å®½åº¦
+	void set_select_align(SIALIGN align);	///<è®¾ç½®é€‰ä¸­åŒºåŸŸçš„å¯¹é½æ–¹å¼
+	void set_cursorp_align(SIALIGN align);	///<è®¾ç½®å…‰æ ‡æ‰€åœ¨è¡Œçš„å¯¹å…¶æ–¹å¼
 	/**
-	@brief µÃµ½Ò»¶Î½ÚµãµÄ¶ÔÆë·½Ê½(ÖØÔØ1)\n
-	@param[in] ¸Ã½Úµã¶ÎµÄÍ·½Úµã
-	@param[in] ¸Ã½Úµã¶ÎµÄÎ²½Úµã
-	@note Èç¹ûÕâ¶Î½ÚµãÓĞ¶àÖÖ·ÇÄ¬ÈÏµÄ¶ÔÆë·½Ê½£¬Ñ¡Ôñ×î¿¿Ç°µÄ½ÚµãµÄ¶ÔÆë·½Ê½
+	@brief å¾—åˆ°ä¸€æ®µèŠ‚ç‚¹çš„å¯¹é½æ–¹å¼(é‡è½½1)\n
+	@param[in] è¯¥èŠ‚ç‚¹æ®µçš„å¤´èŠ‚ç‚¹
+	@param[in] è¯¥èŠ‚ç‚¹æ®µçš„å°¾èŠ‚ç‚¹
+	@note å¦‚æœè¿™æ®µèŠ‚ç‚¹æœ‰å¤šç§éé»˜è®¤çš„å¯¹é½æ–¹å¼ï¼Œé€‰æ‹©æœ€é å‰çš„èŠ‚ç‚¹çš„å¯¹é½æ–¹å¼
 	*/
 	SIALIGN get_range_align(SICHARNODE_P ps,SICHARNODE_P pe);	
-	SIALIGN get_range_align(const SIRANGE& range);	///<µÃµ½Ò»¶Î½ÚµãµÄ¶ÔÆë·½Ê½(ÖØÔØ2) @see get_range_align
+	SIALIGN get_range_align(const SIRANGE& range);	///<å¾—åˆ°ä¸€æ®µèŠ‚ç‚¹çš„å¯¹é½æ–¹å¼(é‡è½½2) @see get_range_align
 
-	void set_save_path(string tsave_path);	///<ÉèÖÃ±£´æÂ·¾¶
-	void set_open_path(string topen_path);	///<ÉèÖÃ´ò¿ªÂ·¾¶
-	SICURSORP point_to_cursorp(const SIPOINT& P);	///<°ÑÆÁÄ»ÉÏµÄµã×ª»»Îª¹â±êÎ»ÖÃ
-	void repaint();	///<ÖØĞÂ¼ÆËãËùÓĞĞÅÏ¢
-	void print_info();	///<Êä³öĞÅÏ¢
-	void read_info();	///<¶ÁÈëĞÅÏ¢
-	void anticolor(SICHARNODE_P ps, SICHARNODE_P pe);	///<°ÑÒ»¶Î×Ö·û·´É«
+	void set_save_path(string tsave_path);	///<è®¾ç½®ä¿å­˜è·¯å¾„
+	void set_open_path(string topen_path);	///<è®¾ç½®æ‰“å¼€è·¯å¾„
+	SICURSORP point_to_cursorp(const SIPOINT& P);	///<æŠŠå±å¹•ä¸Šçš„ç‚¹è½¬æ¢ä¸ºå…‰æ ‡ä½ç½®
+	void repaint();	///<é‡æ–°è®¡ç®—æ‰€æœ‰ä¿¡æ¯
+	void print_info();	///<è¾“å‡ºä¿¡æ¯
+	void read_info();	///<è¯»å…¥ä¿¡æ¯
+	void anticolor(SICHARNODE_P ps, SICHARNODE_P pe);	///<æŠŠä¸€æ®µå­—ç¬¦åè‰²
 
 	/**
-	@brief ÅĞ¶ÏÒ»¸öÆÁÄ»ÉÏµÄµãÊÇ·ñÔÚÄ³Ò»ĞĞÄÚ\n
-	@param[in] L ±»ÅĞ¶ÏµÄĞĞ
-	@param[in] P ±»ÅĞ¶ÏµÄµã
-	@retval true ¸ÃµãÔÚÕâÒ»ĞĞÄÚ
-	@retval false ¸Ãµã²»ÔÚÕâÒ»ĞĞÄÚ
+	@brief åˆ¤æ–­ä¸€ä¸ªå±å¹•ä¸Šçš„ç‚¹æ˜¯å¦åœ¨æŸä¸€è¡Œå†…\n
+	@param[in] L è¢«åˆ¤æ–­çš„è¡Œ
+	@param[in] P è¢«åˆ¤æ–­çš„ç‚¹
+	@retval true è¯¥ç‚¹åœ¨è¿™ä¸€è¡Œå†…
+	@retval false è¯¥ç‚¹ä¸åœ¨è¿™ä¸€è¡Œå†…
 	*/
 	friend bool point_on_line(SILINE L, const SIPOINT& P);
 	/**
-	@brief ÅĞ¶ÏÒ»¸öÆÁÄ»ÉÏµÄµãÊÇ·ñÔÚÄ³Ò»¸ö×Ö·ûËù´¦µÄÁĞÄÚ\n
-	@param[in] np Ö¸Ïò±»ÅĞ¶Ï×Ö·ûµÄ½ÚµãÖ¸Õë
-	@param[in] P  ±»ÅĞ¶ÏµÄµã
-	@retval true ¸ÃµãÔÚ¸Ã×Ö·ûËùÔÚµÄÁĞÄÚ
-	@retval false ¸Ãµã²»ÔÚ¸Ã×Ö·ûËùÔÚÁĞÄÚ
-	@note ¸Ãº¯ÊıÅĞ¶ÏµÄÖ»ÓĞÁĞ£¬²»ÊÇÅĞ¶ÏµãÊÇ·ñÔÚ×Ö·ûÉÏ
+	@brief åˆ¤æ–­ä¸€ä¸ªå±å¹•ä¸Šçš„ç‚¹æ˜¯å¦åœ¨æŸä¸€ä¸ªå­—ç¬¦æ‰€å¤„çš„åˆ—å†…\n
+	@param[in] np æŒ‡å‘è¢«åˆ¤æ–­å­—ç¬¦çš„èŠ‚ç‚¹æŒ‡é’ˆ
+	@param[in] P  è¢«åˆ¤æ–­çš„ç‚¹
+	@retval true è¯¥ç‚¹åœ¨è¯¥å­—ç¬¦æ‰€åœ¨çš„åˆ—å†…
+	@retval false è¯¥ç‚¹ä¸åœ¨è¯¥å­—ç¬¦æ‰€åœ¨åˆ—å†…
+	@note è¯¥å‡½æ•°åˆ¤æ–­çš„åªæœ‰åˆ—ï¼Œä¸æ˜¯åˆ¤æ–­ç‚¹æ˜¯å¦åœ¨å­—ç¬¦ä¸Š
 	*/
 	friend bool point_on_char_col(SICHARNODE_P np, const SIPOINT& P);
 };
