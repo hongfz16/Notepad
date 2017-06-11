@@ -1,0 +1,371 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>notepad--: Notepad/kernal.h 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">notepad--
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('kernal_8h.html','');});
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">类</a> &#124;
+<a href="#typedef-members">类型定义</a> &#124;
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle">
+<div class="title">kernal.h 文件参考</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>记事本的内核<br />
+ 
+<a href="#details">更多...</a></p>
+<div class="textblock"><code>#include &quot;stdafx.h&quot;</code><br />
+<code>#include &lt;string&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+</div>
+<p><a href="kernal_8h_source.html">浏览源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+类</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_s_i_r_e_c_t.html">SIRECT</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">矩形结构体<br />
+用于表示一个字符占据的屏幕空间大小  <a href="struct_s_i_r_e_c_t.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_s_i_p_o_i_n_t.html">SIPOINT</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">点/向量结构体<br />
+用于表示一个字符(的左上角)在屏幕上的位置  <a href="struct_s_i_p_o_i_n_t.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_s_i_r_a_n_g_e.html">SIRANGE</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">表示文本链表中的一段节点  <a href="struct_s_i_r_a_n_g_e.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i_d_r_a_w___i_n_f_o.html">SIDRAW_INFO</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">表示一个字符的与绘制相关的信息<br />
+把每个字符抽象成一个屏幕上的矩形，每两个矩形之间没有缝隙  <a href="class_s_i_d_r_a_w___i_n_f_o.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i_c_h_a_r___i_n_f_o.html">SICHAR_INFO</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">表示一个字符的可以"设置"的信息  <a href="class_s_i_c_h_a_r___i_n_f_o.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i_c_h_a_r_n_o_d_e.html">SICHARNODE</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">表示文本链表的一个节点<br />
+ <a href="class_s_i_c_h_a_r_n_o_d_e.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_i_t_e_x_t.html">SITEXT</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">文本链表<br />
+把文本从头到尾抽象成一个链表  <a href="class_s_i_t_e_x_t.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+类型定义</h2></td></tr>
+<tr class="memitem:a295d0c596b8bef56c7c8657145426b0f"><td class="memItemLeft" align="right" valign="top"><a id="a295d0c596b8bef56c7c8657145426b0f"></a>
+typedef int&#160;</td><td class="memItemRight" valign="bottom"><b>SIDIRECT</b></td></tr>
+<tr class="separator:a295d0c596b8bef56c7c8657145426b0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fa2dcf53e7fde55c22e72b2cd766bd6"><td class="memItemLeft" align="right" valign="top"><a id="a5fa2dcf53e7fde55c22e72b2cd766bd6"></a>
+typedef int&#160;</td><td class="memItemRight" valign="bottom"><b>SIALIGN</b></td></tr>
+<tr class="separator:a5fa2dcf53e7fde55c22e72b2cd766bd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a818f5118e3a41c1dff21b1f2ba720c2f"><td class="memItemLeft" align="right" valign="top"><a id="a818f5118e3a41c1dff21b1f2ba720c2f"></a>
+typedef int&#160;</td><td class="memItemRight" valign="bottom"><b>PAGEWIDTH</b></td></tr>
+<tr class="separator:a818f5118e3a41c1dff21b1f2ba720c2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ac319d19891e22bab226ae6d5969b91"><td class="memItemLeft" align="right" valign="top"><a id="a0ac319d19891e22bab226ae6d5969b91"></a>
+typedef int&#160;</td><td class="memItemRight" valign="bottom"><b>COLORERF</b></td></tr>
+<tr class="separator:a0ac319d19891e22bab226ae6d5969b91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a483798bbd97e397e5e4f2c6fbf3d1e16"><td class="memItemLeft" align="right" valign="top"><a id="a483798bbd97e397e5e4f2c6fbf3d1e16"></a>
+typedef int&#160;</td><td class="memItemRight" valign="bottom"><b>CHARSIZE</b></td></tr>
+<tr class="separator:a483798bbd97e397e5e4f2c6fbf3d1e16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac75bf129a89c5202c2d84062180ae548"><td class="memItemLeft" align="right" valign="top"><a id="ac75bf129a89c5202c2d84062180ae548"></a>
+typedef int&#160;</td><td class="memItemRight" valign="bottom"><b>CHARSPACE</b></td></tr>
+<tr class="separator:ac75bf129a89c5202c2d84062180ae548"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1d7d222baa8128516545c3475793c88"><td class="memItemLeft" align="right" valign="top"><a id="ac1d7d222baa8128516545c3475793c88"></a>
+typedef int&#160;</td><td class="memItemRight" valign="bottom"><b>LINESPACE</b></td></tr>
+<tr class="separator:ac1d7d222baa8128516545c3475793c88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbc4b2f38118e37ce0808d46fa3ecf62"><td class="memItemLeft" align="right" valign="top"><a id="abbc4b2f38118e37ce0808d46fa3ecf62"></a>
+typedef char&#160;</td><td class="memItemRight" valign="bottom"><b>SICHAR_T</b></td></tr>
+<tr class="separator:abbc4b2f38118e37ce0808d46fa3ecf62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3067bc73e84a6f3e4ff3b24b53edc225"><td class="memItemLeft" align="right" valign="top"><a id="a3067bc73e84a6f3e4ff3b24b53edc225"></a>
+typedef LOGFONT&#160;</td><td class="memItemRight" valign="bottom"><b>SIFONT</b></td></tr>
+<tr class="separator:a3067bc73e84a6f3e4ff3b24b53edc225"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b553b2258af8a3e411bf27df792a152"><td class="memItemLeft" align="right" valign="top"><a id="a5b553b2258af8a3e411bf27df792a152"></a>
+typedef SIFONT *&#160;</td><td class="memItemRight" valign="bottom"><b>SIFONT_P</b></td></tr>
+<tr class="separator:a5b553b2258af8a3e411bf27df792a152"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdef1a51c005296531857f373187c1ad"><td class="memItemLeft" align="right" valign="top"><a id="afdef1a51c005296531857f373187c1ad"></a>
+typedef <a class="el" href="struct_s_i_p_o_i_n_t.html">SIPOINT</a>&#160;</td><td class="memItemRight" valign="bottom"><b>SIVECTOR</b></td></tr>
+<tr class="separator:afdef1a51c005296531857f373187c1ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb4b0cda503726e674bfb7a6ced3844c"><td class="memItemLeft" align="right" valign="top"><a id="afb4b0cda503726e674bfb7a6ced3844c"></a>
+typedef <a class="el" href="class_s_i_c_h_a_r___i_n_f_o.html">SICHAR_INFO</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>SICHAR_INFO_P</b></td></tr>
+<tr class="separator:afb4b0cda503726e674bfb7a6ced3844c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91dd5d2175bb498ae8ba11807cab3c67"><td class="memItemLeft" align="right" valign="top"><a id="a91dd5d2175bb498ae8ba11807cab3c67"></a>
+typedef <a class="el" href="class_s_i_d_r_a_w___i_n_f_o.html">SIDRAW_INFO</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>SIDRAW_INFO_P</b></td></tr>
+<tr class="separator:a91dd5d2175bb498ae8ba11807cab3c67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5d235b5e03be93b6f3cd3c93ad27668"><td class="memItemLeft" align="right" valign="top"><a id="ac5d235b5e03be93b6f3cd3c93ad27668"></a>
+typedef <a class="el" href="class_s_i_c_h_a_r_n_o_d_e.html">SICHARNODE</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>SICHARNODE_P</b></td></tr>
+<tr class="separator:ac5d235b5e03be93b6f3cd3c93ad27668"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af380b2acce7027def0f4a6e403e743da"><td class="memItemLeft" align="right" valign="top"><a id="af380b2acce7027def0f4a6e403e743da"></a>
+typedef <a class="el" href="struct_s_i_r_a_n_g_e.html">SIRANGE</a>&#160;</td><td class="memItemRight" valign="bottom"><b>SISELECT</b></td></tr>
+<tr class="separator:af380b2acce7027def0f4a6e403e743da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adad3bf9d1d57647c3959f937ec1fb35f"><td class="memItemLeft" align="right" valign="top"><a id="adad3bf9d1d57647c3959f937ec1fb35f"></a>
+typedef <a class="el" href="struct_s_i_r_a_n_g_e.html">SIRANGE</a>&#160;</td><td class="memItemRight" valign="bottom"><b>SIPARAGRAPH</b></td></tr>
+<tr class="separator:adad3bf9d1d57647c3959f937ec1fb35f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c47bac951844af1eab2f9e0d4888dc8"><td class="memItemLeft" align="right" valign="top"><a id="a2c47bac951844af1eab2f9e0d4888dc8"></a>
+typedef <a class="el" href="struct_s_i_r_a_n_g_e.html">SIRANGE</a>&#160;</td><td class="memItemRight" valign="bottom"><b>SILINE</b></td></tr>
+<tr class="separator:a2c47bac951844af1eab2f9e0d4888dc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67eacec0dbcb548bcda95ffc810beaa3"><td class="memItemLeft" align="right" valign="top"><a id="a67eacec0dbcb548bcda95ffc810beaa3"></a>
+typedef <a class="el" href="class_s_i_c_h_a_r_n_o_d_e.html">SICHARNODE_P</a>&#160;</td><td class="memItemRight" valign="bottom"><b>SICURSORP</b></td></tr>
+<tr class="separator:a67eacec0dbcb548bcda95ffc810beaa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:ad96245c98739ed3d7e8b09906312563d"><td class="memTemplParams" colspan="2"><a id="ad96245c98739ed3d7e8b09906312563d"></a>
+template&lt;class T &gt; </td></tr>
+<tr class="memitem:ad96245c98739ed3d7e8b09906312563d"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>exchange</b> (T &amp;a, T &amp;b)</td></tr>
+<tr class="separator:ad96245c98739ed3d7e8b09906312563d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5353a7d4547856546bda843b9c43451"><td class="memItemLeft" align="right" valign="top"><a id="af5353a7d4547856546bda843b9c43451"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isenter</b> (SICHAR_T ch)</td></tr>
+<tr class="separator:af5353a7d4547856546bda843b9c43451"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a735a63fa1a71c1a3f4cf51286466cea1"><td class="memItemLeft" align="right" valign="top"><a id="a735a63fa1a71c1a3f4cf51286466cea1"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>Max</b> (int a, int b)</td></tr>
+<tr class="separator:a735a63fa1a71c1a3f4cf51286466cea1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd07a7735390aea7bf376c2bcc75bd96"><td class="memItemLeft" align="right" valign="top">COLORERF&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kernal_8h.html#abd07a7735390aea7bf376c2bcc75bd96">anticolor_ext</a> (COLORERF c)</td></tr>
+<tr class="memdesc:abd07a7735390aea7bf376c2bcc75bd96"><td class="mdescLeft">&#160;</td><td class="mdescRight">反色函数<br />
+ <a href="#abd07a7735390aea7bf376c2bcc75bd96">更多...</a><br /></td></tr>
+<tr class="separator:abd07a7735390aea7bf376c2bcc75bd96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ca6beed9dd475e499f8b88fa3c471b6"><td class="memItemLeft" align="right" valign="top"><a id="a3ca6beed9dd475e499f8b88fa3c471b6"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>ABS</b> (int a)</td></tr>
+<tr class="separator:a3ca6beed9dd475e499f8b88fa3c471b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae39165f0f00583edee6fe18ea6bdf5e3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kernal_8h.html#ae39165f0f00583edee6fe18ea6bdf5e3">point_on_line</a> (<a class="el" href="struct_s_i_r_a_n_g_e.html">SILINE</a> L, const <a class="el" href="struct_s_i_p_o_i_n_t.html">SIPOINT</a> &amp;P)</td></tr>
+<tr class="separator:ae39165f0f00583edee6fe18ea6bdf5e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98cfecde826e07d0286c4e279554d1fa"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kernal_8h.html#a98cfecde826e07d0286c4e279554d1fa">point_on_char_col</a> (<a class="el" href="class_s_i_c_h_a_r_n_o_d_e.html">SICHARNODE_P</a> np, const <a class="el" href="struct_s_i_p_o_i_n_t.html">SIPOINT</a> &amp;P)</td></tr>
+<tr class="separator:a98cfecde826e07d0286c4e279554d1fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>记事本的内核<br />
+</p>
+<dl class="section author"><dt>作者</dt><dd>李仁杰  <a href="#" onclick="location.href='mai'+'lto:'+'Sha'+'do'+'wIt'+'er'+'ato'+'r@'+'hot'+'ma'+'il.'+'co'+'m'; return false;">Shado<span style="display: none;">.nosp@m.</span>wIte<span style="display: none;">.nosp@m.</span>rator<span style="display: none;">.nosp@m.</span>@hot<span style="display: none;">.nosp@m.</span>mail.<span style="display: none;">.nosp@m.</span>com</a> </dd></dl>
+<dl class="section version"><dt>版本</dt><dd>1.0 </dd></dl>
+<dl class="section date"><dt>日期</dt><dd>2015.6.5 </dd></dl>
+</div><h2 class="groupheader">函数说明</h2>
+<a id="abd07a7735390aea7bf376c2bcc75bd96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd07a7735390aea7bf376c2bcc75bd96">&#9670;&nbsp;</a></span>anticolor_ext()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">COLORERF anticolor_ext </td>
+          <td>(</td>
+          <td class="paramtype">COLORERF&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>反色函数<br />
+</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">c</td><td>当前颜色 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">反色后的颜色</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a98cfecde826e07d0286c4e279554d1fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98cfecde826e07d0286c4e279554d1fa">&#9670;&nbsp;</a></span>point_on_char_col()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool point_on_char_col </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_s_i_c_h_a_r_n_o_d_e.html">SICHARNODE_P</a>&#160;</td>
+          <td class="paramname"><em>np</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="struct_s_i_p_o_i_n_t.html">SIPOINT</a> &amp;&#160;</td>
+          <td class="paramname"><em>P</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">np</td><td>指向被判断字符的节点指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">P</td><td>被判断的点 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>该点在该字符所在的列内 </td></tr>
+    <tr><td class="paramname">false</td><td>该点不在该字符所在列内 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd>该函数判断的只有列，不是判断点是否在字符上 </dd></dl>
+
+</div>
+</div>
+<a id="ae39165f0f00583edee6fe18ea6bdf5e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae39165f0f00583edee6fe18ea6bdf5e3">&#9670;&nbsp;</a></span>point_on_line()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool point_on_line </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_s_i_r_a_n_g_e.html">SILINE</a>&#160;</td>
+          <td class="paramname"><em>L</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="struct_s_i_p_o_i_n_t.html">SIPOINT</a> &amp;&#160;</td>
+          <td class="paramname"><em>P</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">L</td><td>被判断的行 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">P</td><td>被判断的点 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>该点在这一行内 </td></tr>
+    <tr><td class="paramname">false</td><td>该点不在这一行内 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_5deefc486343fe63db2cbecc5a6e40ef.html">Notepad</a></li><li class="navelem"><a class="el" href="kernal_8h.html">kernal.h</a></li>
+    <li class="footer">制作者
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
+</body>
+</html>

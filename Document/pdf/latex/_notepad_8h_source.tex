@@ -1,0 +1,70 @@
+\hypertarget{_notepad_8h_source}{}\section{Notepad.\+h}
+\label{_notepad_8h_source}\index{Notepad/\+Notepad.\+h@{Notepad/\+Notepad.\+h}}
+
+\begin{DoxyCode}
+00001 
+00159 \textcolor{preprocessor}{#pragma once}
+00160 \textcolor{preprocessor}{#include "stdafx.h"}
+00161 \textcolor{preprocessor}{#include "\hyperlink{_main_frm_8h}{MainFrm.h}"}
+00162 \textcolor{preprocessor}{#include "resource.h"}
+00163 \textcolor{preprocessor}{#include <string>}
+00164 
+\Hypertarget{_notepad_8h_source_l00171}\hyperlink{class_c_notepad_app}{00171} \textcolor{keyword}{class }\hyperlink{class_c_notepad_app}{CNotepadApp} : \textcolor{keyword}{public} CWinApp \{
+00172 \textcolor{keyword}{public}:
+00173 
+00174     \hyperlink{class_c_notepad_app_a829ed77997eb81496b815b50657ecb40}{CNotepadApp}();
+00175 
+\Hypertarget{_notepad_8h_source_l00176}\hyperlink{class_c_notepad_app_a9eee0a246d98c97f2554d5bd292bf3f1}{00176}     \hyperlink{class_c_main_frame}{CMainFrame}* \hyperlink{class_c_notepad_app_a9eee0a246d98c97f2554d5bd292bf3f1}{mainp};
+00177 
+00178 \textcolor{keyword}{public}:
+00179 
+00180     \textcolor{keyword}{virtual} BOOL \hyperlink{class_c_notepad_app_a31874d4fcf2e5120379146e61d8716d4}{InitInstance}();
+00181 
+00182     \textcolor{keyword}{virtual} \textcolor{keywordtype}{int} \hyperlink{class_c_notepad_app_a07647790b646bc0be54fbf39e069ddcd}{ExitInstance}();
+00183 
+00184 \textcolor{keyword}{public}:
+00191     afx\_msg \textcolor{keywordtype}{void} \hyperlink{class_c_notepad_app_aa09334de95a65c56cdca8a682b006bb6}{OnFont}();
+00192 
+00193 \textcolor{keyword}{public}:
+00200     afx\_msg \textcolor{keywordtype}{void} \hyperlink{class_c_notepad_app_a954649ecbb87fb8a001f2ed399440261}{OnPara}();
+00201 
+00202 \textcolor{keyword}{public}:
+00203     afx\_msg \textcolor{keywordtype}{void} OnCut();
+00204     afx\_msg \textcolor{keywordtype}{void} OnCopy();
+00205     afx\_msg \textcolor{keywordtype}{void} OnPaste();
+00206 
+\Hypertarget{_notepad_8h_source_l00207}\hyperlink{class_c_notepad_app_a7659b246dc9d6690527694f35d31416f}{00207}     \hyperlink{struct_s_i_r_a_n_g_e}{SIRANGE} \hyperlink{class_c_notepad_app_a7659b246dc9d6690527694f35d31416f}{m\_cutBoard}; 
+00208 
+00209 \textcolor{keyword}{public}:
+00210 
+00211     afx\_msg \textcolor{keywordtype}{void} \hyperlink{class_c_notepad_app_a40ce59e5a4884458f47b49b80497683a}{OnAppAbout}();
+00212 
+00213     DECLARE\_MESSAGE\_MAP()
+00214 
+00215     afx\_msg \textcolor{keywordtype}{void} \hyperlink{class_c_notepad_app_add137cbf475cc2218fcaa715b22c283b}{OnAlignLeft}();
+00216 
+00217     afx\_msg \textcolor{keywordtype}{void} \hyperlink{class_c_notepad_app_abc249a300c4b6f43bead2d500831fe35}{OnAlignCenter}();
+00218 
+00219     afx\_msg \textcolor{keywordtype}{void} \hyperlink{class_c_notepad_app_ac89fe310647cf5fbc03538346cbc4c10}{OnAlignRight}();
+00220 
+00221     afx\_msg \textcolor{keywordtype}{void} \hyperlink{class_c_notepad_app_abbcfd489cd0440ed1551fe41396f6cdd}{OnAlignDistribute}();
+00222 
+00223     afx\_msg \textcolor{keywordtype}{void} \hyperlink{class_c_notepad_app_afcebb68584ad362f5dfba2449194531d}{OnOpen}();
+00224 
+00225     afx\_msg \textcolor{keywordtype}{void} \hyperlink{class_c_notepad_app_a9fcc45c39d4fb4866c0b7f2e1f1b27c0}{OnClose}();
+00226 
+\Hypertarget{_notepad_8h_source_l00227}\hyperlink{class_c_notepad_app_aedb9f07cbb0e5ef12c51f6e829c3a1bf}{00227}     inline \textcolor{keywordtype}{void} \hyperlink{class_c_notepad_app_aedb9f07cbb0e5ef12c51f6e829c3a1bf}{change\_align}(\textcolor{keywordtype}{int} flag)
+00228     \{
+00229         \textcolor{keywordflow}{if} (mainp->\hyperlink{class_c_main_frame_a7c3af9327c496f8c807d578f7a4ef4c5}{m\_wndView}.\hyperlink{class_c_child_view_a7a8d14e1c1adfb50fa6e033ebc05a357}{m\_text}->\hyperlink{class_s_i_t_e_x_t_a536f8decde35b0149619ca1719c887b0}{select}.\hyperlink{struct_s_i_r_a_n_g_e_aaa89b5ae16be7b890eba048bc212feec}{ep} != NULL)
+00230             mainp->\hyperlink{class_c_main_frame_a7c3af9327c496f8c807d578f7a4ef4c5}{m\_wndView}.\hyperlink{class_c_child_view_a7a8d14e1c1adfb50fa6e033ebc05a357}{m\_text}->\hyperlink{class_s_i_t_e_x_t_ad37947fae9aa012847b5b32c73d32af7}{set\_select\_align}(flag);
+00231         \textcolor{keywordflow}{else}
+00232             mainp->\hyperlink{class_c_main_frame_a7c3af9327c496f8c807d578f7a4ef4c5}{m\_wndView}.\hyperlink{class_c_child_view_a7a8d14e1c1adfb50fa6e033ebc05a357}{m\_text}->\hyperlink{class_s_i_t_e_x_t_a1717bc1a3f8d797fc52654ffb7aafb87}{set\_cursorp\_align}(flag);
+00233         mainp->\hyperlink{class_c_main_frame_a7c3af9327c496f8c807d578f7a4ef4c5}{m\_wndView}.\hyperlink{class_c_child_view_a7a2763ed4f49e10e4efc2c89fdf3bbbf}{need\_recompute} = \textcolor{keyword}{true};
+00234         mainp->\hyperlink{class_c_main_frame_a7c3af9327c496f8c807d578f7a4ef4c5}{m\_wndView}.\hyperlink{class_c_child_view_acff91e8fc8cc40cd1ebe1d24a6be4945}{m\_changed}();
+00235         mainp->\hyperlink{class_c_main_frame_a7c3af9327c496f8c807d578f7a4ef4c5}{m\_wndView}.\hyperlink{class_c_child_view_ab68bf2b03a8e9aab3f2aac2b9ec3177a}{curchanged}();
+00236     \}
+00237 
+00238 \};
+00239 
+00240 \textcolor{keyword}{extern} \hyperlink{class_c_notepad_app}{CNotepadApp} theApp;
+\end{DoxyCode}

@@ -1,0 +1,296 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>notepad--: 说明文档</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">notepad--
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('index.html','');});
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">说明文档 </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><h1>基于MFC的文本编辑器 </h1>
+<h2>目标 </h2>
+<ol type="1">
+<li>不使用MFC文本框控件，实现一个简单的文本编辑器</li>
+<li>最低要求如下：<ul>
+<li>带有图形界面</li>
+<li>能够比较方便的给不同的字符设置不同的字体、颜色和字号</li>
+<li>可以设置字与字之间的间距</li>
+</ul>
+</li>
+<li>另外还实现了以下功能<ul>
+<li>保存、打开自定义格式的文件</li>
+<li>设置对齐方式，包括左对齐、居中对齐、右对齐、分散对齐</li>
+<li>设置行间距</li>
+</ul>
+</li>
+</ol>
+<h2>使用方法 </h2>
+<ol type="1">
+<li>常规操作与普通文本编辑器相同</li>
+<li>设置字体、颜色、字号：<ul>
+<li>选中想要改变的文本内容</li>
+<li>点击编辑菜单栏，点击字体，将会弹出选择字体的窗口</li>
+<li>选择想要设置的格式即可</li>
+</ul>
+</li>
+<li>设置对齐方式：<ul>
+<li>如果只需要设置单行的格式，请直接将光标移到该行</li>
+<li>如果需要设置多行的格式，请选中多行</li>
+<li>点击编辑菜单栏，点击对齐方式</li>
+<li>在弹出的右侧菜单栏中选择需要的对齐方式</li>
+</ul>
+</li>
+<li>设置行间距、字间距：<ul>
+<li>选中需要设置的文本内容</li>
+<li>点击编辑菜单栏，点击段落</li>
+<li>在弹出的窗口中输入需要设置的行间距以及字间距</li>
+<li>注意单位为像素</li>
+</ul>
+</li>
+<li>打开与保存<ul>
+<li>首先注意，本文本编辑器只支持自定义格式的（后缀名为<code>\.orz</code>）文件，其他格式的文件一律无法打开</li>
+<li>打开：点击文件菜单栏，点击打开，在文件浏览器中选择想要打开的文件，点击确定即可</li>
+<li>保存：点击文件菜单栏，点击保存，在文件浏览器中选择想要保存的目录，点击确定即可</li>
+</ul>
+</li>
+</ol>
+<h2>构件库 </h2>
+<p>详情请参见<a href="annotated.html">Class List</a></p>
+<h2>UI界面的交互实现方法说明 </h2>
+<ol type="1">
+<li>设置字体字号颜色 <br />
+通过<code>CFontDialog</code>窗口类，创建选择字体的窗口 <br />
+用户选择字体以及颜色后，获取字体信息<code>LOGFONT</code>以及颜色信息<code>REFCOLOR</code><br />
+通过<code>set_select_font</code>与<code>set_select_col</code>函数将字体以及颜色信息传递给后端<br />
+</li>
+<li>设置字间距行间距 <br />
+通过<code><a class="el" href="class_m___p_a_r_a___d_i_a.html" title="设置行间距以及字间距的对话框类M_PARA_DIA  该对话框用于用户设置行间距以及字间距 如果用户选择了一段文字...">M_PARA_DIA</a></code>对话框，获取用户设置的字间距与行间距的值 <br />
+通过<code>set_select_lspace</code>与<code>set_select_cspace</code>函数将字间距与行间距传给后端<br />
+</li>
+<li>保存、打开文件 <br />
+通过<code>CFileDialog</code>类，返回用户需要保存或者打开文件的路径<br />
+通过<code>#</code>与<code>#</code>函数将路径作为字符串传给后端<br />
+</li>
+<li>设置对齐方式 <br />
+直接通过消息响应函数，调用<code>set_select_align</code>函数,设置对齐方式<br />
+</li>
+</ol>
+<h2>后端（kernal）实现方法说明 </h2>
+<ol type="1">
+<li>抽象<br />
+<ul>
+<li>把画在屏幕上的字符看作一个矩形<br />
+</li>
+<li>用链表从前往后储存字符<br />
+</li>
+</ul>
+</li>
+<li>计算绘制信息<br />
+<ul>
+<li>遍历文本链表，进行预处理<br />
+</li>
+<li>遍历文本链表，把链表分成很多行<br />
+<ul>
+<li>当某行的字符宽度之和(<code>tot_width</code>)将要超过页面宽度(<code>pagewidth</code>)时，开一个新行<br />
+</li>
+<li>当遇到换行符时，开一格新行<br />
+</li>
+</ul>
+</li>
+<li>从上往下遍历每一行，根据相关信息计算该行内的<code>n</code>个字符矩形的位置<br />
+<ul>
+<li>如果该行是默认对齐方式或者左对齐，那么x坐标从0开始，每个矩形宽度加上字间距，从左往右计算<br />
+</li>
+<li>如果该行是右对齐，那么x坐标从<code>pagewidth</code>-<code>tot_width</code>开始，每个矩形宽度加上字间距，从左往右计算<br />
+</li>
+<li>如果对齐方式是居中对齐，那么x坐标从(<code>pagewidth</code>-<code>tot_width</code>)/2开始，每个矩形宽度加上字间距，从左往右计算<br />
+</li>
+<li>如果对齐方式是分散对齐，那么x坐标从0开始，每个矩形宽度加上字间距和<code>delta</code>=(<code>pagewidth</code>-<code>tot_width</code>)/<code>n</code><br />
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2>UI及交互部分遇到的问题及解决方案 </h2>
+<ol type="1">
+<li>绘图过程闪烁的问题 <br />
+问题描述：使用过程中每当需要屏幕刷新的时候，画面会不停的闪烁 <br />
+可能原因：每次调用OnPaint函数的时候都会先将屏幕清空，由于绘制屏幕仍然需要一定的时间，所以每次重绘都会出现闪烁的情况 <br />
+解决方案：使用双缓冲绘图，分为两个部分：<br />
+(1)重载<code>BOOL <a class="el" href="class_c_child_view.html#a6060e6d09d522d345dcee5a01d41c1f0" title="重载擦除屏幕函数，使它的返回值为false，即不擦除，配合双缓冲绘图使用 ">CChildView::OnEraseBkgnd(CDC* pDC)</a></code>函数，使得画面不会被擦除<br />
+(2)先在使用内存DC上画图，画好后直接调用<code>BitBlt</code>函数将画面传给物理DC<br />
+</li>
+<li>滚动条位置以及大小的问题<br />
+问题描述：滚动条大小以及位置随着窗口大小改变而随机变动<br />
+可能原因：由于滚动条控件需要手动设置大小以及位置，所以当改变窗口大小的时候会出现滚动条位置偏移的情况<br />
+解决方案：设置两个变量：<code>m_client_cy</code>记录页面长度，<code>scrolledpix</code>记录页面相对于窗口上端的偏移量<br />
+每次重绘的时候通过这两个量来重新计算滚动条的大小以及位置<br />
+</li>
+<li>解析用户传入的键盘消息<br />
+问题描述：根据官方文档，键盘消息的对应关系很复杂，需要解析传入的参数才能获得字符信息<br />
+解决方案：使用<code>void <a class="el" href="class_c_child_view.html#af29ede94259b52b2ad54d139ff554abe" title="响应发送文字消息的函数  响应ON_WM_CHAR消息 ">CChildView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)</a></code>的消息响应函数<br />
+系统将键盘消息处理后返回用户输入的字符<br />
+</li>
+<li>连按消息的问题<br />
+问题描述：通常连按一个按键，被认为是连续输入字符<br />
+解决方案：在<code>void <a class="el" href="class_c_child_view.html#a74d87512b76128e2eedea87811363e45" title="键盘按下消息响应函数  此函数内部对nChar有判断，也就是说此函数只处理按下上下左右键的消息 ...">CChildView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)</a></code>函数中<br />
+<code>nRepCnt</code>参数是用于标记连按消息的次数的，循环相应的次数即可实现连续输入<br />
+</li>
+<li>获取字体的像素大小的问题<br />
+问题描述：<code>LOGFONT</code>结构体的成员<code>lfHeight</code>与<code>lfWidth</code>不是像素高度<br />
+解决方案：通过公式<code>pixHeight = -(lfHeight * 72) / GetDeviceCaps(hDC,LOGPIXELSY)</code>转换为像素高度<br />
+参考资料：<a href="https://msdn.microsoft.com/zh-cn/library/bb773327.aspx">MSDN上关于LOGFONT的说明</a><br />
+</li>
+</ol>
+<h2>后端（kernal）遇到的问题及解决方案 </h2>
+<ol type="1">
+<li>空行的问题<br />
+问题描述：链表中换行符只用作开启一行的标识符，如果用户连续键入两个换行，第二个换行会变成"空行"而无法在屏幕上打出来<br />
+解决方案：在预处理中，先遍历链表，在相邻两个换行符之间插入一个<code>S.width</code>=0，<code>size</code>=-1的字符，避免"空行"的产生<br />
+</li>
+<li>使用"打开"命令后单击屏幕会崩溃的问题<br />
+问题描述：添加"打开"模块后，用户在界面上单击会导致崩溃<br />
+问题原因：执行"打开"命令后，后端的选中信息会丢失，而UI当作用户"完成"了一次选中操作调用了<code>end_select</code>函数，导致内存无效访问<br />
+解决方案：在对选中区域执行任何操作前，先检查是否存在选中区域<br />
+</li>
+<li>"打开"命令对于某些字体无法执行的问题<br />
+问题描述：当打开包含字体名称(<code>lfFaceName</code>)为多个单词的文件时，"打开"操作会失败<br />
+问题原因：字体名称是<code>wchar_t</code>类型的,最初我用的scanf("%ls")来读取字体名称，这样就只能读到字体名称的第一个单词，而且我没有找到针对<code>wchar_t</code>数组的getline函数。<br />
+解决方案：手写针对<code>wchar_t</code>的<code>si_getline</code>函数<br />
+ <h2>测试用例 </h2>
+</li>
+</ol>
+<ol type="1">
+<li><code>align.orz</code>：测试四种对齐方式</li>
+<li><code>keepcalm.orz</code>：测试设置字体、字号、颜色</li>
+<li><code>linechaspace.orz</code>：测试设置行间距、字间距</li>
+</ol>
+<h2>总结 </h2>
+<ol type="1">
+<li>程序具有一定的可使用性，实现了基本目标，在数据规模不太大的情况下可以达到较好效果</li>
+<li>当数据规模较大时（超过50000字符），会出现明显的卡顿现象，所以程序仍然有很大改进空间<br />
+<ul>
+<li>可以通过每次只计算、绘制当前屏幕附近的字符来解决这个问题</li>
+</ul>
+</li>
+</ol>
+<h2>作者信息 </h2>
+<ul>
+<li>kernal部分作者：李仁杰<br />
+<ul>
+<li>学院：清华大学软件学院<br />
+</li>
+<li>班级：软件62<br />
+</li>
+<li>学号：2016013271<br />
+</li>
+<li>e-mail: ShadowIterator@hotmail.com<br />
+</li>
+<li>电话：18801005736<br />
+</li>
+</ul>
+</li>
+<li>UI及交互部分作者：洪方舟<br />
+<ul>
+<li>学院：清华大学软件学院<br />
+</li>
+<li>班级：软件62<br />
+</li>
+<li>学号： 2016013259<br />
+</li>
+<li>e-mail: <a href="#" onclick="location.href='mai'+'lto:'+'hon'+'gf'+'z16'+'@1'+'63.'+'co'+'m'; return false;">hongf<span style="display: none;">.nosp@m.</span>z16@<span style="display: none;">.nosp@m.</span>163.c<span style="display: none;">.nosp@m.</span>om</a><br />
+</li>
+<li>电话：15062727188<br />
+</li>
+</ul>
+</li>
+</ul>
+</div></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">制作者
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
+</body>
+</html>

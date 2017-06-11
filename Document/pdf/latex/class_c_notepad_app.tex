@@ -1,0 +1,137 @@
+\hypertarget{class_c_notepad_app}{}\section{C\+Notepad\+App类 参考}
+\label{class_c_notepad_app}\index{C\+Notepad\+App@{C\+Notepad\+App}}
+
+
+程序大类\+C\+Notepad\+App~\newline
+程序启动时创建,初始化函数中创建其他的对象~\newline
+在初始化过程中创建菜单,主窗口~\newline
+继承自\+C\+Win\+App  
+
+
+
+
+{\ttfamily \#include $<$Notepad.\+h$>$}
+
+类 C\+Notepad\+App 继承关系图\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_c_notepad_app}
+\end{center}
+\end{figure}
+\subsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_c_notepad_app_a829ed77997eb81496b815b50657ecb40}\label{class_c_notepad_app_a829ed77997eb81496b815b50657ecb40}} 
+\hyperlink{class_c_notepad_app_a829ed77997eb81496b815b50657ecb40}{C\+Notepad\+App} ()
+\begin{DoxyCompactList}\small\item\em 默认构造函数 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_notepad_app_a31874d4fcf2e5120379146e61d8716d4}\label{class_c_notepad_app_a31874d4fcf2e5120379146e61d8716d4}} 
+virtual B\+O\+OL \hyperlink{class_c_notepad_app_a31874d4fcf2e5120379146e61d8716d4}{Init\+Instance} ()
+\begin{DoxyCompactList}\small\item\em 初始化函数,实例化\+C\+Main\+Frame类,并且将mainp指针指向它 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_notepad_app_a07647790b646bc0be54fbf39e069ddcd}\label{class_c_notepad_app_a07647790b646bc0be54fbf39e069ddcd}} 
+virtual int \hyperlink{class_c_notepad_app_a07647790b646bc0be54fbf39e069ddcd}{Exit\+Instance} ()
+\begin{DoxyCompactList}\small\item\em 退出程序调用函数 \end{DoxyCompactList}\item 
+afx\+\_\+msg void \hyperlink{class_c_notepad_app_aa09334de95a65c56cdca8a682b006bb6}{On\+Font} ()
+\begin{DoxyCompactList}\small\item\em 选择字体消息响应函数~\newline
+\end{DoxyCompactList}\item 
+afx\+\_\+msg void \hyperlink{class_c_notepad_app_a954649ecbb87fb8a001f2ed399440261}{On\+Para} ()
+\begin{DoxyCompactList}\small\item\em 选择行间距字间距消息响应函数~\newline
+\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_notepad_app_a66c1b4a1e235017e0a5078438df97e7c}\label{class_c_notepad_app_a66c1b4a1e235017e0a5078438df97e7c}} 
+afx\+\_\+msg void {\bfseries On\+Cut} ()
+\item 
+\mbox{\Hypertarget{class_c_notepad_app_aa3444dcefa48928a6244b98d337cbff9}\label{class_c_notepad_app_aa3444dcefa48928a6244b98d337cbff9}} 
+afx\+\_\+msg void {\bfseries On\+Copy} ()
+\item 
+\mbox{\Hypertarget{class_c_notepad_app_af6bb7c7de2fcddd4245c5005135c1689}\label{class_c_notepad_app_af6bb7c7de2fcddd4245c5005135c1689}} 
+afx\+\_\+msg void {\bfseries On\+Paste} ()
+\item 
+\mbox{\Hypertarget{class_c_notepad_app_a40ce59e5a4884458f47b49b80497683a}\label{class_c_notepad_app_a40ce59e5a4884458f47b49b80497683a}} 
+afx\+\_\+msg void \hyperlink{class_c_notepad_app_a40ce59e5a4884458f47b49b80497683a}{On\+App\+About} ()
+\begin{DoxyCompactList}\small\item\em \char`\"{}关于\char`\"{}窗口的消息相应函数 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_notepad_app_add137cbf475cc2218fcaa715b22c283b}\label{class_c_notepad_app_add137cbf475cc2218fcaa715b22c283b}} 
+afx\+\_\+msg void \hyperlink{class_c_notepad_app_add137cbf475cc2218fcaa715b22c283b}{On\+Align\+Left} ()
+\begin{DoxyCompactList}\small\item\em 左对齐的消息响应函数 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_notepad_app_abc249a300c4b6f43bead2d500831fe35}\label{class_c_notepad_app_abc249a300c4b6f43bead2d500831fe35}} 
+afx\+\_\+msg void \hyperlink{class_c_notepad_app_abc249a300c4b6f43bead2d500831fe35}{On\+Align\+Center} ()
+\begin{DoxyCompactList}\small\item\em 居中的消息响应函数农户 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_notepad_app_ac89fe310647cf5fbc03538346cbc4c10}\label{class_c_notepad_app_ac89fe310647cf5fbc03538346cbc4c10}} 
+afx\+\_\+msg void \hyperlink{class_c_notepad_app_ac89fe310647cf5fbc03538346cbc4c10}{On\+Align\+Right} ()
+\begin{DoxyCompactList}\small\item\em 右对齐的消息响应函数 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_notepad_app_abbcfd489cd0440ed1551fe41396f6cdd}\label{class_c_notepad_app_abbcfd489cd0440ed1551fe41396f6cdd}} 
+afx\+\_\+msg void \hyperlink{class_c_notepad_app_abbcfd489cd0440ed1551fe41396f6cdd}{On\+Align\+Distribute} ()
+\begin{DoxyCompactList}\small\item\em 分散对齐的消息响应函数 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_notepad_app_afcebb68584ad362f5dfba2449194531d}\label{class_c_notepad_app_afcebb68584ad362f5dfba2449194531d}} 
+afx\+\_\+msg void \hyperlink{class_c_notepad_app_afcebb68584ad362f5dfba2449194531d}{On\+Open} ()
+\begin{DoxyCompactList}\small\item\em 打开文件的消息响应函数 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_notepad_app_a9fcc45c39d4fb4866c0b7f2e1f1b27c0}\label{class_c_notepad_app_a9fcc45c39d4fb4866c0b7f2e1f1b27c0}} 
+afx\+\_\+msg void \hyperlink{class_c_notepad_app_a9fcc45c39d4fb4866c0b7f2e1f1b27c0}{On\+Close} ()
+\begin{DoxyCompactList}\small\item\em 关闭文件的消息响应函数 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_notepad_app_aedb9f07cbb0e5ef12c51f6e829c3a1bf}\label{class_c_notepad_app_aedb9f07cbb0e5ef12c51f6e829c3a1bf}} 
+void \hyperlink{class_c_notepad_app_aedb9f07cbb0e5ef12c51f6e829c3a1bf}{change\+\_\+align} (int flag)
+\begin{DoxyCompactList}\small\item\em 改变对齐方式的函数 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_c_notepad_app_a9eee0a246d98c97f2554d5bd292bf3f1}\label{class_c_notepad_app_a9eee0a246d98c97f2554d5bd292bf3f1}} 
+\hyperlink{class_c_main_frame}{C\+Main\+Frame} $\ast$ \hyperlink{class_c_notepad_app_a9eee0a246d98c97f2554d5bd292bf3f1}{mainp}
+\begin{DoxyCompactList}\small\item\em 指向主窗口的指针 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_notepad_app_a7659b246dc9d6690527694f35d31416f}\label{class_c_notepad_app_a7659b246dc9d6690527694f35d31416f}} 
+\hyperlink{struct_s_i_r_a_n_g_e}{S\+I\+R\+A\+N\+GE} \hyperlink{class_c_notepad_app_a7659b246dc9d6690527694f35d31416f}{m\+\_\+cut\+Board}
+\begin{DoxyCompactList}\small\item\em 剪贴板,实际上是两个指向文字节点的指针组成的结构体 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{详细描述}
+程序大类\+C\+Notepad\+App~\newline
+程序启动时创建,初始化函数中创建其他的对象~\newline
+在初始化过程中创建菜单,主窗口~\newline
+继承自\+C\+Win\+App 
+
+\subsection{成员函数说明}
+\mbox{\Hypertarget{class_c_notepad_app_aa09334de95a65c56cdca8a682b006bb6}\label{class_c_notepad_app_aa09334de95a65c56cdca8a682b006bb6}} 
+\index{C\+Notepad\+App@{C\+Notepad\+App}!On\+Font@{On\+Font}}
+\index{On\+Font@{On\+Font}!C\+Notepad\+App@{C\+Notepad\+App}}
+\subsubsection{\texorpdfstring{On\+Font()}{OnFont()}}
+{\footnotesize\ttfamily void C\+Notepad\+App\+::\+On\+Font (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+选择字体消息响应函数~\newline
+
+
+
+\begin{DoxyItemize}
+\item 实例化\+M\+F\+C字体选择对话框
+\item 将用户选择的字体传入\+S\+I\+T\+E\+X\+T实例中 \begin{DoxySeeAlso}{参见}
+\hyperlink{class_s_i_t_e_x_t}{S\+I\+T\+E\+XT} 
+\end{DoxySeeAlso}
+\begin{DoxyNote}{注解}
+该函数响应\+I\+D\+\_\+\+F\+O\+N\+T消息,当用户点击菜单栏中\char`\"{}字体\char`\"{}一项时发送该消息 
+\end{DoxyNote}
+
+\end{DoxyItemize}\mbox{\Hypertarget{class_c_notepad_app_a954649ecbb87fb8a001f2ed399440261}\label{class_c_notepad_app_a954649ecbb87fb8a001f2ed399440261}} 
+\index{C\+Notepad\+App@{C\+Notepad\+App}!On\+Para@{On\+Para}}
+\index{On\+Para@{On\+Para}!C\+Notepad\+App@{C\+Notepad\+App}}
+\subsubsection{\texorpdfstring{On\+Para()}{OnPara()}}
+{\footnotesize\ttfamily void C\+Notepad\+App\+::\+On\+Para (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+选择行间距字间距消息响应函数~\newline
+
+
+
+\begin{DoxyItemize}
+\item 实例化选择行间距字间距的对话框
+\item 将用户设置的行间距以及字间距传入\+S\+I\+T\+E\+X\+T实例中 \begin{DoxySeeAlso}{参见}
+\hyperlink{class_s_i_t_e_x_t}{S\+I\+T\+E\+XT} 
+\end{DoxySeeAlso}
+\begin{DoxyNote}{注解}
+该函数响应\+I\+D\+\_\+\+P\+A\+R\+A消息,当用户点击菜单栏中\char`\"{}段落\char`\"{}一项时发送该消息 
+\end{DoxyNote}
+
+\end{DoxyItemize}
+
+该类的文档由以下文件生成\+:\begin{DoxyCompactItemize}
+\item 
+Notepad/\hyperlink{_notepad_8h}{Notepad.\+h}\item 
+Notepad/Notepad.\+cpp\end{DoxyCompactItemize}

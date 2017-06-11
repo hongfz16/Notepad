@@ -1,0 +1,62 @@
+\hypertarget{stdafx_8h_source}{}\section{stdafx.\+h}
+\label{stdafx_8h_source}\index{Notepad/stdafx.\+h@{Notepad/stdafx.\+h}}
+
+\begin{DoxyCode}
+00001 
+00002 \textcolor{comment}{// stdafx.h : 标准系统包含文件的包含文件，}
+00003 \textcolor{comment}{// 或是经常使用但不常更改的}
+00004 \textcolor{comment}{// 特定于项目的包含文件}
+00005 
+00006 \textcolor{preprocessor}{#pragma once}
+00007 
+00008 \textcolor{preprocessor}{#ifndef VC\_EXTRALEAN}
+00009 \textcolor{preprocessor}{#define VC\_EXTRALEAN            // 从 Windows 头中排除极少使用的资料}
+00010 \textcolor{preprocessor}{#endif}
+00011 
+00012 \textcolor{preprocessor}{#include "targetver.h"}
+00013 
+00014 \textcolor{preprocessor}{#define \_ATL\_CSTRING\_EXPLICIT\_CONSTRUCTORS      // 某些 CString 构造函数将是显式的}
+00015 
+00016 \textcolor{comment}{// 关闭 MFC 对某些常见但经常可放心忽略的警告消息的隐藏}
+00017 \textcolor{preprocessor}{#define \_AFX\_ALL\_WARNINGS}
+00018 
+00019 \textcolor{preprocessor}{#include <afxwin.h>}         \textcolor{comment}{// MFC 核心组件和标准组件}
+00020 \textcolor{preprocessor}{#include <afxext.h>}         \textcolor{comment}{// MFC 扩展}
+00021 
+00022 
+00023 \textcolor{preprocessor}{#include <afxdisp.h>}        \textcolor{comment}{// MFC 自动化类}
+00024 
+00025 
+00026 
+00027 \textcolor{preprocessor}{#ifndef \_AFX\_NO\_OLE\_SUPPORT}
+00028 \textcolor{preprocessor}{#include <afxdtctl.h>}           \textcolor{comment}{// MFC 对 Internet Explorer 4 公共控件的支持}
+00029 \textcolor{preprocessor}{#endif}
+00030 \textcolor{preprocessor}{#ifndef \_AFX\_NO\_AFXCMN\_SUPPORT}
+00031 \textcolor{preprocessor}{#include <afxcmn.h>}             \textcolor{comment}{// MFC 对 Windows 公共控件的支持}
+00032 \textcolor{preprocessor}{#endif // \_AFX\_NO\_AFXCMN\_SUPPORT}
+00033 
+00034 \textcolor{preprocessor}{#include <afxcontrolbars.h>}     \textcolor{comment}{// 功能区和控件条的 MFC 支持}
+00035 
+00036 
+00037 
+00038 
+00039 
+00040 
+00041 
+00042 
+00043 
+00044 \textcolor{preprocessor}{#ifdef \_UNICODE}
+00045 \textcolor{preprocessor}{#if defined \_M\_IX86}
+00046 \textcolor{preprocessor}{#pragma comment(linker,"/manifestdependency:\(\backslash\)"type='win32' name='Microsoft.Windows.Common-Controls'
+       version='6.0.0.0' processorArchitecture='x86' publicKeyToken='6595b64144ccf1df' language='*'\(\backslash\)"")}
+00047 \textcolor{preprocessor}{#elif defined \_M\_X64}
+00048 \textcolor{preprocessor}{#pragma comment(linker,"/manifestdependency:\(\backslash\)"type='win32' name='Microsoft.Windows.Common-Controls'
+       version='6.0.0.0' processorArchitecture='amd64' publicKeyToken='6595b64144ccf1df' language='*'\(\backslash\)"")}
+00049 \textcolor{preprocessor}{#else}
+00050 \textcolor{preprocessor}{#pragma comment(linker,"/manifestdependency:\(\backslash\)"type='win32' name='Microsoft.Windows.Common-Controls'
+       version='6.0.0.0' processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\(\backslash\)"")}
+00051 \textcolor{preprocessor}{#endif}
+00052 \textcolor{preprocessor}{#endif}
+00053 
+00054 
+\end{DoxyCode}

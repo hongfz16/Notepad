@@ -1,0 +1,281 @@
+\begin{theindex}
+
+  \item {\+\_\+clear}
+    \subitem {S\+I\+R\+A\+N\+GE}, \hyperpage{44}
+
+  \indexspace
+
+  \item {anticolor\+\_\+ext}
+    \subitem {kernal.\+h}, \hyperpage{59}
+
+  \indexspace
+
+  \item {C\+About\+Dlg}, \hyperpage{13}
+  \item {C\+Child\+View}, \hyperpage{13}
+    \subitem {is\+\_\+input}, \hyperpage{15}
+    \subitem {m\+\_\+changed}, \hyperpage{16}
+    \subitem {m\+\_\+paint\+Cur}, \hyperpage{16}
+    \subitem {m\+\_\+paint\+Text}, \hyperpage{16}
+    \subitem {m\+\_\+text}, \hyperpage{20}
+    \subitem {On\+Char}, \hyperpage{17}
+    \subitem {On\+Key\+Down}, \hyperpage{17}
+    \subitem {On\+Key\+Up}, \hyperpage{18}
+    \subitem {On\+L\+Button\+Down}, \hyperpage{18}
+    \subitem {On\+L\+Button\+Up}, \hyperpage{18}
+    \subitem {On\+Mouse\+Move}, \hyperpage{19}
+    \subitem {On\+Paint}, \hyperpage{19}
+  \item {C\+Main\+Frame}, \hyperpage{20}
+    \subitem {C\+Main\+Frame}, \hyperpage{22}
+    \subitem {On\+Create}, \hyperpage{22}
+    \subitem {On\+Size}, \hyperpage{23}
+    \subitem {On\+V\+Scroll}, \hyperpage{23}
+    \subitem {Update\+Client\+Rect}, \hyperpage{24}
+    \subitem {Update\+Scroll\+Bar\+Pos}, \hyperpage{24}
+  \item {C\+Notepad\+App}, \hyperpage{25}
+    \subitem {On\+Font}, \hyperpage{26}
+    \subitem {On\+Para}, \hyperpage{26}
+  \item {calc\+\_\+\+S\+\_\+from\+\_\+font}
+    \subitem {S\+I\+C\+H\+A\+R\+N\+O\+DE}, \hyperpage{35}
+  \item {cancel\+\_\+select}
+    \subitem {S\+I\+T\+E\+XT}, \hyperpage{50}
+  \item {ch}
+    \subitem {S\+I\+C\+H\+A\+R\+N\+O\+DE}, \hyperpage{39}
+  \item {char\+\_\+infop}
+    \subitem {S\+I\+C\+H\+A\+R\+N\+O\+DE}, \hyperpage{39}
+  \item {cursorp}
+    \subitem {S\+I\+T\+E\+XT}, \hyperpage{54}
+
+  \indexspace
+
+  \item {default\+\_\+font}
+    \subitem {S\+I\+T\+E\+XT}, \hyperpage{54}
+  \item {del}
+    \subitem {S\+I\+C\+H\+A\+R\+N\+O\+DE}, \hyperpage{37, 38}
+  \item {del\+\_\+char}
+    \subitem {S\+I\+T\+E\+XT}, \hyperpage{50}
+  \item {draw\+\_\+infop}
+    \subitem {S\+I\+C\+H\+A\+R\+N\+O\+DE}, \hyperpage{39}
+  \item {draw\+\_\+line\+\_\+from\+\_\+left}
+    \subitem {S\+I\+T\+E\+XT}, \hyperpage{50}
+
+  \indexspace
+
+  \item {ep}
+    \subitem {S\+I\+R\+A\+N\+GE}, \hyperpage{45}
+
+  \indexspace
+
+  \item {fontpc}
+    \subitem {S\+I\+C\+H\+A\+R\+\_\+\+I\+N\+FO}, \hyperpage{33}
+
+  \indexspace
+
+  \item {get\+\_\+char\+\_\+infop}
+    \subitem {S\+I\+C\+H\+A\+R\+N\+O\+DE}, \hyperpage{35}
+  \item {get\+\_\+color}
+    \subitem {S\+I\+C\+H\+A\+R\+\_\+\+I\+N\+FO}, \hyperpage{29}
+  \item {get\+\_\+cspace}
+    \subitem {S\+I\+C\+H\+A\+R\+\_\+\+I\+N\+FO}, \hyperpage{29}
+  \item {get\+\_\+draw\+\_\+infop}
+    \subitem {S\+I\+C\+H\+A\+R\+N\+O\+DE}, \hyperpage{35}
+  \item {get\+\_\+fontpc}
+    \subitem {S\+I\+C\+H\+A\+R\+\_\+\+I\+N\+FO}, \hyperpage{30}
+  \item {get\+\_\+lspace}
+    \subitem {S\+I\+C\+H\+A\+R\+\_\+\+I\+N\+FO}, \hyperpage{30}
+  \item {get\+\_\+range\+\_\+align}
+    \subitem {S\+I\+T\+E\+XT}, \hyperpage{51}
+  \item {get\+\_\+size}
+    \subitem {S\+I\+C\+H\+A\+R\+\_\+\+I\+N\+FO}, \hyperpage{30}
+
+  \indexspace
+
+  \item {headp}
+    \subitem {S\+I\+T\+E\+XT}, \hyperpage{55}
+
+  \indexspace
+
+  \item {ins\+\_\+next}
+    \subitem {S\+I\+C\+H\+A\+R\+N\+O\+DE}, \hyperpage{35, 36}
+  \item {ins\+\_\+prev}
+    \subitem {S\+I\+C\+H\+A\+R\+N\+O\+DE}, \hyperpage{36, 37}
+  \item {is\+\_\+input}
+    \subitem {C\+Child\+View}, \hyperpage{15}
+
+  \indexspace
+
+  \item {kernal.\+h}
+    \subitem {anticolor\+\_\+ext}, \hyperpage{59}
+    \subitem {point\+\_\+on\+\_\+char\+\_\+col}, \hyperpage{60}
+    \subitem {point\+\_\+on\+\_\+line}, \hyperpage{60}
+
+  \indexspace
+
+  \item {L}
+    \subitem {S\+I\+D\+R\+A\+W\+\_\+\+I\+N\+FO}, \hyperpage{41}
+
+  \indexspace
+
+  \item {M\+\_\+\+P\+A\+R\+A\+\_\+\+D\+IA}, \hyperpage{27}
+  \item {m\+\_\+changed}
+    \subitem {C\+Child\+View}, \hyperpage{16}
+  \item {m\+\_\+paint\+Cur}
+    \subitem {C\+Child\+View}, \hyperpage{16}
+  \item {m\+\_\+paint\+Text}
+    \subitem {C\+Child\+View}, \hyperpage{16}
+  \item {m\+\_\+text}
+    \subitem {C\+Child\+View}, \hyperpage{20}
+  \item {mov\+\_\+cursorp}
+    \subitem {S\+I\+T\+E\+XT}, \hyperpage{51, 52}
+
+  \indexspace
+
+  \item {Notepad/\+Child\+View.\+h}, \hyperpage{57}
+  \item {Notepad/\+M\+\_\+\+P\+A\+R\+A\+\_\+\+D\+I\+A.\+h}, 
+		\hyperpage{61}
+  \item {Notepad/\+Main\+Frm.\+h}, \hyperpage{62}
+  \item {Notepad/\+Notepad.\+h}, \hyperpage{63}
+  \item {Notepad/kernal.\+h}, \hyperpage{58}
+  \item {Notepad/lib.\+h}, \hyperpage{61}
+
+  \indexspace
+
+  \item {On\+Char}
+    \subitem {C\+Child\+View}, \hyperpage{17}
+  \item {On\+Create}
+    \subitem {C\+Main\+Frame}, \hyperpage{22}
+  \item {On\+Font}
+    \subitem {C\+Notepad\+App}, \hyperpage{26}
+  \item {On\+Key\+Down}
+    \subitem {C\+Child\+View}, \hyperpage{17}
+  \item {On\+Key\+Up}
+    \subitem {C\+Child\+View}, \hyperpage{18}
+  \item {On\+L\+Button\+Down}
+    \subitem {C\+Child\+View}, \hyperpage{18}
+  \item {On\+L\+Button\+Up}
+    \subitem {C\+Child\+View}, \hyperpage{18}
+  \item {On\+Mouse\+Move}
+    \subitem {C\+Child\+View}, \hyperpage{19}
+  \item {On\+Paint}
+    \subitem {C\+Child\+View}, \hyperpage{19}
+  \item {On\+Para}
+    \subitem {C\+Notepad\+App}, \hyperpage{26}
+  \item {On\+Size}
+    \subitem {C\+Main\+Frame}, \hyperpage{23}
+  \item {On\+V\+Scroll}
+    \subitem {C\+Main\+Frame}, \hyperpage{23}
+  \item {operator$<$}
+    \subitem {S\+I\+P\+O\+I\+NT}, \hyperpage{43}
+  \item {operator$>$}
+    \subitem {S\+I\+P\+O\+I\+NT}, \hyperpage{43}
+  \item {operator+}
+    \subitem {S\+I\+P\+O\+I\+NT}, \hyperpage{42}
+  \item {operator-\/}
+    \subitem {S\+I\+P\+O\+I\+NT}, \hyperpage{43}
+  \item {operator=}
+    \subitem {S\+I\+C\+H\+A\+R\+\_\+\+I\+N\+FO}, \hyperpage{30}
+
+  \indexspace
+
+  \item {pagewidth}
+    \subitem {S\+I\+T\+E\+XT}, \hyperpage{55}
+  \item {point\+\_\+on\+\_\+char\+\_\+col}
+    \subitem {kernal.\+h}, \hyperpage{60}
+    \subitem {S\+I\+T\+E\+XT}, \hyperpage{53}
+  \item {point\+\_\+on\+\_\+line}
+    \subitem {kernal.\+h}, \hyperpage{60}
+    \subitem {S\+I\+T\+E\+XT}, \hyperpage{54}
+  \item {proc\+\_\+line}
+    \subitem {S\+I\+T\+E\+XT}, \hyperpage{52}
+
+  \indexspace
+
+  \item {S}
+    \subitem {S\+I\+D\+R\+A\+W\+\_\+\+I\+N\+FO}, \hyperpage{41}
+  \item {S\+I\+C\+H\+A\+R\+\_\+\+I\+N\+FO}, \hyperpage{28}
+    \subitem {fontpc}, \hyperpage{33}
+    \subitem {get\+\_\+color}, \hyperpage{29}
+    \subitem {get\+\_\+cspace}, \hyperpage{29}
+    \subitem {get\+\_\+fontpc}, \hyperpage{30}
+    \subitem {get\+\_\+lspace}, \hyperpage{30}
+    \subitem {get\+\_\+size}, \hyperpage{30}
+    \subitem {operator=}, \hyperpage{30}
+    \subitem {set\+\_\+color}, \hyperpage{31}
+    \subitem {set\+\_\+cspace}, \hyperpage{31}
+    \subitem {set\+\_\+fontpc}, \hyperpage{31, 32}
+    \subitem {set\+\_\+lspace}, \hyperpage{32}
+    \subitem {set\+\_\+size}, \hyperpage{32}
+  \item {S\+I\+C\+H\+A\+R\+N\+O\+DE}, \hyperpage{33}
+    \subitem {calc\+\_\+\+S\+\_\+from\+\_\+font}, \hyperpage{35}
+    \subitem {ch}, \hyperpage{39}
+    \subitem {char\+\_\+infop}, \hyperpage{39}
+    \subitem {del}, \hyperpage{37, 38}
+    \subitem {draw\+\_\+infop}, \hyperpage{39}
+    \subitem {get\+\_\+char\+\_\+infop}, \hyperpage{35}
+    \subitem {get\+\_\+draw\+\_\+infop}, \hyperpage{35}
+    \subitem {ins\+\_\+next}, \hyperpage{35, 36}
+    \subitem {ins\+\_\+prev}, \hyperpage{36, 37}
+  \item {S\+I\+D\+R\+A\+W\+\_\+\+I\+N\+FO}, \hyperpage{40}
+    \subitem {L}, \hyperpage{41}
+    \subitem {S}, \hyperpage{41}
+  \item {S\+I\+P\+O\+I\+NT}, \hyperpage{42}
+    \subitem {operator$<$}, \hyperpage{43}
+    \subitem {operator$>$}, \hyperpage{43}
+    \subitem {operator+}, \hyperpage{42}
+    \subitem {operator-\/}, \hyperpage{43}
+  \item {S\+I\+R\+A\+N\+GE}, \hyperpage{44}
+    \subitem {\+\_\+clear}, \hyperpage{44}
+    \subitem {ep}, \hyperpage{45}
+    \subitem {sp}, \hyperpage{45}
+  \item {S\+I\+R\+E\+CT}, \hyperpage{45}
+  \item {S\+I\+T\+E\+XT}, \hyperpage{46}
+    \subitem {cancel\+\_\+select}, \hyperpage{50}
+    \subitem {cursorp}, \hyperpage{54}
+    \subitem {default\+\_\+font}, \hyperpage{54}
+    \subitem {del\+\_\+char}, \hyperpage{50}
+    \subitem {draw\+\_\+line\+\_\+from\+\_\+left}, \hyperpage{50}
+    \subitem {get\+\_\+range\+\_\+align}, \hyperpage{51}
+    \subitem {headp}, \hyperpage{55}
+    \subitem {mov\+\_\+cursorp}, \hyperpage{51, 52}
+    \subitem {pagewidth}, \hyperpage{55}
+    \subitem {point\+\_\+on\+\_\+char\+\_\+col}, \hyperpage{53}
+    \subitem {point\+\_\+on\+\_\+line}, \hyperpage{54}
+    \subitem {proc\+\_\+line}, \hyperpage{52}
+    \subitem {select}, \hyperpage{55}
+    \subitem {tailp}, \hyperpage{55}
+    \subitem {vlinep}, \hyperpage{56}
+    \subitem {vparap}, \hyperpage{56}
+  \item {select}
+    \subitem {S\+I\+T\+E\+XT}, \hyperpage{55}
+  \item {set\+\_\+color}
+    \subitem {S\+I\+C\+H\+A\+R\+\_\+\+I\+N\+FO}, \hyperpage{31}
+  \item {set\+\_\+cspace}
+    \subitem {S\+I\+C\+H\+A\+R\+\_\+\+I\+N\+FO}, \hyperpage{31}
+  \item {set\+\_\+fontpc}
+    \subitem {S\+I\+C\+H\+A\+R\+\_\+\+I\+N\+FO}, \hyperpage{31, 32}
+  \item {set\+\_\+lspace}
+    \subitem {S\+I\+C\+H\+A\+R\+\_\+\+I\+N\+FO}, \hyperpage{32}
+  \item {set\+\_\+size}
+    \subitem {S\+I\+C\+H\+A\+R\+\_\+\+I\+N\+FO}, \hyperpage{32}
+  \item {sp}
+    \subitem {S\+I\+R\+A\+N\+GE}, \hyperpage{45}
+
+  \indexspace
+
+  \item {tailp}
+    \subitem {S\+I\+T\+E\+XT}, \hyperpage{55}
+
+  \indexspace
+
+  \item {Update\+Client\+Rect}
+    \subitem {C\+Main\+Frame}, \hyperpage{24}
+  \item {Update\+Scroll\+Bar\+Pos}
+    \subitem {C\+Main\+Frame}, \hyperpage{24}
+
+  \indexspace
+
+  \item {vlinep}
+    \subitem {S\+I\+T\+E\+XT}, \hyperpage{56}
+  \item {vparap}
+    \subitem {S\+I\+T\+E\+XT}, \hyperpage{56}
+
+\end{theindex}

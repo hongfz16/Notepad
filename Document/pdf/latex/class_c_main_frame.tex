@@ -1,0 +1,239 @@
+\hypertarget{class_c_main_frame}{}\section{C\+Main\+Frame类 参考}
+\label{class_c_main_frame}\index{C\+Main\+Frame@{C\+Main\+Frame}}
+
+
+程序主框架类\+C\+Main\+Frame类 ~\newline
+主框架包括子视图类以及滚动条 继承自\+C\+Frame\+Wnd类  
+
+
+
+
+{\ttfamily \#include $<$Main\+Frm.\+h$>$}
+
+类 C\+Main\+Frame 继承关系图\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_c_main_frame}
+\end{center}
+\end{figure}
+\subsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_c_main_frame_af3e997aeae4148d2aaa4a1e1ae7bdd53}{C\+Main\+Frame} ()
+\begin{DoxyCompactList}\small\item\em C\+Main\+Frame类构造函数~\newline
+初始化部分成员变量 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_main_frame_a549bf677c955c2898c3c683321633c16}\label{class_c_main_frame_a549bf677c955c2898c3c683321633c16}} 
+virtual B\+O\+OL \hyperlink{class_c_main_frame_a549bf677c955c2898c3c683321633c16}{Pre\+Create\+Window} (C\+R\+E\+A\+T\+E\+S\+T\+R\+U\+CT \&cs)
+\begin{DoxyCompactList}\small\item\em 绘图预处理函数,如果需要修改窗口样式则改写该函数 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_main_frame_ade959eb0bab719bf06bb9b18ee407101}\label{class_c_main_frame_ade959eb0bab719bf06bb9b18ee407101}} 
+virtual B\+O\+OL \hyperlink{class_c_main_frame_ade959eb0bab719bf06bb9b18ee407101}{On\+Cmd\+Msg} (U\+I\+NT n\+ID, int n\+Code, void $\ast$p\+Extra, A\+F\+X\+\_\+\+C\+M\+D\+H\+A\+N\+D\+L\+E\+R\+I\+N\+FO $\ast$p\+Handler\+Info)
+\begin{DoxyCompactList}\small\item\em 主消息循环函数,无需修改 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_main_frame_a8ae555f23fdf97edb4feb4d3e1bfa4ee}\label{class_c_main_frame_a8ae555f23fdf97edb4feb4d3e1bfa4ee}} 
+virtual \hyperlink{class_c_main_frame_a8ae555f23fdf97edb4feb4d3e1bfa4ee}{$\sim$\+C\+Main\+Frame} ()
+\begin{DoxyCompactList}\small\item\em 默认析构函数 \end{DoxyCompactList}\item 
+void \hyperlink{class_c_main_frame_a2500e3a6ace77e01430f5ff4b9a6f182}{Update\+Client\+Rect} ()
+\begin{DoxyCompactList}\small\item\em 当窗口大小被调整之后调用的函数~\newline
+\end{DoxyCompactList}\item 
+afx\+\_\+msg void \hyperlink{class_c_main_frame_adf171bf1f2c6f10cc85dbe8db3fc93f7}{On\+Size} (U\+I\+NT n\+Type, int cx, int cy)
+\begin{DoxyCompactList}\small\item\em 当窗口大小被调整之后调用的消息响应函数~\newline
+当窗口大小被调整,共有两个地方需要调整~\newline
+\end{DoxyCompactList}\item 
+afx\+\_\+msg void \hyperlink{class_c_main_frame_a969c7e78dee0c54e7bcbe2ab9c901cc2}{On\+V\+Scroll} (U\+I\+NT n\+S\+B\+Code, U\+I\+NT n\+Pos, C\+Scroll\+Bar $\ast$p\+Scroll\+Bar)
+\begin{DoxyCompactList}\small\item\em 改变滚动块的位置时调用的函数~\newline
+调整两个地方~\newline
+\end{DoxyCompactList}\item 
+void \hyperlink{class_c_main_frame_a4f7c9f6d9aeae93045c5dd2047ccebf1}{Update\+Scroll\+Bar\+Pos} ()
+\begin{DoxyCompactList}\small\item\em 当改变窗口大小时,调整滚动块的位置~\newline
+通过记录页面相对于上边界的偏移量来调整 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_c_main_frame_a7c3af9327c496f8c807d578f7a4ef4c5}\label{class_c_main_frame_a7c3af9327c496f8c807d578f7a4ef4c5}} 
+\hyperlink{class_c_child_view}{C\+Child\+View} \hyperlink{class_c_main_frame_a7c3af9327c496f8c807d578f7a4ef4c5}{m\+\_\+wnd\+View}
+\begin{DoxyCompactList}\small\item\em 子视图类成员变量 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_main_frame_a0c53b2f10889123e0c4cf8912816aeaf}\label{class_c_main_frame_a0c53b2f10889123e0c4cf8912816aeaf}} 
+C\+Rect \hyperlink{class_c_main_frame_a0c53b2f10889123e0c4cf8912816aeaf}{m\+\_\+client\+\_\+rect}
+\begin{DoxyCompactList}\small\item\em 用于存储客户区的大小的变量 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_main_frame_ad561552de446751652ae4e98ded06589}\label{class_c_main_frame_ad561552de446751652ae4e98ded06589}} 
+int \hyperlink{class_c_main_frame_ad561552de446751652ae4e98ded06589}{m\+\_\+client\+\_\+cy}
+\begin{DoxyCompactList}\small\item\em 用于存储子视图的y方向的长度 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_main_frame_a342befca89935d78753d6a78514b83c5}\label{class_c_main_frame_a342befca89935d78753d6a78514b83c5}} 
+int \hyperlink{class_c_main_frame_a342befca89935d78753d6a78514b83c5}{scrolledpix}
+\begin{DoxyCompactList}\small\item\em 用于记录页面相对于上边界偏移量 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_main_frame_a94f2543f4d46fdb15202c5386ef4ee0a}\label{class_c_main_frame_a94f2543f4d46fdb15202c5386ef4ee0a}} 
+int \hyperlink{class_c_main_frame_a94f2543f4d46fdb15202c5386ef4ee0a}{maincx}
+\begin{DoxyCompactList}\small\item\em 记录当前客户区的宽度 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_main_frame_abfc6b521bf0730404603a66171e51159}\label{class_c_main_frame_abfc6b521bf0730404603a66171e51159}} 
+int \hyperlink{class_c_main_frame_abfc6b521bf0730404603a66171e51159}{maincy}
+\begin{DoxyCompactList}\small\item\em 记录当前客户区的高度 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+afx\+\_\+msg int \hyperlink{class_c_main_frame_a48666466fd37412fcaeff75c3b12e0ed}{On\+Create} (L\+P\+C\+R\+E\+A\+T\+E\+S\+T\+R\+U\+CT lp\+Create\+Struct)
+\begin{DoxyCompactList}\small\item\em 创建主窗口时调用的函数~\newline
+创建了两个实例~\newline
+\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_main_frame_adc353a3d1fc497fbc009b6d9e6914a82}\label{class_c_main_frame_adc353a3d1fc497fbc009b6d9e6914a82}} 
+afx\+\_\+msg void \hyperlink{class_c_main_frame_adc353a3d1fc497fbc009b6d9e6914a82}{On\+Set\+Focus} (C\+Wnd $\ast$p\+Old\+Wnd)
+\begin{DoxyCompactList}\small\item\em 当窗口被聚焦的时候调用,无需修改 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected 属性}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_c_main_frame_afa369311a084e7ff2af17a819829b21b}\label{class_c_main_frame_afa369311a084e7ff2af17a819829b21b}} 
+C\+Scroll\+Bar \hyperlink{class_c_main_frame_afa369311a084e7ff2af17a819829b21b}{m\+\_\+scroll\+Bar}
+\begin{DoxyCompactList}\small\item\em 滚动条类成员 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{详细描述}
+程序主框架类\+C\+Main\+Frame类 ~\newline
+主框架包括子视图类以及滚动条 继承自\+C\+Frame\+Wnd类 
+
+\subsection{构造及析构函数说明}
+\mbox{\Hypertarget{class_c_main_frame_af3e997aeae4148d2aaa4a1e1ae7bdd53}\label{class_c_main_frame_af3e997aeae4148d2aaa4a1e1ae7bdd53}} 
+\index{C\+Main\+Frame@{C\+Main\+Frame}!C\+Main\+Frame@{C\+Main\+Frame}}
+\index{C\+Main\+Frame@{C\+Main\+Frame}!C\+Main\+Frame@{C\+Main\+Frame}}
+\subsubsection{\texorpdfstring{C\+Main\+Frame()}{CMainFrame()}}
+{\footnotesize\ttfamily C\+Main\+Frame\+::\+C\+Main\+Frame (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+C\+Main\+Frame类构造函数~\newline
+初始化部分成员变量 
+
+
+\begin{DoxyItemize}
+\item m\+\_\+client\+\_\+cy = 10000
+\item scrolledpix = 0 
+\end{DoxyItemize}
+
+\subsection{成员函数说明}
+\mbox{\Hypertarget{class_c_main_frame_a48666466fd37412fcaeff75c3b12e0ed}\label{class_c_main_frame_a48666466fd37412fcaeff75c3b12e0ed}} 
+\index{C\+Main\+Frame@{C\+Main\+Frame}!On\+Create@{On\+Create}}
+\index{On\+Create@{On\+Create}!C\+Main\+Frame@{C\+Main\+Frame}}
+\subsubsection{\texorpdfstring{On\+Create()}{OnCreate()}}
+{\footnotesize\ttfamily int C\+Main\+Frame\+::\+On\+Create (\begin{DoxyParamCaption}\item[{L\+P\+C\+R\+E\+A\+T\+E\+S\+T\+R\+U\+CT}]{lp\+Create\+Struct }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+创建主窗口时调用的函数~\newline
+创建了两个实例~\newline
+
+
+
+\begin{DoxyItemize}
+\item \hyperlink{class_c_child_view}{C\+Child\+View} m\+\_\+wnd\+View \begin{DoxySeeAlso}{参见}
+\hyperlink{class_c_child_view}{C\+Child\+View}
+\end{DoxySeeAlso}
+
+\item C\+Scroll\+Bar m\+\_\+scroll\+Bar 竖直滚动条实例 
+\begin{DoxyParams}[1]{参数}
+\mbox{\tt in}  & {\em lp\+Create\+Struct} & 至于这个是什么不重要,不需要自己调用这个函数 \\
+\hline
+\end{DoxyParams}
+
+\end{DoxyItemize}\mbox{\Hypertarget{class_c_main_frame_adf171bf1f2c6f10cc85dbe8db3fc93f7}\label{class_c_main_frame_adf171bf1f2c6f10cc85dbe8db3fc93f7}} 
+\index{C\+Main\+Frame@{C\+Main\+Frame}!On\+Size@{On\+Size}}
+\index{On\+Size@{On\+Size}!C\+Main\+Frame@{C\+Main\+Frame}}
+\subsubsection{\texorpdfstring{On\+Size()}{OnSize()}}
+{\footnotesize\ttfamily void C\+Main\+Frame\+::\+On\+Size (\begin{DoxyParamCaption}\item[{U\+I\+NT}]{n\+Type,  }\item[{int}]{cx,  }\item[{int}]{cy }\end{DoxyParamCaption})}
+
+
+
+当窗口大小被调整之后调用的消息响应函数~\newline
+当窗口大小被调整,共有两个地方需要调整~\newline
+
+
+
+\begin{DoxyItemize}
+\item 子窗口的大小~\newline
+通过调用\+Update\+Client\+Rect函数 \begin{DoxySeeAlso}{参见}
+\hyperlink{class_c_main_frame_a2500e3a6ace77e01430f5ff4b9a6f182}{Update\+Client\+Rect}
+\end{DoxySeeAlso}
+
+\item 滚动条的一系列调整~\newline
+ 滚动条的长度调整~\newline
+ 滚动条上拖动块的位置调整 
+\begin{DoxyParams}[1]{参数}
+\mbox{\tt in}  & {\em n\+Type} & 参阅\+M\+S\+D\+N官方文档 \\
+\hline
+\mbox{\tt in}  & {\em cx} & 由系统传入当前窗口x方向的长度 \\
+\hline
+\mbox{\tt in}  & {\em cy} & 有系统传入当前窗口y方向的长度 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{注解}
+无需自己调用,当手动改变窗口大小的时候,系统会传入\+O\+N\+\_\+\+W\+M\+\_\+\+S\+I\+Z\+E消息,此时会自动调用该函数 
+\end{DoxyNote}
+
+\end{DoxyItemize}\mbox{\Hypertarget{class_c_main_frame_a969c7e78dee0c54e7bcbe2ab9c901cc2}\label{class_c_main_frame_a969c7e78dee0c54e7bcbe2ab9c901cc2}} 
+\index{C\+Main\+Frame@{C\+Main\+Frame}!On\+V\+Scroll@{On\+V\+Scroll}}
+\index{On\+V\+Scroll@{On\+V\+Scroll}!C\+Main\+Frame@{C\+Main\+Frame}}
+\subsubsection{\texorpdfstring{On\+V\+Scroll()}{OnVScroll()}}
+{\footnotesize\ttfamily void C\+Main\+Frame\+::\+On\+V\+Scroll (\begin{DoxyParamCaption}\item[{U\+I\+NT}]{n\+S\+B\+Code,  }\item[{U\+I\+NT}]{n\+Pos,  }\item[{C\+Scroll\+Bar $\ast$}]{p\+Scroll\+Bar }\end{DoxyParamCaption})}
+
+
+
+改变滚动块的位置时调用的函数~\newline
+调整两个地方~\newline
+
+
+
+\begin{DoxyItemize}
+\item 子视图的位置
+\item 滚动块的位置更新 
+\begin{DoxyParams}[1]{参数}
+\mbox{\tt in}  & {\em n\+S\+B\+Code} & 参阅\+M\+S\+D\+N官方文档 \\
+\hline
+\mbox{\tt in}  & {\em n\+Pos} & 参阅\+M\+S\+D\+N官方文档 \\
+\hline
+\mbox{\tt in}  & {\em p\+Scroll\+Bar} & 当前被滑动的滚动条的指针 \\
+\hline
+\end{DoxyParams}
+
+\end{DoxyItemize}\mbox{\Hypertarget{class_c_main_frame_a2500e3a6ace77e01430f5ff4b9a6f182}\label{class_c_main_frame_a2500e3a6ace77e01430f5ff4b9a6f182}} 
+\index{C\+Main\+Frame@{C\+Main\+Frame}!Update\+Client\+Rect@{Update\+Client\+Rect}}
+\index{Update\+Client\+Rect@{Update\+Client\+Rect}!C\+Main\+Frame@{C\+Main\+Frame}}
+\subsubsection{\texorpdfstring{Update\+Client\+Rect()}{UpdateClientRect()}}
+{\footnotesize\ttfamily void C\+Main\+Frame\+::\+Update\+Client\+Rect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+当窗口大小被调整之后调用的函数~\newline
+
+
+
+\begin{DoxyParams}[1]{参数}
+\mbox{\tt in}  & {\em cx} & 当前窗口x方向长度 \\
+\hline
+\mbox{\tt in}  & {\em cy} & 当前窗口y方向长度 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{注解}
+该函数仅在\+On\+Size函数中被调用,因为传入的参数需要用到\+On\+Size函数的传入值 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{参见}
+\hyperlink{class_c_main_frame_adf171bf1f2c6f10cc85dbe8db3fc93f7}{On\+Size} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_c_main_frame_a4f7c9f6d9aeae93045c5dd2047ccebf1}\label{class_c_main_frame_a4f7c9f6d9aeae93045c5dd2047ccebf1}} 
+\index{C\+Main\+Frame@{C\+Main\+Frame}!Update\+Scroll\+Bar\+Pos@{Update\+Scroll\+Bar\+Pos}}
+\index{Update\+Scroll\+Bar\+Pos@{Update\+Scroll\+Bar\+Pos}!C\+Main\+Frame@{C\+Main\+Frame}}
+\subsubsection{\texorpdfstring{Update\+Scroll\+Bar\+Pos()}{UpdateScrollBarPos()}}
+{\footnotesize\ttfamily void C\+Main\+Frame\+::\+Update\+Scroll\+Bar\+Pos (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+当改变窗口大小时,调整滚动块的位置~\newline
+通过记录页面相对于上边界的偏移量来调整 
+
+\begin{DoxyNote}{注解}
+此函数仅在\+On\+Size函数中调用 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{参见}
+On\+Size重置滚动条位置 
+\end{DoxySeeAlso}
+
+
+该类的文档由以下文件生成\+:\begin{DoxyCompactItemize}
+\item 
+Notepad/\hyperlink{_main_frm_8h}{Main\+Frm.\+h}\item 
+Notepad/Main\+Frm.\+cpp\end{DoxyCompactItemize}

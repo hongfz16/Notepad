@@ -1,0 +1,700 @@
+\hypertarget{kernal_8h_source}{}\section{kernal.\+h}
+\label{kernal_8h_source}\index{Notepad/kernal.\+h@{Notepad/kernal.\+h}}
+
+\begin{DoxyCode}
+00001 \textcolor{preprocessor}{#ifndef kernal\_h}
+00002 \textcolor{preprocessor}{#define kernal\_h}
+00003 
+00013 \textcolor{preprocessor}{#include "stdafx.h"}
+00014 \textcolor{preprocessor}{#include<string>}
+00015 \textcolor{preprocessor}{#include<vector>}
+00016 
+00017 \textcolor{keyword}{using namespace }\hyperlink{namespacestd}{std};
+00018 
+00019 \textcolor{keyword}{class }\hyperlink{class_s_i_c_h_a_r___i_n_f_o}{SICHAR\_INFO};
+00020 \textcolor{keyword}{class }\hyperlink{class_s_i_d_r_a_w___i_n_f_o}{SIDRAW\_INFO};
+00021 \textcolor{keyword}{class }\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE};
+00022 \textcolor{keyword}{class }\hyperlink{class_s_i_t_e_x_t}{SITEXT};
+00023 \textcolor{keyword}{struct }\hyperlink{struct_s_i_r_e_c_t}{SIRECT};
+00024 \textcolor{keyword}{struct }\hyperlink{struct_s_i_p_o_i_n_t}{SIPOINT};
+00025 \textcolor{keyword}{struct }\hyperlink{struct_s_i_r_a_n_g_e}{SIRANGE};
+00026 
+00027 
+00028 \textcolor{keyword}{typedef} \textcolor{keywordtype}{int} SIDIRECT;
+00029 \textcolor{keyword}{typedef} \textcolor{keywordtype}{int} SIALIGN;
+00030 \textcolor{keyword}{typedef} \textcolor{keywordtype}{int} PAGEWIDTH;
+00031 \textcolor{keyword}{typedef} \textcolor{keywordtype}{int} COLORERF;
+00032 \textcolor{keyword}{typedef} \textcolor{keywordtype}{int} CHARSIZE;
+00033 \textcolor{keyword}{typedef} \textcolor{keywordtype}{int} CHARSPACE;
+00034 \textcolor{keyword}{typedef} \textcolor{keywordtype}{int} LINESPACE;
+00035 \textcolor{keyword}{typedef} \textcolor{keywordtype}{int} SIALIGN;
+00036 \textcolor{keyword}{typedef} \textcolor{keywordtype}{char} SICHAR\_T;
+00037 \textcolor{keyword}{typedef} LOGFONT SIFONT;
+00038 \textcolor{keyword}{typedef} SIFONT* SIFONT\_P;
+00039 \textcolor{keyword}{typedef} \hyperlink{struct_s_i_p_o_i_n_t}{SIPOINT} \hyperlink{struct_s_i_p_o_i_n_t}{SIVECTOR};
+00040 \textcolor{keyword}{typedef} \hyperlink{class_s_i_c_h_a_r___i_n_f_o}{SICHAR\_INFO}* \hyperlink{class_s_i_c_h_a_r___i_n_f_o}{SICHAR\_INFO\_P};
+00041 \textcolor{keyword}{typedef} \hyperlink{class_s_i_d_r_a_w___i_n_f_o}{SIDRAW\_INFO}* \hyperlink{class_s_i_d_r_a_w___i_n_f_o}{SIDRAW\_INFO\_P};
+00042 \textcolor{keyword}{typedef} \hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE}* \hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE\_P};
+00043 \textcolor{keyword}{typedef} \hyperlink{struct_s_i_r_a_n_g_e}{SIRANGE} \hyperlink{struct_s_i_r_a_n_g_e}{SISELECT};
+00044 \textcolor{keyword}{typedef} \hyperlink{struct_s_i_r_a_n_g_e}{SIRANGE} \hyperlink{struct_s_i_r_a_n_g_e}{SIPARAGRAPH};
+00045 \textcolor{keyword}{typedef} \hyperlink{struct_s_i_r_a_n_g_e}{SIRANGE} \hyperlink{struct_s_i_r_a_n_g_e}{SILINE};
+00046 \textcolor{keyword}{typedef} \hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE\_P} \hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICURSORP};
+00047 
+00048 
+00049 \textcolor{keyword}{template}<\textcolor{keyword}{class} T>
+00050 \textcolor{keywordtype}{void} exchange(T& a, T& b)
+00051 \{
+00052     T tmp = a;
+00053     a = b;
+00054     b = tmp;
+00055 \}
+00056 \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} isenter(SICHAR\_T ch)
+00057 \{
+00058     \textcolor{keywordflow}{return} ch == \textcolor{charliteral}{'\(\backslash\)n'} || ch == \textcolor{charliteral}{'\(\backslash\)r'};
+00059 \}
+00060 
+00061 \textcolor{keyword}{inline} \textcolor{keywordtype}{int} Max(\textcolor{keywordtype}{int} a, \textcolor{keywordtype}{int} b)
+00062 \{
+00063     \textcolor{keywordflow}{return} a > b ? a : b;
+00064 \}
+00065 
+\Hypertarget{kernal_8h_source_l00071}\hyperlink{kernal_8h_abd07a7735390aea7bf376c2bcc75bd96}{00071} \textcolor{keyword}{inline} COLORERF \hyperlink{kernal_8h_abd07a7735390aea7bf376c2bcc75bd96}{anticolor\_ext}(COLORERF c)
+00072 \{
+00073     \textcolor{keywordflow}{return} (~c)&((1 << 24) - 1);
+00074 \}
+00075 
+00076 \textcolor{keyword}{inline} \textcolor{keywordtype}{int} ABS(\textcolor{keywordtype}{int} a)
+00077 \{
+00078     \textcolor{keywordflow}{return} a < 0 ? (-a) : a;
+00079 \}
+\Hypertarget{kernal_8h_source_l00084}\hyperlink{struct_s_i_r_e_c_t}{00084} \textcolor{keyword}{struct }\hyperlink{struct_s_i_r_e_c_t}{SIRECT}
+00085 \{
+\Hypertarget{kernal_8h_source_l00086}\hyperlink{struct_s_i_r_e_c_t_a99dbd77d045cc587f0c1f40bbba99ac8}{00086}     \textcolor{keywordtype}{int} \hyperlink{struct_s_i_r_e_c_t_a99dbd77d045cc587f0c1f40bbba99ac8}{width}; 
+\Hypertarget{kernal_8h_source_l00087}\hyperlink{struct_s_i_r_e_c_t_a6577f3092897d4bef17aab5ec4d62819}{00087}     \textcolor{keywordtype}{int} \hyperlink{struct_s_i_r_e_c_t_a6577f3092897d4bef17aab5ec4d62819}{height};   
+00088 
+\Hypertarget{kernal_8h_source_l00091}\hyperlink{struct_s_i_r_e_c_t_a845bf8054bfcbdf5336798f61d220d05}{00091}     \hyperlink{struct_s_i_r_e_c_t_a845bf8054bfcbdf5336798f61d220d05}{SIRECT}(\textcolor{keywordtype}{int} twidth = 20, \textcolor{keywordtype}{int} theight = 20) 
+00092     \{
+00093         width = twidth;
+00094         height = theight;
+00095     \}
+\Hypertarget{kernal_8h_source_l00099}\hyperlink{struct_s_i_r_e_c_t_ac26d21eb684ef839d9ed8312529da7b6}{00099}     \hyperlink{struct_s_i_r_e_c_t_ac26d21eb684ef839d9ed8312529da7b6}{SIRECT}(\textcolor{keyword}{const} \hyperlink{struct_s_i_r_e_c_t}{SIRECT}& trect) 
+00100     \{
+00101         width = trect.\hyperlink{struct_s_i_r_e_c_t_a99dbd77d045cc587f0c1f40bbba99ac8}{width};
+00102         height = trect.\hyperlink{struct_s_i_r_e_c_t_a6577f3092897d4bef17aab5ec4d62819}{height};
+00103     \}
+00104     \textcolor{keywordtype}{void} print\_info();  
+00105     \textcolor{keywordtype}{void} read\_info();   
+00106 \};
+\Hypertarget{kernal_8h_source_l00111}\hyperlink{struct_s_i_p_o_i_n_t}{00111} \textcolor{keyword}{struct }\hyperlink{struct_s_i_p_o_i_n_t}{SIPOINT}
+00112 \{
+\Hypertarget{kernal_8h_source_l00113}\hyperlink{struct_s_i_p_o_i_n_t_a2375f32079fea6d73191df2bfe08cb1d}{00113}     \textcolor{keywordtype}{int} \hyperlink{struct_s_i_p_o_i_n_t_a2375f32079fea6d73191df2bfe08cb1d}{x}; 
+\Hypertarget{kernal_8h_source_l00114}\hyperlink{struct_s_i_p_o_i_n_t_a1ed590aa0d87cf51a0d30a44d1c03e93}{00114}     \textcolor{keywordtype}{int} \hyperlink{struct_s_i_p_o_i_n_t_a1ed590aa0d87cf51a0d30a44d1c03e93}{y}; 
+00115 
+\Hypertarget{kernal_8h_source_l00118}\hyperlink{struct_s_i_p_o_i_n_t_a1695c9d8ff55b1169de1c6a9c379687c}{00118}     \hyperlink{struct_s_i_p_o_i_n_t_a1695c9d8ff55b1169de1c6a9c379687c}{SIPOINT}(\textcolor{keywordtype}{int} tx = 0, \textcolor{keywordtype}{int} ty = 0)  
+00119     \{
+00120         x = tx; y = ty;
+00121     \}
+\Hypertarget{kernal_8h_source_l00122}\hyperlink{struct_s_i_p_o_i_n_t_abd9be7eb5a981ba5d72d548a32052a01}{00122}     \textcolor{keyword}{friend} \hyperlink{struct_s_i_p_o_i_n_t}{SIPOINT} operator + (\textcolor{keyword}{const} \hyperlink{struct_s_i_p_o_i_n_t}{SIPOINT}& A, \textcolor{keyword}{const} \hyperlink{struct_s_i_p_o_i_n_t}{SIPOINT}& B) 
+00123     \{
+00124         \textcolor{keywordflow}{return} \hyperlink{struct_s_i_p_o_i_n_t}{SIPOINT}(A.\hyperlink{struct_s_i_p_o_i_n_t_a2375f32079fea6d73191df2bfe08cb1d}{x} + B.\hyperlink{struct_s_i_p_o_i_n_t_a2375f32079fea6d73191df2bfe08cb1d}{x}, A.\hyperlink{struct_s_i_p_o_i_n_t_a1ed590aa0d87cf51a0d30a44d1c03e93}{y} + B.\hyperlink{struct_s_i_p_o_i_n_t_a1ed590aa0d87cf51a0d30a44d1c03e93}{y});
+00125     \}
+\Hypertarget{kernal_8h_source_l00126}\hyperlink{struct_s_i_p_o_i_n_t_a1138454683665c35746e210cbf614306}{00126}     \textcolor{keyword}{friend} \hyperlink{struct_s_i_p_o_i_n_t}{SIPOINT} operator - (\textcolor{keyword}{const} \hyperlink{struct_s_i_p_o_i_n_t}{SIPOINT}& A, \textcolor{keyword}{const} \hyperlink{struct_s_i_p_o_i_n_t}{SIPOINT}& B) 
+00127     \{
+00128         \textcolor{keywordflow}{return} \hyperlink{struct_s_i_p_o_i_n_t}{SIPOINT}(A.\hyperlink{struct_s_i_p_o_i_n_t_a2375f32079fea6d73191df2bfe08cb1d}{x} - B.\hyperlink{struct_s_i_p_o_i_n_t_a2375f32079fea6d73191df2bfe08cb1d}{x}, A.\hyperlink{struct_s_i_p_o_i_n_t_a1ed590aa0d87cf51a0d30a44d1c03e93}{y} - B.\hyperlink{struct_s_i_p_o_i_n_t_a1ed590aa0d87cf51a0d30a44d1c03e93}{y});
+00129     \}
+\Hypertarget{kernal_8h_source_l00137}\hyperlink{struct_s_i_p_o_i_n_t_a481c4c62e5b71e5106efc08bd0674b6d}{00137}     \textcolor{keyword}{friend} \textcolor{keywordtype}{bool} operator < (\textcolor{keyword}{const} \hyperlink{struct_s_i_p_o_i_n_t}{SIPOINT}& A, \textcolor{keyword}{const} \hyperlink{struct_s_i_p_o_i_n_t}{SIPOINT}& B)
+00138     \{
+00139         \textcolor{keywordflow}{return}  A.\hyperlink{struct_s_i_p_o_i_n_t_a1ed590aa0d87cf51a0d30a44d1c03e93}{y} < B.\hyperlink{struct_s_i_p_o_i_n_t_a1ed590aa0d87cf51a0d30a44d1c03e93}{y} ||
+00140             A.\hyperlink{struct_s_i_p_o_i_n_t_a1ed590aa0d87cf51a0d30a44d1c03e93}{y} == B.\hyperlink{struct_s_i_p_o_i_n_t_a1ed590aa0d87cf51a0d30a44d1c03e93}{y} && (A.\hyperlink{struct_s_i_p_o_i_n_t_a2375f32079fea6d73191df2bfe08cb1d}{x} < B.\hyperlink{struct_s_i_p_o_i_n_t_a2375f32079fea6d73191df2bfe08cb1d}{x});
+00141     \}
+\Hypertarget{kernal_8h_source_l00142}\hyperlink{struct_s_i_p_o_i_n_t_a815335b01039f8eabf5ef5d797dd3e49}{00142}     \textcolor{keyword}{friend} \textcolor{keywordtype}{bool} operator > (\textcolor{keyword}{const} \hyperlink{struct_s_i_p_o_i_n_t}{SIPOINT}& A, \textcolor{keyword}{const} \hyperlink{struct_s_i_p_o_i_n_t}{SIPOINT}& B)   
+00143     \{
+00144         \textcolor{keywordflow}{return} B < A;
+00145     \}
+00146     \textcolor{keywordtype}{void} print\_info();  
+00147     \textcolor{keywordtype}{void} read\_info();   
+00148 \};
+00149 
+\Hypertarget{kernal_8h_source_l00153}\hyperlink{struct_s_i_r_a_n_g_e}{00153} \textcolor{keyword}{struct }\hyperlink{struct_s_i_r_a_n_g_e}{SIRANGE}
+00154 \{
+\Hypertarget{kernal_8h_source_l00155}\hyperlink{struct_s_i_r_a_n_g_e_a7acdf296d873d6ed6fc203674109b715}{00155}     \hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE\_P} \hyperlink{struct_s_i_r_a_n_g_e_a7acdf296d873d6ed6fc203674109b715}{sp};  
+\Hypertarget{kernal_8h_source_l00156}\hyperlink{struct_s_i_r_a_n_g_e_aaa89b5ae16be7b890eba048bc212feec}{00156}     \hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE\_P} \hyperlink{struct_s_i_r_a_n_g_e_aaa89b5ae16be7b890eba048bc212feec}{ep};  
+00157 
+\Hypertarget{kernal_8h_source_l00160}\hyperlink{struct_s_i_r_a_n_g_e_a7c9322d5aec16acda0c4b95a9d48891a}{00160}     \hyperlink{struct_s_i_r_a_n_g_e_a7c9322d5aec16acda0c4b95a9d48891a}{SIRANGE}(\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE\_P} tsp = NULL, \hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE\_P} tep = NULL)    
+00161     \{
+00162         sp = tsp;
+00163         ep = tep;
+00164     \}
+\Hypertarget{kernal_8h_source_l00169}\hyperlink{struct_s_i_r_a_n_g_e_afa57adc9093ce9213bedf4bb4c74310a}{00169}     \textcolor{keywordtype}{void} \hyperlink{struct_s_i_r_a_n_g_e_afa57adc9093ce9213bedf4bb4c74310a}{\_clear}()
+00170     \{
+00171         sp = ep = NULL;
+00172     \}
+00173 \};
+00174 
+\Hypertarget{kernal_8h_source_l00179}\hyperlink{class_s_i_d_r_a_w___i_n_f_o}{00179} \textcolor{keyword}{class }\hyperlink{class_s_i_d_r_a_w___i_n_f_o}{SIDRAW\_INFO}
+00180 \{
+00181 \textcolor{keyword}{public}:
+\Hypertarget{kernal_8h_source_l00189}\hyperlink{class_s_i_d_r_a_w___i_n_f_o_a495fac5bcc54e4b58d500a7117fde9d9}{00189}     \hyperlink{struct_s_i_r_e_c_t}{SIRECT} \hyperlink{class_s_i_d_r_a_w___i_n_f_o_a495fac5bcc54e4b58d500a7117fde9d9}{S};        \textcolor{comment}{//small rectangle   }
+\Hypertarget{kernal_8h_source_l00200}\hyperlink{class_s_i_d_r_a_w___i_n_f_o_a41065961d296d245790773771670aae2}{00200} \textcolor{comment}{}    \hyperlink{struct_s_i_r_e_c_t}{SIRECT} \hyperlink{class_s_i_d_r_a_w___i_n_f_o_a41065961d296d245790773771670aae2}{L};        \textcolor{comment}{//large rectangle   }
+00201     \hyperlink{struct_s_i_p_o_i_n_t}{SIPOINT} POS; \textcolor{comment}{//coor. (left\_top)  ///<表示一个字符的左上角在屏幕上的位置 @see struct SIPOINT}
+00202 
+00203     \textcolor{keyword}{friend} \textcolor{keyword}{class }\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE};
+\Hypertarget{kernal_8h_source_l00207}\hyperlink{class_s_i_d_r_a_w___i_n_f_o_a2a34a37accb2d31386f1ac4003375227}{00207}     \hyperlink{class_s_i_d_r_a_w___i_n_f_o_a2a34a37accb2d31386f1ac4003375227}{SIDRAW\_INFO}()    
+00208     \{
+00209         S = \hyperlink{struct_s_i_r_e_c_t}{SIRECT}(); L = \hyperlink{struct_s_i_r_e_c_t}{SIRECT}(); POS = \hyperlink{struct_s_i_p_o_i_n_t}{SIPOINT}();
+00210     \}
+\Hypertarget{kernal_8h_source_l00214}\hyperlink{class_s_i_d_r_a_w___i_n_f_o_a48107d70e4071d1d925f722085876c3a}{00214}     \hyperlink{class_s_i_d_r_a_w___i_n_f_o_a2a34a37accb2d31386f1ac4003375227}{SIDRAW\_INFO::SIDRAW\_INFO}(\textcolor{keyword}{const} \hyperlink{struct_s_i_r_e_c_t}{SIRECT}& TS, \textcolor{keyword}{const} 
+      \hyperlink{struct_s_i_r_e_c_t}{SIRECT}& TL, \textcolor{keyword}{const} \hyperlink{struct_s_i_p_o_i_n_t}{SIPOINT}& TPOS)   
+00215     \{
+00216         S = TS; L = TL; POS = TPOS;
+00217     \}   
+00218     \textcolor{keywordtype}{void} set\_S(\textcolor{keyword}{const} \hyperlink{struct_s_i_r_e_c_t}{SIRECT}&);    
+00219     \textcolor{keywordtype}{void} set\_S(\textcolor{keywordtype}{int}, \textcolor{keywordtype}{int});   
+00220     \textcolor{keywordtype}{void} set\_L(\textcolor{keyword}{const} \hyperlink{struct_s_i_r_e_c_t}{SIRECT}&);    
+00221     \textcolor{keywordtype}{void} set\_POS(\textcolor{keyword}{const} \hyperlink{struct_s_i_p_o_i_n_t}{SIPOINT}&);    
+00222     \textcolor{keyword}{const} \hyperlink{struct_s_i_r_e_c_t}{SIRECT}& get\_S();    
+00223     \hyperlink{struct_s_i_r_e_c_t}{SIRECT}& get\_L();  
+00224     \hyperlink{struct_s_i_p_o_i_n_t}{SIPOINT}& get\_POS();  
+00225     \textcolor{keywordtype}{void} \hyperlink{class_s_i_c_h_a_r_n_o_d_e_a4b4d71bb1d49d56399586b214897bec4}{print\_info}();    
+00226     \textcolor{keywordtype}{void} \hyperlink{class_s_i_c_h_a_r_n_o_d_e_ae51d8c92371116aedf5510bb3096104c}{read\_info}();  
+00227 
+00228 \};
+00229 
+\Hypertarget{kernal_8h_source_l00233}\hyperlink{class_s_i_c_h_a_r___i_n_f_o}{00233} \textcolor{keyword}{class }\hyperlink{class_s_i_c_h_a_r___i_n_f_o}{SICHAR\_INFO}
+00234 \{
+00235 \textcolor{keyword}{public}:
+\Hypertarget{kernal_8h_source_l00236}\hyperlink{class_s_i_c_h_a_r___i_n_f_o_a8d998c494943882d98981f79f620460d}{00236}     SIFONT\_P \hyperlink{class_s_i_c_h_a_r___i_n_f_o_a8d998c494943882d98981f79f620460d}{fontpc};  
+\Hypertarget{kernal_8h_source_l00237}\hyperlink{class_s_i_c_h_a_r___i_n_f_o_ab9605aad10f9e033ed8e004468beeab9}{00237}     COLORERF \hyperlink{class_s_i_c_h_a_r___i_n_f_o_ab9605aad10f9e033ed8e004468beeab9}{color};    
+\Hypertarget{kernal_8h_source_l00238}\hyperlink{class_s_i_c_h_a_r___i_n_f_o_a838a052749c0c04c6f20c633b1cc4432}{00238}     COLORERF \hyperlink{class_s_i_c_h_a_r___i_n_f_o_a838a052749c0c04c6f20c633b1cc4432}{bgcolor};    
+\Hypertarget{kernal_8h_source_l00239}\hyperlink{class_s_i_c_h_a_r___i_n_f_o_abcc72d98471148d54e334f9528103a50}{00239}     CHARSIZE \hyperlink{class_s_i_c_h_a_r___i_n_f_o_abcc72d98471148d54e334f9528103a50}{size};  
+\Hypertarget{kernal_8h_source_l00240}\hyperlink{class_s_i_c_h_a_r___i_n_f_o_a575d876eda778563dec0f72bd4bc06ea}{00240}     CHARSPACE \hyperlink{class_s_i_c_h_a_r___i_n_f_o_a575d876eda778563dec0f72bd4bc06ea}{cspace}; 
+\Hypertarget{kernal_8h_source_l00241}\hyperlink{class_s_i_c_h_a_r___i_n_f_o_ace4bad34a55f914a2fbbdeb8f9a22bae}{00241}     LINESPACE \hyperlink{class_s_i_c_h_a_r___i_n_f_o_ace4bad34a55f914a2fbbdeb8f9a22bae}{lspace}; 
+\Hypertarget{kernal_8h_source_l00242}\hyperlink{class_s_i_c_h_a_r___i_n_f_o_a698a16c3b045894991c8aa2982190c7e}{00242}     SIALIGN \hyperlink{class_s_i_c_h_a_r___i_n_f_o_a698a16c3b045894991c8aa2982190c7e}{align}; 
+00243 
+00244     \textcolor{keyword}{friend} \textcolor{keyword}{class }\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE};
+\Hypertarget{kernal_8h_source_l00248}\hyperlink{class_s_i_c_h_a_r___i_n_f_o_ab0626402d19f4f4993077f947eb1c3de}{00248}     \hyperlink{class_s_i_c_h_a_r___i_n_f_o_ab0626402d19f4f4993077f947eb1c3de}{SICHAR\_INFO}() :fontpc(NULL)  
+00249     \{
+00250         \textcolor{comment}{//fontp = NULL;}
+00251         color = 0x000000;
+00252         bgcolor = 0xffffff;
+00253         size = cspace = lspace = 0;
+00254         align = 0;
+00255         fontpc = \textcolor{keyword}{new} SIFONT;
+00256     \};
+\Hypertarget{kernal_8h_source_l00260}\hyperlink{class_s_i_c_h_a_r___i_n_f_o_a21b428740b8332500ae61f43b700d6b2}{00260}     \hyperlink{class_s_i_c_h_a_r___i_n_f_o_a21b428740b8332500ae61f43b700d6b2}{SICHAR\_INFO}(\textcolor{keyword}{const} \hyperlink{class_s_i_c_h_a_r___i_n_f_o}{SICHAR\_INFO}& tinfo) 
+00261     \{
+00262 
+00263         *fontpc = *(tinfo.\hyperlink{class_s_i_c_h_a_r___i_n_f_o_a8d998c494943882d98981f79f620460d}{fontpc});
+00264         color = tinfo.\hyperlink{class_s_i_c_h_a_r___i_n_f_o_ab9605aad10f9e033ed8e004468beeab9}{color};
+00265         bgcolor = tinfo.\hyperlink{class_s_i_c_h_a_r___i_n_f_o_a838a052749c0c04c6f20c633b1cc4432}{bgcolor};
+00266         cspace = tinfo.\hyperlink{class_s_i_c_h_a_r___i_n_f_o_a575d876eda778563dec0f72bd4bc06ea}{cspace};
+00267         lspace = tinfo.\hyperlink{class_s_i_c_h_a_r___i_n_f_o_ace4bad34a55f914a2fbbdeb8f9a22bae}{lspace};
+00268         align = tinfo.\hyperlink{class_s_i_c_h_a_r___i_n_f_o_a698a16c3b045894991c8aa2982190c7e}{align};
+00269     \}
+00270     ~\hyperlink{class_s_i_c_h_a_r___i_n_f_o}{SICHAR\_INFO}()   
+00271     \{
+00272         \textcolor{keyword}{delete} fontpc;
+00273     \}
+00274     \textcolor{keywordtype}{void} \hyperlink{class_s_i_c_h_a_r_n_o_d_e_aad179bc8f8fc9a4789e0b9ba06ecef9a}{set\_fontpc}(SIFONT\_P tfontpc);    
+00275     \textcolor{keywordtype}{void} \hyperlink{class_s_i_c_h_a_r_n_o_d_e_aad179bc8f8fc9a4789e0b9ba06ecef9a}{set\_fontpc}(SIFONT& tfont);   
+00276     \textcolor{keywordtype}{void} set\_color(COLORERF tcolor);    
+00277     \textcolor{keywordtype}{void} set\_size(CHARSIZE tsize);  
+00278     \textcolor{keywordtype}{void} set\_cspace(CHARSPACE tcspace); 
+00279     \textcolor{keywordtype}{void} set\_lspace(LINESPACE tlspace); 
+00280 
+00285     SIFONT\_P get\_fontpc();  
+00290     COLORERF get\_color();   
+00295     CHARSIZE get\_size();
+00300     CHARSPACE get\_cspace();
+00305     LINESPACE get\_lspace();
+00306     \textcolor{keywordtype}{void} \hyperlink{class_s_i_c_h_a_r_n_o_d_e_a4b4d71bb1d49d56399586b214897bec4}{print\_info}();    
+00307     \textcolor{keywordtype}{void} \hyperlink{class_s_i_c_h_a_r_n_o_d_e_ae51d8c92371116aedf5510bb3096104c}{read\_info}();  
+00308 
+00315     \hyperlink{class_s_i_c_h_a_r___i_n_f_o}{SICHAR\_INFO}& operator = (\textcolor{keyword}{const} \hyperlink{class_s_i_c_h_a_r___i_n_f_o}{SICHAR\_INFO}& tinfo);   
+00316 \};
+00317 
+00318 
+\Hypertarget{kernal_8h_source_l00322}\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{00322} \textcolor{keyword}{class }\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE}
+00323 \{
+00324 \textcolor{keyword}{public}:
+\Hypertarget{kernal_8h_source_l00325}\hyperlink{class_s_i_c_h_a_r_n_o_d_e_a87aabfc0878d7c6cce226256873797e0}{00325}     SICHAR\_T \hyperlink{class_s_i_c_h_a_r_n_o_d_e_a87aabfc0878d7c6cce226256873797e0}{ch};  
+00326 
+\Hypertarget{kernal_8h_source_l00331}\hyperlink{class_s_i_c_h_a_r_n_o_d_e_a03e4b28edd8566a6b605f4caeeb7bd6f}{00331}     \hyperlink{class_s_i_c_h_a_r___i_n_f_o}{SICHAR\_INFO\_P} \hyperlink{class_s_i_c_h_a_r_n_o_d_e_a03e4b28edd8566a6b605f4caeeb7bd6f}{char\_infop}; 
+\Hypertarget{kernal_8h_source_l00337}\hyperlink{class_s_i_c_h_a_r_n_o_d_e_aee3adfece6b51d9f71a0aa19d203b106}{00337}     \hyperlink{class_s_i_d_r_a_w___i_n_f_o}{SIDRAW\_INFO\_P} \hyperlink{class_s_i_c_h_a_r_n_o_d_e_aee3adfece6b51d9f71a0aa19d203b106}{draw\_infop};
+\Hypertarget{kernal_8h_source_l00338}\hyperlink{class_s_i_c_h_a_r_n_o_d_e_ad4d1b1aee15e867902bbf17938a86e64}{00338}     \hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE} *\hyperlink{class_s_i_c_h_a_r_n_o_d_e_ad4d1b1aee15e867902bbf17938a86e64}{prevp};   
+\Hypertarget{kernal_8h_source_l00339}\hyperlink{class_s_i_c_h_a_r_n_o_d_e_ab188ae5c7731bcc66a1042defcf158c8}{00339}     \hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE} *\hyperlink{class_s_i_c_h_a_r_n_o_d_e_ab188ae5c7731bcc66a1042defcf158c8}{nextp};   
+00340 
+00341     \textcolor{keyword}{friend} \textcolor{keyword}{class }\hyperlink{class_s_i_t_e_x_t}{SITEXT};
+\Hypertarget{kernal_8h_source_l00345}\hyperlink{class_s_i_c_h_a_r_n_o_d_e_a69da1200fe43cf1aab75e44650cdd21b}{00345}     \hyperlink{class_s_i_c_h_a_r_n_o_d_e_a69da1200fe43cf1aab75e44650cdd21b}{SICHARNODE}(SICHAR\_T tch, \hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE}* tprevp = NULL, 
+      \hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE}* tnextp = NULL
+00346         , \hyperlink{class_s_i_c_h_a_r___i_n_f_o}{SICHAR\_INFO\_P} tchar\_infop = NULL, \hyperlink{class_s_i_d_r_a_w___i_n_f_o}{SIDRAW\_INFO\_P} tdraw\_infop = NULL) 
+00347     \{
+00348         ch = tch;
+00349         char\_infop = \textcolor{keyword}{new} \hyperlink{class_s_i_c_h_a_r___i_n_f_o}{SICHAR\_INFO};
+00350         draw\_infop = \textcolor{keyword}{new} \hyperlink{class_s_i_d_r_a_w___i_n_f_o}{SIDRAW\_INFO};
+00351         \textcolor{keywordflow}{if} (tchar\_infop != NULL) *char\_infop = *tchar\_infop;
+00352         \textcolor{keywordflow}{if} (tdraw\_infop != NULL) *draw\_infop = *tdraw\_infop;
+00353         prevp = tprevp;
+00354         nextp = tnextp;
+00355     \}
+\Hypertarget{kernal_8h_source_l00359}\hyperlink{class_s_i_c_h_a_r_n_o_d_e_aa06366dc16bf0aab9d16aaf43be0f8a3}{00359}     \hyperlink{class_s_i_c_h_a_r_n_o_d_e_aa06366dc16bf0aab9d16aaf43be0f8a3}{SICHARNODE}(SICHAR\_T tch, \textcolor{keywordtype}{int} tswidth, \textcolor{keywordtype}{int} tsheight)   
+00360     \{
+00361         ch = tch;
+00362         char\_infop = \textcolor{keyword}{new} \hyperlink{class_s_i_c_h_a_r___i_n_f_o}{SICHAR\_INFO};
+00363         draw\_infop = \textcolor{keyword}{new} \hyperlink{class_s_i_d_r_a_w___i_n_f_o}{SIDRAW\_INFO};
+00364         draw\_infop->\hyperlink{class_s_i_d_r_a_w___i_n_f_o_a495fac5bcc54e4b58d500a7117fde9d9}{S}.\hyperlink{struct_s_i_r_e_c_t_a99dbd77d045cc587f0c1f40bbba99ac8}{width} = tswidth;
+00365         draw\_infop->\hyperlink{class_s_i_d_r_a_w___i_n_f_o_a495fac5bcc54e4b58d500a7117fde9d9}{S}.\hyperlink{struct_s_i_r_e_c_t_a6577f3092897d4bef17aab5ec4d62819}{height} = tsheight;
+00366     \}
+00367     ~\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE}() 
+00368     \{
+00369         \textcolor{keywordflow}{if} (char\_infop != NULL) \textcolor{keyword}{delete} char\_infop;
+00370         \textcolor{keywordflow}{if} (draw\_infop != NULL) \textcolor{keyword}{delete} draw\_infop;
+00371     \}
+00372 \textcolor{keyword}{public}:
+00373     \textcolor{keywordtype}{void} calc\_S\_from\_font();
+00374 \textcolor{keyword}{public}:
+00375     \textcolor{keywordtype}{void} set\_fontpc(SIFONT\_P tfontpc);  
+00376     \textcolor{keywordtype}{void} set\_fontpc(SIFONT& tfont);
+00377     \textcolor{keywordtype}{void} set\_color(COLORERF tcolor);
+00378     \textcolor{keywordtype}{void} set\_size(CHARSIZE tsize);
+00379     \textcolor{keywordtype}{void} set\_draw\_infop\_S(\textcolor{keyword}{const} \hyperlink{struct_s_i_r_e_c_t}{SIRECT}& TS);
+00380     \textcolor{keywordtype}{void} set\_draw\_infop\_L(\textcolor{keyword}{const} \hyperlink{struct_s_i_r_e_c_t}{SIRECT}& TL);
+00381     \textcolor{keywordtype}{void} set\_draw\_infop\_P(\textcolor{keyword}{const} \hyperlink{struct_s_i_p_o_i_n_t}{SIPOINT}& TP);
+00382     \textcolor{keywordtype}{void} set\_align(SIALIGN align);
+00388     \textcolor{keywordtype}{void} ins\_prev(\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE}* p);
+00394     \textcolor{keywordtype}{void} ins\_next(\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE}* p);
+00402     \textcolor{keywordtype}{void} ins\_prev(\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE}* ps, \hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE}* pe);
+00410     \textcolor{keywordtype}{void} ins\_next(\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE}* ps, \hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE}* pe);
+00416     \textcolor{keywordtype}{void} ins\_prev(\textcolor{keyword}{const} \hyperlink{struct_s_i_r_a_n_g_e}{SIRANGE}& range); 
+00422     \textcolor{keywordtype}{void} ins\_next(\textcolor{keyword}{const} \hyperlink{struct_s_i_r_a_n_g_e}{SIRANGE}& range); 
+00428     \textcolor{keyword}{friend} \textcolor{keywordtype}{void} del(\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE}* p);
+00435     \textcolor{keyword}{friend} \textcolor{keywordtype}{void} del(\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE}* ps, \hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE}* pe);    
+00436     \textcolor{keyword}{friend} \textcolor{keywordtype}{void} del(\textcolor{keyword}{const} \hyperlink{struct_s_i_r_a_n_g_e}{SIRANGE}& range);   
+00437 
+00438     \textcolor{keyword}{const} \hyperlink{class_s_i_c_h_a_r___i_n_f_o}{SICHAR\_INFO\_P} get\_char\_infop();  
+00439     \textcolor{keyword}{const} \hyperlink{class_s_i_d_r_a_w___i_n_f_o}{SIDRAW\_INFO\_P} get\_draw\_infop();  
+00440     \textcolor{keywordtype}{void} \hyperlink{class_s_i_t_e_x_t_a9555644951be5d9def8c2a8d4843bf4c}{print\_info}();    
+00441     \textcolor{keywordtype}{void} \hyperlink{class_s_i_t_e_x_t_acb96e6f11f61d17d4361d895614bfd2d}{read\_info}();  
+00442 
+00443 \};
+00444 
+00445 
+\Hypertarget{kernal_8h_source_l00450}\hyperlink{class_s_i_t_e_x_t}{00450} \textcolor{keyword}{class }\hyperlink{class_s_i_t_e_x_t}{SITEXT}
+00451 \{
+00452 \textcolor{keyword}{public}:
+00453 
+\Hypertarget{kernal_8h_source_l00454}\hyperlink{class_s_i_t_e_x_t_a0d602676667071382638f8b27850c6a6}{00454}     \textcolor{keywordtype}{string} \hyperlink{class_s_i_t_e_x_t_a0d602676667071382638f8b27850c6a6}{save\_path};  
+\Hypertarget{kernal_8h_source_l00455}\hyperlink{class_s_i_t_e_x_t_a7d7def7333970c953f9daebfe22155a8}{00455}     \textcolor{keywordtype}{string} \hyperlink{class_s_i_t_e_x_t_a7d7def7333970c953f9daebfe22155a8}{open\_path};  
+00456 
+\Hypertarget{kernal_8h_source_l00457}\hyperlink{class_s_i_t_e_x_t_a50c3c59ac0a71a940d688e9d4d901bee}{00457}     \hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE\_P} \hyperlink{class_s_i_t_e_x_t_a50c3c59ac0a71a940d688e9d4d901bee}{headp};    
+\Hypertarget{kernal_8h_source_l00458}\hyperlink{class_s_i_t_e_x_t_a65fc82385d60763d2f3bcca67abf99bc}{00458}     \hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE\_P} \hyperlink{class_s_i_t_e_x_t_a65fc82385d60763d2f3bcca67abf99bc}{tailp};    
+00459 
+\Hypertarget{kernal_8h_source_l00466}\hyperlink{class_s_i_t_e_x_t_a1841f3bacc1a8c468203f44e904afc73}{00466}     \hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICURSORP} \hyperlink{class_s_i_t_e_x_t_a1841f3bacc1a8c468203f44e904afc73}{cursorp};
+\Hypertarget{kernal_8h_source_l00467}\hyperlink{class_s_i_t_e_x_t_a536f8decde35b0149619ca1719c887b0}{00467}     \hyperlink{struct_s_i_r_a_n_g_e}{SISELECT} \hyperlink{class_s_i_t_e_x_t_a536f8decde35b0149619ca1719c887b0}{select};  
+00468 
+\Hypertarget{kernal_8h_source_l00469}\hyperlink{class_s_i_t_e_x_t_afcb828b5d1da58d0f60088097e8c107b}{00469}     PAGEWIDTH \hyperlink{class_s_i_t_e_x_t_afcb828b5d1da58d0f60088097e8c107b}{pagewidth};   
+00470 
+00471     SIFONT\_P curfontpc; 
+\Hypertarget{kernal_8h_source_l00472}\hyperlink{class_s_i_t_e_x_t_abdacda1b7e48087a0aa2905702cb1d68}{00472}     SIFONT \hyperlink{class_s_i_t_e_x_t_abdacda1b7e48087a0aa2905702cb1d68}{default\_font};    
+00473 
+00474     \textcolor{keywordtype}{bool} inselect;  
+00475     \textcolor{keywordtype}{int} fwdnum;
+\Hypertarget{kernal_8h_source_l00476}\hyperlink{class_s_i_t_e_x_t_abdabb47ab701f95f73b806df2c440347}{00476}     std::vector<SILINE> \hyperlink{class_s_i_t_e_x_t_abdabb47ab701f95f73b806df2c440347}{vlinep};   
+\Hypertarget{kernal_8h_source_l00477}\hyperlink{class_s_i_t_e_x_t_aeeeed4da4b7633b913a7a98336a91d75}{00477}     std::vector<SIPARAGRAPH> \hyperlink{class_s_i_t_e_x_t_aeeeed4da4b7633b913a7a98336a91d75}{vparap};  
+00478 
+00479     \textcolor{comment}{//set true when text changed specifically when \(\backslash\)}
+00480 \textcolor{comment}{                effectable methods are called       \(\backslash\)}
+00481 \textcolor{comment}{      set false when repaint() is called}
+00482     \textcolor{keywordtype}{bool} text\_changed\_f;    
+00483     \textcolor{comment}{//set true when set\_curfontp() is called \(\backslash\)}
+00484 \textcolor{comment}{              set false when cursor moved}
+00485     \textcolor{keywordtype}{bool} set\_curfontp\_f;
+00486 
+00487 \textcolor{keyword}{public}:
+00488 
+00489     \textcolor{keywordtype}{void} \_init();   
+00490     \textcolor{keywordtype}{void} \_destroy();    
+00491 
+00501     \textcolor{keywordtype}{void} draw\_line\_from\_left(\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE\_P} ps, \hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE\_P} pe, \textcolor{keywordtype}{int} sx, \textcolor{keywordtype}{int} y, \textcolor{keywordtype}{int} 
+      line\_height, \textcolor{keywordtype}{int} deltax);
+00518     \textcolor{keywordtype}{void} proc\_line(\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE\_P} ps, \hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE\_P} pe, \textcolor{keywordtype}{int} n, \textcolor{keywordtype}{int} y, \textcolor{keywordtype}{int} line\_height,
+       \textcolor{keywordtype}{int} tot\_weight, SIALIGN align);
+00523     \textcolor{keywordtype}{void} pre\_proc();
+00524     \textcolor{keywordtype}{void} proc\_text();   
+00525     \textcolor{keyword}{inline} std::vector<SILINE>::iterator point\_to\_line(\textcolor{keyword}{const} \hyperlink{struct_s_i_p_o_i_n_t}{SIPOINT}& P);    
+00526     \textcolor{keyword}{inline} \textcolor{keywordtype}{void} set\_line\_align(\textcolor{keyword}{const} \hyperlink{struct_s_i_r_a_n_g_e}{SILINE}& line, SIALIGN align);    
+00527 
+00528 \textcolor{keyword}{public}:
+00529 
+00530     \textcolor{keyword}{static} \textcolor{keyword}{const} PAGEWIDTH DEFAULT\_PAGEWIDTH = 110;
+00531 
+00532     \textcolor{keyword}{static} \textcolor{keyword}{const} SIDIRECT DLEFT = 0;
+00533     \textcolor{keyword}{static} \textcolor{keyword}{const} SIDIRECT DRIGHT = 1;
+00534     \textcolor{keyword}{static} \textcolor{keyword}{const} SIDIRECT DUP = 2;
+00535     \textcolor{keyword}{static} \textcolor{keyword}{const} SIDIRECT DDOWN = 3;
+00536 
+00537     \textcolor{keyword}{static} \textcolor{keyword}{const} SIALIGN ANORMAL = 0;
+00538     \textcolor{keyword}{static} \textcolor{keyword}{const} SIALIGN ALEFT = 1;
+00539     \textcolor{keyword}{static} \textcolor{keyword}{const} SIALIGN ARIGHT = 2;
+00540     \textcolor{keyword}{static} \textcolor{keyword}{const} SIALIGN ACENTER = 3;
+00541     \textcolor{keyword}{static} \textcolor{keyword}{const} SIALIGN ADISTRIBUTED = 4;
+00542     \textcolor{comment}{//constructor}
+00543     \hyperlink{class_s_i_t_e_x_t}{SITEXT}()  
+00544     \{
+00545         \_init();
+00546     \}
+00547     ~\hyperlink{class_s_i_t_e_x_t}{SITEXT}() 
+00548     \{
+00549         \_destroy();
+00550     \}
+00551     
+00552     \textcolor{keywordtype}{void} save();    
+00553     \textcolor{keywordtype}{void} open();    
+00554     \textcolor{keywordtype}{void} ins\_char(SICHAR\_T);    
+00555     \textcolor{keywordtype}{void} ins\_char(SICHAR\_T, \textcolor{keywordtype}{int}, \textcolor{keywordtype}{int});  
+00556 
+00562     \textcolor{keywordtype}{void} del\_char(\textcolor{keywordtype}{bool} backwards);
+00563     \textcolor{keywordtype}{void} start\_select();    
+00564     \textcolor{keywordtype}{void} end\_select();  
+00565     \textcolor{keywordtype}{void} del\_select();  
+00566     \textcolor{keywordtype}{void} replace\_select(\textcolor{keyword}{const} \hyperlink{struct_s_i_r_a_n_g_e}{SIRANGE}&); 
+00567     \textcolor{keywordtype}{void} replace\_select(\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE\_P} ps, \hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE\_P} pe);  
+00568 
+00572     \textcolor{keywordtype}{void} cancel\_select();
+00573     \textcolor{keywordtype}{void} mov\_select(\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICURSORP});    
+00574 
+00579     \textcolor{keywordtype}{void} mov\_cursorp(\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICURSORP});   
+00585     \textcolor{keywordtype}{void} mov\_cursorp(SIDIRECT);
+00591     \textcolor{keywordtype}{void} mov\_cursorp(\textcolor{keyword}{const} \hyperlink{struct_s_i_p_o_i_n_t}{SIPOINT}&);
+00592     
+00593     \textcolor{keywordtype}{void} set\_default\_font(SIFONT& tfont);   
+00594     \textcolor{keywordtype}{void} set\_default\_font(SIFONT\_P tfontp); 
+00595     \textcolor{keywordtype}{void} set\_select\_font(SIFONT\_P tfontpc); 
+00596     \textcolor{keywordtype}{void} set\_select\_font(SIFONT& tfont);    
+00597     \textcolor{keywordtype}{void} set\_curfont(SIFONT\_P tcurfontpc);  
+00598     \textcolor{keywordtype}{void} set\_curfont(SIFONT& tcurfont);
+00599     \textcolor{keywordtype}{void} set\_select\_color(COLORERF tcolor); 
+00600     \textcolor{keywordtype}{void} set\_select\_lspace(LINESPACE tlspace);  
+00601     \textcolor{keywordtype}{void} set\_select\_cspace(CHARSPACE tcspace);  
+00602     \textcolor{keywordtype}{void} set\_pagewidth(PAGEWIDTH tpagewidth);   
+00603     \textcolor{keywordtype}{void} set\_select\_align(SIALIGN align);   
+00604     \textcolor{keywordtype}{void} set\_cursorp\_align(SIALIGN align);  
+00605 
+00611     SIALIGN get\_range\_align(\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE\_P} ps,\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE\_P} pe);   
+00612     SIALIGN get\_range\_align(\textcolor{keyword}{const} \hyperlink{struct_s_i_r_a_n_g_e}{SIRANGE}& range);   
+00613 
+00614     \textcolor{keywordtype}{void} set\_save\_path(\textcolor{keywordtype}{string} tsave\_path);  
+00615     \textcolor{keywordtype}{void} set\_open\_path(\textcolor{keywordtype}{string} topen\_path);  
+00616     \hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICURSORP} point\_to\_cursorp(\textcolor{keyword}{const} \hyperlink{struct_s_i_p_o_i_n_t}{SIPOINT}& P);   
+00617     \textcolor{keywordtype}{void} repaint(); 
+00618     \textcolor{keywordtype}{void} print\_info();  
+00619     \textcolor{keywordtype}{void} read\_info();   
+00620     \textcolor{keywordtype}{void} anticolor(\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE\_P} ps, \hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE\_P} pe);   
+00621 
+00629     \textcolor{keyword}{friend} \textcolor{keywordtype}{bool} \hyperlink{kernal_8h_ae39165f0f00583edee6fe18ea6bdf5e3}{point\_on\_line}(\hyperlink{struct_s_i_r_a_n_g_e}{SILINE} L, \textcolor{keyword}{const} \hyperlink{struct_s_i_p_o_i_n_t}{SIPOINT}& P);
+00638     \textcolor{keyword}{friend} \textcolor{keywordtype}{bool} \hyperlink{kernal_8h_a98cfecde826e07d0286c4e279554d1fa}{point\_on\_char\_col}(\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE\_P} np, \textcolor{keyword}{const} 
+      \hyperlink{struct_s_i_p_o_i_n_t}{SIPOINT}& P);
+00639 \};
+00640 
+00641 \textcolor{comment}{//SICHAR\_INFO}
+\Hypertarget{kernal_8h_source_l00642}\hyperlink{class_s_i_c_h_a_r___i_n_f_o_a7dd5af8833b1951a6e4759668d484f37}{00642} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \hyperlink{class_s_i_c_h_a_r___i_n_f_o_a7dd5af8833b1951a6e4759668d484f37}{SICHAR\_INFO::set\_fontpc}(SIFONT\_P tfontp)
+00643 \{
+00644     \textcolor{keywordflow}{if} (fontpc == NULL) fontpc = \textcolor{keyword}{new} SIFONT;
+00645     *fontpc = *tfontp;
+00646 \}
+\Hypertarget{kernal_8h_source_l00647}\hyperlink{class_s_i_c_h_a_r___i_n_f_o_a01ad1057400db3ccec680de26f4ab0a2}{00647} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \hyperlink{class_s_i_c_h_a_r___i_n_f_o_a7dd5af8833b1951a6e4759668d484f37}{SICHAR\_INFO::set\_fontpc}(SIFONT& tfont)
+00648 \{
+00649     \textcolor{keywordflow}{if} (fontpc == NULL) fontpc = \textcolor{keyword}{new} SIFONT;
+00650     *fontpc = tfont;
+00651 \}
+\Hypertarget{kernal_8h_source_l00652}\hyperlink{class_s_i_c_h_a_r___i_n_f_o_a3c7718568eb9ff885af1bdfa8c197236}{00652} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \hyperlink{class_s_i_c_h_a_r___i_n_f_o_a3c7718568eb9ff885af1bdfa8c197236}{SICHAR\_INFO::set\_color}(COLORERF tcolor)
+00653 \{
+00654     color = tcolor;
+00655 \}
+\Hypertarget{kernal_8h_source_l00656}\hyperlink{class_s_i_c_h_a_r___i_n_f_o_afe883164593a8d3a5c9377eb5454c9f1}{00656} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \hyperlink{class_s_i_c_h_a_r___i_n_f_o_afe883164593a8d3a5c9377eb5454c9f1}{SICHAR\_INFO::set\_size}(CHARSIZE tsize)
+00657 \{
+00658     size = tsize;
+00659 \}
+\Hypertarget{kernal_8h_source_l00660}\hyperlink{class_s_i_c_h_a_r___i_n_f_o_a18aaf35f07094cb42942663a71456227}{00660} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \hyperlink{class_s_i_c_h_a_r___i_n_f_o_a18aaf35f07094cb42942663a71456227}{SICHAR\_INFO::set\_cspace}(CHARSPACE tcspace)
+00661 \{
+00662     cspace = tcspace;
+00663 \}
+\Hypertarget{kernal_8h_source_l00664}\hyperlink{class_s_i_c_h_a_r___i_n_f_o_af38e1eac74e8d9c14e5c5d05d58f8b36}{00664} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \hyperlink{class_s_i_c_h_a_r___i_n_f_o_af38e1eac74e8d9c14e5c5d05d58f8b36}{SICHAR\_INFO::set\_lspace}(LINESPACE tlspace)
+00665 \{
+00666     lspace = tlspace;
+00667 \}
+\Hypertarget{kernal_8h_source_l00668}\hyperlink{class_s_i_c_h_a_r___i_n_f_o_ad53aa1c6641e81bf0b79f17836aa5dfa}{00668} \textcolor{keyword}{inline} SIFONT\_P \hyperlink{class_s_i_c_h_a_r___i_n_f_o_ad53aa1c6641e81bf0b79f17836aa5dfa}{SICHAR\_INFO::get\_fontpc}()
+00669 \{
+00670     \textcolor{keywordflow}{return} fontpc;
+00671 \}
+\Hypertarget{kernal_8h_source_l00672}\hyperlink{class_s_i_c_h_a_r___i_n_f_o_acd6d47c6cf5f266e18033e45763d6272}{00672} \textcolor{keyword}{inline} COLORERF \hyperlink{class_s_i_c_h_a_r___i_n_f_o_acd6d47c6cf5f266e18033e45763d6272}{SICHAR\_INFO::get\_color}()
+00673 \{
+00674     \textcolor{keywordflow}{return} color;
+00675 \}
+\Hypertarget{kernal_8h_source_l00676}\hyperlink{class_s_i_c_h_a_r___i_n_f_o_aae2cfbd0b6bbb122008da027f662291b}{00676} \textcolor{keyword}{inline} CHARSIZE \hyperlink{class_s_i_c_h_a_r___i_n_f_o_aae2cfbd0b6bbb122008da027f662291b}{SICHAR\_INFO::get\_size}()
+00677 \{
+00678     \textcolor{keywordflow}{return} size;
+00679 \}
+\Hypertarget{kernal_8h_source_l00680}\hyperlink{class_s_i_c_h_a_r___i_n_f_o_af170e524f63209016d06f919dd4c33d3}{00680} \textcolor{keyword}{inline} CHARSPACE \hyperlink{class_s_i_c_h_a_r___i_n_f_o_af170e524f63209016d06f919dd4c33d3}{SICHAR\_INFO::get\_cspace}()
+00681 \{
+00682     \textcolor{keywordflow}{return} cspace;
+00683 \}
+\Hypertarget{kernal_8h_source_l00684}\hyperlink{class_s_i_c_h_a_r___i_n_f_o_a212cea0692a8717d5b671035885796c2}{00684} \textcolor{keyword}{inline} LINESPACE \hyperlink{class_s_i_c_h_a_r___i_n_f_o_a212cea0692a8717d5b671035885796c2}{SICHAR\_INFO::get\_lspace}()
+00685 \{
+00686     \textcolor{keywordflow}{return} lspace;
+00687 \}
+00688 
+00689 \textcolor{comment}{//SIDRAW\_INFO}
+\Hypertarget{kernal_8h_source_l00690}\hyperlink{class_s_i_d_r_a_w___i_n_f_o_aa4c9bdd6f914bc65d2900a9e6b5fa46e}{00690} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \hyperlink{class_s_i_d_r_a_w___i_n_f_o_aa4c9bdd6f914bc65d2900a9e6b5fa46e}{SIDRAW\_INFO::set\_S}(\textcolor{keyword}{const} \hyperlink{struct_s_i_r_e_c_t}{SIRECT}& TS)
+00691 \{
+00692     S = TS;
+00693 \}
+\Hypertarget{kernal_8h_source_l00694}\hyperlink{class_s_i_d_r_a_w___i_n_f_o_ae3f97d9ad0701d3efe0bcda63b02c021}{00694} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \hyperlink{class_s_i_d_r_a_w___i_n_f_o_aa4c9bdd6f914bc65d2900a9e6b5fa46e}{SIDRAW\_INFO::set\_S}(\textcolor{keywordtype}{int} twidth, \textcolor{keywordtype}{int} theight)
+00695 \{
+00696     S.width = twidth;
+00697     S.height = theight;
+00698 \}
+\Hypertarget{kernal_8h_source_l00699}\hyperlink{class_s_i_d_r_a_w___i_n_f_o_ae70aee6b53f6bb4f52e8c70ea6094565}{00699} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \hyperlink{class_s_i_d_r_a_w___i_n_f_o_ae70aee6b53f6bb4f52e8c70ea6094565}{SIDRAW\_INFO::set\_L}(\textcolor{keyword}{const} \hyperlink{struct_s_i_r_e_c_t}{SIRECT}& TL)
+00700 \{
+00701     S = TL;
+00702 \}
+\Hypertarget{kernal_8h_source_l00703}\hyperlink{class_s_i_d_r_a_w___i_n_f_o_a6fb070443ef25d1de07bb98954df00a6}{00703} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \hyperlink{class_s_i_d_r_a_w___i_n_f_o_a6fb070443ef25d1de07bb98954df00a6}{SIDRAW\_INFO::set\_POS}(\textcolor{keyword}{const} \hyperlink{struct_s_i_p_o_i_n_t}{SIPOINT}& TPOS)
+00704 \{
+00705     POS = TPOS;
+00706 \}
+\Hypertarget{kernal_8h_source_l00707}\hyperlink{class_s_i_d_r_a_w___i_n_f_o_abb39527ef4c718afe5c78692fc24f12c}{00707} \textcolor{keyword}{inline} \textcolor{keyword}{const} \hyperlink{struct_s_i_r_e_c_t}{SIRECT}& \hyperlink{class_s_i_d_r_a_w___i_n_f_o_abb39527ef4c718afe5c78692fc24f12c}{SIDRAW\_INFO::get\_S}()
+00708 \{
+00709     \textcolor{keywordflow}{return} S;
+00710 \}
+\Hypertarget{kernal_8h_source_l00711}\hyperlink{class_s_i_d_r_a_w___i_n_f_o_abb4f53a14df75b907572d7d95c275b1d}{00711} \textcolor{keyword}{inline} \hyperlink{struct_s_i_r_e_c_t}{SIRECT}& \hyperlink{class_s_i_d_r_a_w___i_n_f_o_abb4f53a14df75b907572d7d95c275b1d}{SIDRAW\_INFO::get\_L}()
+00712 \{
+00713     \textcolor{keywordflow}{return} L;
+00714 \}
+\Hypertarget{kernal_8h_source_l00715}\hyperlink{class_s_i_d_r_a_w___i_n_f_o_aeca1707cc1e7e849f7e4e14f8ea36503}{00715} \textcolor{keyword}{inline} \hyperlink{struct_s_i_p_o_i_n_t}{SIPOINT}& \hyperlink{class_s_i_d_r_a_w___i_n_f_o_aeca1707cc1e7e849f7e4e14f8ea36503}{SIDRAW\_INFO::get\_POS}()
+00716 \{
+00717     \textcolor{keywordflow}{return} POS;
+00718 \}
+00719 
+00720 \textcolor{comment}{//SICHARNODE}
+\Hypertarget{kernal_8h_source_l00721}\hyperlink{class_s_i_c_h_a_r_n_o_d_e_aad179bc8f8fc9a4789e0b9ba06ecef9a}{00721} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \hyperlink{class_s_i_c_h_a_r_n_o_d_e_aad179bc8f8fc9a4789e0b9ba06ecef9a}{SICHARNODE::set\_fontpc}(SIFONT\_P tfontp)
+00722 \{
+00723     char\_infop->set\_fontpc(tfontp);
+00724     draw\_infop->set\_S(char\_infop->fontpc->lfWidth, char\_infop->fontpc->lfHeight);
+00725 \}
+00726 \textcolor{keyword}{inline} \textcolor{keywordtype}{void} SICHARNODE::set\_color(COLORERF tcolor)
+00727 \{
+00728     char\_infop->set\_color(tcolor);
+00729 \}
+00730 \textcolor{keyword}{inline} \textcolor{keywordtype}{void} SICHARNODE::set\_size(CHARSIZE tsize)
+00731 \{
+00732     char\_infop->set\_size(tsize);
+00733 \}
+00734 
+00735 \textcolor{keyword}{inline} \textcolor{keywordtype}{void} SICHARNODE::set\_draw\_infop\_S(\textcolor{keyword}{const} \hyperlink{struct_s_i_r_e_c_t}{SIRECT}& TS)
+00736 \{
+00737     draw\_infop->set\_S(TS);
+00738 \}
+00739 \textcolor{keyword}{inline} \textcolor{keywordtype}{void} SICHARNODE::set\_draw\_infop\_L(\textcolor{keyword}{const} \hyperlink{struct_s_i_r_e_c_t}{SIRECT}& TL)
+00740 \{
+00741     draw\_infop->set\_L(TL);
+00742 \}
+00743 \textcolor{keyword}{inline} \textcolor{keywordtype}{void} SICHARNODE::set\_draw\_infop\_P(\textcolor{keyword}{const} \hyperlink{struct_s_i_p_o_i_n_t}{SIPOINT}& TP)
+00744 \{
+00745     draw\_infop->set\_POS(TP);
+00746 \}
+00747 \textcolor{keyword}{inline} \textcolor{keywordtype}{void} SICHARNODE::set\_align(SIALIGN align)
+00748 \{
+00749     char\_infop->align = align;
+00750 \}
+\Hypertarget{kernal_8h_source_l00751}\hyperlink{class_s_i_c_h_a_r_n_o_d_e_a85ebada9a5d765d7f055bab903b6c6d2}{00751} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \hyperlink{class_s_i_c_h_a_r_n_o_d_e_a0aba68c10438db18bea07bb77d70f839}{SICHARNODE::ins\_prev}(\textcolor{keyword}{const} \hyperlink{struct_s_i_r_a_n_g_e}{SIRANGE}& range)
+00752 \{
+00753     ins\_prev(range.\hyperlink{struct_s_i_r_a_n_g_e_a7acdf296d873d6ed6fc203674109b715}{sp}, range.\hyperlink{struct_s_i_r_a_n_g_e_aaa89b5ae16be7b890eba048bc212feec}{ep});
+00754 \}
+\Hypertarget{kernal_8h_source_l00755}\hyperlink{class_s_i_c_h_a_r_n_o_d_e_af8048308dc6b0ffdf02caceb814ee8e3}{00755} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \hyperlink{class_s_i_c_h_a_r_n_o_d_e_a9a3f1b6c50c483ad2d8a770f4590c50c}{SICHARNODE::ins\_next}(\textcolor{keyword}{const} \hyperlink{struct_s_i_r_a_n_g_e}{SIRANGE}& range)
+00756 \{
+00757     ins\_next(range.\hyperlink{struct_s_i_r_a_n_g_e_a7acdf296d873d6ed6fc203674109b715}{sp}, range.\hyperlink{struct_s_i_r_a_n_g_e_aaa89b5ae16be7b890eba048bc212feec}{ep});
+00758 \}
+\Hypertarget{kernal_8h_source_l00759}\hyperlink{class_s_i_c_h_a_r_n_o_d_e_a95039205cd53a18d6f1b8ef1a80c90c2}{00759} \textcolor{keyword}{inline} \textcolor{keyword}{const} \hyperlink{class_s_i_c_h_a_r___i_n_f_o}{SICHAR\_INFO\_P} \hyperlink{class_s_i_c_h_a_r_n_o_d_e_a95039205cd53a18d6f1b8ef1a80c90c2}{SICHARNODE::get\_char\_infop}()
+00760 \{
+00761     \textcolor{keywordflow}{return} char\_infop;
+00762 \}
+\Hypertarget{kernal_8h_source_l00763}\hyperlink{class_s_i_c_h_a_r_n_o_d_e_a96a8903f87343bb9096a8ed014e789be}{00763} \textcolor{keyword}{inline} \textcolor{keyword}{const} \hyperlink{class_s_i_d_r_a_w___i_n_f_o}{SIDRAW\_INFO\_P} \hyperlink{class_s_i_c_h_a_r_n_o_d_e_a96a8903f87343bb9096a8ed014e789be}{SICHARNODE::get\_draw\_infop}()
+00764 \{
+00765     \textcolor{keywordflow}{return} draw\_infop;
+00766 \}
+00767 
+00768 \textcolor{comment}{//SITEXT}
+\Hypertarget{kernal_8h_source_l00769}\hyperlink{class_s_i_t_e_x_t_a150118dc911f012d521f64a54fbc05f5}{00769} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \hyperlink{class_s_i_t_e_x_t_a150118dc911f012d521f64a54fbc05f5}{SITEXT::set\_save\_path}(\textcolor{keywordtype}{string} tsave\_path)
+00770 \{
+00771     save\_path = tsave\_path;
+00772 \}
+\Hypertarget{kernal_8h_source_l00773}\hyperlink{class_s_i_t_e_x_t_aaf81d56b98488470fb9b7eba1f570d8e}{00773} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \hyperlink{class_s_i_t_e_x_t_aaf81d56b98488470fb9b7eba1f570d8e}{SITEXT::set\_open\_path}(\textcolor{keywordtype}{string} topen\_path)
+00774 \{
+00775     open\_path = topen\_path;
+00776 \}
+\Hypertarget{kernal_8h_source_l00777}\hyperlink{class_s_i_t_e_x_t_a6324f46cb5b509caca467ee700305f0c}{00777} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \hyperlink{class_s_i_t_e_x_t_a6324f46cb5b509caca467ee700305f0c}{SITEXT::ins\_char}(SICHAR\_T tchar)
+00778 \{
+00779     cursorp->ins\_prev(\textcolor{keyword}{new} \hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE}(tchar));
+00780 \}
+\Hypertarget{kernal_8h_source_l00781}\hyperlink{class_s_i_t_e_x_t_aad511d1ac1db11e0f7e462e927562c4d}{00781} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \hyperlink{class_s_i_t_e_x_t_a6324f46cb5b509caca467ee700305f0c}{SITEXT::ins\_char}(SICHAR\_T ch, \textcolor{keywordtype}{int} twidth, \textcolor{keywordtype}{int} theight)
+00782 \{
+00783     ins\_char(ch);
+00784     cursorp->prevp->draw\_infop->S.width = twidth;
+00785     cursorp->prevp->draw\_infop->S.height = theight;
+00786 \}
+\Hypertarget{kernal_8h_source_l00787}\hyperlink{class_s_i_t_e_x_t_a64816d0a3be43c67522eb09cd6b4eb94}{00787} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \hyperlink{class_s_i_t_e_x_t_a64816d0a3be43c67522eb09cd6b4eb94}{SITEXT::start\_select}()
+00788 \{
+00789     select.sp = cursorp;
+00790     inselect = \textcolor{keyword}{true};
+00791     fwdnum = 0;
+00792 \}
+\Hypertarget{kernal_8h_source_l00793}\hyperlink{class_s_i_t_e_x_t_a3a942ca324f4c37a4d747ba7a91a293b}{00793} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \hyperlink{class_s_i_t_e_x_t_a3a942ca324f4c37a4d747ba7a91a293b}{SITEXT::cancel\_select}()
+00794 \{
+00795     anticolor(select.sp, select.ep);
+00796     select.\_clear();
+00797 \}
+\Hypertarget{kernal_8h_source_l00798}\hyperlink{class_s_i_t_e_x_t_ac2480043349d0c611a717c87ffbc6415}{00798} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \hyperlink{class_s_i_t_e_x_t_a5919f6a8ad7413503660035259a84fbe}{SITEXT::replace\_select}(\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE\_P} ps, 
+      \hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE\_P} pe)
+00799 \{
+00800     \hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE\_P} p = select.ep->\hyperlink{class_s_i_c_h_a_r_n_o_d_e_ab188ae5c7731bcc66a1042defcf158c8}{nextp};
+00801     del(select);
+00802     p->\hyperlink{class_s_i_c_h_a_r_n_o_d_e_a0aba68c10438db18bea07bb77d70f839}{ins\_prev}(ps, pe);
+00803 \}
+\Hypertarget{kernal_8h_source_l00804}\hyperlink{class_s_i_t_e_x_t_a5919f6a8ad7413503660035259a84fbe}{00804} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \hyperlink{class_s_i_t_e_x_t_a5919f6a8ad7413503660035259a84fbe}{SITEXT::replace\_select}(\textcolor{keyword}{const} \hyperlink{struct_s_i_r_a_n_g_e}{SIRANGE}& range)
+00805 \{
+00806     replace\_select(range.\hyperlink{struct_s_i_r_a_n_g_e_a7acdf296d873d6ed6fc203674109b715}{sp}, range.\hyperlink{struct_s_i_r_a_n_g_e_aaa89b5ae16be7b890eba048bc212feec}{ep});
+00807 \}
+\Hypertarget{kernal_8h_source_l00808}\hyperlink{class_s_i_t_e_x_t_abb0fb0438be292cc363813dece5b6258}{00808} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \hyperlink{class_s_i_t_e_x_t_abb0fb0438be292cc363813dece5b6258}{SITEXT::mov\_select}(\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICURSORP} tcursorp)
+00809 \{
+00810     select.sp->prevp->nextp = select.ep->nextp;
+00811     select.ep->nextp->prevp = select.sp->prevp;
+00812     tcursorp->\hyperlink{class_s_i_c_h_a_r_n_o_d_e_a0aba68c10438db18bea07bb77d70f839}{ins\_prev}(select.sp, select.ep);
+00813 \}
+\Hypertarget{kernal_8h_source_l00814}\hyperlink{class_s_i_t_e_x_t_a79c57242ea31d6792f319aaf5ac8d8f0}{00814} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \hyperlink{class_s_i_t_e_x_t_a79c57242ea31d6792f319aaf5ac8d8f0}{SITEXT::mov\_cursorp}(\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICURSORP} tcursorp)
+00815 \{
+00816     cursorp = tcursorp;
+00817 \}
+\Hypertarget{kernal_8h_source_l00818}\hyperlink{class_s_i_t_e_x_t_a4542e94a4f3d3e4d47983bf051dc7ec4}{00818} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \hyperlink{class_s_i_t_e_x_t_a79c57242ea31d6792f319aaf5ac8d8f0}{SITEXT::mov\_cursorp}(\textcolor{keyword}{const} \hyperlink{struct_s_i_p_o_i_n_t}{SIPOINT}& P)
+00819 \{
+00820     cursorp = point\_to\_cursorp(P);
+00821 \}
+\Hypertarget{kernal_8h_source_l00822}\hyperlink{class_s_i_t_e_x_t_a3e04be8b17cd6702fc52158f9b3b276b}{00822} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \hyperlink{class_s_i_t_e_x_t_a3e04be8b17cd6702fc52158f9b3b276b}{SITEXT::set\_default\_font}(SIFONT& tfont)
+00823 \{
+00824     default\_font = tfont;
+00825     headp->set\_fontpc(tfont);
+00826     tailp->set\_fontpc(tfont);
+00827 \}
+\Hypertarget{kernal_8h_source_l00828}\hyperlink{class_s_i_t_e_x_t_a8fcd320042283b60f57630bdb8fd5bc8}{00828} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \hyperlink{class_s_i_t_e_x_t_a3e04be8b17cd6702fc52158f9b3b276b}{SITEXT::set\_default\_font}(SIFONT\_P tfontp)
+00829 \{
+00830     headp->set\_fontpc(tfontp);
+00831     tailp->set\_fontpc(tfontp);
+00832 \}
+\Hypertarget{kernal_8h_source_l00833}\hyperlink{class_s_i_t_e_x_t_a4e33142038f2ba1d42660dec1134d2f9}{00833} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \hyperlink{class_s_i_t_e_x_t_a4e33142038f2ba1d42660dec1134d2f9}{SITEXT::set\_select\_font}(SIFONT\_P tfontpc)
+00834 \{
+00835     \textcolor{keywordflow}{if} (select.ep == NULL) \textcolor{keywordflow}{return};
+00836     \textcolor{keywordflow}{for} (\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE\_P} p = select.sp; p != select.ep; p = p->\hyperlink{class_s_i_c_h_a_r_n_o_d_e_ab188ae5c7731bcc66a1042defcf158c8}{nextp})
+00837         p->set\_fontpc(tfontpc);
+00838 \}
+\Hypertarget{kernal_8h_source_l00839}\hyperlink{class_s_i_t_e_x_t_a2b1208eb0796a08112449e7273b271df}{00839} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \hyperlink{class_s_i_t_e_x_t_a4e33142038f2ba1d42660dec1134d2f9}{SITEXT::set\_select\_font}(SIFONT& tfont)
+00840 \{
+00841     \textcolor{keywordflow}{if} (select.ep == NULL) \textcolor{keywordflow}{return};
+00842     \textcolor{keywordflow}{for} (\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE\_P} p = select.sp; p != select.ep; p = p->\hyperlink{class_s_i_c_h_a_r_n_o_d_e_ab188ae5c7731bcc66a1042defcf158c8}{nextp})
+00843         p->set\_fontpc(tfont);
+00844 \}
+00845 \textcolor{keyword}{inline} \textcolor{keywordtype}{void} SITEXT::set\_curfont(SIFONT\_P tcurfontpc)
+00846 \{
+00847     curfontpc = tcurfontpc;
+00848 \}
+00849 \textcolor{keyword}{inline} \textcolor{keywordtype}{void} SITEXT::set\_curfont(SIFONT& tcurfont)
+00850 \{
+00851     curfontpc = &tcurfont;
+00852 \}
+\Hypertarget{kernal_8h_source_l00853}\hyperlink{class_s_i_t_e_x_t_abfd80c912a40b72c0cb113ad147b3d33}{00853} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \hyperlink{class_s_i_t_e_x_t_abfd80c912a40b72c0cb113ad147b3d33}{SITEXT::set\_select\_color}(COLORERF tcolor)
+00854 \{
+00855     \textcolor{keywordflow}{if} (select.ep == NULL) \textcolor{keywordflow}{return};
+00856     \textcolor{keywordflow}{for} (\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE\_P} p = select.sp; p != select.ep; p = p->\hyperlink{class_s_i_c_h_a_r_n_o_d_e_ab188ae5c7731bcc66a1042defcf158c8}{nextp})
+00857         p->set\_color(\hyperlink{kernal_8h_abd07a7735390aea7bf376c2bcc75bd96}{anticolor\_ext}(tcolor));
+00858 \}
+\Hypertarget{kernal_8h_source_l00859}\hyperlink{class_s_i_t_e_x_t_af79cfc54434033545610de0dc0580fa9}{00859} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \hyperlink{class_s_i_t_e_x_t_af79cfc54434033545610de0dc0580fa9}{SITEXT::set\_select\_lspace}(LINESPACE tlspace)
+00860 \{
+00861     \textcolor{keywordflow}{for} (\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE\_P} p = select.sp; p != select.ep; p = p->\hyperlink{class_s_i_c_h_a_r_n_o_d_e_ab188ae5c7731bcc66a1042defcf158c8}{nextp})
+00862         p->char\_infop->lspace = tlspace;
+00863 \}
+\Hypertarget{kernal_8h_source_l00864}\hyperlink{class_s_i_t_e_x_t_a4fde9667222b3289a6c98da2871661af}{00864} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \hyperlink{class_s_i_t_e_x_t_a4fde9667222b3289a6c98da2871661af}{SITEXT::set\_select\_cspace}(CHARSPACE tcspace)
+00865 \{
+00866     \textcolor{keywordflow}{for} (\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE\_P} p = select.sp; p != select.ep; p = p->\hyperlink{class_s_i_c_h_a_r_n_o_d_e_ab188ae5c7731bcc66a1042defcf158c8}{nextp})
+00867         p->char\_infop->cspace = tcspace;
+00868 \}
+\Hypertarget{kernal_8h_source_l00869}\hyperlink{class_s_i_t_e_x_t_a324e28153c8ebfeb4cabc3b82171c5e5}{00869} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \hyperlink{class_s_i_t_e_x_t_a324e28153c8ebfeb4cabc3b82171c5e5}{SITEXT::set\_pagewidth}(PAGEWIDTH tpagewidth)
+00870 \{
+00871     pagewidth = tpagewidth;
+00872 \}
+\Hypertarget{kernal_8h_source_l00873}\hyperlink{class_s_i_t_e_x_t_ac0de66d8174d426e6b90641f36c6f74c}{00873} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \hyperlink{class_s_i_t_e_x_t_ac0de66d8174d426e6b90641f36c6f74c}{SITEXT::set\_line\_align}(\textcolor{keyword}{const} \hyperlink{struct_s_i_r_a_n_g_e}{SILINE}& line, SIALIGN align)
+00874 \{
+00875     \textcolor{keywordflow}{for} (\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE\_P} p = line.\hyperlink{struct_s_i_r_a_n_g_e_a7acdf296d873d6ed6fc203674109b715}{sp}; p != line.\hyperlink{struct_s_i_r_a_n_g_e_aaa89b5ae16be7b890eba048bc212feec}{ep}; p = p->\hyperlink{class_s_i_c_h_a_r_n_o_d_e_ab188ae5c7731bcc66a1042defcf158c8}{nextp})
+00876         p->set\_align(align);
+00877 \}
+\Hypertarget{kernal_8h_source_l00878}\hyperlink{class_s_i_t_e_x_t_a1717bc1a3f8d797fc52654ffb7aafb87}{00878} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \hyperlink{class_s_i_t_e_x_t_a1717bc1a3f8d797fc52654ffb7aafb87}{SITEXT::set\_cursorp\_align}(SIALIGN align)
+00879 \{
+00880     std::vector<SILINE>::iterator it = point\_to\_line(cursorp->draw\_infop->POS);
+00881     set\_line\_align(*it, align);
+00882     \textcolor{keywordflow}{return};
+00883 \}
+\Hypertarget{kernal_8h_source_l00884}\hyperlink{class_s_i_t_e_x_t_a53c41b86be047c49946fab50ef79563b}{00884} \textcolor{keyword}{inline} SIALIGN \hyperlink{class_s_i_t_e_x_t_a43b43ba8dc025b49555f527734508465}{SITEXT::get\_range\_align}(\textcolor{keyword}{const} \hyperlink{struct_s_i_r_a_n_g_e}{SIRANGE}& range)
+00885 \{
+00886     \textcolor{keywordflow}{return} get\_range\_align(range.\hyperlink{struct_s_i_r_a_n_g_e_a7acdf296d873d6ed6fc203674109b715}{sp}, range.\hyperlink{struct_s_i_r_a_n_g_e_aaa89b5ae16be7b890eba048bc212feec}{ep});
+00887 \}
+\Hypertarget{kernal_8h_source_l00888}\hyperlink{class_s_i_t_e_x_t_afe20f1a6f5380d4d6cb005e872980289}{00888} \textcolor{keyword}{inline} std::vector<SILINE>::iterator \hyperlink{class_s_i_t_e_x_t_afe20f1a6f5380d4d6cb005e872980289}{SITEXT::point\_to\_line}(\textcolor{keyword}{const} 
+      \hyperlink{struct_s_i_p_o_i_n_t}{SIPOINT}& P)
+00889 \{
+00890     std::vector<SILINE>::iterator it;
+00891     \textcolor{keywordflow}{for} (it = vlinep.begin(); it != vlinep.end(); ++it)
+00892         \textcolor{keywordflow}{if} (\hyperlink{kernal_8h_ae39165f0f00583edee6fe18ea6bdf5e3}{point\_on\_line}(*it, P)) \textcolor{keywordflow}{break};
+00893     \textcolor{keywordflow}{return} it;
+00894 
+00895 \}
+\Hypertarget{kernal_8h_source_l00896}\hyperlink{class_s_i_t_e_x_t_a944194c2df3c4ba2c599de6fbe0f98c2}{00896} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \hyperlink{class_s_i_t_e_x_t_a944194c2df3c4ba2c599de6fbe0f98c2}{SITEXT::repaint}()
+00897 \{
+00898     pre\_proc();
+00899     proc\_text();
+00900 \}
+\Hypertarget{kernal_8h_source_l00901}\hyperlink{class_s_i_t_e_x_t_af62ce4105e9450cc8c2319fed9fa7218}{00901} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \hyperlink{class_s_i_t_e_x_t_af62ce4105e9450cc8c2319fed9fa7218}{SITEXT::anticolor}(\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE\_P} ps, 
+      \hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE\_P} pe)
+00902 \{
+00903     \textcolor{keywordflow}{if} (ps == NULL || pe == NULL) \textcolor{keywordflow}{return};
+00904     \textcolor{keywordflow}{for} (\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE\_P} p = ps; p != pe; p = p->\hyperlink{class_s_i_c_h_a_r_n_o_d_e_ab188ae5c7731bcc66a1042defcf158c8}{nextp})
+00905     \{
+00906         p->char\_infop->bgcolor = \hyperlink{kernal_8h_abd07a7735390aea7bf376c2bcc75bd96}{anticolor\_ext}(p->char\_infop->bgcolor);\textcolor{comment}{//
+      (~(p->char\_infop->bgcolor))&((1 << 24) - 1);}
+00907         p->char\_infop->color = \hyperlink{kernal_8h_abd07a7735390aea7bf376c2bcc75bd96}{anticolor\_ext}(p->char\_infop->color);\textcolor{comment}{//
+      (~(p->char\_infop->color))&((1 << 24) - 1);}
+00908     \}
+00909 \}
+\Hypertarget{kernal_8h_source_l00910}\hyperlink{class_s_i_t_e_x_t_a4dd44878d55139898fcead669e074c2e}{00910} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \hyperlink{class_s_i_t_e_x_t_a4dd44878d55139898fcead669e074c2e}{SITEXT::save}()
+00911 \{
+00912     freopen(save\_path.c\_str(), \textcolor{stringliteral}{"w"}, stdout);
+00913     print\_info();
+00914     fclose(stdout);
+00915 \}
+\Hypertarget{kernal_8h_source_l00916}\hyperlink{class_s_i_t_e_x_t_a270a832a88596618a424d8d9f9d3cb80}{00916} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \hyperlink{class_s_i_t_e_x_t_a270a832a88596618a424d8d9f9d3cb80}{SITEXT::open}()
+00917 \{
+00918     freopen(open\_path.c\_str(), \textcolor{stringliteral}{"r"}, stdin);
+00919     read\_info();
+00920     fclose(stdin);
+00921 \}
+\Hypertarget{kernal_8h_source_l00922}\hyperlink{kernal_8h_ae39165f0f00583edee6fe18ea6bdf5e3}{00922} \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} \hyperlink{kernal_8h_ae39165f0f00583edee6fe18ea6bdf5e3}{point\_on\_line}(\hyperlink{struct_s_i_r_a_n_g_e}{SILINE} L, \textcolor{keyword}{const} \hyperlink{struct_s_i_p_o_i_n_t}{SIPOINT}& P)
+00923 \{
+00924     \textcolor{keywordflow}{return} L.\hyperlink{struct_s_i_r_a_n_g_e_a7acdf296d873d6ed6fc203674109b715}{sp}->\hyperlink{class_s_i_c_h_a_r_n_o_d_e_aee3adfece6b51d9f71a0aa19d203b106}{draw\_infop}->POS.\hyperlink{struct_s_i_p_o_i_n_t_a1ed590aa0d87cf51a0d30a44d1c03e93}{y} <= P.\hyperlink{struct_s_i_p_o_i_n_t_a1ed590aa0d87cf51a0d30a44d1c03e93}{y} &&
+00925         P.\hyperlink{struct_s_i_p_o_i_n_t_a1ed590aa0d87cf51a0d30a44d1c03e93}{y} < L.\hyperlink{struct_s_i_r_a_n_g_e_a7acdf296d873d6ed6fc203674109b715}{sp}->\hyperlink{class_s_i_c_h_a_r_n_o_d_e_aee3adfece6b51d9f71a0aa19d203b106}{draw\_infop}->POS.\hyperlink{struct_s_i_p_o_i_n_t_a1ed590aa0d87cf51a0d30a44d1c03e93}{y} + L.\hyperlink{struct_s_i_r_a_n_g_e_a7acdf296d873d6ed6fc203674109b715}{sp}->\hyperlink{class_s_i_c_h_a_r_n_o_d_e_aee3adfece6b51d9f71a0aa19d203b106}{draw\_infop}->
+      \hyperlink{class_s_i_d_r_a_w___i_n_f_o_a41065961d296d245790773771670aae2}{L}.\hyperlink{struct_s_i_r_e_c_t_a6577f3092897d4bef17aab5ec4d62819}{height};
+00926 \}
+\Hypertarget{kernal_8h_source_l00927}\hyperlink{kernal_8h_a98cfecde826e07d0286c4e279554d1fa}{00927} \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} \hyperlink{kernal_8h_a98cfecde826e07d0286c4e279554d1fa}{point\_on\_char\_col}(\hyperlink{class_s_i_c_h_a_r_n_o_d_e}{SICHARNODE\_P} np, \textcolor{keyword}{const} 
+      \hyperlink{struct_s_i_p_o_i_n_t}{SIPOINT}& P)
+00928 \{
+00929     \textcolor{keywordflow}{return} np->\hyperlink{class_s_i_c_h_a_r_n_o_d_e_aee3adfece6b51d9f71a0aa19d203b106}{draw\_infop}->POS.\hyperlink{struct_s_i_p_o_i_n_t_a2375f32079fea6d73191df2bfe08cb1d}{x} <= P.\hyperlink{struct_s_i_p_o_i_n_t_a2375f32079fea6d73191df2bfe08cb1d}{x}&&
+00930         P.\hyperlink{struct_s_i_p_o_i_n_t_a2375f32079fea6d73191df2bfe08cb1d}{x} < np->\hyperlink{class_s_i_c_h_a_r_n_o_d_e_aee3adfece6b51d9f71a0aa19d203b106}{draw\_infop}->POS.\hyperlink{struct_s_i_p_o_i_n_t_a2375f32079fea6d73191df2bfe08cb1d}{x} + np->\hyperlink{class_s_i_c_h_a_r_n_o_d_e_aee3adfece6b51d9f71a0aa19d203b106}{draw\_infop}->\hyperlink{class_s_i_d_r_a_w___i_n_f_o_a41065961d296d245790773771670aae2}{L}.
+      \hyperlink{struct_s_i_r_e_c_t_a99dbd77d045cc587f0c1f40bbba99ac8}{width};
+00931 \}
+00932 
+00933 \textcolor{preprocessor}{#endif}
+\end{DoxyCode}
